@@ -15,7 +15,9 @@ Coming soon!
 
 - Install [Windows IoT Core](https://www.microsoft.com/en-us/software-download/windows10iotcore#!) on your Raspberry Pi
 
-- Add the Pi to your Azure IoT Central Application
+- Install [Node.js](https://nodejs.org/en/) and [Azure IoT DPS Symmetric Key Generator](https://www.npmjs.com/package/dps-keygen)
+
+- [Add the Pi to your Azure IoT Central Application](https://docs.microsoft.com/en-us/azure/iot-central/howto-connect-windowsiotcore)
 
 - More coming soon...
 
