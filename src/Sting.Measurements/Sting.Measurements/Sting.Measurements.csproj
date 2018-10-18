@@ -129,6 +129,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dht">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
     </PackageReference>
