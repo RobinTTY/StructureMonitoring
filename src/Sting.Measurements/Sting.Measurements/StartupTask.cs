@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Threading;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 using Windows.ApplicationModel.Background;
+using Windows.System.Threading;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -10,41 +10,61 @@ namespace Sting.Measurements
 {
     public sealed class StartupTask : IBackgroundTask
     {
+        private const int DhtPin = 4;
+        private const int LedPin = 5;
+        private BackgroundTaskDeferral _deferral;
+        private GpioPin _led;
         private static IDht _dht = null;
+        volatile bool _cancelRequested = false;
         
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            InitGpio();
-            InitTimedMeasurement(20);
-            //for (;;);
+            InitDht();
+            InitLed();
+            _deferral = taskInstance.GetDeferral();
+            ThreadPoolTimer timer = ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(2));
         }
 
-        private static void InitGpio()
+        private static void InitDht()
         {
-            // Open a connection to the used GPIO pin 4 in exclusive mode
-            const int gpioPin = 4;
-            GpioPin dhtPin = GpioController.GetDefault().OpenPin(gpioPin, GpioSharingMode.Exclusive);
+            // Open the used GPIO pin 4
+            GpioPin dhtPin = GpioController.GetDefault().OpenPin(DhtPin);
             _dht = new Dht11(dhtPin, GpioPinDriveMode.Input);
         }
 
-        private static void InitTimedMeasurement(int period)
+        private void InitLed()
         {
-            // Implement timer to perform a measurement every x seconds
-            var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromSeconds(period);
-            var stateTimer = new Timer(TakeMeasurement, null, startTimeSpan, periodTimeSpan);
+            // Open the used GPIO pin 5 and set LED to off
+            _led = GpioController.GetDefault().OpenPin(LedPin);
+            _led.Write(GpioPinValue.High);
+            _led.SetDriveMode(GpioPinDriveMode.Output);
         }
 
-        private static async void TakeMeasurement(object state)
+        private async void TakeMeasurement(ThreadPoolTimer timer)
         {
-            // Take measurement and check for validity
-            double temp = 0.0;
-            double humidity = 0.0;
-            DhtReading measurement = await _dht.GetReadingAsync().AsTask();
-            if (measurement.IsValid)
+            // Take measurement and check for validity, indicate through LED
+            if (_cancelRequested == false)
             {
-                temp = measurement.Temperature;
-                humidity = measurement.Humidity;
+                double temp = 0.0;
+                double humidity = 0.0;
+                DhtReading measurement = await _dht.GetReadingAsync().AsTask();
+
+                if (measurement.IsValid)
+                {
+                    temp = measurement.Temperature;
+                    humidity = measurement.Humidity;
+                    _led.Write(GpioPinValue.Low);
+                }
+                else
+                {
+                    _led.Write(GpioPinValue.High);
+                }
+            }
+            else
+            {
+                // indicate that deferral is completed
+                timer.Cancel();
+                _deferral.Complete();
             }
         }
     }
