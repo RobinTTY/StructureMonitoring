@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Http;
 using System.Threading;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 using Windows.ApplicationModel.Background;
-using Windows.UI.Xaml.Automation;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -21,16 +16,15 @@ namespace Sting.Measurements
         {
             InitGpio();
             InitTimedMeasurement(20);
-            for (;;);
+            //for (;;);
         }
 
         private static void InitGpio()
         {
             // Open a connection to the used GPIO pin 4 in exclusive mode
-            const int dhtPin = 4;
-            GpioPin winDhtPin = null;
-            winDhtPin = GpioController.GetDefault().OpenPin(dhtPin, GpioSharingMode.Exclusive);
-            _dht = new Dht11(winDhtPin, GpioPinDriveMode.Input);
+            const int gpioPin = 4;
+            GpioPin dhtPin = GpioController.GetDefault().OpenPin(gpioPin, GpioSharingMode.Exclusive);
+            _dht = new Dht11(dhtPin, GpioPinDriveMode.Input);
         }
 
         private static void InitTimedMeasurement(int period)
