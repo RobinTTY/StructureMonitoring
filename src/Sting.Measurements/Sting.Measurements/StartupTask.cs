@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using Windows.Devices.Gpio;
-using Sensors.Dht;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
+using Sensors.Dht;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -54,6 +55,7 @@ namespace Sting.Measurements
                     temp = measurement.Temperature;
                     humidity = measurement.Humidity;
                     _led.Write(GpioPinValue.Low);
+                    Debug.WriteLine("Temp: " + temp + " Humidity: " + humidity);
                 }
                 else
                 {
