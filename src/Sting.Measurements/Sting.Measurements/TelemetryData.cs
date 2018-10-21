@@ -1,5 +1,5 @@
 ﻿using System;
-using Windows.Data.Json;
+using Newtonsoft.Json;
 
 namespace Sting.Measurements
 {
@@ -8,5 +8,10 @@ namespace Sting.Measurements
         public DateTime Timestamp;
         public double Temperature;
         public double Humidity;
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
