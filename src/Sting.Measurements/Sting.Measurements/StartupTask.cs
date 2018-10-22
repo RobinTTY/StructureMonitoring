@@ -12,16 +12,14 @@ namespace Sting.Measurements
     public sealed class StartupTask : IBackgroundTask
     {
         private const int DhtPin = 4;
-        private const int LedPin = 5;
         private BackgroundTaskDeferral _deferral;
-        private GpioPin _led;
         private static IDht _dht = null;
+        private static Led _statusLed = new Led(5);
         volatile bool _cancelRequested = false;
         
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             InitDht();
-            InitLed();
             _deferral = taskInstance.GetDeferral();
             ThreadPoolTimer timer = ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(2));
         }
@@ -31,14 +29,6 @@ namespace Sting.Measurements
             // Open the used GPIO pin 4
             GpioPin dhtPin = GpioController.GetDefault().OpenPin(DhtPin);
             _dht = new Dht11(dhtPin, GpioPinDriveMode.Input);
-        }
-
-        private void InitLed()
-        {
-            // Open the used GPIO pin 5 and set LED to off
-            _led = GpioController.GetDefault().OpenPin(LedPin);
-            _led.Write(GpioPinValue.High);
-            _led.SetDriveMode(GpioPinDriveMode.Output);
         }
 
         private async void TakeMeasurement(ThreadPoolTimer timer)
@@ -54,12 +44,12 @@ namespace Sting.Measurements
                 {
                     temp = measurement.Temperature;
                     humidity = measurement.Humidity;
-                    _led.Write(GpioPinValue.Low);
+                    _statusLed.TurnOn();
                     Debug.WriteLine("Temp: " + temp + " Humidity: " + humidity);
                 }
                 else
                 {
-                    _led.Write(GpioPinValue.High);
+                    _statusLed.TurnOff();
                 }
             }
             else
