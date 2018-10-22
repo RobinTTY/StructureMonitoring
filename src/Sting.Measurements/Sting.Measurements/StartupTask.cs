@@ -14,7 +14,7 @@ namespace Sting.Measurements
         private const int DhtPin = 4;
         private BackgroundTaskDeferral _deferral;
         private static IDht _dht = null;
-        private static Led _statusLed = new Led(5);
+        private static readonly Led StatusLed = new Led(5);
         volatile bool _cancelRequested = false;
         
         public void Run(IBackgroundTaskInstance taskInstance)
@@ -44,12 +44,12 @@ namespace Sting.Measurements
                 {
                     temp = measurement.Temperature;
                     humidity = measurement.Humidity;
-                    _statusLed.TurnOn();
+                    StatusLed.TurnOn();
                     Debug.WriteLine("Temp: " + temp + " Humidity: " + humidity);
                 }
                 else
                 {
-                    _statusLed.TurnOff();
+                    StatusLed.TurnOff();
                 }
             }
             else
