@@ -27,7 +27,7 @@ namespace Sting.Measurements
         private static void InitDht()
         {
             // Open the used GPIO pin 4
-            GpioPin dhtPin = GpioController.GetDefault().OpenPin(DhtPin);
+            var dhtPin = GpioController.GetDefault().OpenPin(DhtPin);
             _dht = new Dht11(dhtPin, GpioPinDriveMode.Input);
         }
 
@@ -36,16 +36,16 @@ namespace Sting.Measurements
             // Take measurement and check for validity, indicate through LED
             if (_cancelRequested == false)
             {
-                double temp = 0.0;
-                double humidity = 0.0;
-                DhtReading measurement = await _dht.GetReadingAsync().AsTask();
+                var telemetry = new TelemetryData();
+                var measurement = await _dht.GetReadingAsync().AsTask();
 
                 if (measurement.IsValid)
                 {
-                    temp = measurement.Temperature;
-                    humidity = measurement.Humidity;
+                    telemetry.Temperature = measurement.Temperature;
+                    telemetry.Humidity = measurement.Humidity;
+                    telemetry.Timestamp = DateTime.Now;
                     StatusLed.TurnOn();
-                    Debug.WriteLine("Temp: " + temp + " Humidity: " + humidity);
+                    Debug.WriteLine("Temp: " + telemetry.Temperature + " Humidity: " + telemetry.Humidity + " Timestamp: " + telemetry.Timestamp);
                 }
                 else
                 {
