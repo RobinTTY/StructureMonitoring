@@ -2,16 +2,16 @@
 
 namespace Sting.Measurements
 {
-    class Led
+    class Led : ISensor
     {
         private GpioPin _pin;
 
         public Led(int pin)
         {
-            InitGpio(pin);
+            InitSensor(pin);
         }
 
-        private bool InitGpio(int pin)
+        public bool InitSensor(int pin)
         {
             // Open the used GPIO pin and set as Output
             var ledPin = pin;
