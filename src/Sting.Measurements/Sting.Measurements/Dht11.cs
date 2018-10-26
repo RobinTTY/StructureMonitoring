@@ -5,7 +5,8 @@ namespace Sting.Measurements
 {
     class Dht11 : ISensor
     {
-        private GpioPin _pin;
+        private IDht _dht;
+        GpioPin _gpioPin;
 
         public Dht11(int pin)
         {
@@ -14,12 +15,19 @@ namespace Sting.Measurements
 
         public bool InitSensor(int pin)
         {
-            throw new System.NotImplementedException();
+            // Open the used GPIO pin, use as input
+            var gpioController = GpioController.GetDefault();
+            
+            if (gpioController == null) return false;
+            _gpioPin = gpioController.OpenPin(pin);
+            _dht = new Sensors.Dht.Dht11(_gpioPin, GpioPinDriveMode.Input);
+            return true;
         }
 
         public bool State()
         {
-            throw new System.NotImplementedException();
+            // Check if _dht is null
+            return _dht != null;
         }
     }
 }
