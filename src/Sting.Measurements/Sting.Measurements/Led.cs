@@ -2,7 +2,7 @@
 
 namespace Sting.Measurements
 {
-    class Led : ISensor
+    class Led : IGpioComponents
     {
         private GpioPin _pin;
 

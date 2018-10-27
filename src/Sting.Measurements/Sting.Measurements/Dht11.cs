@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 
 namespace Sting.Measurements
 {
-    class Dht11 : ISensor
+    class Dht11 : IGpioComponents
     {
         private IDht _dht;
         GpioPin _gpioPin;

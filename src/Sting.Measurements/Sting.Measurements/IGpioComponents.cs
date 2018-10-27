@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sting.Measurements
+﻿namespace Sting.Measurements
 {
-    interface ISensor
+    interface IGpioComponents
     {
         /// <summary>
         /// Initiates the sensor component, making it ready for use.
