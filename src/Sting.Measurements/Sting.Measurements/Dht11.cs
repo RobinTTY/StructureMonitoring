@@ -5,7 +5,7 @@ using Sensors.Dht;
 
 namespace Sting.Measurements
 {
-    class Dht11 : IGpioComponents
+    class Dht11 : IGpioComponent
     {
         private IDht _dht;
         GpioPin _gpioPin;

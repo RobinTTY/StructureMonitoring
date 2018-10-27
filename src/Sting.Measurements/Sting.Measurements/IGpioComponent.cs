@@ -1,6 +1,6 @@
 ﻿namespace Sting.Measurements
 {
-    interface IGpioComponents
+    interface IGpioComponent
     {
         /// <summary>
         /// Initiates the sensor component, making it ready for use.
