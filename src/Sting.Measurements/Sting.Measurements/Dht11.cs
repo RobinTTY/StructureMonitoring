@@ -1,4 +1,7 @@
-﻿using Windows.Devices.Gpio;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
 using Sensors.Dht;
 
 namespace Sting.Measurements
@@ -7,11 +10,6 @@ namespace Sting.Measurements
     {
         private IDht _dht;
         GpioPin _gpioPin;
-
-        public Dht11(int pin)
-        {
-            InitSensor(pin);
-        }
 
         public bool InitSensor(int pin)
         {
@@ -28,6 +26,23 @@ namespace Sting.Measurements
         {
             // Check if _dht is null
             return _dht != null;
+        }
+
+        /// <summary>
+        /// Takes a measurement of temperature and humidity. Adds the current timestamp.
+        /// </summary>
+        /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
+        public async Task<TelemetryData> TakeMeasurement()
+        {
+            // Take measurement and check for validity, indicate through LED
+            var telemetry = new TelemetryData();
+            var measurement = await _dht.GetReadingAsync().AsTask();
+
+            if (!measurement.IsValid) return null;
+            telemetry.Temperature = measurement.Temperature;
+            telemetry.Humidity = measurement.Humidity;
+            telemetry.Timestamp = DateTime.Now;
+            return telemetry;
         }
     }
 }
