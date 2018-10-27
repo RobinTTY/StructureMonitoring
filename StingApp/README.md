@@ -1,6 +1,8 @@
 # StingApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+Website to display the measurements. 
+
+You'll need node.js and npm, then install angular using npm. You have to do these steps to build the angular project.
 
 ## Development server
 
@@ -12,7 +14,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
 
 ## Running unit tests
 
