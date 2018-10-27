@@ -95,6 +95,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Dht11.cs" />
     <Compile Include="ISensor.cs" />
     <Compile Include="Led.cs" />
     <Compile Include="StartupTask.cs" />

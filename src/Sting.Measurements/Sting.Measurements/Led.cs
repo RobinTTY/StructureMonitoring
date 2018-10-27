@@ -6,11 +6,6 @@ namespace Sting.Measurements
     {
         private GpioPin _pin;
 
-        public Led(int pin)
-        {
-            InitSensor(pin);
-        }
-
         public bool InitSensor(int pin)
         {
             // Open the used GPIO pin and set as Output
