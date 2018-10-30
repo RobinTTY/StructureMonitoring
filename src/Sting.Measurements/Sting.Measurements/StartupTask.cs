@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using Windows.Storage;
 using Windows.System.Threading;
 using Sting.Cloud;
 
@@ -13,6 +14,7 @@ namespace Sting.Measurements
         private BackgroundTaskDeferral _deferral;
         private readonly Led _statusLed = new Led();
         private readonly Dht11 _tempSensor = new Dht11();
+        private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         volatile bool _cancelRequested = false;
         
         public void Run(IBackgroundTaskInstance taskInstance)
@@ -36,7 +38,7 @@ namespace Sting.Measurements
                 else
                 {
                     _statusLed.TurnOn();
-                    await AzureIotHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
+                    await _structureMonitoringHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
                     Debug.WriteLine("Message sent!");
                 }
                 telemetry.Dispose();
