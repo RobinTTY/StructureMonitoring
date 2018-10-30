@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
+using DotNetty.Transport.Channels;
 using Microsoft.Azure.Devices.Client;
 
 namespace Sting.Cloud
@@ -18,7 +20,17 @@ namespace Sting.Cloud
             var deviceClient = DeviceClient.CreateFromConnectionString(ConnectionString, TransportType.Mqtt);
             var message = new Message(Encoding.ASCII.GetBytes(msg));
 
-            await deviceClient.SendEventAsync(message);
+            try
+            {
+                await deviceClient.SendEventAsync(message);
+            }
+            catch (ClosedChannelException e)
+            {
+                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine("Message: " + e.Message);
+                Debug.WriteLine("Source: " + e.Source);
+            }
+            deviceClient.Dispose();
         }
     }
 }

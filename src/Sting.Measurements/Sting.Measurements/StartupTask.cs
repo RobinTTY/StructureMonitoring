@@ -20,7 +20,7 @@ namespace Sting.Measurements
             _deferral = taskInstance.GetDeferral();
             _tempSensor.InitSensor(4);
             _statusLed.InitSensor(5);
-            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(4));
+            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(2));
         }
 
         private async void TakeMeasurement(ThreadPoolTimer timer)
@@ -28,13 +28,18 @@ namespace Sting.Measurements
             if (_cancelRequested == false)
             {
                 var telemetry = _tempSensor.TakeMeasurement();
-                if (telemetry.Result == null) _statusLed.TurnOff();
+                if (telemetry.Result == null)
+                {
+                    _statusLed.TurnOff();
+                    Debug.WriteLine("Invalid Read");
+                }
                 else
                 {
                     _statusLed.TurnOn();
                     await AzureIotHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
                     Debug.WriteLine("Message sent!");
                 }
+                telemetry.Dispose();
             }
             else
             {
