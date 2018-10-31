@@ -22,7 +22,7 @@ namespace Sting.Measurements
             _deferral = taskInstance.GetDeferral();
             _tempSensor.InitSensor(4);
             _statusLed.InitSensor(5);
-            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(2));
+            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(5));
         }
 
         private async void TakeMeasurement(ThreadPoolTimer timer)
@@ -38,8 +38,8 @@ namespace Sting.Measurements
                 else
                 {
                     _statusLed.TurnOn();
-                    await _structureMonitoringHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
-                    Debug.WriteLine("Message sent!");
+                    var success = await _structureMonitoringHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
+                    Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
                 }
                 telemetry.Dispose();
             }

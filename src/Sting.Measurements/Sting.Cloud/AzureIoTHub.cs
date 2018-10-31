@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -19,20 +20,41 @@ namespace Sting.Cloud
         /// <param name="connectionString">File path or connection string.</param>
         public AzureIotHub(string connectionString = "C:\\Data\\Users\\DefaultAccount\\AppData\\Local\\Packages\\Sting.Measurements-uwp_gk6cf97c3a7py\\LocalState\\DeviceConnectionString.txt")
         {
-            _connectionString = System.IO.File.Exists(connectionString) ? System.IO.File.ReadAllText(connectionString) : connectionString;
+            if (File.Exists(connectionString))
+            {
+                try {
+                    File.ReadAllText(connectionString);
+                }
+                catch(UnauthorizedAccessException) { Debug.WriteLine("Insufficient read permissions."); }
+                catch (Exception) { Debug.WriteLine("Error while reading connection string path.");}
+            }
+            else
+                _connectionString = connectionString;
+            
         }
 
         /// <summary>
         /// Sends a given string to the IoT Hub which the connection string points to.
         /// </summary>
         /// <param name="msg">A String of variable length.</param>
-        public async Task SendDeviceToCloudMessage(string msg)
+        /// <returns>Returns true if the message was successfully sent.</returns>
+        public async Task<bool> SendDeviceToCloudMessage(string msg)
         {
-            var deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
             var message = new Message(Encoding.ASCII.GetBytes(msg));
-            
-            await deviceClient.SendEventAsync(message);
-            deviceClient.Dispose();
+
+            try
+            {
+                var deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
+                await deviceClient.SendEventAsync(message);
+                deviceClient.Dispose();
+                return true;
+            }
+            catch (FormatException e)
+            {
+                Debug.WriteLine("Given connection string is not valid! Message was not sent.");
+                Debug.WriteLine(e.StackTrace);
+                return false;
+            }
         }
     }
 }
