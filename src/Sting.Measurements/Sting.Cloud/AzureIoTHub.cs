@@ -10,8 +10,10 @@ namespace Sting.Cloud
     public class AzureIotHub
     {
         private readonly string _connectionString;
+        private readonly DeviceClient deviceClient;
 
         /// <summary>
+        /// Interacts with an Azure IoT Hub instance.
         /// If given string is a file path of an existing file, the contents of the file will be used as connection string.
         /// If given string is not the file path to an existing file, the string will be set as connection string itself.
         /// </summary>
@@ -28,7 +30,8 @@ namespace Sting.Cloud
             }
             else
                 _connectionString = connectionString;
-            
+
+            deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
         }
 
         /// <summary>
@@ -42,9 +45,7 @@ namespace Sting.Cloud
 
             try
             {
-                var deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
                 await deviceClient.SendEventAsync(message);
-                deviceClient.Dispose();
                 return true;
             }
             catch (FormatException e)
