@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
-using DotNetty.Transport.Channels;
 using Microsoft.Azure.Devices.Client;
 
 namespace Sting.Cloud
@@ -23,9 +21,9 @@ namespace Sting.Cloud
             if (File.Exists(connectionString))
             {
                 try {
-                    File.ReadAllText(connectionString);
+                    _connectionString = File.ReadAllText(connectionString);
                 }
-                catch(UnauthorizedAccessException) { Debug.WriteLine("Insufficient read permissions."); }
+                catch (UnauthorizedAccessException) { Debug.WriteLine("Insufficient read permissions."); }
                 catch (Exception) { Debug.WriteLine("Error while reading connection string path.");}
             }
             else
