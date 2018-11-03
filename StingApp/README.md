@@ -2,7 +2,7 @@
 
 Website to display the measurements. 
 
-You'll need node.js and npm, then install angular using npm. You have to do these steps to build the angular project.
+You'll need node.js and npm, then install angular using the command 'npm install -g @angular/cli'. You have to do these steps to build the angular project.
 
 ## Development server
 
