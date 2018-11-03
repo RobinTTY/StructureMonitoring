@@ -92,7 +92,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"container\">\n  <app-sidebar></app-sidebar>\n\n  <div id=\"container\">\n    <router-outlet></router-outlet>\n  </div>\n</div>"
+module.exports = "<div id=\"container\">\r\n  <app-sidebar></app-sidebar>\r\n\r\n  <div id=\"container\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -218,7 +218,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  building works!\n</p>\n"
+module.exports = "<p>\r\n  building works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -281,7 +281,7 @@ var BuildingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  floor works!\n</p>\n"
+module.exports = "<p>\r\n  floor works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -344,7 +344,7 @@ var FloorComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  room works!\n</p>\n"
+module.exports = "<p>\r\n  room works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -407,7 +407,7 @@ var RoomComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\n  <ul>\n    <li>\n      <a routerLink=\"telemetry-data\">\n        <i class=\"material-icons\">business</i>\n      </a>\n    </li>\n    <li>\n        <a routerLink=\"room\">\n          <i class=\"material-icons\">meeting_room</i>\n        </a>\n      </li>\n      <li>\n          <a routerLink=\"floor\">\n            <i class=\"material-icons\">account_balance</i>\n          </a>\n        </li>\n  </ul>\n</nav>"
+module.exports = "<nav>\r\n  <ul>\r\n    <li>\r\n      <a routerLink=\"telemetry-data\">\r\n        <i class=\"material-icons\">business</i>\r\n      </a>\r\n    </li>\r\n    <li>\r\n        <a routerLink=\"room\">\r\n          <i class=\"material-icons\">meeting_room</i>\r\n        </a>\r\n      </li>\r\n      <li>\r\n          <a routerLink=\"floor\">\r\n            <i class=\"material-icons\">account_balance</i>\r\n          </a>\r\n        </li>\r\n  </ul>\r\n</nav>"
 
 /***/ }),
 
@@ -418,7 +418,7 @@ module.exports = "<nav>\n  <ul>\n    <li>\n      <a routerLink=\"telemetry-data\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "nav {\n  background: #2D2E2E;\n  height: 100%; }\n  nav ul {\n    list-style-type: none;\n    padding: 0;\n    margin: 0; }\n  nav ul li a {\n      color: #fff;\n      padding: 20px;\n      display: block; }\n  nav ul li .activated {\n      background-color: #00a8ff; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lkZWJhci9DOlxcVXNlcnNcXEVuZXMgQWtrdXNcXERvY3VtZW50c1xcU3RpbmdBcHBcXFN0aW5nQXBwL3NyY1xcYXBwXFxzaWRlYmFyXFxzaWRlYmFyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksb0JBQW1CO0VBQ25CLGFBQVksRUFxQmY7RUF2QkQ7SUFLUSxzQkFBcUI7SUFDckIsV0FBVTtJQUNWLFVBQVMsRUFjWjtFQXJCTDtNQVlnQixZQUFXO01BQ1gsY0FBYTtNQUNiLGVBQWMsRUFDakI7RUFmYjtNQWtCZ0IsMEJBQXlCLEVBQzVCIiwiZmlsZSI6InNyYy9hcHAvc2lkZWJhci9zaWRlYmFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmF2IHtcclxuICAgIGJhY2tncm91bmQ6ICMyRDJFMkU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcblxyXG4gICAgdWwge1xyXG4gICAgICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcclxuICAgICAgICBwYWRkaW5nOiAwO1xyXG4gICAgICAgIG1hcmdpbjogMDtcclxuXHJcbiAgICAgICAgbGkge1xyXG5cclxuICAgICAgICAgICAgYSB7XHJcbiAgICAgICAgICAgICAgICBjb2xvcjogI2ZmZjtcclxuICAgICAgICAgICAgICAgIHBhZGRpbmc6IDIwcHg7XHJcbiAgICAgICAgICAgICAgICBkaXNwbGF5OiBibG9jaztcclxuICAgICAgICAgICAgfVxyXG5cclxuICAgICAgICAgICAgLmFjdGl2YXRlZCB7XHJcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDBhOGZmO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG4gICAgXHJcbn0iXX0= */"
+module.exports = "nav {\n  background: #2D2E2E;\n  height: 100%; }\n  nav ul {\n    list-style-type: none;\n    padding: 0;\n    margin: 0; }\n  nav ul li a {\n      color: #fff;\n      padding: 20px;\n      display: block; }\n  nav ul li .activated {\n      background-color: #00a8ff; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lkZWJhci9DOlxcVXNlcnNcXEVuZXMgQWtrdXNcXERvY3VtZW50c1xcU1dCNF9SYXNQaVxcU3RydWN0dXJlTW9uaXRvcmluZ1xcU3RpbmdBcHAvc3JjXFxhcHBcXHNpZGViYXJcXHNpZGViYXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxvQkFBbUI7RUFDbkIsYUFBWSxFQXFCZjtFQXZCRDtJQUtRLHNCQUFxQjtJQUNyQixXQUFVO0lBQ1YsVUFBUyxFQWNaO0VBckJMO01BWWdCLFlBQVc7TUFDWCxjQUFhO01BQ2IsZUFBYyxFQUNqQjtFQWZiO01Ba0JnQiwwQkFBeUIsRUFDNUIiLCJmaWxlIjoic3JjL2FwcC9zaWRlYmFyL3NpZGViYXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJuYXYge1xyXG4gICAgYmFja2dyb3VuZDogIzJEMkUyRTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuXHJcbiAgICB1bCB7XHJcbiAgICAgICAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xyXG4gICAgICAgIHBhZGRpbmc6IDA7XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG5cclxuICAgICAgICBsaSB7XHJcblxyXG4gICAgICAgICAgICBhIHtcclxuICAgICAgICAgICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgICAgICAgICAgICAgcGFkZGluZzogMjBweDtcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgICAgICAgICB9XHJcblxyXG4gICAgICAgICAgICAuYWN0aXZhdGVkIHtcclxuICAgICAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMGE4ZmY7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICB9XHJcbiAgICBcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -514,7 +514,7 @@ var TelemetryDataImportService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Telemtry Data</h1>\n \n<ul>\n  <li *ngFor=\"let data of telemetry$\">\n    <a routerLink=\"room/{{data.id}}\">{{ data.name }}</a>\n    <!--Hier später telemetry-data.temperature und humidity -->\n    <h2>Temperatur: {{data.email}}    Luftfeuchtigkeit: {{data.website}}</h2>\n  </li>\n</ul>"
+module.exports = "<h1>Telemtry Data</h1>\r\n \r\n<ul>\r\n  <li *ngFor=\"let data of telemetry$\">\r\n    <a routerLink=\"room/{{data.id}}\">{{ data.name }}</a>\r\n    <!--Hier später telemetry-data.temperature und humidity -->\r\n    <h2>Temperatur: {{data.email}}    Luftfeuchtigkeit: {{data.website}}</h2>\r\n  </li>\r\n</ul>"
 
 /***/ }),
 
@@ -582,7 +582,7 @@ var TelemetryDataComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  users works!\n</p>\n"
+module.exports = "<p>\r\n  users works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -699,7 +699,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Enes Akkus\Documents\StingApp\StingApp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Enes Akkus\Documents\SWB4_RasPi\StructureMonitoring\StingApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
