@@ -21,7 +21,7 @@
     <PackageCertificateKeyFile>Sting.Measurements_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackage>true</AppxPackage>
     <ContainsStartupTask>true</ContainsStartupTask>
-	<AppxBundle>Always</AppxBundle>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +96,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="External Libraries\BMP180.cs" />
     <Compile Include="Dht11.cs" />
     <Compile Include="IGpioComponent.cs" />
     <Compile Include="Led.cs" />
