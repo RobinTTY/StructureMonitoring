@@ -55,5 +55,19 @@ namespace Sting.Cloud
                 return false;
             }
         }
+
+        /// <summary>
+        /// Receives a Message in string format from the connected IoT Hub.
+        /// </summary>
+        /// <returns>Returns a string if a message was present. Returns null otherwise.</returns>
+        public async Task<string> ReceiveCloudToDeviceMessageAsync()
+        {
+            var receivedMessage = await _deviceClient.ReceiveAsync();
+
+            if (receivedMessage == null) return null;
+            var messageData = Encoding.ASCII.GetString(receivedMessage.GetBytes());
+            await _deviceClient.CompleteAsync(receivedMessage);
+            return messageData;
+        }
     }
 }
