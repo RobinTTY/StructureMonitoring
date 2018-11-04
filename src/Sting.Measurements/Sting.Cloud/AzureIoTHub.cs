@@ -10,7 +10,7 @@ namespace Sting.Cloud
     public class AzureIotHub
     {
         private readonly string _connectionString;
-        private readonly DeviceClient deviceClient;
+        private readonly DeviceClient _deviceClient;
 
         /// <summary>
         /// Interacts with an Azure IoT Hub instance.
@@ -31,7 +31,7 @@ namespace Sting.Cloud
             else
                 _connectionString = connectionString;
 
-            deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
+            _deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
         }
 
         /// <summary>
@@ -39,13 +39,13 @@ namespace Sting.Cloud
         /// </summary>
         /// <param name="msg">A String of variable length.</param>
         /// <returns>Returns true if the message was successfully sent.</returns>
-        public async Task<bool> SendDeviceToCloudMessage(string msg)
+        public async Task<bool> SendDeviceToCloudMessageAsync(string msg)
         {
             var message = new Message(Encoding.ASCII.GetBytes(msg));
 
             try
             {
-                await deviceClient.SendEventAsync(message);
+                await _deviceClient.SendEventAsync(message);
                 return true;
             }
             catch (FormatException e)

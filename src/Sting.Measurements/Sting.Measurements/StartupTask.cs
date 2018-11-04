@@ -38,7 +38,7 @@ namespace Sting.Measurements
                 else
                 {
                     _statusLed.TurnOn();
-                    var success = await _structureMonitoringHub.SendDeviceToCloudMessage(telemetry.Result.ToJson());
+                    var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(telemetry.Result.ToJson());
                     Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
                 }
                 telemetry.Dispose();
