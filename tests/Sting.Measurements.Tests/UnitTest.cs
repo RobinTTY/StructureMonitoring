@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace Sting.Measurements.Tests
 {
@@ -10,8 +11,9 @@ namespace Sting.Measurements.Tests
         [TestMethod]
         public void TelemetryObjectToJson()
         {
-            var telemetry = new TelemetryData {Temperature = 20.2, Humidity = 57, Timestamp = DateTime.Now};
-            Assert.IsNotNull(telemetry.ToJson());
+            var telemetry = new TelemetryData { Temperature = 20.2, Humidity = 57, Timestamp = DateTime.Now };
+            var conversionResult = JsonConvert.SerializeObject(telemetry);
+            Assert.AreEqual(telemetry.ToJson(), conversionResult);
         }
     }
 
