@@ -1,4 +1,6 @@
-﻿using Windows.Devices.Gpio;
+﻿using System;
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
 
 namespace Sting.Measurements.Components
 {
@@ -6,11 +8,11 @@ namespace Sting.Measurements.Components
     {
         private GpioPin _pin;
 
-        public bool InitSensor(int pin)
+        public async Task<bool> InitComponentAsync(int pin)
         {
             // Open the used GPIO pin and set as Output
             var ledPin = pin;
-            var gpio = GpioController.GetDefault();
+            var gpio = await GpioController.GetDefaultAsync();
 
             if (gpio == null)
             {

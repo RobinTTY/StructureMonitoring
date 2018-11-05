@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
@@ -10,11 +11,11 @@ namespace Sting.Measurements.Components
         private IDht _dht;
         GpioPin _gpioPin;
 
-        public bool InitSensor(int pin)
+        public async Task<bool> InitComponentAsync(int pin)
         {
             // Open the used GPIO pin, use as input
-            var gpioController = GpioController.GetDefault();
-            
+            var gpioController = await GpioController.GetDefaultAsync();
+
             if (gpioController == null) return false;
             _gpioPin = gpioController.OpenPin(pin);
             _dht = new Sensors.Dht.Dht11(_gpioPin, GpioPinDriveMode.Input);

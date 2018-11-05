@@ -1,4 +1,6 @@
-﻿namespace Sting.Measurements
+﻿using System.Threading.Tasks;
+
+namespace Sting.Measurements
 {
     interface IGpioComponent
     {
@@ -7,7 +9,7 @@
         /// </summary>
         /// <param name="pin">The data pin the sensor component uses.</param>
         /// <returns>Returns True if initiation was successful.</returns>
-        bool InitSensor(int pin);
+        Task<bool> InitComponentAsync(int pin);
 
         /// <summary>
         /// Returns the state of the sensor component.
