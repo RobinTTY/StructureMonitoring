@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.I2c;
 
-namespace BMP180Demo
+namespace BMP
 {
     /// <summary>
     /// Calibration coefficients
@@ -46,7 +46,7 @@ namespace BMP180Demo
     }
 
     /// <summary>
-    /// BMP180 sensor data
+    /// BMP180Sensor sensor data
     /// </summary>
     struct BMP180Data
     {
@@ -65,7 +65,7 @@ namespace BMP180Demo
     }
 
     /// <summary>
-    /// BMP180 sensor pressure sampling accuracy modes
+    /// BMP180Sensor sensor pressure sampling accuracy modes
     /// </summary>
     enum Resolution
     {
@@ -75,7 +75,7 @@ namespace BMP180Demo
         UltrHighResolution = 3
     }
 
-    class BMP180
+    class BMP180Sensor
     {
         private I2cDevice sensor;
         private const byte BMP180_ADDR = 0x77;
@@ -100,7 +100,7 @@ namespace BMP180Demo
         /// <summary>
         /// Constructor
         /// </summary>
-        public BMP180(Resolution resolution)
+        public BMP180Sensor(Resolution resolution)
         {
             oss = (short)resolution;
             switch (resolution)
@@ -121,7 +121,7 @@ namespace BMP180Demo
         }
 
         /// <summary>
-        /// Initialize BMP180 sensor
+        /// Initialize BMP180Sensor sensor
         /// </summary>
         public async Task InitializeAsync()
         {
@@ -135,7 +135,7 @@ namespace BMP180Demo
         }
 
         /// <summary>
-        /// Read data from BMP180 sensor
+        /// Read data from BMP180Sensor sensor
         /// </summary>
         /// <returns>BMP180Data</returns>
         public async Task<BMP180Data> ReadAsync()
@@ -160,7 +160,7 @@ namespace BMP180Demo
         }
 
         /// <summary>
-        /// Get BMP180 Device
+        /// Get BMP180Sensor Device
         /// </summary>
         /// <returns></returns>
         public I2cDevice GetDevice()
