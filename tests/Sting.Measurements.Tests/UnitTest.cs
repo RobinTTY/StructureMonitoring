@@ -24,10 +24,10 @@ namespace Sting.Measurements.Tests
         private static readonly Led Led = new Led();
 
         [TestMethod]
-        public void TestMethodOn()
+        public async void TestMethodOn()
         {
             // turn Led on and wait for Hardware
-            Led.InitSensor(5);
+            await Led.InitComponentAsync(5);
             Led.TurnOff();
             Led.TurnOn();
             Task.Delay(3 * 1000).Wait();
@@ -36,9 +36,10 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void TestMethodOff()
+        public async void TestMethodOff()
         {
             // turn Led off and wait for Hardware
+            await Led.InitComponentAsync(5);
             Led.TurnOn();
             Led.TurnOff();
             Task.Delay(3 * 1000).Wait();
