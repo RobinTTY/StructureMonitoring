@@ -9,12 +9,14 @@ namespace Sting.Measurements
         public DateTime Timestamp;
         public double Temperature;
         public double Humidity;
+        public double Pressure;
 
         public TelemetryData()
         {
             Timestamp = DateTime.Now;
             Temperature = 0.0;
             Humidity = 0.0;
+            Pressure = 0.0;
         }
 
         public string ToJson()
@@ -24,7 +26,7 @@ namespace Sting.Measurements
 
         public override string ToString()
         {
-            return "Time: " + Timestamp.ToString(CultureInfo.InvariantCulture) + ", Temperature: " + Temperature.ToString(CultureInfo.InvariantCulture) + "°C, Humidity: " + Humidity.ToString(CultureInfo.InvariantCulture) + "%";
+            return "Time: " + Timestamp + ", Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%" + ", Pressure: " + Pressure + "hPa";
         }
     }
 }

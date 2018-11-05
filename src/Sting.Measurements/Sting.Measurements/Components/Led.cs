@@ -1,6 +1,6 @@
 ﻿using Windows.Devices.Gpio;
 
-namespace Sting.Measurements
+namespace Sting.Measurements.Components
 {
     class Led : IGpioComponent
     {

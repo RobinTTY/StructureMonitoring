@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
-using Windows.Storage;
 using Windows.System.Threading;
 using Sting.Cloud;
+using Sting.Measurements.Components;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 

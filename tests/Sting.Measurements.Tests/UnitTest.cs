@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Sting.Measurements.Components;
 
 namespace Sting.Measurements.Tests
 {

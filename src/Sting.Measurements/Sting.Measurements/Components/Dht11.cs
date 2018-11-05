@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 
-namespace Sting.Measurements
+namespace Sting.Measurements.Components
 {
     class Dht11 : IGpioComponent
     {
@@ -33,7 +33,7 @@ namespace Sting.Measurements
         /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
         public async Task<TelemetryData> TakeMeasurement()
         {
-            // Take measurement and check for validity, indicate through LED
+            // Take measurement and check for validity
             var telemetry = new TelemetryData();
             var measurement = await _dht.GetReadingAsync().AsTask();
 
