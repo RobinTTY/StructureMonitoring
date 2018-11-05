@@ -20,12 +20,22 @@ namespace Sting.Measurements
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
-            _tempSensor.InitSensor(4);
-            _statusLed.InitSensor(5);
-            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(5));
+            InitComponents();
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(5));
         }
 
-        private async void TakeMeasurement(ThreadPoolTimer timer)
+        // initialize used components async
+        // TODO: CHECK RETURN VALUE FOR SUCCESS
+        private async void InitComponents()
+        {
+            await _tempSensor.InitComponentAsync(4);
+            await _statusLed.InitComponentAsync(5);
+        }
+
+        // Task which is executed every x seconds as defined in Run()
+        // Take Measurements periodically
+        // TODO: Introduce Cloud to Device Message which can cancel the deferral, resulting in termination of the program
+        private async void PeriodicTask(ThreadPoolTimer timer)
         {
             if (_cancelRequested == false)
             {
