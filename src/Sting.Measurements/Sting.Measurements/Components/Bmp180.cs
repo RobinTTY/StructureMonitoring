@@ -7,7 +7,7 @@ namespace Sting.Measurements.Components
     class Bmp180 : IGpioComponent
     {
         private BMP180Sensor _bmp;
-        
+
         /// <summary>
         /// Represents a BMP180 Sensor.
         /// </summary>
@@ -30,6 +30,16 @@ namespace Sting.Measurements.Components
         public bool State()
         {
             return _bmp.GetDevice() != null;
+        }
+
+        /// <summary>
+        /// Takes a measurement of temperature and air pressure. Adds the current timestamp.
+        /// </summary>
+        /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
+        public async Task<TelemetryData> TakeMeasurement()
+        {
+            var data = await _bmp.ReadAsync();
+            return new TelemetryData(data);
         }
     }
 }
