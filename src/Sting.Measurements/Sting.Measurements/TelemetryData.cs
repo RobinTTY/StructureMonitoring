@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using Newtonsoft.Json;
 using Sensors.Dht;
 using BMP;
@@ -11,11 +13,11 @@ namespace Sting.Measurements
     /// </summary>
     class TelemetryData
     {
-        public DateTime Timestamp;
-        public double Temperature;
-        public double Humidity;
-        public double Pressure;
-        public double Altitude;
+        public DateTime Timestamp { get; set; }
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+        public double Pressure { get; set; }
+        public double Altitude { get; set; }
 
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
@@ -58,7 +60,16 @@ namespace Sting.Measurements
             Altitude = double.NaN;
         }
 
-        //TODO: Create constructors for different sensor data types (e.g. BMP180Data)
+        public void Complement(TelemetryData data)
+        {
+            PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
+            foreach (var property in properties)
+            {
+                if (!(property.GetValue(this) is double)) continue;
+                if(double.IsNaN((double) property.GetValue(this)))
+                    property.SetValue(this, property.GetValue(data));
+            }
+        }
 
         /// <summary>
         /// Converts the object to a Json string.
