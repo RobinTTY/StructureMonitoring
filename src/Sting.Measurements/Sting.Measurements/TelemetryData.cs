@@ -60,6 +60,10 @@ namespace Sting.Measurements
             Altitude = double.NaN;
         }
 
+        /// <summary>
+        /// Adds to the existing telemetry data, data that was not measured yet.
+        /// </summary>
+        /// <param name="data">A TelemetryData object.</param>
         public void Complement(TelemetryData data)
         {
             PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
@@ -68,6 +72,29 @@ namespace Sting.Measurements
                 if (!(property.GetValue(this) is double)) continue;
                 if(double.IsNaN((double) property.GetValue(this)))
                     property.SetValue(this, property.GetValue(data));
+            }
+        }
+
+        /// <summary>
+        /// Overwrites the existing telemetry data, with data that is present
+        /// in the passed in element.
+        /// </summary>
+        /// <param name="data">A TelemetryData object.</param>
+        public void Overwrite(TelemetryData data)
+        {
+            PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
+            foreach (var property in properties)
+            {
+                if (!(property.GetValue(this) is double))
+                {
+                    property.SetValue(this, property.GetValue(data));
+                    continue;
+                }
+
+                if (double.IsNaN((double) property.GetValue(data)))
+                    continue;
+
+                property.SetValue(this, property.GetValue(data));
             }
         }
 
