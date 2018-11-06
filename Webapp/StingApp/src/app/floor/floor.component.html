@@ -1,0 +1,7 @@
+<h1>Rooms</h1>
+ 
+<ul>
+  <li *ngFor="let data of floor$">
+    <a routerLink="room/{{data.id}}">Room {{ data.id }}</a>
+  </li>
+</ul>
