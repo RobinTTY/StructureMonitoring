@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
@@ -11,6 +10,7 @@ namespace Sting.Measurements.Components
         private IDht _dht;
         GpioPin _gpioPin;
 
+        /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin)
         {
             // Open the used GPIO pin, use as input
@@ -22,6 +22,7 @@ namespace Sting.Measurements.Components
             return true;
         }
 
+        /// <inheritdoc />
         public bool State()
         {
             // Check if _dht is null
@@ -35,14 +36,10 @@ namespace Sting.Measurements.Components
         public async Task<TelemetryData> TakeMeasurement()
         {
             // Take measurement and check for validity
-            var telemetry = new TelemetryData();
+            if (!State()) return null;
             var measurement = await _dht.GetReadingAsync().AsTask();
 
-            if (!measurement.IsValid) return null;
-            telemetry.Temperature = measurement.Temperature;
-            telemetry.Humidity = measurement.Humidity;
-            telemetry.Timestamp = DateTime.Now;
-            return telemetry;
+            return measurement.IsValid ? new TelemetryData(measurement) : null;
         }
     }
 }
