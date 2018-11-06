@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 using Sting.Cloud;
@@ -12,7 +14,7 @@ namespace Sting.Measurements
     public sealed class StartupTask : IBackgroundTask
     {
         private BackgroundTaskDeferral _deferral;
-        private readonly Led _statusLed = new Led();
+        private readonly Bmp180 _pressureSensor = new Bmp180();
         private readonly Dht11 _tempSensor = new Dht11();
         private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         volatile bool _cancelRequested = false;
@@ -29,7 +31,7 @@ namespace Sting.Measurements
         private async void InitComponents()
         {
             await _tempSensor.InitComponentAsync(4);
-            await _statusLed.InitComponentAsync(5);
+            await _pressureSensor.InitComponentAsync();
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -41,13 +43,9 @@ namespace Sting.Measurements
             {
                 var telemetry = _tempSensor.TakeMeasurement();
                 if (telemetry.Result == null)
-                {
-                    _statusLed.TurnOff();
                     Debug.WriteLine("Invalid Read");
-                }
                 else
                 {
-                    _statusLed.TurnOn();
                     var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(telemetry.Result.ToJson());
                     Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
                 }
