@@ -19,14 +19,17 @@ namespace Sting.Measurements.Components
             _bmp = new BMP180Sensor(res);
         }
 
-        public Task<bool> InitComponentAsync(int pin)
+        /// <inheritdoc />
+        public async Task<bool> InitComponentAsync(int pin = 0)
         {
-            throw new NotImplementedException();
+            await _bmp.InitializeAsync();
+            return _bmp.GetDevice() != null;
         }
 
+        /// <inheritdoc />
         public bool State()
         {
-            throw new NotImplementedException();
+            return _bmp.GetDevice() != null;
         }
     }
 }
