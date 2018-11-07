@@ -36,9 +36,15 @@ namespace Sting.Measurements.Components
         public async Task<TelemetryData> TakeMeasurement()
         {
             // Take measurement and check for validity
+            const int maxRetry = 5;
+            
             if (!State()) return null;
             var measurement = await _dht.GetReadingAsync().AsTask();
-
+            for (var i = 0; i < maxRetry && !measurement.IsValid; i++)
+            {
+                measurement = await _dht.GetReadingAsync().AsTask();
+            }
+            
             return measurement.IsValid ? new TelemetryData(measurement) : null;
         }
     }
