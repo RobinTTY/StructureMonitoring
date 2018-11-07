@@ -38,6 +38,7 @@ namespace Sting.Measurements.Components
         /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
         public async Task<TelemetryData> TakeMeasurement()
         {
+            if (!State()) return null;
             var data = await _bmp.ReadAsync();
             return new TelemetryData(data);
         }
