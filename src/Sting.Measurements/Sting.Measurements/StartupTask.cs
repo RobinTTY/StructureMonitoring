@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
-using Windows.Storage;
 using Windows.System.Threading;
 using Sting.Cloud;
+using Sting.Measurements.Components;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -12,7 +12,7 @@ namespace Sting.Measurements
     public sealed class StartupTask : IBackgroundTask
     {
         private BackgroundTaskDeferral _deferral;
-        private readonly Led _statusLed = new Led();
+        private readonly Bmp180 _pressureSensor = new Bmp180();
         private readonly Dht11 _tempSensor = new Dht11();
         private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         volatile bool _cancelRequested = false;
@@ -20,28 +20,41 @@ namespace Sting.Measurements
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
-            _tempSensor.InitSensor(4);
-            _statusLed.InitSensor(5);
-            ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(5));
+            InitComponents();
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(4));
         }
 
-        private async void TakeMeasurement(ThreadPoolTimer timer)
+        // initialize used components async
+        // TODO: CHECK RETURN VALUE FOR SUCCESS
+        private async void InitComponents()
+        {
+            await _tempSensor.InitComponentAsync(4);
+            await _pressureSensor.InitComponentAsync();
+        }
+
+        // Task which is executed every x seconds as defined in Run()
+        // Take Measurements periodically
+        // TODO: Introduce Cloud to Device Message which can cancel the deferral, resulting in termination of the program
+        private async void PeriodicTask(ThreadPoolTimer timer)
         {
             if (_cancelRequested == false)
             {
-                var telemetry = _tempSensor.TakeMeasurement();
-                if (telemetry.Result == null)
-                {
-                    _statusLed.TurnOff();
-                    Debug.WriteLine("Invalid Read");
-                }
+                var combinedData = new TelemetryData();
+                var dhtTelemetry = await _tempSensor.TakeMeasurement();
+                var bmpTelemetry = await _pressureSensor.TakeMeasurement();
+                
+                // Use bmp measurements (duplicates) over dht measurements because of higher accuracy
+                if (dhtTelemetry == null && bmpTelemetry == null)
+                    Debug.WriteLine("Invalid Measurements");
                 else
                 {
-                    _statusLed.TurnOn();
-                    var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(telemetry.Result.ToJson());
-                    Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
+                    combinedData.Overwrite(dhtTelemetry);
+                    combinedData.Overwrite(bmpTelemetry);
+                    Debug.WriteLine(combinedData);
                 }
-                telemetry.Dispose();
+                
+                var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
+                Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
             }
             else
             {

@@ -1,18 +1,21 @@
-﻿namespace Sting.Measurements
+﻿using System.Threading.Tasks;
+
+namespace Sting.Measurements
 {
     interface IGpioComponent
     {
         /// <summary>
-        /// Initiates the sensor component, making it ready for use.
+        /// Initiates the component, making it ready for use.
         /// </summary>
-        /// <param name="pin">The data pin the sensor component uses.</param>
+        /// <param name="pin">The data pin the component uses.
+        /// If the component uses the I2C bus, the pin parameter is not required.</param>
         /// <returns>Returns True if initiation was successful.</returns>
-        bool InitSensor(int pin);
+        Task<bool> InitComponentAsync(int pin);
 
         /// <summary>
         /// Returns the state of the sensor component.
         /// </summary>
-        /// <returns>Returns True if component is on.</returns>
+        /// <returns>Returns True if component is initiated.</returns>
         bool State();
     }
 }
