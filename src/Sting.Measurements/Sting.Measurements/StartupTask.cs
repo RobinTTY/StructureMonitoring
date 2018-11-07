@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Diagnostics;
-using System.Security.Cryptography;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 using Sting.Cloud;
@@ -23,7 +21,7 @@ namespace Sting.Measurements
         {
             _deferral = taskInstance.GetDeferral();
             InitComponents();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(5));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(4));
         }
 
         // initialize used components async
@@ -41,15 +39,22 @@ namespace Sting.Measurements
         {
             if (_cancelRequested == false)
             {
-                var telemetry = _tempSensor.TakeMeasurement();
-                if (telemetry.Result == null)
-                    Debug.WriteLine("Invalid Read");
+                var combinedData = new TelemetryData();
+                var dhtTelemetry = await _tempSensor.TakeMeasurement();
+                var bmpTelemetry = await _pressureSensor.TakeMeasurement();
+                
+                // Use bmp measurements (duplicates) over dht measurements because of higher accuracy
+                if (dhtTelemetry == null && bmpTelemetry == null)
+                    Debug.WriteLine("Invalid Measurements");
                 else
                 {
-                    var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(telemetry.Result.ToJson());
-                    Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
+                    combinedData.Overwrite(dhtTelemetry);
+                    combinedData.Overwrite(bmpTelemetry);
+                    Debug.WriteLine(combinedData);
                 }
-                telemetry.Dispose();
+                
+                var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
+                Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
             }
             else
             {
