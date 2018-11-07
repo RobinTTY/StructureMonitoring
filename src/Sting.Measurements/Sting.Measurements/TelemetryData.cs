@@ -66,6 +66,7 @@ namespace Sting.Measurements
         /// <param name="data">A TelemetryData object.</param>
         public void Complement(TelemetryData data)
         {
+            if (data is null) return;
             PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
             foreach (var property in properties)
             {
@@ -82,6 +83,7 @@ namespace Sting.Measurements
         /// <param name="data">A TelemetryData object.</param>
         public void Overwrite(TelemetryData data)
         {
+            if (data is null) return;
             PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
             foreach (var property in properties)
             {
@@ -113,7 +115,7 @@ namespace Sting.Measurements
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return "Time: " + Timestamp + ", Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%," + ", Pressure: " + Pressure + "hPa," + " Altitude: " + Altitude + "m";
+            return "Time: " + Timestamp + ", Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%, Pressure: " + Pressure + "hPa, Altitude: " + Altitude + "m";
         }
     }
 }
