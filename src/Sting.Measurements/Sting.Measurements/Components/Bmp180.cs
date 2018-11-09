@@ -4,7 +4,7 @@ using BMP;
 
 namespace Sting.Measurements.Components
 {
-    class Bmp180 : IGpioComponent
+    class Bmp180 : IGpioComponent, ISensor
     {
         private BMP180Sensor _bmp;
 
