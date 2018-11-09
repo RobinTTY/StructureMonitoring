@@ -101,6 +101,7 @@
     <Compile Include="Components\Dht11.cs" />
     <Compile Include="IGpioComponent.cs" />
     <Compile Include="Components\Led.cs" />
+    <Compile Include="ISensor.cs" />
     <Compile Include="StartupTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelemetryData.cs" />
