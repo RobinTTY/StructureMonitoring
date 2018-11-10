@@ -77,7 +77,29 @@ namespace Sting.Measurements.Tests
 
         public async void InitComponent()
         {
-            await Led.InitComponentAsync(5);
+            if (!Led.State())
+                await Led.InitComponentAsync(5);
+        }
+    }
+
+    [TestClass]
+    public class DhtTest
+    {
+        private Dht11 _dht;
+
+        [TestMethod]
+        public void TestInitComponent()
+        {
+            Assert.IsNull(_dht);
+            InitComponent();
+            Assert.IsInstanceOfType(_dht, typeof(Dht11));
+            Assert.IsNotNull(_dht);
+        }
+
+        public async void InitComponent()
+        {
+            if(!_dht.State())
+                await _dht.InitComponentAsync(5);
         }
     }
 }
