@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,15 +12,7 @@ namespace Sting.Measurements.Tests
     public class TelemetryDataTest
     {
         [TestMethod]
-        public void ToJson()
-        {
-            var telemetry = new TelemetryData { Temperature = 20.2, Humidity = 57, Timestamp = DateTime.Now };
-            var conversionResult = JsonConvert.SerializeObject(telemetry);
-            Assert.AreEqual(telemetry.ToJson(), conversionResult);
-        }
-
-        [TestMethod]
-        public void Complement()
+        public void TestComplement()
         {
             var object1 = new TelemetryData {Temperature = 19.4, Altitude = 320.4};
             var object2 = new TelemetryData {Altitude = 100, Pressure = 5000};
@@ -33,7 +26,7 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void Overwrite()
+        public void TestOverwrite()
         {
             var object1 = new TelemetryData { Temperature = 19.4, Altitude = 320.4 };
             var object2 = new TelemetryData { Altitude = 100, Pressure = 5000 };
@@ -44,6 +37,23 @@ namespace Sting.Measurements.Tests
             Assert.AreEqual(object1.Humidity, objectResult.Humidity);
             Assert.AreEqual(object1.Pressure, objectResult.Pressure);
             Assert.AreEqual(object1.Altitude, objectResult.Altitude);
+        }
+
+        [TestMethod]
+        public void TestToString()
+        {
+            TelemetryData data = new TelemetryData()
+                {Altitude = 200, Humidity = 53, Temperature = 23, Pressure = 1700, Timestamp = DateTime.MaxValue};
+            var telemetryString = data.ToString();
+            Assert.AreEqual(telemetryString, "Time: 12/31/9999 11:59:59 PM, Temperature: 23°C, Humidity: 53%, Pressure: 1700hPa, Altitude: 200m");
+        }
+
+            [TestMethod]
+        public void TestToJson()
+        {
+            var telemetry = new TelemetryData { Temperature = 20.2, Humidity = 57, Timestamp = DateTime.Now };
+            var conversionResult = JsonConvert.SerializeObject(telemetry);
+            Assert.AreEqual(telemetry.ToJson(), conversionResult);
         }
     }
 
