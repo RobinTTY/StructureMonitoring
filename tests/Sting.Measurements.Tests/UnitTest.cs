@@ -51,14 +51,20 @@ namespace Sting.Measurements.Tests
     {
         private static readonly Led Led = new Led();
 
+        [ClassInitialize]
+        public static async Task ClassInit(TestContext context)
+        {
+            await Led.InitComponentAsync(5);
+        }
+
         [TestMethod]
         public void TestMethodOn()
         {
             // turn Led on and wait for Hardware
-            InitComponent();
             Led.TurnOff();
+            Task.Delay(1000).Wait();
             Led.TurnOn();
-            Task.Delay(3 * 1000).Wait();
+            Task.Delay(1000).Wait();
             var state = Led.State();
             Assert.IsTrue(state);
         }
@@ -67,39 +73,25 @@ namespace Sting.Measurements.Tests
         public void TestMethodOff()
         {
             // turn Led off and wait for Hardware
-            InitComponent();
             Led.TurnOn();
+            Task.Delay(1000).Wait();
             Led.TurnOff();
-            Task.Delay(3 * 1000).Wait();
+            Task.Delay(1000).Wait();
             var state = Led.State();
             Assert.IsFalse(state);
-        }
-
-        public async void InitComponent()
-        {
-            if (!Led.State())
-                await Led.InitComponentAsync(5);
         }
     }
 
     [TestClass]
     public class DhtTest
     {
-        private Dht11 _dht;
-
         [TestMethod]
-        public void TestInitComponent()
+        public async Task TestInitComponent()
         {
-            Assert.IsNull(_dht);
-            InitComponent();
-            Assert.IsInstanceOfType(_dht, typeof(Dht11));
-            Assert.IsNotNull(_dht);
-        }
-
-        public async void InitComponent()
-        {
-            if(!_dht.State())
-                await _dht.InitComponentAsync(5);
+            var dht = new Dht11();
+            Assert.IsFalse(dht.State());
+            await dht.InitComponentAsync(4);
+            Assert.IsTrue(dht.State());
         }
     }
 }
