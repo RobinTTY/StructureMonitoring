@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -79,6 +80,14 @@ namespace Sting.Measurements.Tests
             Task.Delay(1000).Wait();
             var state = Led.State();
             Assert.IsFalse(state);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FileLoadException))]
+        public async Task InitTwice()
+        {
+            // component shouldn't be able to be initialized twice
+            await Led.InitComponentAsync(5);
         }
     }
 

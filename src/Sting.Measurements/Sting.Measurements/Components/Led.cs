@@ -8,6 +8,7 @@ namespace Sting.Measurements.Components
     {
         private GpioPin _pin;
 
+        /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin)
         {
             // Open the used GPIO pin and set as Output
@@ -24,19 +25,29 @@ namespace Sting.Measurements.Components
             return true;
         }
 
+        /// <inheritdoc />
         public bool State()
         {
             var state = _pin.Read();
-            if (state == GpioPinValue.Low) return true;
-            return false;
+            return state == GpioPinValue.Low;
         }
 
+        /// <summary>
+        /// Turns the LED on.
+        /// </summary>
+        /// <returns>Returns True if LED was successfully
+        /// turned on. Returns false otherwise.</returns>
         public bool TurnOn()
         {
             _pin.Write(GpioPinValue.Low);
             return State();
         }
 
+        /// <summary>
+        /// Turns the LED off.
+        /// </summary>
+        /// <returns>Returns True if LED was successfully
+        /// turned off. Returns false otherwise.</returns>
         public bool TurnOff()
         {
             _pin.Write(GpioPinValue.High);
