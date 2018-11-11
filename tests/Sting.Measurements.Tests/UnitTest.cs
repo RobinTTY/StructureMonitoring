@@ -12,7 +12,7 @@ namespace Sting.Measurements.Tests
     public class TelemetryDataTest
     {
         [TestMethod]
-        public void TestComplement()
+        public void Complement_ValidParameter_FillsNaNValues()
         {
             var object1 = new TelemetryData {Temperature = 19.4, Altitude = 320.4};
             var object2 = new TelemetryData {Altitude = 100, Pressure = 5000};
@@ -26,7 +26,7 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void TestOverwrite()
+        public void Overwrite_ValidParameter_OverwritesMeasuredValues()
         {
             var object1 = new TelemetryData { Temperature = 19.4, Altitude = 320.4 };
             var object2 = new TelemetryData { Altitude = 100, Pressure = 5000 };
@@ -40,7 +40,7 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void TestToString()
+        public void ToString_CalledOnTelemetryData_CreatesValidString()
         {
             TelemetryData data = new TelemetryData()
                 {Altitude = 200, Humidity = 53, Temperature = 23, Pressure = 1700, Timestamp = DateTime.MaxValue};
@@ -49,7 +49,7 @@ namespace Sting.Measurements.Tests
         }
 
             [TestMethod]
-        public void TestToJson()
+        public void ToJson_CalledOnTelemetryData_CreatesValidJson()
         {
             var telemetry = new TelemetryData { Temperature = 20.2, Humidity = 57, Timestamp = DateTime.Now };
             var conversionResult = JsonConvert.SerializeObject(telemetry);
@@ -69,7 +69,7 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void TestMethodOn()
+        public void TurnOn_CallOnLed_StateIsTrue()
         {
             // turn Led on and wait for Hardware
             Led.TurnOff();
@@ -81,7 +81,7 @@ namespace Sting.Measurements.Tests
         }
 
         [TestMethod]
-        public void TestMethodOff()
+        public void TestMethodOff_CallOnLed_StateIsFalse()
         {
             // turn Led off and wait for Hardware
             Led.TurnOn();
@@ -94,7 +94,7 @@ namespace Sting.Measurements.Tests
 
         [TestMethod]
         [ExpectedException(typeof(FileLoadException))]
-        public async Task InitTwice()
+        public async Task InitComponentAsync_CalledSecondTimeOnSamePin_ThrowsException()
         {
             // component shouldn't be able to be initialized twice
             await Led.InitComponentAsync(5);
@@ -105,7 +105,7 @@ namespace Sting.Measurements.Tests
     public class DhtTest
     {
         [TestMethod]
-        public async Task TestInitComponent()
+        public async Task InitComponent_FirstCall_StateIsTrue()
         {
             var dht = new Dht11();
             Assert.IsFalse(dht.State());
