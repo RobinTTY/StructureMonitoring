@@ -17,5 +17,10 @@ namespace Sting.Measurements
         /// </summary>
         /// <returns>Returns True if component is initiated.</returns>
         bool State();
+
+        /// <summary>
+        /// Closes the Pin associated with the Component, making it available for other devices.
+        /// </summary>
+        void ClosePin();
     }
 }

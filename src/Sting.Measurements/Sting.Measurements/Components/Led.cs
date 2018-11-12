@@ -32,6 +32,12 @@ namespace Sting.Measurements.Components
             return state == GpioPinValue.Low;
         }
 
+        public void ClosePin()
+        {
+            _pin.Dispose();
+            _pin = null;
+        }
+
         /// <summary>
         /// Turns the LED on.
         /// </summary>

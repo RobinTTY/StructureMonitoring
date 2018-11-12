@@ -29,6 +29,14 @@ namespace Sting.Measurements.Components
             return _dht != null;
         }
 
+        /// <inheritdoc />
+        public void ClosePin()
+        {
+            _dht = null;
+            _gpioPin.Dispose();
+            _gpioPin = null;
+        }
+
         /// <summary>
         /// Takes a measurement of temperature and humidity. Adds the current timestamp.
         /// </summary>

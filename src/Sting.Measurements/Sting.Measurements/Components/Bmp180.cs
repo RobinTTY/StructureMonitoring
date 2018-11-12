@@ -32,6 +32,12 @@ namespace Sting.Measurements.Components
             return _bmp.GetDevice() != null;
         }
 
+        public void ClosePin()
+        {
+            _bmp.Dispose();
+            _bmp = null;
+        }
+
         /// <summary>
         /// Takes a measurement of temperature and air pressure. Adds the current timestamp.
         /// </summary>
