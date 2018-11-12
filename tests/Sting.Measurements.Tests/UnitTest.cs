@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.Devices.Gpio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Sting.Measurements.Components;
@@ -104,13 +104,36 @@ namespace Sting.Measurements.Tests
     [TestClass]
     public class DhtTest
     {
+        private readonly Dht11 _dht = new Dht11();
+
         [TestMethod]
         public async Task InitComponent_FirstCall_StateIsTrue()
         {
-            var dht = new Dht11();
-            Assert.IsFalse(dht.State());
-            await dht.InitComponentAsync(4);
-            Assert.IsTrue(dht.State());
+            Assert.IsFalse(_dht.State());
+            await _dht.InitComponentAsync(4);
+            Assert.IsTrue(_dht.State());
+        }
+
+        [TestMethod]
+        public async Task TakeMeasurement_ComponentInitialized_MeasurementIsValid()
+        {
+            await _dht.InitComponentAsync(4);
+            var measurement = await _dht.TakeMeasurementAsync();
+            Assert.IsNotNull(measurement);
+        }
+
+        [TestMethod]
+        public async Task TakeMeasurement_ComponentNotInitialized_MeasurementIsNull()
+        {
+            var measurement = await _dht.TakeMeasurementAsync();
+            Assert.IsNull(measurement);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if(_dht.State())
+                _dht.ClosePin();
         }
     }
 }
