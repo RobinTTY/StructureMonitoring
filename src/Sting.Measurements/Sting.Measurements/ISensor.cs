@@ -13,6 +13,6 @@ namespace Sting.Measurements
         /// </summary>
         /// <returns>Returns the measured values inside
         /// a TelemetryData object.</returns>
-        Task<TelemetryData> TakeMeasurement();
+        Task<TelemetryData> TakeMeasurementAsync();
     }
 }

@@ -42,7 +42,7 @@ namespace Sting.Measurements.Components
         /// Takes a measurement of temperature and air pressure. Adds the current timestamp.
         /// </summary>
         /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
-        public async Task<TelemetryData> TakeMeasurement()
+        public async Task<TelemetryData> TakeMeasurementAsync()
         {
             if (!State()) return null;
             var data = await _bmp.ReadAsync();
