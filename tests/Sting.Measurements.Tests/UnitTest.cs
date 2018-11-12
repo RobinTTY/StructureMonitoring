@@ -60,44 +60,50 @@ namespace Sting.Measurements.Tests
     [TestClass]
     public class LedTest
     {
-        private static readonly Led Led = new Led();
+        private readonly Led _led = new Led();
 
-        [ClassInitialize]
-        public static async Task ClassInit(TestContext context)
+        [TestMethod]
+        public async Task InitComponentAsync_CorrectCall_StateIsTrue()
         {
-            await Led.InitComponentAsync(5);
+            await _led.InitComponentAsync(5);
+            Assert.IsTrue(_led.State());
         }
 
         [TestMethod]
-        public void TurnOn_CallOnLed_StateIsTrue()
+        public async Task TurnOn_CallOnLed_LedIsOn()
         {
-            // turn Led on and wait for Hardware
-            Led.TurnOff();
+            await _led.InitComponentAsync(5);
+            _led.TurnOff();
             Task.Delay(1000).Wait();
-            Led.TurnOn();
+            _led.TurnOn();
             Task.Delay(1000).Wait();
-            var state = Led.State();
-            Assert.IsTrue(state);
+            Assert.IsTrue(_led.IsOn());
         }
 
         [TestMethod]
-        public void TestMethodOff_CallOnLed_StateIsFalse()
+        public async Task TurnOff_CallOnLed_LedIsOff()
         {
-            // turn Led off and wait for Hardware
-            Led.TurnOn();
+            await _led.InitComponentAsync(5);
+            _led.TurnOn();
             Task.Delay(1000).Wait();
-            Led.TurnOff();
+            _led.TurnOff();
             Task.Delay(1000).Wait();
-            var state = Led.State();
-            Assert.IsFalse(state);
+            Assert.IsFalse(_led.IsOn());
         }
 
         [TestMethod]
         [ExpectedException(typeof(FileLoadException))]
         public async Task InitComponentAsync_CalledSecondTimeOnSamePin_ThrowsException()
         {
-            // component shouldn't be able to be initialized twice
-            await Led.InitComponentAsync(5);
+            await _led.InitComponentAsync(5);
+            await _led.InitComponentAsync(5);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if(_led.State())
+                _led.ClosePin();
         }
     }
 
@@ -107,7 +113,7 @@ namespace Sting.Measurements.Tests
         private readonly Dht11 _dht = new Dht11();
 
         [TestMethod]
-        public async Task InitComponent_FirstCall_StateIsTrue()
+        public async Task InitComponentAsync_CorrectCall_StateIsTrue()
         {
             Assert.IsFalse(_dht.State());
             await _dht.InitComponentAsync(4);
@@ -127,6 +133,14 @@ namespace Sting.Measurements.Tests
         {
             var measurement = await _dht.TakeMeasurementAsync();
             Assert.IsNull(measurement);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FileLoadException))]
+        public async Task InitComponent_InitTwice_ThrowsException()
+        {
+            await _dht.InitComponentAsync(4);
+            await _dht.InitComponentAsync(4);
         }
 
         [TestCleanup]

@@ -28,6 +28,11 @@ namespace Sting.Measurements.Components
         /// <inheritdoc />
         public bool State()
         {
+            return _pin != null;
+        }
+
+        public bool IsOn()
+        {
             var state = _pin.Read();
             return state == GpioPinValue.Low;
         }
@@ -46,7 +51,7 @@ namespace Sting.Measurements.Components
         public bool TurnOn()
         {
             _pin.Write(GpioPinValue.Low);
-            return State();
+            return IsOn();
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace Sting.Measurements.Components
         public bool TurnOff()
         {
             _pin.Write(GpioPinValue.High);
-            return State();
+            return IsOn();
         }
     }
 }
