@@ -20,6 +20,10 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@azure/event-hubs": "^1.0.7",
+    "azure-iot-device": "^1.8.1",
+    "azure-iot-device-mqtt": "^1.8.1",
+    "azure-iothub": "^1.8.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
