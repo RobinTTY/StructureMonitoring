@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BMP;
+using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements.Components
 {
     class Bmp180 : IGpioComponent, ISensor
     {
         private BMP180Sensor _bmp;
+        private readonly Resolution _resolution;
 
         /// <summary>
         /// Represents a BMP180 Sensor.
@@ -16,20 +17,23 @@ namespace Sting.Measurements.Components
         /// As default UltraHighResolution is used.</param>
         public Bmp180(Resolution res = Resolution.UltrHighResolution)
         {
-            _bmp = new BMP180Sensor(res);
+            _resolution = res;
         }
 
         /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin = 0)
         {
+            if(!State())
+                _bmp = new BMP180Sensor(_resolution);
+
             await _bmp.InitializeAsync();
-            return _bmp.GetDevice() != null;
+            return State();
         }
 
         /// <inheritdoc />
         public bool State()
         {
-            return _bmp.GetDevice() != null;
+            return _bmp != null;
         }
 
         public void ClosePin()
