@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sensors.Dht;
-using BMP;
+using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements
 {
