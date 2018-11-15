@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Windows.Devices.Gpio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Sting.Measurements.Components;
@@ -108,7 +107,7 @@ namespace Sting.Measurements.Tests
     }
 
     [TestClass]
-    public class DhtTest
+    public class Dht11Test
     {
         private readonly Dht11 _dht = new Dht11();
 
@@ -148,6 +147,63 @@ namespace Sting.Measurements.Tests
         {
             if(_dht.State())
                 _dht.ClosePin();
+        }
+    }
+
+    [TestClass]
+    public class Bmp180Test
+    {
+        private readonly Bmp180 _bmp = new Bmp180();
+
+        [TestMethod]
+        public async Task InitComponentAsync_CorrectCall_StateIsTrue()
+        {
+            Assert.IsFalse(_bmp.State());
+            await _bmp.InitComponentAsync();
+            Assert.IsTrue(_bmp.State());
+        }
+
+        [TestMethod]
+        public async Task InitComponentAsync_InitTwice_ComponentIsStillUsable()
+        {
+            var init1 = await _bmp.InitComponentAsync();
+            var init2 = await _bmp.InitComponentAsync();
+            var data = await _bmp.TakeMeasurementAsync();
+            Assert.IsTrue(init1);
+            Assert.IsTrue(init2);
+            Assert.IsInstanceOfType(data, typeof(TelemetryData));
+        }
+
+        [TestMethod]
+        public async Task TakeMeasurement_ComponentInitialized_MeasurementIsValid()
+        {
+            await _bmp.InitComponentAsync();
+            var measurement = await _bmp.TakeMeasurementAsync();
+            Assert.IsNotNull(measurement);
+        }
+
+        [TestMethod]
+        public async Task TakeMeasurement_ComponentNotInitialized_MeasurementIsNull()
+        {
+            var measurement = await _bmp.TakeMeasurementAsync();
+            Assert.IsNull(measurement);
+        }
+
+        [TestMethod]
+        public async Task TakeMeasurement_InitializedAfterPinWasClosed_MeasurementIsValid()
+        {
+            await _bmp.InitComponentAsync();
+            _bmp.ClosePin();
+            await _bmp.InitComponentAsync();
+            var measurement = await _bmp.TakeMeasurementAsync();
+            Assert.IsInstanceOfType(measurement, typeof(TelemetryData));
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if (_bmp.State())
+                _bmp.ClosePin();
         }
     }
 }
