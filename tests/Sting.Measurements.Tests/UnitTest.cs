@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Sting.Measurements.Components;
+using Sting.Cloud;
 
 namespace Sting.Measurements.Tests
 {
@@ -204,6 +205,26 @@ namespace Sting.Measurements.Tests
         {
             if (_bmp.State())
                 _bmp.ClosePin();
+        }
+    }
+
+    [TestClass]
+    public class AzureIoTHubTest
+    {
+        private AzureIotHub _myHub = new AzureIotHub("C:\\Data\\Users\\DefaultAccount\\AppData\\Local\\Packages\\Sting.Measurements.Tests-uwp_gk6cf97c3a7py\\LocalState\\DeviceConnectionString.txt");
+
+        [TestMethod]
+        public async Task SendDeviceToCloudMessageAsync_StringAsParameter_MessageIsSent()
+        {
+            var success = await _myHub.SendDeviceToCloudMessageAsync("This is a test message");
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public async Task SendDeviceToCloudMessageAsync_nullAsParameter_MessageIsNotSent()
+        {
+            var success = await _myHub.SendDeviceToCloudMessageAsync(null);
+            Assert.IsFalse(success);
         }
     }
 }

@@ -136,6 +136,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Sting.Measurements\Sting.Cloud\Sting.Cloud.csproj">
+      <Project>{1fe56536-3b86-474f-9b81-1bb0525171d8}</Project>
+      <Name>Sting.Cloud</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Sting.Measurements\Sting.Measurements\Sting.Measurements.csproj">
       <Project>{0bd120d6-4d32-4db0-94f3-a89b7a1519fd}</Project>
       <Name>Sting.Measurements</Name>

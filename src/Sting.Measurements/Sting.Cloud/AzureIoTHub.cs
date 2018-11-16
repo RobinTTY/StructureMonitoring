@@ -41,6 +41,7 @@ namespace Sting.Cloud
         /// <returns>Returns true if the message was successfully sent.</returns>
         public async Task<bool> SendDeviceToCloudMessageAsync(string msg)
         {
+            if (msg is null) return false;
             var message = new Message(Encoding.ASCII.GetBytes(msg));
 
             try
