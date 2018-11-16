@@ -40,8 +40,8 @@ namespace Sting.Measurements
             if (_cancelRequested == false)
             {
                 var combinedData = new TelemetryData();
-                var dhtTelemetry = await _tempSensor.TakeMeasurement();
-                var bmpTelemetry = await _pressureSensor.TakeMeasurement();
+                var dhtTelemetry = await _tempSensor.TakeMeasurementAsync();
+                var bmpTelemetry = await _pressureSensor.TakeMeasurementAsync();
                 
                 // Use bmp measurements (duplicates) over dht measurements because of higher accuracy
                 if (dhtTelemetry == null && bmpTelemetry == null)

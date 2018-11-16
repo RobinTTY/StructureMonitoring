@@ -29,11 +29,19 @@ namespace Sting.Measurements.Components
             return _dht != null;
         }
 
+        /// <inheritdoc />
+        public void ClosePin()
+        {
+            _dht = null;
+            _gpioPin.Dispose();
+            _gpioPin = null;
+        }
+
         /// <summary>
         /// Takes a measurement of temperature and humidity. Adds the current timestamp.
         /// </summary>
         /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
-        public async Task<TelemetryData> TakeMeasurement()
+        public async Task<TelemetryData> TakeMeasurementAsync()
         {
             // Take measurement and check for validity
             const int maxRetry = 5;

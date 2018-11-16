@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Devices.I2c;
 
-namespace BMP
+namespace Sting.Measurements.External_Libraries
 {
     /// <summary>
     /// Calibration coefficients
@@ -81,6 +81,7 @@ namespace BMP
         private const byte BMP180_ADDR = 0x77;
         private int oss;                                // Oversampling setting
         private int pressDelay;
+        private bool calibrated;
 
         #region Calibration MSB
         private Calibration cal;
@@ -125,12 +126,11 @@ namespace BMP
         /// </summary>
         public async Task InitializeAsync()
         {
-            var settings = new I2cConnectionSettings(BMP180_ADDR);
-            settings.BusSpeed = I2cBusSpeed.StandardMode;
-
+            if (calibrated) return;
+            var settings = new I2cConnectionSettings(BMP180_ADDR) {BusSpeed = I2cBusSpeed.StandardMode};
             var controller = await I2cController.GetDefaultAsync();
-            sensor = controller.GetDevice(settings);
 
+            sensor = controller.GetDevice(settings);
             ReadCalibrationData();
         }
 
@@ -220,6 +220,7 @@ namespace BMP
             sensor.WriteRead(new byte[] { ADDR_CALIBRATION_MD }, readBuf);
             Array.Reverse(readBuf);
             cal.MD = BitConverter.ToInt16(readBuf, 0);
+            calibrated = true;
         }
 
         /// <summary>

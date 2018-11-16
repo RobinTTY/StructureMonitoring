@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sensors.Dht;
-using BMP;
+using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements
 {
@@ -66,7 +66,7 @@ namespace Sting.Measurements
         /// <param name="data">A TelemetryData object.</param>
         public void Complement(TelemetryData data)
         {
-            if (data is null) return;
+            if (data == null) return;
             PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
             foreach (var property in properties)
             {
@@ -83,7 +83,7 @@ namespace Sting.Measurements
         /// <param name="data">A TelemetryData object.</param>
         public void Overwrite(TelemetryData data)
         {
-            if (data is null) return;
+            if (data == null) return;
             PropertyInfo[] properties = typeof(TelemetryData).GetProperties();
             foreach (var property in properties)
             {
