@@ -18,7 +18,7 @@ export default {
                         {
                             "id": 3,
                             "link": "comingSoon.png"
-                        }
+                        },
                     ]
                 },
                 {
@@ -35,9 +35,9 @@ export default {
                         {
                             "id": 3,
                             "link": "comingSoon.png"
-                        }
+                        },
                     ]
-                }
+                },
             ]
         },
         {
@@ -62,7 +62,7 @@ export default {
                         {
                             "id": 4,
                             "link": "comingSoon.png"
-                        }
+                        },
                     ]
                 },
                 {
@@ -75,7 +75,7 @@ export default {
                         {
                             "id": 2,
                             "link": "comingSoon.png"
-                        }
+                        },
                     ]
                 },
                 {
@@ -92,10 +92,55 @@ export default {
                         {
                             "id": 3,
                             "link": "comingSoon.png"
-                        }
+                        },
                     ]
-                }
+                },
             ]
-        }
+        },
+        {
+            "id": 3,
+            "name": "Bibliothek",
+            "floors": [
+                {
+                    "id": 1,
+                    "rooms": [
+                        {
+                            "id": 1,
+                            "link": "comingSoon.png"
+                        },
+                    ]
+                },
+                {
+                    "id": 2,
+                    "rooms": [
+                        {
+                            "id": 1,
+                            "link": "comingSoon.png"
+                        },
+                        {
+                            "id": 2,
+                            "link": "comingSoon.png"
+                        },
+                    ]
+                },
+                {
+                    "id": 3,
+                    "rooms": [
+                        {
+                            "id": 1,
+                            "link": "comingSoon.png"
+                        },
+                        {
+                            "id": 2,
+                            "link": "comingSoon.png"
+                        },
+                        {
+                            "id": 3,
+                            "link": "comingSoon.png"
+                        },
+                    ]
+                },
+            ]
+        },
     ]
 }
