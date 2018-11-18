@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements.Components
