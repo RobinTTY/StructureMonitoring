@@ -1,7 +1,7 @@
 <h1>Welcome to Sting</h1>
- 
+
 <ul>
-  <li *ngFor="let data of telemetry$">
-    <a routerLink="building/{{data.id}}">Building {{ data.id }}</a>
+  <li *ngFor="let b of bData$">
+    <a routerLink="building/{{b.id}}">{{ b.name }}</a>
   </li>
 </ul>

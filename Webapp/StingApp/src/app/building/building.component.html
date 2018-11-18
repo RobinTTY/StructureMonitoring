@@ -1,7 +1,7 @@
 <h1>Floors</h1>
  
 <ul>
-  <li *ngFor="let data of building$">
-    <a routerLink="floor/{{data.id}}">Floor {{ data.id }}</a>
+  <li *ngFor="let b of bData$">
+    <a routerLink="floor/{{b.id}}">Floor {{b.id}}</a>
   </li>
 </ul>
