@@ -1,7 +1,10 @@
 <h1>Floors</h1>
  
-<ul>
-  <li *ngFor="let b of bData$">
+<div>
+  <div id="outer" *ngFor="let b of bData$">
+    <div id="image">
+      <img [src]="b.link" alt="image" />
+    </div>
     <a routerLink="floor/{{b.id}}">Floor {{b.id}}</a>
-  </li>
-</ul>
+  </div>
+</div>

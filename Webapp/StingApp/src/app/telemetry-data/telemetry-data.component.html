@@ -1,7 +1,10 @@
 <h1>Welcome to Sting</h1>
 
-<ul>
-  <li *ngFor="let b of bData$">
-    <a routerLink="building/{{b.id}}">{{ b.name }}</a>
-  </li>
-</ul>
+<div>
+  <div id="outer" *ngFor="let b of bData$">
+    <div id="image">
+      <img [src]="b.link" alt="image" />
+    </div>
+    <a routerLink="building/{{b.id}}">{{ b.name }}</a> 
+  </div>
+</div>
