@@ -10,15 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class TelemetryDataComponent implements OnInit {
 
+  public jsonObject: any;
 
-  telemetry$: Object;
-
-  constructor(private data: TelemetryDataImportService) { }
+  constructor(private telemetryService: TelemetryDataImportService) { }
 
   ngOnInit() {
-    this.data.getTelemetryData().subscribe(
-      data => this.telemetry$ = data
-    )
+   this.fetchTelemetry();
   }
+
+  
+  fetchTelemetry() {
+    return this.telemetryService.getTelemetryJson().subscribe(jsonObject => {
+      this.jsonObject = jsonObject;
+      console.log(this.jsonObject);
+    });
+  }
+  
+
+ 
 
 }

@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import  { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class TelemetryDataImportService {
 
   constructor(private http: HttpClient) { }
-  //telemetry endpoint als url eingeben!
-  getTelemetryData(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  
+  getTelemetryJson() {
+      return this.http.get('http://localhost:1337/');
   }
 
-}
+    
+  }
+
+

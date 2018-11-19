@@ -1,9 +1,8 @@
-<h1>Telemtry Data</h1>
- 
-<ul>
-  <li *ngFor="let data of telemetry$">
-    <a routerLink="room/{{data.id}}">{{ data.name }}</a>
-    <!--Hier später telemetry-data.temperature und humidity -->
-    <h2>Temperatur: {{data.email}}    Luftfeuchtigkeit: {{data.website}}</h2>
-  </li>
-</ul>
+<h1>Telemetry Data</h1>
+<ul >
+  <li> 
+    <p  > Temperature: {{ jsonObject.Temperature }} </p> 
+    <p> Humidity: {{jsonObject.Humidity}}</p>
+    <p> Device: {{jsonObject.iothub-connection-device-id}}</p>
+    </li>
+  </ul>
