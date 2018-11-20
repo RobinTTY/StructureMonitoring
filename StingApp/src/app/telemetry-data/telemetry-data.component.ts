@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class TelemetryDataComponent implements OnInit {
 
   public jsonObject: any;
+  
 
   constructor(private telemetryService: TelemetryDataImportService) { }
 
@@ -21,9 +22,11 @@ export class TelemetryDataComponent implements OnInit {
   
   fetchTelemetry() {
     return this.telemetryService.getTelemetryJson().subscribe(jsonObject => {
-      this.jsonObject = jsonObject;
+     this.jsonObject = jsonObject;
       console.log(this.jsonObject);
+
     });
+ 
   }
   
 

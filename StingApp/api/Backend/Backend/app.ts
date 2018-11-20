@@ -1,4 +1,4 @@
-﻿import debug = require('debug');
+import debug = require('debug');
 import express = require('express');
 import path = require('path');
 import azure = require('azure-storage');
@@ -64,7 +64,7 @@ function azureImport(storageName, storageKey) {
 // run function to read from azure storage table
 // azureImport(storageName, storageKey);
 
-
+var obj;
 
 function readIotHub(connectionString) {
     var printError = function (err) {
@@ -85,7 +85,10 @@ function readIotHub(connectionString) {
         */
         console.log("Last telemetry received: ");
         lastTelemetryData = JSON.stringify(message.body).substring(0, JSON.stringify(message.body).length - 1);
-        lastTelemetryData = lastTelemetryData.concat( ', ' + JSON.stringify(message.annotations).substring(1));
+        lastTelemetryData = lastTelemetryData.concat(',');
+
+      obj = JSON.parse(JSON.stringify(message.annotations));
+      lastTelemetryData = lastTelemetryData.concat('"DeviceId":"'+ obj['iothub-connection-device-id'] + '"}');
         console.log(lastTelemetryData);
     };
 
