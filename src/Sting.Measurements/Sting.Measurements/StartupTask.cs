@@ -21,14 +21,14 @@ namespace Sting.Measurements
         {
             _deferral = taskInstance.GetDeferral();
             InitComponents();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(4));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
         // initialize used components async
         // TODO: CHECK RETURN VALUE FOR SUCCESS
         private async void InitComponents()
         {
-            await _tempSensor.InitComponentAsync(60);
+            await _tempSensor.InitComponentAsync(4);
             await _pressureSensor.InitComponentAsync();
         }
 
