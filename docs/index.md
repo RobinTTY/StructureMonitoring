@@ -1,4 +1,3 @@
-# This is the **HOMEPAGE**.
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-## Quick Start Notes:
-1. Add images to the *images* folder if the file is referencing an image.
+# Sting Documentation
+The Sting app provides a convenient way to monitor rooms with the help of a Raspberry Pi.<br>
+Go to the Api Documentation tab to inspect the C# codebase.

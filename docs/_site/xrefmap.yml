@@ -470,11 +470,11 @@ references:
   commentId: M:Sting.Measurements.TelemetryData.#ctor
   fullName: Sting.Measurements.TelemetryData.TelemetryData()
   nameWithType: TelemetryData.TelemetryData()
-- uid: Sting.Measurements.TelemetryData.#ctor(Sensors.Dht.DhtReading)
+- uid: Sting.Measurements.TelemetryData.#ctor(DhtReading)
   name: TelemetryData(DhtReading)
-  href: api/Sting.Measurements.TelemetryData.html#Sting_Measurements_TelemetryData__ctor_Sensors_Dht_DhtReading_
-  commentId: M:Sting.Measurements.TelemetryData.#ctor(Sensors.Dht.DhtReading)
-  fullName: Sting.Measurements.TelemetryData.TelemetryData(Sensors.Dht.DhtReading)
+  href: api/Sting.Measurements.TelemetryData.html#Sting_Measurements_TelemetryData__ctor_DhtReading_
+  commentId: M:Sting.Measurements.TelemetryData.#ctor(DhtReading)
+  fullName: Sting.Measurements.TelemetryData.TelemetryData(DhtReading)
   nameWithType: TelemetryData.TelemetryData(DhtReading)
 - uid: Sting.Measurements.TelemetryData.#ctor(Sting.Measurements.External_Libraries.BMP180Data)
   name: TelemetryData(BMP180Data)

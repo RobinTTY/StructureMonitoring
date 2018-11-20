@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Projects/C#/StructureMonitoring/docs",
+  "source_base_path": "C:/Projects/CSharp/StructureMonitoring/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Cloud.AzureIotHub.html",
-          "hash": "83LmezInuAAWzjKTNugfVw=="
+          "hash": "S3oG/4leHfGcxhNAZJVAbg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "kRdGAS6B9cEhKGAZETRoBA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Bmp180.html",
-          "hash": "2n3JeL5reSY/+keXR0JTNg=="
+          "hash": "07FIfMr4YY05gOPOsThr9A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Dht11.html",
-          "hash": "dQ54slIuc323rVlSW3TrNA=="
+          "hash": "nvMBXZtsjQusZgmXjirxtQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Led.html",
-          "hash": "/s54Z79Qd3JX96oOnofY5Q=="
+          "hash": "0BqWX9bnQWO0NgGaBSYEPQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "j4KgILrGsg1JVPwBtimKHg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.IGpioComponent.html",
-          "hash": "pZdc+trjbj2fI2LiD1ZLUg=="
+          "hash": "Xg+5l2AfGkTzuhcsRdIkgw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.ISensor.html",
-          "hash": "CsWEm63G+FE2T1ZXDxuibw=="
+          "hash": "lwWIlX7H582ZLjQE80BNWQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.StartupTask.html",
-          "hash": "B/qwEQdAOkSWVqsE/6dWeA=="
+          "hash": "5+fuqEgatRR/3rkrkWdQ/Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.TelemetryData.html",
-          "hash": "nT6aiUHk+e1Tb6hIoxjROw=="
+          "hash": "eZF8DX3ooUjrjqYSsHieAQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -132,7 +132,7 @@
           "hash": "Sh9+WgoywC+rS3TVHlyVyw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "45MqRacYVXGEUowA+Ti/PA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "x7ev079HuuvziDnTo5whEA=="
+          "hash": "+bdsiHpMe/KHlRvutUaz6w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -215,17 +215,17 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
-          "incrementalPhase": "build"
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }

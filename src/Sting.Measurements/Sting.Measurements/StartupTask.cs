@@ -28,7 +28,7 @@ namespace Sting.Measurements
         // TODO: CHECK RETURN VALUE FOR SUCCESS
         private async void InitComponents()
         {
-            await _tempSensor.InitComponentAsync(4);
+            await _tempSensor.InitComponentAsync(60);
             await _pressureSensor.InitComponentAsync();
         }
 
