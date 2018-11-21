@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Cloud.AzureIotHub.html",
-          "hash": "PvlnZ7GINsCf24Q1/W0r7Q=="
+          "hash": "h2Fwb9br46J864V3ONmn7A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Cloud.html",
-          "hash": "4SGPdf0S9My2pPU+Adn/CA=="
+          "hash": "05iwScdZKf8TR1GY+IlazQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Bmp180.html",
-          "hash": "WV8lF82AiN3DfgtCvcwEGA=="
+          "hash": "1PrsYve62NGymgthJdmUmw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Dht11.html",
-          "hash": "XQSQmZvXRvnJqRzwdMNvyQ=="
+          "hash": "ae4HDQUwAtKB0xKFZpy7yw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.Led.html",
-          "hash": "CglnzXhwwnh/3Z0ybshfSw=="
+          "hash": "GYumEnGEBTZVbXhI13xYwQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.Components.html",
-          "hash": "+9p3HaDyV03vd2CneGQPuQ=="
+          "hash": "ImBksi72Uh0O63FKIdIUtg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.IGpioComponent.html",
-          "hash": "8X2aADzTsiww0yPQoBrL8w=="
+          "hash": "KQmt4Xh6AcXmJYsC041uvw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.ISensor.html",
-          "hash": "9OOUmAuYGkpMFgcZImPo0Q=="
+          "hash": "8WnmNmgVnJGg6XUWHC58ng=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.StartupTask.html",
-          "hash": "kxqZf/mAWifP8XRbq1nrQA=="
+          "hash": "ncyRmUfGUoyt8nmxPzF/7g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.TelemetryData.html",
-          "hash": "keNl81zkN2cEMOVEf38VbA=="
+          "hash": "1Yttk7BFP8UsX0Mo4nuZ8w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Sting.Measurements.html",
-          "hash": "kVGzLxkSNIBqXUUEmV7wfQ=="
+          "hash": "YlGx+Lyhg+KqDHKO4FNANg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "zQ2tT2w9zoBDxxdNVSSWeg=="
+          "hash": "lBJCKlPSje4mRXosVOADOQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "W44b8bACu+MkX16BlzkYiA=="
+          "hash": "TT8WrOn3B9yDqvinr8rdRw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -200,10 +200,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "80Ad5Ard046+mNXWFLoqxA=="
+          "hash": "lWQwlX6SnlU4wImGePoSwA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -226,9 +226,9 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
@@ -239,9 +239,9 @@
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "TocDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
