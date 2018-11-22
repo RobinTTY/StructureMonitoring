@@ -21,7 +21,7 @@ namespace Sting.Measurements
         {
             _deferral = taskInstance.GetDeferral();
             InitComponents();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(4));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
         // initialize used components async

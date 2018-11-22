@@ -31,7 +31,15 @@ namespace Sting.Cloud
             else
                 _connectionString = connectionString;
 
-            _deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
+            try
+            {
+                _deviceClient = DeviceClient.CreateFromConnectionString(_connectionString, TransportType.Mqtt);
+            }
+            catch (FormatException e)
+            {
+                Debug.WriteLine("Given connection string is not valid! Message was not sent.");
+                Debug.WriteLine(e.StackTrace);
+            }
         }
 
         /// <summary>
@@ -44,17 +52,8 @@ namespace Sting.Cloud
             if (msg == null) return false;
             var message = new Message(Encoding.ASCII.GetBytes(msg));
 
-            try
-            {
-                await _deviceClient.SendEventAsync(message);
-                return true;
-            }
-            catch (FormatException e)
-            {
-                Debug.WriteLine("Given connection string is not valid! Message was not sent.");
-                Debug.WriteLine(e.StackTrace);
-                return false;
-            }
+           await _deviceClient.SendEventAsync(message);
+           return true;
         }
 
         /// <summary>
