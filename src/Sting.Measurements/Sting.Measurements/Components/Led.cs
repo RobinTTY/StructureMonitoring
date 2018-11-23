@@ -26,12 +26,18 @@ namespace Sting.Measurements.Components
             return _pin != null;
         }
 
+        /// <summary>
+        /// Checks the current state of the LED.
+        /// </summary>
+        /// <returns>Returns True if the LED is currently on.
+        /// Returns False otherwise.</returns>
         public bool IsOn()
         {
             var state = _pin.Read();
             return state == GpioPinValue.Low;
         }
 
+        /// <inheritdoc />
         public void ClosePin()
         {
             _pin.Dispose();
