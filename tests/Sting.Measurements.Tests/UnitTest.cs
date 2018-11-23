@@ -209,9 +209,59 @@ namespace Sting.Measurements.Tests
     }
 
     [TestClass]
+    public class BuzzerTest
+    {
+        private readonly Buzzer _buzzer = new Buzzer();
+
+        [TestMethod]
+        public async Task InitComponentAsync_CorrectCall_StateIsTrue()
+        {
+            await _buzzer.InitComponentAsync(5);
+            Assert.IsTrue(_buzzer.State());
+        }
+
+        [TestMethod]
+        public async Task TurnOn_CallOnBuzzer_BuzzerIsOn()
+        {
+            await _buzzer.InitComponentAsync(18);
+            _buzzer.TurnOff();
+            Task.Delay(1000).Wait();
+            _buzzer.TurnOn();
+            Task.Delay(1000).Wait();
+            Assert.IsTrue(_buzzer.IsOn());
+        }
+
+        [TestMethod]
+        public async Task TurnOff_CallOnBuzzer_BuzzerIsOff()
+        {
+            await _buzzer.InitComponentAsync(18);
+            _buzzer.TurnOn();
+            Task.Delay(1000).Wait();
+            _buzzer.TurnOff();
+            Task.Delay(1000).Wait();
+            Assert.IsFalse(_buzzer.IsOn());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FileLoadException))]
+        public async Task InitComponentAsync_CalledSecondTimeOnSamePin_ThrowsException()
+        {
+            await _buzzer.InitComponentAsync(18);
+            await _buzzer.InitComponentAsync(18);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if (_buzzer.State())
+                _buzzer.ClosePin();
+        }
+    }
+
+    [TestClass]
     public class AzureIoTHubTest
     {
-        private AzureIotHub _myHub = new AzureIotHub("C:\\Data\\Users\\DefaultAccount\\AppData\\Local\\Packages\\Sting.Measurements.Tests-uwp_gk6cf97c3a7py\\LocalState\\DeviceConnectionString.txt");
+        private readonly AzureIotHub _myHub = new AzureIotHub("C:\\Data\\Users\\DefaultAccount\\AppData\\Local\\Packages\\Sting.Measurements.Tests-uwp_gk6cf97c3a7py\\LocalState\\DeviceConnectionString.txt");
 
         [TestMethod]
         public async Task SendDeviceToCloudMessageAsync_StringAsParameter_MessageIsSent()
