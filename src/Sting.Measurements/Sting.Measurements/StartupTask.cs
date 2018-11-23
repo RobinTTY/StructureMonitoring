@@ -14,6 +14,7 @@ namespace Sting.Measurements
         private BackgroundTaskDeferral _deferral;
         private readonly Bmp180 _pressureSensor = new Bmp180();
         private readonly Dht11 _tempSensor = new Dht11();
+        private readonly Buzzer _buzzer = new Buzzer();
         private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         volatile bool _cancelRequested = false;
         
@@ -30,6 +31,7 @@ namespace Sting.Measurements
         {
             await _tempSensor.InitComponentAsync(4);
             await _pressureSensor.InitComponentAsync();
+            await _buzzer.InitComponentAsync(18);
         }
 
         // Task which is executed every x seconds as defined in Run()
