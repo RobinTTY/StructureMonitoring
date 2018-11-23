@@ -97,6 +97,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\Bmp180.cs" />
+    <Compile Include="Components\Buzzer.cs" />
     <Compile Include="External Libraries\BMP180ext.cs" />
     <Compile Include="Components\Dht11.cs" />
     <Compile Include="IGpioComponent.cs" />

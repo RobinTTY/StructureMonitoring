@@ -8,7 +8,7 @@ namespace Sting.Measurements.Components
     class Dht11 : IGpioComponent, ISensor
     {
         private IDht _dht;
-        GpioPin _gpioPin;
+        private GpioPin _gpioPin;
 
         /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin)

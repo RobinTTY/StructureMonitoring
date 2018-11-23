@@ -4,65 +4,64 @@ using Windows.Devices.Gpio;
 
 namespace Sting.Measurements.Components
 {
-    class Led : IGpioComponent
+    class Buzzer : IGpioComponent
     {
-        private GpioPin _pin;
+        private GpioPin _gpioPin;
 
         /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin)
         {
-            // Open the used GPIO pin and set as Output
             var gpio = await GpioController.GetDefaultAsync();
 
             if (gpio == null) return false;
-            _pin = gpio.OpenPin(pin);
-            _pin.SetDriveMode(GpioPinDriveMode.Output);
+            _gpioPin = gpio.OpenPin(pin);
+            _gpioPin.SetDriveMode(GpioPinDriveMode.Output);
             return true;
         }
 
         /// <inheritdoc />
         public bool State()
         {
-            return _pin != null;
+            return _gpioPin != null;
         }
 
         /// <summary>
-        /// Checks the current state of the LED.
+        /// Checks the current state of the Buzzer.
         /// </summary>
         /// <returns>Returns True if the LED is currently on.
         /// Returns False otherwise.</returns>
         public bool IsOn()
         {
-            var state = _pin.Read();
+            var state = _gpioPin.Read();
             return state == GpioPinValue.Low;
         }
 
         /// <inheritdoc />
         public void ClosePin()
         {
-            _pin.Dispose();
-            _pin = null;
+            _gpioPin.Dispose();
+            _gpioPin = null;
         }
 
         /// <summary>
-        /// Turns the LED on.
+        /// Turns the Buzzer on.
         /// </summary>
-        /// <returns>Returns True if LED was successfully
-        /// turned on. Returns false otherwise.</returns>
+        /// <returns>Returns True if the Buzzer was turned
+        /// on successfully. Returns False otherwise.</returns>
         public bool TurnOn()
         {
-            _pin.Write(GpioPinValue.Low);
+            _gpioPin.Write(GpioPinValue.Low);
             return IsOn();
         }
 
         /// <summary>
-        /// Turns the LED off.
+        /// Turns the Buzzer off.
         /// </summary>
-        /// <returns>Returns True if LED was successfully
-        /// turned off. Returns false otherwise.</returns>
+        /// <returns>Returns True if the Buzzer was turned
+        /// off successfully. Returns False otherwise.</returns>
         public bool TurnOff()
         {
-            _pin.Write(GpioPinValue.High);
+            _gpioPin.Write(GpioPinValue.High);
             return IsOn();
         }
     }
