@@ -12,15 +12,10 @@ namespace Sting.Measurements.Components
         public async Task<bool> InitComponentAsync(int pin)
         {
             // Open the used GPIO pin and set as Output
-            var ledPin = pin;
             var gpio = await GpioController.GetDefaultAsync();
 
-            if (gpio == null)
-            {
-                _pin = null;
-                return false;
-            }
-            _pin = gpio.OpenPin(ledPin);
+            if (gpio == null) return false;
+            _pin = gpio.OpenPin(pin);
             _pin.SetDriveMode(GpioPinDriveMode.Output);
             return true;
         }

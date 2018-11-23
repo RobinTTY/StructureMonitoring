@@ -12,11 +12,7 @@ namespace Sting.Measurements.Components
         {
             var gpio = await GpioController.GetDefaultAsync();
 
-            if (gpio == null)
-            {
-                _gpioPin = null;
-                return false;
-            }
+            if (gpio == null) return false;
             _gpioPin = gpio.OpenPin(pin);
             _gpioPin.SetDriveMode(GpioPinDriveMode.Output);
             return true;
