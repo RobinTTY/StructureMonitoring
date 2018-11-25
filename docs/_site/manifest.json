@@ -1,0 +1,264 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Projects/CSharp/StructureMonitoring/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Cloud.AzureIotHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Cloud.AzureIotHub.html",
+          "hash": "h2Fwb9br46J864V3ONmn7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Cloud.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Cloud.html",
+          "hash": "05iwScdZKf8TR1GY+IlazQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.Components.Bmp180.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.Components.Bmp180.html",
+          "hash": "1PrsYve62NGymgthJdmUmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.Components.Dht11.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.Components.Dht11.html",
+          "hash": "ae4HDQUwAtKB0xKFZpy7yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.Components.Led.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.Components.Led.html",
+          "hash": "GYumEnGEBTZVbXhI13xYwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.Components.html",
+          "hash": "ImBksi72Uh0O63FKIdIUtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.IGpioComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.IGpioComponent.html",
+          "hash": "KQmt4Xh6AcXmJYsC041uvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.ISensor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.ISensor.html",
+          "hash": "8WnmNmgVnJGg6XUWHC58ng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.StartupTask.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.StartupTask.html",
+          "hash": "ncyRmUfGUoyt8nmxPzF/7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.TelemetryData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.TelemetryData.html",
+          "hash": "1Yttk7BFP8UsX0Mo4nuZ8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Sting.Measurements.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Sting.Measurements.html",
+          "hash": "YlGx+Lyhg+KqDHKO4FNANg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "lBJCKlPSje4mRXosVOADOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "/NuiPLZAD10DFiOOHrF5RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "TT8WrOn3B9yDqvinr8rdRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "t7iiFrmuYmrKWisdq+lN6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "lWQwlX6SnlU4wImGePoSwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "k+/dkjFuwAVS32HduMpmBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
