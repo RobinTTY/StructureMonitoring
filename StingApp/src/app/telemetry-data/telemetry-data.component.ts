@@ -12,6 +12,8 @@ import * as json1 from '../buildings';
 })
 export class TelemetryDataComponent implements OnInit {
 
+  bData$: Object;
+  telemetry$: Object;
   public jsonObject: any;
   
 
@@ -19,6 +21,8 @@ export class TelemetryDataComponent implements OnInit {
 
   ngOnInit() {
    this.fetchTelemetry();
+   this.bData$ = json1.default.buildings;
+    this.telemetryService.getBuildings().subscribe(data => this.telemetry$ = data)
   }
 
   
@@ -29,17 +33,5 @@ export class TelemetryDataComponent implements OnInit {
 
     });
  
-  }
-
-export class TelemetryDataComponent implements OnInit {
-
-  bData$: Object;
-  telemetry$: Object;
-
-  constructor(private data: TelemetryDataImportService) { }
-
-  ngOnInit() {
-    this.bData$ = json1.default.buildings;
-    this.data.getBuildings().subscribe(data => this.telemetry$ = data)
   }
 }

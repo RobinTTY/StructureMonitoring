@@ -16,9 +16,6 @@ export class TelemetryDataImportService {
       return this.http.get('http://localhost:1337/');
   }
 
-    
-  }
-
   getRoom(num){
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+num)
   }
