@@ -8,6 +8,11 @@ namespace Sting.Measurements
 {
     interface ISensor
     {
-        bool InitSensor(int pin);
+        /// <summary>
+        /// Takes a measurement with the installed Sensor.
+        /// </summary>
+        /// <returns>Returns the measured values inside
+        /// a TelemetryData object.</returns>
+        Task<TelemetryData> TakeMeasurementAsync();
     }
 }

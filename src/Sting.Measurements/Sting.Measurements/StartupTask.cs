@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using Windows.Devices.Gpio;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
-using Sensors.Dht;
+using Sting.Cloud;
+using Sting.Measurements.Components;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -11,46 +11,52 @@ namespace Sting.Measurements
 {
     public sealed class StartupTask : IBackgroundTask
     {
-        private const int DhtPin = 4;
         private BackgroundTaskDeferral _deferral;
-        private static IDht _dht = null;
-        private static readonly Led StatusLed = new Led(5);
+        private readonly Bmp180 _pressureSensor = new Bmp180();
+        private readonly Dht11 _tempSensor = new Dht11();
+        private readonly Buzzer _buzzer = new Buzzer();
+        private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         volatile bool _cancelRequested = false;
         
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            InitDht();
             _deferral = taskInstance.GetDeferral();
-            ThreadPoolTimer timer = ThreadPoolTimer.CreatePeriodicTimer(TakeMeasurement, TimeSpan.FromSeconds(2));
+            InitComponents();
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
-        private static void InitDht()
+        // initialize used components async
+        // TODO: CHECK RETURN VALUE FOR SUCCESS
+        private async void InitComponents()
         {
-            // Open the used GPIO pin 4
-            var dhtPin = GpioController.GetDefault().OpenPin(DhtPin);
-            _dht = new Dht11(dhtPin, GpioPinDriveMode.Input);
+            await _tempSensor.InitComponentAsync(4);
+            await _pressureSensor.InitComponentAsync();
+            await _buzzer.InitComponentAsync(18);
         }
 
-        private async void TakeMeasurement(ThreadPoolTimer timer)
+        // Task which is executed every x seconds as defined in Run()
+        // Take Measurements periodically
+        // TODO: Introduce Cloud to Device Message which can cancel the deferral, resulting in termination of the program
+        private async void PeriodicTask(ThreadPoolTimer timer)
         {
-            // Take measurement and check for validity, indicate through LED
             if (_cancelRequested == false)
             {
-                var telemetry = new TelemetryData();
-                var measurement = await _dht.GetReadingAsync().AsTask();
-
-                if (measurement.IsValid)
-                {
-                    telemetry.Temperature = measurement.Temperature;
-                    telemetry.Humidity = measurement.Humidity;
-                    telemetry.Timestamp = DateTime.Now;
-                    StatusLed.TurnOn();
-                    Debug.WriteLine("Temp: " + telemetry.Temperature + " Humidity: " + telemetry.Humidity + " Timestamp: " + telemetry.Timestamp);
-                }
+                var combinedData = new TelemetryData();
+                var dhtTelemetry = await _tempSensor.TakeMeasurementAsync();
+                var bmpTelemetry = await _pressureSensor.TakeMeasurementAsync();
+                
+                // Use bmp measurements (duplicates) over dht measurements because of higher accuracy
+                if (dhtTelemetry == null && bmpTelemetry == null)
+                    Debug.WriteLine("Invalid Measurements");
                 else
                 {
-                    StatusLed.TurnOff();
+                    combinedData.Overwrite(dhtTelemetry);
+                    combinedData.Overwrite(bmpTelemetry);
+                    Debug.WriteLine(combinedData);
                 }
+                
+                var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
+                Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
             }
             else
             {

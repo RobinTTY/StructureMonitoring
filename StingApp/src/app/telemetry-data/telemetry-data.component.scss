@@ -1,0 +1,25 @@
+div {
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#image {
+    width: 500px;
+    height: 250px;
+    border: 1px solid black;
+}
+
+#outer {
+    float: left;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: blue;
+}
+

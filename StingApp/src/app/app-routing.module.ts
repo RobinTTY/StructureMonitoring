@@ -11,15 +11,19 @@ const routes: Routes = [
     component: TelemetryDataComponent
   },
   {
-    path: 'room/',
+    path: 'room/:id',
     component: RoomComponent
   },
   {
-    path: 'floor/',
+    path: 'building/:id/floor/:id/room/:id',
+    component: RoomComponent
+  },
+  {
+    path: 'building/:id/floor/:id',
     component: FloorComponent
   },
   {
-    path: 'building/',
+    path: 'building/:id',
     component: BuildingComponent
   }
 ];

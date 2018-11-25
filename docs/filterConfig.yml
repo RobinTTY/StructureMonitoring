@@ -1,0 +1,5 @@
+apiRules:
+
+- exclude:
+    uidRegex: '^Sting.Measurements.External_Libraries'
+    type: namespace

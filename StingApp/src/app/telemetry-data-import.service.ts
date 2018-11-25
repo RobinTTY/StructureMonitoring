@@ -19,4 +19,20 @@ export class TelemetryDataImportService {
     
   }
 
+  getRoom(num){
+    return this.http.get('https://jsonplaceholder.typicode.com/users/'+num)
+  }
 
+  //telemetry endpoint als url eingeben!
+  getBuildings(){
+    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  }
+
+  getFloors(){
+    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  }
+
+  getRooms(){
+    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  }
+}
