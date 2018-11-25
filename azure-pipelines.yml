@@ -6,7 +6,7 @@
 pool: 'Default'
 
 variables:
-  solution: '**/*.sln'
+  solution: 'src/**/*.sln'
   buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\'
