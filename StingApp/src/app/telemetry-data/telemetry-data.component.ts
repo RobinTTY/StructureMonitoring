@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TelemetryDataImportService} from '../telemetry-data-import.service';
-import { Observable } from 'rxjs';
 
 //Get building data from local file
 import * as json1 from '../buildings';
