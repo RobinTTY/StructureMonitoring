@@ -9,6 +9,8 @@ namespace Sting.Cloud
 {
     public class AzureIotHub
     {
+        public delegate void OnLocateEventHandler(object source, EventArgs args);
+        public event OnLocateEventHandler Locate;
         private readonly string _connectionString;
         private readonly DeviceClient _deviceClient;
 
@@ -68,6 +70,16 @@ namespace Sting.Cloud
             var messageData = Encoding.ASCII.GetString(receivedMessage.GetBytes());
             await _deviceClient.CompleteAsync(receivedMessage);
             return messageData;
+        }
+        public async Task RegisterDirectMethodsAsync()
+        {
+            await _deviceClient.SetMethodHandlerAsync("Locate", OnLocate, null);
+        }
+
+        private async Task<MethodResponse> OnLocate(MethodRequest methodRequest, object userContext)
+        {
+            Locate?.Invoke(this, EventArgs.Empty);
+            return new MethodResponse(200);
         }
     }
 }

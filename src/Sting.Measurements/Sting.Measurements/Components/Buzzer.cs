@@ -64,5 +64,13 @@ namespace Sting.Measurements.Components
             _gpioPin.Write(GpioPinValue.High);
             return IsOn();
         }
+
+        public void OnLocate(object source, EventArgs e)
+        {
+            if (!State()) return;
+            TurnOn();
+            Task.Delay(1000).Wait();
+            TurnOff();
+        }
     }
 }

@@ -21,17 +21,25 @@ namespace Sting.Measurements
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
-            InitComponents();
+            InitComponentsAsync();
+            InitDirectMethodCallsAsync();
             ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
         // initialize used components async
         // TODO: CHECK RETURN VALUE FOR SUCCESS
-        private async void InitComponents()
+        private async void InitComponentsAsync()
         {
             await _tempSensor.InitComponentAsync(4);
             await _pressureSensor.InitComponentAsync();
             await _buzzer.InitComponentAsync(18);
+        }
+
+        // Register Direct Methods and set event handlers
+        private async void InitDirectMethodCallsAsync()
+        {
+            await _structureMonitoringHub.RegisterDirectMethodsAsync();
+            _structureMonitoringHub.Locate += _buzzer.OnLocate;
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -44,6 +52,7 @@ namespace Sting.Measurements
                 var combinedData = new TelemetryData();
                 var dhtTelemetry = await _tempSensor.TakeMeasurementAsync();
                 var bmpTelemetry = await _pressureSensor.TakeMeasurementAsync();
+                
                 
                 // Use bmp measurements (duplicates) over dht measurements because of higher accuracy
                 if (dhtTelemetry == null && bmpTelemetry == null)
