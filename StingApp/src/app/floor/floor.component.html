@@ -1,3 +1,4 @@
+<!-- 
 <h1>Rooms</h1>
  
 <div>
@@ -5,3 +6,18 @@
     <a routerLink="room/{{b.id}}"><strong>Room {{b.id}}</strong></a>
   </div>
 </div>
+-->
+
+<img id="image" [src]="floor$.link" alt="image" width=2000px height=1500px/>
+
+<ul>
+  <li> 
+    <p> Temperature: {{ jsonObject.Temperature }} </p> 
+    <p> Humidity: {{jsonObject.Humidity}}</p>
+    <p> Device: {{jsonObject.DeviceId}}</p>
+    <p> Time: {{jsonObject.Timestamp}}</p>
+    <p> Pressure: {{jsonObject.Pressure}}</p>
+    <p> Altitude: {{jsonObject.Altitude}}</p>
+  </li>
+</ul>
+

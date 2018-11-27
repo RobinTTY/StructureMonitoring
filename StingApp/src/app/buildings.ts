@@ -68,7 +68,7 @@ export default {
                     "id": 1,
                     "floor-id": 21,
                     "name": "default",
-                    "link": "../assets/images/floorplan.png",
+                    "link": "../assets/images/1.PNG",
                     "rooms": [
                         {
                             "id": 1,
@@ -100,7 +100,7 @@ export default {
                     "id": 2,
                     "floor-id": 22,
                     "name": "default",
-                    "link": "../assets/images/floorplan.png",
+                    "link": "../assets/images/2.PNG",
                     "rooms": [
                         {
                             "id": 1,
@@ -120,7 +120,7 @@ export default {
                     "id": 3,
                     "floor-id": 23,
                     "name": "default",
-                    "link": "../assets/images/floorplan.png",
+                    "link": "../assets/images/3.PNG",
                     "rooms": [
                         {
                             "id": 1,
