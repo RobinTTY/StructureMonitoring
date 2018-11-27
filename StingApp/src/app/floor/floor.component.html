@@ -1,23 +1,31 @@
-<!-- 
-<h1>Rooms</h1>
- 
-<div>
-  <div *ngFor="let b of bData$">
-    <a routerLink="room/{{b.id}}"><strong>Room {{b.id}}</strong></a>
+<div id="container">
+  <img id="image" [src]="floor$.link" alt="image" width=2000px height=1500px/>
+  <div id="txt1"> 
+    <p> 
+      Temperature: {{ jsonObject.Temperature }} <br/> 
+      Humidity: {{jsonObject.Humidity}} <br/> 
+      Pressure: {{jsonObject.Pressure}} 
+    </p>
+  </div>
+  <div id="txt2"> 
+    <p> 
+      Temperature: {{ jsonObject.Temperature }} <br/> 
+      Humidity: {{jsonObject.Humidity}} <br/> 
+      Pressure: {{jsonObject.Pressure}} 
+    </p>
+  </div>
+  <div id="txt3"> 
+    <p> 
+      Temperature: {{ jsonObject.Temperature }} <br/> 
+      Humidity: {{jsonObject.Humidity}} <br/> 
+      Pressure: {{jsonObject.Pressure}} 
+    </p>
+  </div>
+  <div id="txt4"> 
+    <p> 
+      Temperature: {{ jsonObject.Temperature }} <br/> 
+      Humidity: {{jsonObject.Humidity}} <br/> 
+      Pressure: {{jsonObject.Pressure}} 
+    </p>
   </div>
 </div>
--->
-
-<img id="image" [src]="floor$.link" alt="image" width=2000px height=1500px/>
-
-<ul>
-  <li> 
-    <p> Temperature: {{ jsonObject.Temperature }} </p> 
-    <p> Humidity: {{jsonObject.Humidity}}</p>
-    <p> Device: {{jsonObject.DeviceId}}</p>
-    <p> Time: {{jsonObject.Timestamp}}</p>
-    <p> Pressure: {{jsonObject.Pressure}}</p>
-    <p> Altitude: {{jsonObject.Altitude}}</p>
-  </li>
-</ul>
-

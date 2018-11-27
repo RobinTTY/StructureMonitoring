@@ -1,20 +1,33 @@
+#container {
+    position: relative;
+}
+
 #image {
     width: 1100px;
     height: 550px;
     border: 1px solid black;
 }
 
-div {
-    font-size: 20px;
+p {
+    color: red;
+    font-size: 12px;
     font-family: monospace;
 }
 
-a:link {
-    text-decoration: none;
-    color: black;
+#txt2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
-a:hover {
-    text-decoration: none;
-    color: blue;
+#txt3 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#txt4 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
