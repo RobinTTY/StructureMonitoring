@@ -10,7 +10,9 @@ namespace Sting.Cloud
     public class AzureIotHub
     {
         public delegate void OnLocateEventHandler(object source, EventArgs args);
+        public delegate void OnTerminateEventHandler(object source, EventArgs args);
         public event OnLocateEventHandler Locate;
+        public event OnTerminateEventHandler Terminate;
         private readonly string _connectionString;
         private readonly DeviceClient _deviceClient;
 
@@ -74,11 +76,18 @@ namespace Sting.Cloud
         public async Task RegisterDirectMethodsAsync()
         {
             await _deviceClient.SetMethodHandlerAsync("Locate", OnLocate, null);
+            await _deviceClient.SetMethodHandlerAsync("Terminate", OnTerminate, null);
         }
 
         private async Task<MethodResponse> OnLocate(MethodRequest methodRequest, object userContext)
         {
             Locate?.Invoke(this, EventArgs.Empty);
+            return new MethodResponse(200);
+        }
+
+        private async Task<MethodResponse> OnTerminate(MethodRequest methodRequest, object userContext)
+        {
+            Terminate?.Invoke(this, EventArgs.Empty);
             return new MethodResponse(200);
         }
     }

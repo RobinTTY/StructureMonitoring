@@ -16,7 +16,7 @@ namespace Sting.Measurements
         private readonly Dht11 _tempSensor = new Dht11();
         private readonly Buzzer _buzzer = new Buzzer();
         private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
-        volatile bool _cancelRequested = false;
+        private bool _cancelRequested;
         
         public void Run(IBackgroundTaskInstance taskInstance)
         {
@@ -40,6 +40,7 @@ namespace Sting.Measurements
         {
             await _structureMonitoringHub.RegisterDirectMethodsAsync();
             _structureMonitoringHub.Locate += _buzzer.OnLocate;
+            _structureMonitoringHub.Terminate += OnTerminate;
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -73,6 +74,12 @@ namespace Sting.Measurements
                 timer.Cancel();
                 _deferral.Complete();
             }
+        }
+
+        private void OnTerminate(object source, EventArgs e)
+        {
+            Debug.WriteLine("Termination was requested. Shutting Down.");
+            _cancelRequested = true;
         }
     }
 }
