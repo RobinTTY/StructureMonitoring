@@ -65,5 +65,16 @@ namespace Sting.Measurements.Components
             _pin.Write(GpioPinValue.High);
             return IsOn();
         }
+
+        /// <summary>
+        /// Turns the LED on for a specified duration and then off again.
+        /// </summary>
+        /// <param name="duration">Duration in milliseconds.</param>
+        public void Blink(int duration)
+        {
+            TurnOn();
+            Task.Delay(duration).Wait();
+            TurnOff();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 using Sting.Cloud;
@@ -15,6 +16,7 @@ namespace Sting.Measurements
         private readonly Bmp180 _pressureSensor = new Bmp180();
         private readonly Dht11 _tempSensor = new Dht11();
         private readonly Buzzer _buzzer = new Buzzer();
+        private readonly Led _statusLed = new Led();
         private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         private bool _cancelRequested;
         
@@ -33,6 +35,7 @@ namespace Sting.Measurements
             await _tempSensor.InitComponentAsync(4);
             await _pressureSensor.InitComponentAsync();
             await _buzzer.InitComponentAsync(18);
+            await _statusLed.InitComponentAsync(5);
         }
 
         // Register Direct Methods and set event handlers
@@ -67,6 +70,7 @@ namespace Sting.Measurements
                 
                 var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
                 Debug.WriteLine(success ? "Message sent!" : "Could not send you message.");
+                _statusLed.Blink(5000);
             }
             else
             {
