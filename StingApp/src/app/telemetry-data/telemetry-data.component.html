@@ -1,17 +1,25 @@
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-    </ol>
-  </nav>
-  <h1>Welcome to Sting!</h1>
-  <h1>Telemetry Data</h1>
-  <div>
-    <div id="outer" *ngFor="let b of bData$">
-      <div id="image">
-        <img [src]="b.link" alt="image" routerLink="building/{{b.id}}" width=500px height=250px />
+<h1>Your monitored objects</h1>   
+  <div class="container">
+
+    
+      
+      <div *ngFor="let b of bData$">
+        <div class="row">
+          <div class="col">
+            <div id="image">
+              <img [src]="b.link" alt="image" routerLink="building/{{b.id}}" width=500px height=250px />
+            </div>
+            <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a> 
+          </div>           
+        
+    
+      
+          <div class="col">            
+            wow
+          </div>
+        </div>
       </div>
-      <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a> 
-    </div>
+
   </div>
 </div>

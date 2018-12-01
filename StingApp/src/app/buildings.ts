@@ -2,8 +2,8 @@ export default {
     "buildings": [
         {
             "id": 1,
-            "name": "UnnamedBuilding1",
-            "link": "../assets/images/default.png",
+            "name": "Systecs",
+            "link": "../assets/images/Systecs.png",
             "floors": [
                 {
                     "id": 1,
