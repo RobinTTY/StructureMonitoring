@@ -2,8 +2,11 @@ export default {
     "buildings": [
         {
             "id": 1,
-            "name": "Systecs",
+            "name": "Systecs",            
             "link": "../assets/images/Systecs.png",
+            "street": "Bahnhofstraße 11",
+            "city": "Leinfelden-Echterdingen",
+            "postcode": "70771",                
             "floors": [
                 {
                     "id": 1,
@@ -34,7 +37,7 @@ export default {
                             "y": 400,
                             "name": "default",
                             "link": "../assets/images/default.png"
-                        },
+                        }
                     ]
                 },
                 {
@@ -74,7 +77,10 @@ export default {
         {
             "id": 2,
             "name": "HS-Esslingen",
-            "link": "../assets/images/HSE.png",
+            "link": "../assets/images/HSE.png",            
+            "street": "Kanalstraße 33",
+            "city": "Esslingen am Neckar",
+            "postcode": "73728",                
             "floors": [
                 {
                     "id": 1,
@@ -179,6 +185,9 @@ export default {
             "id": 3,
             "name": "Bibliothek",
             "link": "../assets/images/default.png",
+            "street": "NA",
+            "city": "NA",
+            "postcode": "NA",                
             "floors": [
                 {
                     "id": 1,

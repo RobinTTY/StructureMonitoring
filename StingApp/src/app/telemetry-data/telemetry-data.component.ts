@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TelemetryDataImportService} from '../telemetry-data-import.service';
-import { Observable } from 'rxjs';
 
 //Get building data from local file
 import * as json1 from '../buildings';
@@ -11,7 +10,6 @@ import * as json1 from '../buildings';
   styleUrls: ['./telemetry-data.component.scss']
 })
 export class TelemetryDataComponent implements OnInit {
-
   bData$: Object;
   telemetry$: Object;
   public jsonObject: any;
