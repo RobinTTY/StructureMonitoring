@@ -184,7 +184,7 @@ export default {
         {
             "id": 3,
             "name": "Bibliothek",
-            "link": "../assets/images/default.png",
+            "link": "../assets/images/Bibliothek.png",
             "street": "NA",
             "city": "NA",
             "postcode": "NA",                

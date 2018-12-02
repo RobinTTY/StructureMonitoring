@@ -1,25 +1,15 @@
 <div class="flex-container bg-grey">
-  <div class="container">
-    <h1 class="text-center">Your monitored objects</h1>
-
-      
-        <div class="object" *ngFor="let b of bData$">
-
-
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-              <div id="image">
-                <img [src]="b.link" class="img-fluid rounded" alt="image" routerLink="building/{{b.id}}" />              
-              </div>
-            </div>   
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center description">      
-              <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a>
-            </div> 
-          </div>
-
-
-        
+<h1 class="text-center">Your monitored objects</h1>      
+  <div class="object" *ngFor="let b of bData$">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <div id="image">
+          <img [src]="b.link" class="img-fluid rounded" alt="image" routerLink="building/{{b.id}}" />              
         </div>
-
+      </div>   
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center description">      
+        <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a>
+      </div> 
+    </div>        
   </div>
 </div>

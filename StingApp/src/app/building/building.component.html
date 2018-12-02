@@ -1,10 +1,19 @@
-<h1>Floors</h1>
+<div class="flex-container bg-grey">
+<h1 class="text-center">Floors</h1>
  
-<div>
-  <div id="outer" *ngFor="let b of bData$">
-    <div id="image">
-      <img [src]="b.link" alt="image" routerLink="floor/{{b.id}}" width=500px height=250px/>
+  <div>
+    <div class="object" *ngFor="let b of bData$">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          <div id="image">
+            <img [src]="b.link" class="img-fluid rounded" alt="image" routerLink="floor/{{b.id}}"/>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center description">
+          <a routerLink="floor/{{b.id}}"><strong>Floor {{b.id}}</strong></a>
+        </div>
+      </div>
     </div>
-    <a routerLink="floor/{{b.id}}"><strong>Floor {{b.id}}</strong></a>
   </div>
+
 </div>
