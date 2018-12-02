@@ -29,9 +29,9 @@ export class FloorComponent implements OnInit {
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
     this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1];
     for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
-      document.getElementById("txt" + (i + 1)).style.setProperty('position','absolute');
-      document.getElementById("txt" + (i + 1)).style.setProperty('left', this.bData$[i]["x"].valueOf() + 'px');
-      document.getElementById("txt" + (i + 1)).style.setProperty('top', this.bData$[i]["y"].valueOf() + 'px');
+      document.getElementById("txt" + (i + 1)).style.setProperty('left', this.bData$[i]["x"].valueOf() + '%');
+      document.getElementById("txt" + (i + 1)).style.setProperty('top', this.bData$[i]["y"].valueOf() + '%');
+      document.getElementById("txt" + (i + 1)).style.setProperty('opacity', '1');
     }
   }
 

@@ -1,31 +1,44 @@
-<div id="container">
-  <img id="image" [src]="floor$.link" class="img-fluid" alt="image" />
-  <div id="txt1"> 
-    <p> 
-      Temperature: {{ jsonObject.Temperature }} <br/> 
-      Humidity: {{jsonObject.Humidity}} <br/> 
-      Pressure: {{jsonObject.Pressure}} 
-    </p>
-  </div>
-  <div id="txt2"> 
-    <p> 
-      Temperature: {{ jsonObject.Temperature }} <br/> 
-      Humidity: {{jsonObject.Humidity}} <br/> 
-      Pressure: {{jsonObject.Pressure}} 
-    </p>
-  </div>
-  <div id="txt3"> 
-    <p> 
-      Temperature: {{ jsonObject.Temperature }} <br/> 
-      Humidity: {{jsonObject.Humidity}} <br/> 
-      Pressure: {{jsonObject.Pressure}} 
-    </p>
-  </div>
-  <div id="txt4"> 
-    <p> 
-      Temperature: {{ jsonObject.Temperature }} <br/> 
-      Humidity: {{jsonObject.Humidity}} <br/> 
-      Pressure: {{jsonObject.Pressure}} 
-    </p>
+<div class="flex-container bg-grey">
+  <div id="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 main-content">
+
+        <section id="image">
+          <a href="">
+            <img [src]="floor$.link" class="rounded" alt="floor-plan" />
+          
+            <div id="txt1"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}}         
+              </p>
+            </div>
+            <div id="txt2"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+            <div id="txt3"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+            <div id="txt4"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+          </a>
+        
+        </section>
+      </div>
+    </div>
   </div>
 </div>

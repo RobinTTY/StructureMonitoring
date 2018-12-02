@@ -91,32 +91,32 @@ export default {
                         {
                             "id": 1,
                             "room-id": 211,
-                            "x": 310,
-                            "y": 75,
+                            "x": 76,
+                            "y": 72.5,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
                         {
                             "id": 2,
                             "room-id": 212,
-                            "x": 395,
-                            "y": 290,
+                            "x": 74,
+                            "y": 43.5,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
                         {
                             "id": 3,
                             "room-id": 213,
-                            "x": 800,
-                            "y": 260,
+                            "x": 28,
+                            "y": 15,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
                         {
                             "id": 4,
                             "room-id": 214,
-                            "x": 840,
-                            "y": 400,
+                            "x": 36,
+                            "y": 53.5,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -131,16 +131,24 @@ export default {
                         {
                             "id": 1,
                             "room-id": 221,
-                            "x": 850,
-                            "y": 400,
+                            "x": 28,
+                            "y": 21,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
                         {
                             "id": 2,
                             "room-id": 222,
-                            "x": 850,
-                            "y": 400,
+                            "x": 26,
+                            "y": 73,
+                            "name": "default",
+                            "link": "../assets/images/default.png"
+                        },
+                        {
+                            "id": 3,
+                            "room-id": 223,
+                            "x": 38.5,
+                            "y": 73,
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
