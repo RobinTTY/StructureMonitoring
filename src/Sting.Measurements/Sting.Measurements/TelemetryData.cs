@@ -14,6 +14,7 @@ namespace Sting.Measurements
     class TelemetryData
     {
         public DateTime Timestamp { get; set; }
+        public long UnixTimeStampMilliseconds { get; set; }
         public double Temperature { get; set; }
         public double Humidity { get; set; }
         public double Pressure { get; set; }
@@ -26,6 +27,7 @@ namespace Sting.Measurements
         public TelemetryData()
         {
             Timestamp = DateTime.Now;
+            UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             Temperature = double.NaN;
             Humidity = double.NaN;
             Pressure = double.NaN;
@@ -39,7 +41,8 @@ namespace Sting.Measurements
         /// <param name="data">A BMP180Data object</param>
         public TelemetryData(BMP180Data data)
         {
-            Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;            
+            UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             Temperature = data.Temperature;
             Humidity = double.NaN;
             Pressure = data.Pressure;
@@ -53,7 +56,8 @@ namespace Sting.Measurements
         /// <param name="data">A DhtReading object</param>
         public TelemetryData(DhtReading data)
         {
-            Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;            
+            UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             Temperature = data.Temperature;
             Humidity = data.Humidity;
             Pressure = double.NaN;
