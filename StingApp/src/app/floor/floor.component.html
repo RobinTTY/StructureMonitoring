@@ -1,7 +1,44 @@
-<h1>Rooms</h1>
- 
-<div>
-  <div *ngFor="let b of bData$">
-    <a routerLink="room/{{b.id}}"><strong>Room {{b.id}}</strong></a>
+<div class="flex-container bg-grey">
+  <div id="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 main-content">
+
+        <section id="image">
+          <a href="">
+            <img [src]="floor$.link" class="rounded" alt="floor-plan" />
+          
+            <div id="txt1"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}}         
+              </p>
+            </div>
+            <div id="txt2"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+            <div id="txt3"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+            <div id="txt4"> 
+              <p> 
+                Temperature: {{ jsonObject.Temperature }} <br/> 
+                Humidity: {{jsonObject.Humidity}} <br/> 
+                Pressure: {{jsonObject.Pressure}} 
+              </p>
+            </div>
+          </a>
+        
+        </section>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,20 +1,45 @@
-#image {
-    width: 400px;
-    height: 200px;
-    border: 1px solid black;
-}
-
-div {
-    font-size: 20px;
+p {
+    color: rgb(241, 162, 14);
     font-family: monospace;
 }
 
-a:link {
-    text-decoration: none;
-    color: black;
+.main-content {
+	padding: 5% 0%;
+	margin: 0 auto;
+	max-width: 960px;
 }
 
-a:hover {
-    text-decoration: none;
-    color: blue;
+#image {
+	margin: 0 auto;
+	position: relative;
 }
+
+#image a {
+	display: inline-block;
+}
+
+#image img {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#image div {    
+  font-size: 12px;
+  position: absolute;
+  opacity: 0;
+  top: 0%;
+  left: 0%;
+}
+
+@media (max-width: 767.98px) {
+    #image div {    
+        font-size: 10px; 
+    }
+ }
+
+ @media (max-width: 575.98px) { 
+    #image div {    
+        font-size: 8px; 
+    }
+ }
