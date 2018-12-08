@@ -43,7 +43,7 @@ namespace Sting.Measurements.Tests
         public void ToString_CalledOnTelemetryData_CreatesValidString()
         {
             TelemetryData data = new TelemetryData()
-                {Altitude = 200, Humidity = 53, Temperature = 23, Pressure = 1700, Timestamp = DateTime.MaxValue};
+                { Altitude = 200, Humidity = 53, Temperature = 23, Pressure = 1700, Timestamp = DateTime.MaxValue };
             var telemetryString = data.ToString();
             Assert.AreEqual(telemetryString, "Time: 12/31/9999 11:59:59 PM, Temperature: 23°C, Humidity: 53%, Pressure: 1700hPa, Altitude: 200m");
         }

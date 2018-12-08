@@ -1,21 +1,15 @@
-<h1>Welcome to Sting</h1>
-<h1>Telemetry Data</h1>
-<ul >
-  <li> 
-    <p> Temperature: {{ jsonObject.Temperature }} </p> 
-    <p> Humidity: {{jsonObject.Humidity}}</p>
-    <p> Device: {{jsonObject.DeviceId}}</p>
-    <p> Time: {{jsonObject.Timestamp}}</p>
-    <p> Pressure: {{jsonObject.Pressure}}</p>
-    <p> Altitude: {{jsonObject.Altitude}}</p>
-    </li>
-  </ul>
-
-<div>
-  <div id="outer" *ngFor="let b of bData$">
-    <div id="image">
-      <img [src]="b.link" alt="image" routerLink="building/{{b.id}}" width=500px height=250px />
-    </div>
-    <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a> 
+<div class="flex-container bg-grey">
+<h1 class="text-center">Your monitored objects</h1>      
+  <div class="object" *ngFor="let b of bData$">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <div id="image">
+          <img [src]="b.link" class="img-fluid rounded" alt="image" routerLink="building/{{b.id}}" />              
+        </div>
+      </div>   
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center description">      
+        <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a>
+      </div> 
+    </div>        
   </div>
 </div>
