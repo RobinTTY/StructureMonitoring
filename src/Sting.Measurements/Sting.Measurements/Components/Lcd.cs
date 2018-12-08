@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using displayI2C;
+using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements.Components
 {
     class Lcd : IGpioComponent
     {
-        private display _lcd;
+        private Display _lcd;
         private const string I2C_CONTROLLER_NAME = "I2C1"; //use for RPI2
         private const byte DEVICE_I2C_ADDRESS = 0x27; // 7-bit I2C address of the port expander
 
@@ -22,8 +22,8 @@ namespace Sting.Measurements.Components
 
         public Task<bool> InitComponentAsync(int pin = 0)
         {
-            _lcd = new display(DEVICE_I2C_ADDRESS, I2C_CONTROLLER_NAME, RS, RW, EN, D4, D5, D6, D7, BL);
-            //_lcd.init();
+            _lcd = new Display(DEVICE_I2C_ADDRESS, I2C_CONTROLLER_NAME, RS, RW, EN, D4, D5, D6, D7, BL);
+            _lcd.init();
             return Task.FromResult(State());
         }
 
@@ -40,9 +40,10 @@ namespace Sting.Measurements.Components
 
         public void doSomething()
         {
-            //_lcd.createSymbol(new byte[] { 0x00, 0x00, 0x0A, 0x00, 0x11, 0x0E, 0x00, 0x00 }, 0x00);
+            _lcd.createSymbol(new byte[] { 0x00, 0x00, 0x0A, 0x00, 0x11, 0x0E, 0x00, 0x00 }, 0x00);
             _lcd.prints("Good morning!");
-            _lcd.turnOnBacklight();
+            _lcd.gotoxy(0, 1);
+            _lcd.printSymbol(0x00);
         }
     }
 }
