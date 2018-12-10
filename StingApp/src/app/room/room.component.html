@@ -1,10 +1,7 @@
 <h1>Welcome to room {{ bData$["room-id"].valueOf() }}</h1>
 
-<ul>
-  <li>
-    <div id="content">
-      <strong>Temperatur:</strong> {{ room$.email }} 
-      <strong>Luftfeuchtigkeit:</strong> {{ room$.website }}
-    </div>
-  </li>
-</ul>
+<div id="content">
+  Temperature: {{ jsonObject.Temperature }} <br/> 
+  Humidity: {{jsonObject.Humidity}} <br/> 
+  Pressure: {{jsonObject.Pressure}}
+</div>

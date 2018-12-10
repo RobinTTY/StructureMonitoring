@@ -18,6 +18,7 @@ import * as json1 from '../buildings';
 export class RoomComponent implements OnInit {
 
   urlSplit$: Array<string>;
+  public jsonObject: any;
   bData$: Object;
   room$: Object;
 
@@ -26,15 +27,17 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchTelemetry();
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
-    
-    //Delete this if to delete the easter-egg
-    if(this.bData$["room-id"].valueOf() === 123||321) {
-      document.getElementById("content").innerText = "Buy DLC to see more data."
-    }
 
     this.room$ = this.service.getRoom(this.room$).subscribe(data => this.room$ = data)
   }
 
+  fetchTelemetry() {
+    return this.service.getTelemetryJson().subscribe(jsonObject => {
+     this.jsonObject = jsonObject;
+     console.log(this.jsonObject);
+    });
+  }
 }

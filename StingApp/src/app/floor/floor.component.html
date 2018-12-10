@@ -7,34 +7,10 @@
           <a href="">
             <img [src]="floor$.link" class="rounded" alt="floor-plan" />
           
-            <div id="txt1"> 
-              <p> 
-                Temperature: {{ jsonObject.Temperature }} <br/> 
-                Humidity: {{jsonObject.Humidity}} <br/> 
-                Pressure: {{jsonObject.Pressure}}         
-              </p>
-            </div>
-            <div id="txt2"> 
-              <p> 
-                Temperature: {{ jsonObject.Temperature }} <br/> 
-                Humidity: {{jsonObject.Humidity}} <br/> 
-                Pressure: {{jsonObject.Pressure}} 
-              </p>
-            </div>
-            <div id="txt3"> 
-              <p> 
-                Temperature: {{ jsonObject.Temperature }} <br/> 
-                Humidity: {{jsonObject.Humidity}} <br/> 
-                Pressure: {{jsonObject.Pressure}} 
-              </p>
-            </div>
-            <div id="txt4"> 
-              <p> 
-                Temperature: {{ jsonObject.Temperature }} <br/> 
-                Humidity: {{jsonObject.Humidity}} <br/> 
-                Pressure: {{jsonObject.Pressure}} 
-              </p>
-            </div>
+            <div id="txt1" routerLink="room/1"> </div>
+            <div id="txt2" routerLink="room/2"> </div>
+            <div id="txt3" routerLink="room/3"> </div>
+            <div id="txt4" routerLink="room/4"> </div>
           </a>
         
         </section>
