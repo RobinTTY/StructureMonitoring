@@ -4,7 +4,7 @@
  *  Connect HD44780 LCD character Display to Windows 10 IoT devices via I2C and PCF8574
  *
  *  Author: Jaroslav Zivny
- * Modified by: Robin Müller
+ *  Modified by: Robin Müller
  *  Version: 1.1
  *  Keywords: Windows IoT, LCD, HD44780, PCF8574, I2C bus, Raspberry Pi 2
  *  Git: https://github.com/DzeryCZ/Character-LCD-over-I2C
@@ -21,44 +21,41 @@ namespace Sting.Measurements.External_Libraries
     class Display
     {
 
-        private const byte LCD_WRITE = 0x07;
+        private const byte LcdWrite = 0x07;
 
-        private byte _D4;
-        private byte _D5;
-        private byte _D6;
-        private byte _D7;
-        private byte _En;
-        private byte _Rw;
-        private byte _Rs;
-        private byte _Bl;
+        private readonly byte _d4;
+        private readonly byte _d5;
+        private readonly byte _d6;
+        private readonly byte _d7;
+        private readonly byte _en;
+        private readonly byte _rw;
+        private readonly byte _rs;
+        private readonly byte _bl;
 
         private readonly byte[] _lineAddress = { 0x00, 0x40 };
-
         private byte _backLight = 0x01;
+        private I2cDevice _i2CPortExpander;
 
-        private I2cDevice _i2cPortExpander;
 
-
-        public Display(byte deviceAddress, string controllerName, byte Rs, byte Rw, byte En, byte D4, byte D5, byte D6, byte D7, byte Bl, byte[] LineAddress) : this(deviceAddress, controllerName, Rs, Rw, En, D4, D5, D6, D7, Bl)
+        public Display(byte deviceAddress, string controllerName, byte Rs, byte Rw, byte En, byte D4, byte D5, byte D6, byte D7, byte Bl, byte[] lineAddress) : this(deviceAddress, controllerName, Rs, Rw, En, D4, D5, D6, D7, Bl)
         {
-            _lineAddress = LineAddress;
+            _lineAddress = lineAddress;
         }
 
 
         public Display(byte deviceAddress, string controllerName, byte Rs, byte Rw, byte En, byte D4, byte D5, byte D6, byte D7, byte Bl)
         {
             // Configure pins
-            _Rs = Rs;
-            _Rw = Rw;
-            _En = En;
-            _D4 = D4;
-            _D5 = D5;
-            _D6 = D6;
-            _D7 = D7;
-            _Bl = Bl;
+            _rs = Rs;
+            _rw = Rw;
+            _en = En;
+            _d4 = D4;
+            _d5 = D5;
+            _d6 = D6;
+            _d7 = D7;
+            _bl = Bl;
 
-            // It's async method, so we have to wait
-            Task.Run(() => this.startI2C(deviceAddress, controllerName)).Wait();
+            Task.Run(() => StartI2C(deviceAddress, controllerName)).Wait();
         }
 
 
@@ -66,15 +63,14 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Start I2C Communication
         **/
-        public async void startI2C(byte deviceAddress, string controllerName)
+        public async void StartI2C(byte deviceAddress, string controllerName)
         {
             try
             {
-                var i2cSettings = new I2cConnectionSettings(deviceAddress);
-                i2cSettings.BusSpeed = I2cBusSpeed.FastMode;
-                string deviceSelector = I2cDevice.GetDeviceSelector(controllerName);
-                var i2cDeviceControllers = await DeviceInformation.FindAllAsync(deviceSelector);
-                _i2cPortExpander = await I2cDevice.FromIdAsync(i2cDeviceControllers[0].Id, i2cSettings);
+                var i2CSettings = new I2cConnectionSettings(deviceAddress) { BusSpeed = I2cBusSpeed.FastMode };
+                var deviceSelector = I2cDevice.GetDeviceSelector(controllerName);
+                var i2CDeviceControllers = await DeviceInformation.FindAllAsync(deviceSelector);
+                _i2CPortExpander = await I2cDevice.FromIdAsync(i2CDeviceControllers[0].Id, i2CSettings);
             }
             catch (Exception e)
             {
@@ -86,65 +82,71 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Initialization
         **/
-        public void init(bool turnOnDisplay = true, bool turnOnCursor = false, bool blinkCursor = false, bool cursorDirection = true, bool textShift = false)
+        public void Init(bool turnOnDisplay = true, bool turnOnCursor = false, bool blinkCursor = false, bool cursorDirection = true, bool textShift = false)
         {
-            //Task.Delay(100).Wait();
-            //pulseEnable(Convert.ToByte((turnOnBacklight << 3)));
-
             /* Init sequence */
             Task.Delay(100).Wait();
-            pulseEnable(Convert.ToByte((1 << _D5) | (1 << _D4)));
+            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
             Task.Delay(5).Wait();
-            pulseEnable(Convert.ToByte((1 << _D5) | (1 << _D4)));
+            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
             Task.Delay(5).Wait();
-            pulseEnable(Convert.ToByte((1 << _D5) | (1 << _D4)));
+            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
 
             /*  Init 4-bit mode */
-            pulseEnable(Convert.ToByte((1 << _D5)));
+            PulseEnable(Convert.ToByte((1 << _d5)));
 
             /* Init 4-bit mode + 2 line */
-            pulseEnable(Convert.ToByte((1 << _D5)));
-            pulseEnable(Convert.ToByte((1 << _D7)));
+            PulseEnable(Convert.ToByte((1 << _d5)));
+            PulseEnable(Convert.ToByte((1 << _d7)));
 
             /* Turn on Display, cursor */
-            pulseEnable(0);
-            pulseEnable(Convert.ToByte((1 << _D7) | (Convert.ToByte(turnOnDisplay) << _D6) | (Convert.ToByte(turnOnCursor) << _D5) | (Convert.ToByte(blinkCursor) << this._D4)));
+            PulseEnable(0);
+            PulseEnable(Convert.ToByte((1 << _d7) | (Convert.ToByte(turnOnDisplay) << _d6) | (Convert.ToByte(turnOnCursor) << _d5) | (Convert.ToByte(blinkCursor) << _d4)));
 
-            clrscr();
+            ClrScr();
 
-            pulseEnable(0);
-            pulseEnable(Convert.ToByte((1 << _D6) | (Convert.ToByte(cursorDirection) << _D5) | (Convert.ToByte(textShift) << _D4)));
+            PulseEnable(0);
+            PulseEnable(Convert.ToByte((1 << _d6) | (Convert.ToByte(cursorDirection) << _d5) | (Convert.ToByte(textShift) << _d4)));
         }
 
 
         /**
         * Turn the backlight ON.
         **/
-        public void turnOnBacklight()
+        public void TurnOnBacklight()
         {
             _backLight = 0x01;
-            sendCommand(0x00);
+            SendCommand(0x00);
         }
 
 
         /**
         * Turn the backlight OFF.
         **/
-        public void turnOffBacklight()
+        public void TurnOffBacklight()
         {
             _backLight = 0x00;
-            sendCommand(0x00);
+            SendCommand(0x00);
+        }
+
+        /// <summary>
+        /// Indicates the current status of the Backlight.
+        /// </summary>
+        /// <returns>Returns true if the backlight is currently on. Returns false otherwise.</returns>
+        public bool BacklightStatus()
+        {
+            return _backLight == 0x01;
         }
 
 
         /**
         * Can print string onto Display
         **/
-        public void prints(string text)
+        public void Prints(string text)
         {
-            for (int i = 0; i < text.Length; i++)
+            foreach (var t in text)
             {
-                printc(text[i]);
+                PrintC(t);
             }
         }
 
@@ -152,11 +154,11 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Print single character onto Display
         **/
-        public void printc(char letter)
+        public void PrintC(char letter)
         {
             try
             {
-                write(Convert.ToByte(letter), 1);
+                Write(Convert.ToByte(letter), 1);
             }
             catch (Exception e)
             {
@@ -168,46 +170,46 @@ namespace Sting.Measurements.External_Libraries
         /**
         * skip to second line
         **/
-        public void gotoSecondLine()
+        public void GotoSecondLine()
         {
-            sendCommand(0xc0);
+            SendCommand(0xc0);
         }
 
 
         /**
         * goto X and Y 
         **/
-        public void gotoxy(byte x, byte y)
+        public void GoToXy(byte x, byte y)
         {
-            sendCommand(Convert.ToByte(x | _lineAddress[y] | (1 << LCD_WRITE)));
+            SendCommand(Convert.ToByte(x | _lineAddress[y] | (1 << LcdWrite)));
         }
 
 
         /**
         * Send data to Display
         **/
-        public void sendData(byte data)
+        public void SendData(byte data)
         {
-            write(data, 1);
+            Write(data, 1);
         }
 
 
         /**
         * Send command to Display
         **/
-        public void sendCommand(byte data)
+        public void SendCommand(byte data)
         {
-            write(data, 0);
+            Write(data, 0);
         }
 
 
         /**
         * Clear Display and set cursor at start of the first line
         **/
-        public void clrscr()
+        public void ClrScr()
         {
-            pulseEnable(0);
-            pulseEnable(Convert.ToByte((1 << this._D4)));
+            PulseEnable(0);
+            PulseEnable(Convert.ToByte((1 << _d4)));
             Task.Delay(5).Wait();
         }
 
@@ -215,50 +217,51 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Send pure data to Display
         **/
-        public void write(byte data, byte Rs)
+        public void Write(byte data, byte Rs)
         {
-            pulseEnable(Convert.ToByte((data & 0xf0) | (Rs << this._Rs)));
-            pulseEnable(Convert.ToByte((data & 0x0f) << 4 | (Rs << this._Rs)));
-            //Task.Delay(5).Wait(); //In case of problem with displaying wrong characters uncomment this part
+            PulseEnable(Convert.ToByte((data & 0xf0) | (Rs << _rs)));
+            PulseEnable(Convert.ToByte((data & 0x0f) << 4 | (Rs << _rs)));
         }
 
 
         /**
         * Create falling edge of "enable" pin to write data/inctruction to Display
         */
-        private void pulseEnable(byte data)
+        private void PulseEnable(byte data)
         {
-            _i2cPortExpander.Write(new[] { Convert.ToByte(data | (1 << _En) | (_backLight << _Bl)) }); // Enable bit HIGH
-            _i2cPortExpander.Write(new[] { Convert.ToByte(data | (_backLight << _Bl)) }); // Enable bit LOW
-            //Task.Delay(2).Wait(); //In case of problem with displaying wrong characters uncomment this part
+            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (1 << _en) | (_backLight << _bl)) }); // Enable bit HIGH
+            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (_backLight << _bl)) }); // Enable bit LOW
         }
 
 
         /**
         * Save custom symbol to CGRAM
         **/
-        public void createSymbol(byte[] data, byte address)
+        public void CreateSymbol(byte[] data, byte address)
         {
-            sendCommand(Convert.ToByte(0x40 | (address << 3)));
+            SendCommand(Convert.ToByte(0x40 | (address << 3)));
             for (var i = 0; i < data.Length; i++)
             {
-                sendData(data[i]);
+                SendData(data[i]);
             }
-            this.clrscr();
+            this.ClrScr();
         }
 
 
         /**
         * Print custom symbol
         **/
-        public void printSymbol(byte address)
+        public void PrintSymbol(byte address)
         {
-            sendData(address);
+            SendData(address);
         }
 
+        /// <summary>
+        /// Handle release of resources
+        /// </summary>
         public void Dispose()
         {
-            _i2cPortExpander.Dispose();
+            _i2CPortExpander.Dispose();
         }
     }
 }
