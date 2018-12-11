@@ -29,14 +29,16 @@ function readIotHub(connectionString) {
         lastTelemetryData = lastTelemetryData.concat(',');
         obj = JSON.parse(JSON.stringify(message.annotations));
         lastTelemetryData = lastTelemetryData.concat('"DeviceId":"' + obj['iothub-connection-device-id'] + '"}');
-        //console.log(lastTelemetryData);
-        if (obj['iothub-connection-device-id'] = 'RasPi_Enes')
+        console.log(obj['iothub-connection-device-id']);
+        if (obj['iothub-connection-device-id'] == 'RasPi_Enes')
             DeviceEnes = lastTelemetryData;
-        else if (obj['iothub-connection-device-id'] = 'RasPi_Robin')
+        else if (obj['iothub-connection-device-id'] == 'RasPi_Robin') {
             DeviceRobin = lastTelemetryData;
-        else if (obj['iothub-connection-device-id'] = 'RasPi_Marc')
+            console.log(DeviceRobin);
+        }
+        else if (obj['iothub-connection-device-id'] == 'RasPi_Marc')
             DeviceMarc = lastTelemetryData;
-        else if (obj['iothub-connection-device-id'] = 'RasPi_Boris')
+        else if (obj['iothub-connection-device-id'] == 'RasPi_Boris')
             DeviceBoris = lastTelemetryData;
         else
             console.log('Device Id can not be recognized! Please check your DeviceId!');
