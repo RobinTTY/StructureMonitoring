@@ -66,24 +66,20 @@ function readIotHub(connectionString) {
 
 readIotHub(connectionString);
 
-console.log(Date.now());
 
-var device = 'RasPi_Enes';
+//var device = 'RasPi_Enes';
 
 // Gets the telemetry data in real time from the iotHub. This functions runs in the background
 // since the start of the backend application.
 
-//app.get('/telemetry/current/:device', (req, res) => res.send(lastTelemetryData));
-app.get('/telemetry/current/:device', (req, res) => {
-    if (req.params.device = 'Enes')
-        res.send(DeviceEnes)
-    else if (req.params.device = 'Robin')
-        res.send(DeviceRobin)
-    else if (req.params.device = 'Boris')
-        res.send(DeviceBoris)
-    else if (req.params.device = 'Marc')
-        res.send(DeviceMarc)
-})
+app.get('/telemetry/current/RasPi_Enes', (req, res) => res.send(DeviceEnes));
+
+app.get('/telemetry/current/RasPi_Robin', (req, res) => res.send(DeviceRobin));
+
+app.get('/telemetry/current/RasPi_Marc', (req, res) => res.send(DeviceMarc));
+
+app.get('/telemetry/current/RasPi_Boris', (req, res) => res.send(DeviceBoris));
+
 
 // Gets all the telemetry data from the last 24 hours from the azure-storage-table
 // :device specifies the device Id of the gadget you want the selection from.
@@ -94,8 +90,8 @@ app.get('/telemetry/lastday/:device', (req, res) => {
   var query = new azure.TableQuery()
     .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
     //.top(10)
-    .where('RowKey gt ?', (Date.now() - (86400000 * 30)).toString())
-    .and('deviceid eq ?', req.params.device);
+      .where('PartitionKey gt ?', (Date.now() - 86400000).toString())
+      .and('deviceid eq ?', req.params.device);
 
   tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {
     if (!error) {
@@ -116,7 +112,7 @@ app.get('/telemetry/lastweek/:device', (req, res) => {
   var query = new azure.TableQuery()
     .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
     //.top(10)
-    .where('RowKey gt ?', (Date.now() - (86400000 * 7)).toString())
+    .where('PartitionKey gt ?', (Date.now() - (86400000 * 7)).toString())
     .and('deviceid eq ?', req.params.device);
 
   tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {
@@ -137,7 +133,7 @@ app.get('/telemetry/lastmonth/:device', (req, res) => {
   var query = new azure.TableQuery()
     .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
     .top(10)
-    .where('RowKey gt ?', (Date.now() - (86400000 * 30)).toString())
+    .where('PartitionKey gt ?', (Date.now() - (86400000 * 30)).toString())
     .and('deviceid eq ?', req.params.device);
 
   tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {

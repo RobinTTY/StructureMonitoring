@@ -11,91 +11,35 @@ var storageName = 'stingstorage';
 var storageKey = '9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==';
 var connectionString = 'HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=';
 var lastTelemetryData = 'No Data received yet!';
-var query = 'No result yet!';
+var DeviceEnes = lastTelemetryData;
+var DeviceRobin = lastTelemetryData;
+var DeviceMarc = lastTelemetryData;
+var DeviceBoris = lastTelemetryData;
 var azure = require('azure-storage');
 var tableService = azure.createTableService(storageName, storageKey);
-function azureImport(storageName, storageKey) {
-    //var azure = require('azure-storage');
-    /*
-    var tableSvc = azure.createTableService(storageName, storageKey);
-    tableSvc.createTableIfNotExists('mytable2', function (error, result, response) {
-        if (!error) {
-        }
-        console.log(response);
-        console.log(result);
-    });
-    
-    tableSvc.retrieveEntity('stingtable', 'PartitionKey', 'RowKey', function (error, result, response) {
-        if (!error) {
-            
-        }
-        console.log(response);
-        console.log(result);
-    });
-    
-
-
-    var tableService = azure.createTableService(storageName, storageKey);
-    var entGen = azure.TableUtilities.entityGenerator;
-    var task = {
-        PartitionKey: entGen.String('hometasks'),
-        RowKey: entGen.String('1'),
-        description: entGen.String('take out the trash'),
-        dueDate: entGen.DateTime(new Date(Date.UTC(2015, 6, 20))),
-    };
-    tableService.insertEntity('mytable', task, function (error, result, response) {
-        if (!error) {
-            // result contains the ETag for the new entity
-        }
-    });
-    
-    var tableService = azure.createTableService(storageName, storageKey);
-    tableService.retrieveEntity('stingtable', 'RasPi_Enes', '2018-11-15T19:34:22.0411843+00:00', function (error, result, response) {
-        if (!error) {
-
-        }
-        // console.log(response);
-        console.log(result);
-    });
-    */
-    var azure = require('azure-storage');
-    var tableService = azure.createTableService(storageName, storageKey);
-    var query = new azure.TableQuery()
-        .top(10)
-        .where('RowKey gt ?', '22');
-    tableService.queryEntities('stingtablev2', query, null, function (error, result, response) {
-        if (!error) {
-            // result.entries contains entities matching the query
-            console.log(result.entries);
-            query = result.entries;
-            return query;
-            //console.log(query);
-        }
-    });
-}
 // run function to read from azure storage table
-//azureImport(storageName, storageKey);
 var obj;
 function readIotHub(connectionString) {
     var printError = function (err) {
         console.log(err.message);
     };
     var printMessage = function (message) {
-        /*
-        console.log('Telemetry received: ');
-        console.log(JSON.stringify(message.body));
-        console.log('Application properties (set by device): ')
-        console.log(JSON.stringify(message.applicationProperties));
-        console.log('System properties (set by IoT Hub): ')
-        console.log(JSON.stringify(message.annotations));
-        console.log('');
-        */
         console.log("Last telemetry received: ");
         lastTelemetryData = JSON.stringify(message.body).substring(0, JSON.stringify(message.body).length - 1);
         lastTelemetryData = lastTelemetryData.concat(',');
         obj = JSON.parse(JSON.stringify(message.annotations));
         lastTelemetryData = lastTelemetryData.concat('"DeviceId":"' + obj['iothub-connection-device-id'] + '"}');
-        console.log(lastTelemetryData);
+        //console.log(lastTelemetryData);
+        if (obj['iothub-connection-device-id'] = 'RasPi_Enes')
+            DeviceEnes = lastTelemetryData;
+        else if (obj['iothub-connection-device-id'] = 'RasPi_Robin')
+            DeviceRobin = lastTelemetryData;
+        else if (obj['iothub-connection-device-id'] = 'RasPi_Marc')
+            DeviceMarc = lastTelemetryData;
+        else if (obj['iothub-connection-device-id'] = 'RasPi_Boris')
+            DeviceBoris = lastTelemetryData;
+        else
+            console.log('Device Id can not be recognized! Please check your DeviceId!');
     };
     var ehClient;
     event_hubs_1.EventHubClient.createFromIotHubConnectionString(connectionString).then(function (client) {
@@ -110,15 +54,21 @@ function readIotHub(connectionString) {
     }).catch(printError);
 }
 readIotHub(connectionString);
-console.log(Date.now());
-var device = 'RasPi_Enes';
-app.get('/telemetry/current', (req, res) => res.send(lastTelemetryData));
+//var device = 'RasPi_Enes';
+// Gets the telemetry data in real time from the iotHub. This functions runs in the background
+// since the start of the backend application.
+app.get('/telemetry/current/RasPi_Enes', (req, res) => res.send(DeviceEnes));
+app.get('/telemetry/current/RasPi_Robin', (req, res) => res.send(DeviceRobin));
+app.get('/telemetry/current/RasPi_Marc', (req, res) => res.send(DeviceMarc));
+app.get('/telemetry/current/RasPi_Boris', (req, res) => res.send(DeviceBoris));
+// Gets all the telemetry data from the last 24 hours from the azure-storage-table
+// :device specifies the device Id of the gadget you want the selection from.
 app.get('/telemetry/lastday/:device', (req, res) => {
     //var lastDay = Date.now() - 86400000;
     var query = new azure.TableQuery()
         .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
         //.top(10)
-        .where('RowKey gt ?', (Date.now() - (86400000 * 30)).toString())
+        .where('PartitionKey gt ?', (Date.now() - 86400000).toString())
         .and('deviceid eq ?', req.params.device);
     tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {
         if (!error) {
@@ -129,13 +79,14 @@ app.get('/telemetry/lastday/:device', (req, res) => {
         }
     });
 });
-app.get('/telemetry/lastweek', (req, res) => {
+// Gets the telemetry data of last week.
+app.get('/telemetry/lastweek/:device', (req, res) => {
     //var lastDay = Date.now() - 86400000;
     var query = new azure.TableQuery()
         .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
         //.top(10)
-        .where('RowKey gt ?', (Date.now() - (86400000 * 7)).toString())
-        .and('deviceid eq ?', 'RasPi_Robin');
+        .where('PartitionKey gt ?', (Date.now() - (86400000 * 7)).toString())
+        .and('deviceid eq ?', req.params.device);
     tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {
         if (!error) {
             // result.entries contains entities matching the query
@@ -145,12 +96,13 @@ app.get('/telemetry/lastweek', (req, res) => {
         }
     });
 });
-app.get('/telemetry/lastmonth', (req, res) => {
+// Gets the telemetry data of last month.
+app.get('/telemetry/lastmonth/:device', (req, res) => {
     var query = new azure.TableQuery()
         .select(['Timestamp', 'temperature', 'humidity', 'altitude', 'deviceid'])
         .top(10)
-        .where('RowKey gt ?', (Date.now() - (86400000 * 30)).toString())
-        .and('deviceid eq ?', 'RasPi_Robin');
+        .where('PartitionKey gt ?', (Date.now() - (86400000 * 30)).toString())
+        .and('deviceid eq ?', req.params.device);
     tableService.queryEntities('stingtablev3', query, null, function (error, result, response) {
         if (!error) {
             // result.entries contains entities matching the query
