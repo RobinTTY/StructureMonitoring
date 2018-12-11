@@ -179,7 +179,7 @@ namespace Sting.Measurements.External_Libraries
         /**
         * goto X and Y 
         **/
-        public void GoToXy(byte x, byte y)
+        public void GoToXy(int x, int y)
         {
             SendCommand(Convert.ToByte(x | _lineAddress[y] | (1 << LcdWrite)));
         }
@@ -240,11 +240,10 @@ namespace Sting.Measurements.External_Libraries
         public void CreateSymbol(byte[] data, byte address)
         {
             SendCommand(Convert.ToByte(0x40 | (address << 3)));
-            for (var i = 0; i < data.Length; i++)
+            foreach (var t in data)
             {
-                SendData(data[i]);
+                SendData(t);
             }
-            this.ClrScr();
         }
 
 
