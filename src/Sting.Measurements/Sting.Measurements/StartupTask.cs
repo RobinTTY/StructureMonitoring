@@ -25,7 +25,7 @@ namespace Sting.Measurements
             _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
             InitDirectMethodCallsAsync();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(10));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
         // initialize used components async
@@ -37,6 +37,8 @@ namespace Sting.Measurements
             await _buzzer.InitComponentAsync(18);
             await _statusLed.InitComponentAsync(5);
             await _lcd.InitComponentAsync();
+
+            //print welcome message to lcd
             _lcd.Write("Welcome to Sting");
             _lcd.SetCursorPosition(2);
             _lcd.Write("Initializing...");

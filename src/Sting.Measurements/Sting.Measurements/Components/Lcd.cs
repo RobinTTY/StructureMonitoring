@@ -20,7 +20,7 @@ namespace Sting.Measurements.Components
         private const byte D7 = 0x07;
         private const byte Bl = 0x03;
 
-
+        /// <inheritdoc />
         public Task<bool> InitComponentAsync(int pin = 0)
         {
             if(!State())
@@ -30,11 +30,13 @@ namespace Sting.Measurements.Components
             return Task.FromResult(State());
         }
 
+        /// <inheritdoc />
         public bool State()
         {
             return _lcd != null;
         }
 
+        /// <inheritdoc />
         public void ClosePin()
         {
             _lcd.ClrScr();
@@ -42,6 +44,9 @@ namespace Sting.Measurements.Components
             _lcd = null;
         }
 
+        /// <summary>
+        /// Toggles the backlight of the lcd.
+        /// </summary>
         public void ToggleBacklight()
         {
             if (_lcd.BacklightStatus())
@@ -52,18 +57,32 @@ namespace Sting.Measurements.Components
             _lcd.TurnOnBacklight();
         }
 
+        /// <summary>
+        /// Sets the position of the writing cursor on the lcd display.
+        /// The cursor position isn't changed if an invalid parameter is passed.
+        /// </summary>
+        /// <param name="line">The line number. 1 for the first line, 2 for the second line.</param>
+        /// <param name="column">The column number. Between 1 and 16. Default is 1.</param>
         public void SetCursorPosition(int line, int column = 1)
         {
             line--; column--;
-            if (line < 0 || column < 0 || line > 1 || column > 1) return;
+            if (line < 0 || column < 0 || line > 1 || column > 15) return;
            _lcd.GoToXy(column, line);
         }
 
+        /// <summary>
+        /// Writes a string to the lcd at the current cursor position.
+        /// </summary>
+        /// <param name="msg">String that is to be written to the lcd.</param>
         public void Write(string msg)
         {
             _lcd.Prints(msg);
         }
 
+        /// <summary>
+        /// Clears the lcd of all currently displayed characters.
+        /// </summary>
+        /// <param name="resetCursor">If set to false doesn't reset the cursor position to the first line, first character.</param>
         public void ClearScreen(bool resetCursor = true)
         {
             _lcd.ClrScr();
