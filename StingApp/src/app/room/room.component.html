@@ -1,7 +1,7 @@
-<h1>Welcome to room {{ bData$["room-id"].valueOf() }}</h1>
+<h1><strong> Welcome to room {{ bData$["room-id"].valueOf() }}</strong></h1>
 
 <div id="content">
-  Temperature: {{ jsonObject.Temperature }} <br/> 
-  Humidity: {{jsonObject.Humidity}} <br/> 
-  Pressure: {{jsonObject.Pressure}}
+  <p id="p1"> Temperature: {{ jsonObject.Temperature }} </p>
+  <p id="p2"> Humidity: {{jsonObject.Humidity}} </p>
+  <p id="p3"> Pressure: {{jsonObject.Pressure}} </p>
 </div>

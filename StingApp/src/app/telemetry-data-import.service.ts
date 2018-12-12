@@ -13,7 +13,7 @@ export class TelemetryDataImportService {
   constructor(private http: HttpClient) { }
   
   getTelemetryJson() {
-      return this.http.get('http://localhost:1337/');
+      return this.http.get('http://localhost:1337/telemetry/current/RasPi_Marc');
   }
 
   getRoom(num){

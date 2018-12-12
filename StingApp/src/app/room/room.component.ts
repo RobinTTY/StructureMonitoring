@@ -19,6 +19,7 @@ export class RoomComponent implements OnInit {
 
   urlSplit$: Array<string>;
   public jsonObject: any;
+
   bData$: Object;
   room$: Object;
 
@@ -30,8 +31,13 @@ export class RoomComponent implements OnInit {
     this.fetchTelemetry();
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
-
     this.room$ = this.service.getRoom(this.room$).subscribe(data => this.room$ = data)
+  }
+
+  ngDoCheck() {
+    document.getElementById("p1").innerText = "Temperatur: " + this.jsonObject["Temperature"].valueOf().toString().substr(1,5) + " °C"
+    document.getElementById("p2").innerText = "Device: " + this.jsonObject["DeviceId"].valueOf().toString()
+    document.getElementById("p3").innerText = "Luftdruck: " + this.jsonObject["Pressure"].valueOf().toString().substr(1,7) + " km/h"
   }
 
   fetchTelemetry() {

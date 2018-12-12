@@ -32,15 +32,19 @@ export class FloorComponent implements OnInit {
       document.getElementById("txt" + (i + 1)).style.setProperty('left', this.bData$[i]["x"].valueOf() + '%');
       document.getElementById("txt" + (i + 1)).style.setProperty('top', this.bData$[i]["y"].valueOf() + '%');
       document.getElementById("txt" + (i + 1)).style.setProperty('opacity', '1');
-      
-      //Ampel (Bedingung muss an Werte geknüpft werden)
+    }
+  }
+
+  // #BesteAmpel
+  ngDoCheck() {
+    for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
       let str = "0";
-      if(this.jsonObject !== undefined){
-        str = "🙂";
-      } else {
+      if(this.jsonObject["Temperature"].valueOf() >= 18.7){
         str = "🙁";
+      } else {
+        str = "🙂";
       }
-      document.getElementById("txt" + (i + 1)).innerText += str;
+      document.getElementById("txt" + (i + 1)).innerText = str;
     }
   }
 

@@ -29,12 +29,11 @@ function readIotHub(connectionString) {
         lastTelemetryData = lastTelemetryData.concat(',');
         obj = JSON.parse(JSON.stringify(message.annotations));
         lastTelemetryData = lastTelemetryData.concat('"DeviceId":"' + obj['iothub-connection-device-id'] + '"}');
-        console.log(obj['iothub-connection-device-id']);
+        console.log(lastTelemetryData);
         if (obj['iothub-connection-device-id'] == 'RasPi_Enes')
             DeviceEnes = lastTelemetryData;
         else if (obj['iothub-connection-device-id'] == 'RasPi_Robin') {
             DeviceRobin = lastTelemetryData;
-            console.log(DeviceRobin);
         }
         else if (obj['iothub-connection-device-id'] == 'RasPi_Marc')
             DeviceMarc = lastTelemetryData;
