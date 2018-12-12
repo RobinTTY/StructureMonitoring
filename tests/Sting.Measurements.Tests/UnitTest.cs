@@ -259,6 +259,35 @@ namespace Sting.Measurements.Tests
     }
 
     [TestClass]
+    public class LcdTest
+    {
+        private readonly Lcd _lcd = new Lcd();
+
+        [TestMethod]
+        public async Task InitComponentAsync_CorrectCall_StateIsTrue()
+        {
+            Assert.IsFalse(_lcd.State());
+            await _lcd.InitComponentAsync();
+            Assert.IsTrue(_lcd.State());
+        }
+
+        [TestMethod]
+        public async Task InitComponentAsync_CalledTwice_NoExceptionComponentUsable()
+        {
+            await _lcd.InitComponentAsync();
+            var success = await _lcd.InitComponentAsync();
+            Assert.IsTrue(success);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if (_lcd.State())
+                _lcd.ClosePin();
+        }
+    }
+
+    [TestClass]
     public class AzureIoTHubTest
     {
         private readonly AzureIotHub _myHub = new AzureIotHub("C:\\Data\\Users\\DefaultAccount\\AppData\\Local\\Packages\\Sting.Measurements.Tests-uwp_gk6cf97c3a7py\\LocalState\\DeviceConnectionString.txt");

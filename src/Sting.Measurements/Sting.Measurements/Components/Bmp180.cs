@@ -35,6 +35,7 @@ namespace Sting.Measurements.Components
             return _bmp != null;
         }
 
+        /// <inheritdoc />
         public void ClosePin()
         {
             _bmp.Dispose();
