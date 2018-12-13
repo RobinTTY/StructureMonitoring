@@ -1,9 +1,54 @@
-<h1><strong> Welcome to room {{ bData$["room-id"].valueOf() }}</strong></h1>
-
-<div id="content">
-  <p id="card1"></p>
-  <p id="card2"></p>
-  <p id="card3"></p>
-  <p id="card4"></p>
-  <p id="card5"></p>
+<div class="flex-container bg-grey">
+  <h1 class="text-center"><strong>Welcome to room {{ bData$["room-id"].valueOf() }}</strong></h1>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="card" style="width: 18rem;">                      
+            <div class="card-body">
+                <h5 class="card-title">Temperature</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Under Threshold</h6>
+                <p class="card-text"><span id="TempVal"></span></p>                
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="card" style="width: 18rem;">                      
+            <div class="card-body">
+                <h5 class="card-title">Humidity</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Under Threshold</h6>
+                <p class="card-text"><span id="HumVal"></span></p>                
+            </div>
+          </div>          
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="card" style="width: 18rem;">                      
+            <div class="card-body">
+                <h5 class="card-title">Air Pressure</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Under Threshold</h6>
+                <p class="card-text"><span id="PressVal"></span></p>                
+            </div>
+          </div>          
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <div class="card" style="width: 18rem;">                      
+            <div class="card-body">
+                <h5 class="card-title">Altitude</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Under Threshold</h6>
+                <p class="card-text"><span id="AltVal"></span></p>                
+            </div>
+          </div>          
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <div class="card" style="width: 18rem;">                      
+            <div class="card-body">
+                <h5 class="card-title">Device Id</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Under Threshold</h6>
+                <p class="card-text"><span id="DeviceVal"></span></p>                
+            </div>
+          </div>               
+        </div>
+      </div>
+    </div>
 </div>

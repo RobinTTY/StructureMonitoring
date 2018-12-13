@@ -36,10 +36,10 @@ function readIotHub(connectionString) {
 
         console.log("Last telemetry received: ");
         lastTelemetryData = JSON.stringify(message.body).substring(0, JSON.stringify(message.body).length - 1);
-        lastTelemetryData = lastTelemetryData.concat(',');
+        lastTelemetryData = lastTelemetryData.concat(",");
 
         obj = JSON.parse(JSON.stringify(message.annotations));
-        lastTelemetryData = lastTelemetryData.concat('"DeviceId":"' + obj["iothub-connection-device-id"] + '"}');
+        lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
         if (obj["iothub-connection-device-id"] === "RasPi_Enes")
             DeviceEnes = lastTelemetryData;
