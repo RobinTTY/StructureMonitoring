@@ -3,12 +3,12 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.bg-grey{
-    background-color: #e6ebef;
-}
-
 h1{
     padding-top: 2%;
+}
+
+.bg-grey{
+    background-color: #e6ebef;
 }
 
 .object{
@@ -18,4 +18,9 @@ h1{
 .description{
     padding-top: .5%;
     font-size: 22px;    
+}
+
+// display pointer hand on hover over images which are links
+.img-link{
+    cursor: pointer;
 }

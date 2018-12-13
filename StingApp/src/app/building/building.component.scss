@@ -1,0 +1,11 @@
+#image{
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 90%;
+}
+
+@media (max-width: 767.98px) {
+    #image {    
+        width: 95%;
+    }
+ }

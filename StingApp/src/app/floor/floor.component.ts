@@ -35,14 +35,19 @@ export class FloorComponent implements OnInit {
     }
   }
 
-  // #BesteAmpel
+  // # Insert room status
   ngDoCheck() {
     for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
       let str = "0";
-      if(this.jsonObject["Temperature"].valueOf() >= 18.7){
-        str = "🙁";
-      } else {
-        str = "🙂";
+      try {
+        if(this.jsonObject["Temperature"].valueOf() >= 18.7){
+          str = "🙁";
+        } 
+        else {
+          str = "🙂";
+        }
+      }catch(TypeError){
+        // do nothing if no value is available
       }
       document.getElementById("txt" + (i + 1)).innerText = str;
     }
