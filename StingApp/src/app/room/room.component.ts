@@ -35,9 +35,11 @@ export class RoomComponent implements OnInit {
   }
 
   ngDoCheck() {
-    document.getElementById("p1").innerText = "Temperatur: " + this.jsonObject["Temperature"].valueOf().toString().substr(1,5) + " °C"
-    document.getElementById("p2").innerText = "Device: " + this.jsonObject["DeviceId"].valueOf().toString()
-    document.getElementById("p3").innerText = "Luftdruck: " + this.jsonObject["Pressure"].valueOf().toString().substr(1,7) + " km/h"
+    document.getElementById("card1").innerText = "Temperature: " + this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + " °C"
+    document.getElementById("card2").innerText = "Humidity: " + this.jsonObject["Humidity"].valueOf().toString() + " %"
+    document.getElementById("card3").innerText = "Air Pressure: " + this.jsonObject["Pressure"].valueOf().toString().substr(0,5) + " Pa"
+    document.getElementById("card4").innerText = "Altitude: " + this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + " m"
+    document.getElementById("card5").innerText = "Device: " + this.jsonObject["DeviceId"].valueOf().toString()
   }
 
   fetchTelemetry() {
