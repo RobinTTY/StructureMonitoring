@@ -19,6 +19,7 @@ export default {
                             "room-id": 111,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -27,6 +28,7 @@ export default {
                             "room-id": 112,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -35,6 +37,7 @@ export default {
                             "room-id": 113,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         }
@@ -51,6 +54,7 @@ export default {
                             "room-id": 121,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -59,6 +63,7 @@ export default {
                             "room-id": 122,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -67,6 +72,7 @@ export default {
                             "room-id": 123,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -93,6 +99,7 @@ export default {
                             "room-id": 211,
                             "x": 76,
                             "y": 74.5,
+                            "device": "RasPi_Robin",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -101,6 +108,7 @@ export default {
                             "room-id": 212,
                             "x": 74,
                             "y": 45.5,
+                            "device": "RasPi_Enes",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -109,6 +117,7 @@ export default {
                             "room-id": 213,
                             "x": 28,
                             "y": 16,
+                            "device": "RasPi_Boris",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -117,7 +126,8 @@ export default {
                             "room-id": 214,
                             "x": 36,
                             "y": 55.5,
-                            "name": "default",
+                            "device": "default",
+                            "name": "RasPi_Marc",
                             "link": "../assets/images/default.png"
                         },
                     ]
@@ -133,6 +143,7 @@ export default {
                             "room-id": 221,
                             "x": 28,
                             "y": 21,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -141,6 +152,7 @@ export default {
                             "room-id": 222,
                             "x": 26,
                             "y": 73,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -149,6 +161,7 @@ export default {
                             "room-id": 223,
                             "x": 38.5,
                             "y": 73,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -165,6 +178,7 @@ export default {
                             "room-id": 231,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -173,6 +187,7 @@ export default {
                             "room-id": 232,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -181,8 +196,8 @@ export default {
                             "room-id": 233,
                             "x": 850,
                             "y": 400,
-                            "name": 
-                            "default",
+                            "device": "default",
+                            "name": "default",
                             "link": "../assets/images/default.png"
                         },
                     ]
@@ -208,6 +223,7 @@ export default {
                             "room-id": 311,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -224,6 +240,7 @@ export default {
                             "room-id": 321,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -232,6 +249,7 @@ export default {
                             "room-id": 322,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -248,6 +266,7 @@ export default {
                             "room-id": 331,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -256,6 +275,7 @@ export default {
                             "room-id": 332,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
@@ -264,6 +284,7 @@ export default {
                             "room-id": 333,
                             "x": 850,
                             "y": 400,
+                            "device": "default",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
