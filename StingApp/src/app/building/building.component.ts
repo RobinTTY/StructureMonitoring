@@ -17,12 +17,11 @@ export class BuildingComponent implements OnInit {
   bData$: Object;
   building$: Object;
 
-  constructor(private data: TelemetryDataImportService, private router: Router) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
     this.urlSplit$ = this.router.url.split('/')
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors;
-    this.data.getFloors().subscribe(data => this.building$ = data)
+    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors;    
   }
 }

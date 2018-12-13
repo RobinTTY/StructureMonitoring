@@ -45,11 +45,11 @@ export class FloorComponent implements OnInit {
         } 
         else {
           str = "🙂";
-        }
-      }catch(TypeError){
-        // do nothing if no value is available
-      }
+        }      
       document.getElementById("txt" + (i + 1)).innerText = str;
+    }catch(TypeError){
+      console.log("No connection to measurement device established")
+    }
     }
   }
 

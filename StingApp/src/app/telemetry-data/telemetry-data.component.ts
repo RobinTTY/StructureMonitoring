@@ -19,8 +19,7 @@ export class TelemetryDataComponent implements OnInit {
 
   ngOnInit() {
    this.fetchTelemetry();
-   this.bData$ = json1.default.buildings;
-   this.telemetryService.getBuildings().subscribe(data => this.telemetry$ = data)
+   this.bData$ = json1.default.buildings;   
   }
 
   
