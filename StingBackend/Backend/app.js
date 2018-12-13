@@ -3,10 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const debug = require("debug");
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const event_hubs_1 = require("@azure/event-hubs");
 const index_1 = require("./routes/index");
 const user_1 = require("./routes/user");
 var app = express();
+app.use(cors());
+app.options("*", cors());
 var storageName = "stingstorage";
 var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==";
 var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=";
@@ -15,15 +18,15 @@ var DeviceEnes = lastTelemetryData;
 var DeviceRobin = lastTelemetryData;
 var DeviceMarc = lastTelemetryData;
 var DeviceBoris = lastTelemetryData;
-var azure = require("azure-storage");
+const azure = require("azure-storage");
 var tableService = azure.createTableService(storageName, storageKey);
 // run function to read from azure storage table
 var obj;
 function readIotHub(connectionString) {
-    var printError = function (err) {
+    var printError = err => {
         console.log(err.message);
     };
-    var printMessage = function (message) {
+    var printMessage = message => {
         console.log("Last telemetry received: ");
         lastTelemetryData = JSON.stringify(message.body).substring(0, JSON.stringify(message.body).length - 1);
         lastTelemetryData = lastTelemetryData.concat(',');

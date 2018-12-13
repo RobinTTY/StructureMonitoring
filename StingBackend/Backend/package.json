@@ -12,6 +12,7 @@
   "dependencies": {
     "@azure/event-hubs": "^1.0.7",
     "azure-storage": "^2.10.2",
+    "cors": "^2.8.5",
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "pug": "^2.0.0-rc.3"
