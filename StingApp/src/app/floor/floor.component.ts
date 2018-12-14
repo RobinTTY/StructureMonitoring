@@ -31,7 +31,8 @@ export class FloorComponent implements OnInit {
     for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
       document.getElementById("txt" + (i + 1)).style.setProperty('left', this.bData$[i]["x"].valueOf() + '%');
       document.getElementById("txt" + (i + 1)).style.setProperty('top', this.bData$[i]["y"].valueOf() + '%');
-      document.getElementById("txt" + (i + 1)).style.setProperty('opacity', '1');
+      if(this.bData$[i].device == "default")       
+        document.getElementById("txt" + (i + 1)).style.display = "none";
     }
   }
 

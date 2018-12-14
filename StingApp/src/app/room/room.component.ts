@@ -27,12 +27,14 @@ export class RoomComponent implements OnInit {
     this.route.params.subscribe(params => this.room$ = params.id)
   }
 
+  // get configuration data for current room, fetch telemetry data
   ngOnInit() {    
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
     this.fetchTelemetry();    
   }
 
+  // insert measured values if available into cards
   ngDoCheck() {
     try{
       document.getElementById("TempVal").innerText = this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + "°C"
@@ -41,12 +43,13 @@ export class RoomComponent implements OnInit {
       document.getElementById("AltVal").innerText = this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + "m"
       document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
     }catch(e){
-      if(e instanceof TypeError)
+      if(e instanceof TypeError)      
       console.log("No connection to measurement device established")
       console.log("Exception" + e.name + ": " + e.message);
     }
   }
 
+  // fetch telemetry data from backend for the current device
   fetchTelemetry() {
     return this.service.getTelemetryJson(this.bData$["device"]).subscribe(jsonObject => {
      this.jsonObject = jsonObject;
