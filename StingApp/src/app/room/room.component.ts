@@ -27,10 +27,10 @@ export class RoomComponent implements OnInit {
     this.route.params.subscribe(params => this.room$ = params.id)
   }
 
-  ngOnInit() {
-    this.fetchTelemetry();
+  ngOnInit() {    
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
+    this.fetchTelemetry();    
   }
 
   ngDoCheck() {
@@ -48,7 +48,7 @@ export class RoomComponent implements OnInit {
   }
 
   fetchTelemetry() {
-    return this.service.getTelemetryJson().subscribe(jsonObject => {
+    return this.service.getTelemetryJson(this.bData$["device"]).subscribe(jsonObject => {
      this.jsonObject = jsonObject;
      console.log(this.jsonObject);
     });

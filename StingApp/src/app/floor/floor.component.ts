@@ -54,7 +54,7 @@ export class FloorComponent implements OnInit {
   }
 
   fetchTelemetry() {
-    return this.data.getTelemetryJson().subscribe(jsonObject => {
+    return this.data.getTelemetryJson("RasPi_Robin").subscribe(jsonObject => {
      this.jsonObject = jsonObject;
      console.log(this.jsonObject);
     });

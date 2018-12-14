@@ -12,7 +12,7 @@ export class TelemetryDataImportService {
 
   constructor(private http: HttpClient) { }
   
-  getTelemetryJson() {
-      return this.http.get('http://localhost:1337/telemetry/current/RasPi_Robin');
+  getTelemetryJson(device) {
+      return this.http.get('http://localhost:1337/telemetry/current/' + device);
   }
 }
