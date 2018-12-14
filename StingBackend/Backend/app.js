@@ -14,10 +14,10 @@ var storageName = "stingstorage";
 var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==";
 var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=";
 var lastTelemetryData = "No Data received yet!";
-var DeviceEnes = lastTelemetryData;
-var DeviceRobin = lastTelemetryData;
-var DeviceMarc = lastTelemetryData;
-var DeviceBoris = lastTelemetryData;
+var deviceEnes = lastTelemetryData;
+var deviceRobin = lastTelemetryData;
+var deviceMarc = lastTelemetryData;
+var deviceBoris = lastTelemetryData;
 const azure = require("azure-storage");
 var tableService = azure.createTableService(storageName, storageKey);
 // run function to read from azure storage table
@@ -34,14 +34,14 @@ function readIotHub(connectionString) {
         lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
         if (obj["iothub-connection-device-id"] === "RasPi_Enes")
-            DeviceEnes = lastTelemetryData;
+            deviceEnes = lastTelemetryData;
         else if (obj["iothub-connection-device-id"] === "RasPi_Robin") {
-            DeviceRobin = lastTelemetryData;
+            deviceRobin = lastTelemetryData;
         }
         else if (obj["iothub-connection-device-id"] === "RasPi_Marc")
-            DeviceMarc = lastTelemetryData;
+            deviceMarc = lastTelemetryData;
         else if (obj["iothub-connection-device-id"] === "RasPi_Boris")
-            DeviceBoris = lastTelemetryData;
+            deviceBoris = lastTelemetryData;
         else
             console.log("Device Id can not be recognized! Please check your DeviceId!");
     };
@@ -59,10 +59,10 @@ readIotHub(connectionString);
 //var device = 'RasPi_Enes';
 // Gets the telemetry data in real time from the iotHub. This functions runs in the background
 // since the start of the backend application.
-app.get("/telemetry/current/RasPi_Enes", (req, res) => res.send(DeviceEnes));
-app.get("/telemetry/current/RasPi_Robin", (req, res) => res.send(DeviceRobin));
-app.get("/telemetry/current/RasPi_Marc", (req, res) => res.send(DeviceMarc));
-app.get("/telemetry/current/RasPi_Boris", (req, res) => res.send(DeviceBoris));
+app.get("/telemetry/current/RasPi_Enes", (req, res) => res.send(deviceEnes));
+app.get("/telemetry/current/RasPi_Robin", (req, res) => res.send(deviceRobin));
+app.get("/telemetry/current/RasPi_Marc", (req, res) => res.send(deviceMarc));
+app.get("/telemetry/current/RasPi_Boris", (req, res) => res.send(deviceBoris));
 // Gets all the telemetry data from the last 24 hours from the azure-storage-table
 // :device specifies the device Id of the gadget you want the selection from.
 app.get("/telemetry/lastday/:device", (req, res) => {
