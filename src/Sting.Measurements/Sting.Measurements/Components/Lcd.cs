@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using Sting.Measurements.External_Libraries;
 
@@ -25,8 +27,17 @@ namespace Sting.Measurements.Components
         {
             if(!State())
                 _lcd = new Display(DeviceI2CAddress, I2CControllerName, Rs, Rw, En, D4, D5, D6, D7, Bl);
-            _lcd.Init();
-            SetCursorPosition(1);
+            try
+            {
+                _lcd.Init();
+                SetCursorPosition(1);
+            }
+            catch (FileNotFoundException e)
+            {
+                _lcd.Dispose();
+                _lcd = null;
+                Debug.WriteLine("Lcd couldn't be initialized, check connections");
+            }
             return Task.FromResult(State());
         }
 
@@ -39,6 +50,7 @@ namespace Sting.Measurements.Components
         /// <inheritdoc />
         public void ClosePin()
         {
+            if (!State()) return;
             _lcd.ClrScr();
             _lcd.Dispose();
             _lcd = null;
@@ -49,6 +61,7 @@ namespace Sting.Measurements.Components
         /// </summary>
         public void ToggleBacklight()
         {
+            if (!State()) return;
             if (_lcd.BacklightStatus())
             {
                 _lcd.TurnOffBacklight();
@@ -65,6 +78,7 @@ namespace Sting.Measurements.Components
         /// <param name="column">The column number. Between 1 and 16. Default is 1.</param>
         public void SetCursorPosition(int line, int column = 1)
         {
+            if (!State()) return;
             line--; column--;
             if (line < 0 || column < 0 || line > 1 || column > 15) return;
            _lcd.GoToXy(column, line);
@@ -76,6 +90,7 @@ namespace Sting.Measurements.Components
         /// <param name="msg">String that is to be written to the lcd.</param>
         public void Write(string msg)
         {
+            if (!State()) return;
             _lcd.Prints(msg);
         }
 
@@ -85,6 +100,7 @@ namespace Sting.Measurements.Components
         /// <param name="resetCursor">If set to false doesn't reset the cursor position to the first line, first character.</param>
         public void ClearScreen(bool resetCursor = true)
         {
+            if (!State()) return;
             _lcd.ClrScr();
             if(resetCursor) SetCursorPosition(1);
         }
