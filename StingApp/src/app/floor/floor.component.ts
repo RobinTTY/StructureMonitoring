@@ -39,18 +39,30 @@ export class FloorComponent implements OnInit {
   // # Insert room status
   ngDoCheck() {
     for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
-      let str = "";      
+      let str = "";
+      let dev_data = "";
       try {
-        if(this.jsonObject["Temperature"].valueOf() >= 30.7){
-          str = "🙁";
+        for(let j = 0; j < this.jsonObject["length"].valueOf(); j++) {
+          if(this.jsonObject[j]["DeviceId"] === this.bData$[i]["device"]) {
+            dev_data = this.jsonObject[j];
+            break;
+          }
+        }
+
+        //Ampel
+        if(dev_data["Temperature"].valueOf() >= 28){
+          str = "🔥";
         } 
-        else {
-          str = "🙂";          
-        }      
-      document.getElementById("txt" + (0 + 1)).innerText = str;
+        else if (dev_data["Temperature"].valueOf() <= 19) {
+          str = "❄";          
+        } else {
+          str = "👍";
+        }
+
+        document.getElementById("txt" + (i + 1)).innerText = str;
       }
       catch(TypeError){
-      console.log("No connection to measurement device established")
+        console.log("No connection to measurement device established")
       }
     }
   }
