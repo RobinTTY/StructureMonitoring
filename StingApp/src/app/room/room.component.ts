@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TelemetryDataImportService} from '../telemetry-data-import.service';
 import { Observable } from 'rxjs';
+import {ChartService} from '../chart.service';
+import {Chart} from 'chart.js'
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
@@ -22,8 +24,10 @@ export class RoomComponent implements OnInit {
   bData$: Object;
   room$: Object;
   fetchResponse: boolean;
+  
+  chart = [];
 
-  constructor(private service: TelemetryDataImportService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
+  constructor(private _chart: ChartService, private service: TelemetryDataImportService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
     this.route.params.subscribe(params => this.room$ = params.id)
   }
 
@@ -31,7 +35,78 @@ export class RoomComponent implements OnInit {
   ngOnInit() {    
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
-    this.fetchTelemetry();    
+    this.fetchTelemetry();
+    
+    this._chart.deviceData()
+      .subscribe(res => {
+        
+        let temperature = Object.values(res).map(res => res.temperature._);
+        let humidity = Object.values(res).map(res => res.humidity._);
+        let altitude = Object.values(res).map(res => res.altitude._);
+        let dateTime = Object.values(res).map(res => res.unixtime._);
+
+        let weatherDates = []
+        dateTime.forEach((res) => {
+          let jsdate = new Date (res * 1)
+          weatherDates.push(jsdate.toLocaleTimeString('de-DE'))
+          // To show year, month or day, use the following parameters
+          // weatherDates.push(jsdate.toLocaleTimeString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}))
+        })
+
+        this.chart = new Chart('canvasTemp', {
+          type: 'line',
+          data: {
+            labels: weatherDates,
+            datasets: [
+              {
+                data: temperature,
+                borderColor: '#e21212',
+                fill: false
+              },
+            ]
+          },
+          options: {
+            legend: {
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                display: true
+              }],
+              yAxes: [{
+                display: true
+              }]
+            }
+          }
+        })
+
+        this.chart = new Chart('canvasHum', {
+          type: 'line',
+          data: {
+            labels: weatherDates,
+            datasets: [
+              {
+                data: humidity,
+                borderColor: '#3cba9f',
+                fill: false
+              },
+            ]
+          },
+          options: {
+            legend: {
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                display: true
+              }],
+              yAxes: [{
+                display: true
+              }]
+            }
+          }
+        })
+    })
   }
 
   // insert measured values if available into cards
