@@ -5,6 +5,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const event_hubs_1 = require("@azure/event-hubs");
+//import * as dotenv from "dotenv";
 const index_1 = require("./routes/index");
 const user_1 = require("./routes/user");
 var app = express();
@@ -80,7 +81,7 @@ app.get("/telemetry/current/all", (req, res) => {
 app.get("/telemetry/lastday/:device", (req, res) => {
     //var lastDay = Date.now() - 86400000;
     var query = new azure.TableQuery()
-        .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
+        .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
         //.top(10)
         .where("PartitionKey gt ?", (Date.now() - 86400000).toString())
         .and("deviceid eq ?", req.params.device);
@@ -97,7 +98,7 @@ app.get("/telemetry/lastday/:device", (req, res) => {
 app.get("/telemetry/lastweek/:device", (req, res) => {
     //var lastDay = Date.now() - 86400000;
     var query = new azure.TableQuery()
-        .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
+        .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
         //.top(10)
         .where("PartitionKey gt ?", (Date.now() - (86400000 * 7)).toString())
         .and("deviceid eq ?", req.params.device);
@@ -113,8 +114,8 @@ app.get("/telemetry/lastweek/:device", (req, res) => {
 // Gets the telemetry data of last month.
 app.get("/telemetry/lastmonth/:device", (req, res) => {
     var query = new azure.TableQuery()
-        .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
-        .top(10)
+        .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
+        //.top(10)
         .where("PartitionKey gt ?", (Date.now() - (86400000 * 30)).toString())
         .and("deviceid eq ?", req.params.device);
     tableService.queryEntities('stingtablev3', query, null, (error, result, response) => {

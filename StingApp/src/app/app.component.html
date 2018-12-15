@@ -6,3 +6,14 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<!-- Function to call the chart-->
+<div *ngIf="chart">
+  <canvas id="canvasTemp">{{chart}}</canvas>
+</div>
+<p>
+
+</p>
+<div *ngIf="chart">
+  <canvas id="canvasHum">{{chart}}</canvas>
+</div>
