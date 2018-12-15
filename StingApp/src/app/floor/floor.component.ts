@@ -54,7 +54,8 @@ export class FloorComponent implements OnInit {
           str = "🔥";
         } 
         else if (dev_data["Temperature"].valueOf() <= 19) {
-          str = "❄";          
+          str = "❄";
+          document.getElementById("txt" + (i + 1)).style.setProperty('color','blue')
         } else {
           str = "👍";
         }
