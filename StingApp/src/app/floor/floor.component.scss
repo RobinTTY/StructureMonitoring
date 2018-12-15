@@ -20,7 +20,7 @@
 }
 
 #image div {    
-  font-size: 20px;
+  font-size: 25px;
   position: absolute;
   top: 0%;
   left: 0%;
@@ -28,12 +28,12 @@
 
 @media (max-width: 767.98px) {
     #image div {    
-        font-size: 10px; 
+        font-size: 20px; 
     }
  }
 
  @media (max-width: 575.98px) { 
     #image div {    
-        font-size: 8px; 
+        font-size: 18px; 
     }
  }

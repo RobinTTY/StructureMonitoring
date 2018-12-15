@@ -31,7 +31,7 @@ export class RoomComponent implements OnInit {
   ngOnInit() {    
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
-    this.fetchTelemetry();    
+    this.fetchTelemetry();     
   }
 
   // insert measured values if available into cards
