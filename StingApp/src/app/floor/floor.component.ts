@@ -18,7 +18,7 @@ export class FloorComponent implements OnInit {
   urlSplit$: Array<string>;
   public jsonObject: any;
   bData$: Object;
-  floor$: Object;
+  floor$: any;
 
   constructor(private service: TelemetryDataImportService, private router: Router) {
   }

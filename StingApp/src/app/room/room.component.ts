@@ -37,7 +37,7 @@ export class RoomComponent implements OnInit {
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
     this.fetchTelemetry();
     
-    this._chart.deviceData()
+    this._chart.deviceData(this.bData$["device"])
       .subscribe(res => {
         
         let temperature = Object.values(res).map(res => res.temperature._);

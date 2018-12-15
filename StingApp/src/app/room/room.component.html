@@ -1,68 +1,81 @@
 <div class="flex-container bg-grey">
-  <h1 class="text-center">Welcome to room {{ bData$["room-id"].valueOf() }}</h1>
-    <div class="container">
-      <div class="row text-center justify-content-center">
-        <div class="col-xl-4 col-md-6">
-          <div class="card" style="width: 18rem;">                      
-            <div class="card-body">
-                <img src="../../assets/images/temperature.png">
-                <h5 class="card-title">Temperature</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
-                <p class="card-text"><span id="TempVal">No data provided</span></p>                
-            </div>
+<h1 class="text-center">Welcome to room {{ bData$["room-id"].valueOf() }}</h1>
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-xl-4 col-md-6">
+        <div class="card" style="width: 18rem;">                      
+          <div class="card-body">
+              <img src="../../assets/images/temperature.png">
+              <h5 class="card-title">Temperature</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <p class="card-text"><span id="TempVal">No data provided</span></p>                
           </div>
         </div>
-        <div class="col-xl-4 col-md-6">
-          <div class="card" style="width: 18rem;">                      
-            <div class="card-body">
-                <img src="../../assets/images/humidity.png">
-                <h5 class="card-title">Humidity</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
-                <p class="card-text"><span id="HumVal">No data provided</span></p>                
-            </div>
-          </div>          
-        </div>
-        <div class="col-xl-4 col-md-6">
-          <div class="card" style="width: 18rem;">                      
-            <div class="card-body">
-                <img src="../../assets/images/airPressure.png">
-                <h5 class="card-title">Air Pressure</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
-                <p class="card-text"><span id="PressVal">No data provided</span></p>                
-            </div>
-          </div>          
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="card" style="width: 18rem;">                      
+          <div class="card-body">
+              <img src="../../assets/images/humidity.png">
+              <h5 class="card-title">Humidity</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <p class="card-text"><span id="HumVal">No data provided</span></p>                
+          </div>
         </div>          
-        <div class="col-xl-4 col-md-6">
-          <div class="card" style="width: 18rem;">                      
-            <div class="card-body">
-                <img src="../../assets/images/altitude.png">
-                <h5 class="card-title">Altitude</h5>
-                <h6 class="card-subtitle mb-2 text-muted">above sea level</h6>
-                <p class="card-text"><span id="AltVal">No data provided</span></p>                
-            </div>
-          </div>          
-        </div>
-        <div class="col-xl-4 col-md-6">
-          <div class="card" style="width: 18rem;">                      
-            <div class="card-body">
-                <img src="../../assets/images/device.png">
-                <h5 class="card-title">Device Id</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Locate Device</h6>
-                <p class="card-text"><span id="DeviceVal">No data provided</span></p>                
-            </div>
-          </div>               
-        </div>  
-      </div>      
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="card" style="width: 18rem;">                      
+          <div class="card-body">
+              <img src="../../assets/images/airPressure.png">
+              <h5 class="card-title">Air Pressure</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <p class="card-text"><span id="PressVal">No data provided</span></p>                
+          </div>
+        </div>          
+      </div>          
+      <div class="col-xl-4 col-md-6">
+        <div class="card" style="width: 18rem;">                      
+          <div class="card-body">
+              <img src="../../assets/images/altitude.png">
+              <h5 class="card-title">Altitude</h5>
+              <h6 class="card-subtitle mb-2 text-muted">above sea level</h6>
+              <p class="card-text"><span id="AltVal">No data provided</span></p>                
+          </div>
+        </div>          
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="card" style="width: 18rem;">                      
+          <div class="card-body">
+              <img src="../../assets/images/device.png">
+              <h5 class="card-title">Device Id</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Locate Device</h6>
+              <p class="card-text"><span id="DeviceVal">No data provided</span></p>                
+          </div>
+        </div>               
+      </div>  
     </div>
+    <div class="row text-center justify-content-center">
+      <div class="col-12">
+        <div class="card graph-card">
+          <div class="card-body">                       
+            <div *ngIf="chart">
+              <canvas id="canvasTemp">{{chart}}</canvas>
+            </div>              
+          </div> 
+        </div>   
+      </div> 
+    </div> 
+    <div class="row text-center justify-content-center">
+      <div class="col-12">
+        <div class="card graph-card"> 
+          <div class="card-body">
+            <div *ngIf="chart">
+            <canvas id="canvasHum">{{chart}}</canvas>
+            </div>
+          </div>
+        </div>   
+      </div>                    
+    </div>      
+  </div>
 </div>
 
-<!-- Function to call the chart-->
-<div *ngIf="chart">
-  <canvas id="canvasTemp">{{chart}}</canvas>
-</div>
-<p>
 
-</p>
-<div *ngIf="chart">
-  <canvas id="canvasHum">{{chart}}</canvas>
-</div>
