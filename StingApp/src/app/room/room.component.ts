@@ -48,7 +48,7 @@ export class RoomComponent implements OnInit {
         let weatherDates = []
         dateTime.forEach((res) => {
           let jsdate = new Date (res * 1)
-          weatherDates.push(jsdate.toLocaleTimeString('de-DE', {month: 'numeric',day: 'numeric', hour: 'numeric', minute: 'numeric'}))
+          weatherDates.push(jsdate.toLocaleTimeString('de-DE', {month: 'short',day: 'numeric', hour: 'numeric', minute: 'numeric'}))
           // To show year, month or day, use the following parameters
           // weatherDates.push(jsdate.toLocaleTimeString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}))
         })
@@ -66,6 +66,11 @@ export class RoomComponent implements OnInit {
             ]
           },
           options: {
+            elements: {
+              point: {
+                radius: 0
+              }
+            },
             legend: {
               display: false
             },
@@ -101,6 +106,11 @@ export class RoomComponent implements OnInit {
             ]
           },
           options: {
+            elements: {
+              point: {
+                radius: 0
+              }
+            },
             legend: {
               display: false
             },
