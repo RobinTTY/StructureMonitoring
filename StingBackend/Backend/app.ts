@@ -82,6 +82,19 @@ app.get("/telemetry/current/RasPi_Marc", (req, res) => res.send(deviceMarc));
 
 app.get("/telemetry/current/RasPi_Boris", (req, res) => res.send(deviceBoris));
 
+// Gets the telemetry data from all registered devices in real time from the iotHub
+app.get("/telemetry/current/all", (req, res) => {
+    var response = new Array();
+    var devices = [deviceEnes, deviceRobin, deviceMarc, deviceBoris];
+    for (let device in devices) {
+        if (devices.hasOwnProperty(device)) {
+            if (devices[device] !== "No Data received yet!")
+                response.push(devices[device]);
+        }
+    }
+    res.send(JSON.stringify(eval(`[${response}]`)));
+});
+
 
 // Gets all the telemetry data from the last 24 hours from the azure-storage-table
 // :device specifies the device Id of the gadget you want the selection from.
