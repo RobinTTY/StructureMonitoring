@@ -27,6 +27,13 @@ var tableService = azure.createTableService(storageName, storageKey);
 
 var obj;
 
+var T_obj;
+
+var telemetryForAzure = {};
+
+var databaseCycle = 8;
+
+
 function readIotHub(connectionString) {
     var printError = err => {
         console.log(err.message);
@@ -41,6 +48,8 @@ function readIotHub(connectionString) {
         obj = JSON.parse(JSON.stringify(message.annotations));
         lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
+        T_obj = JSON.parse(lastTelemetryData);
+        
         if (obj["iothub-connection-device-id"] === "RasPi_Enes")
             deviceEnes = lastTelemetryData;
         else if (obj["iothub-connection-device-id"] === "RasPi_Robin") {
@@ -52,7 +61,32 @@ function readIotHub(connectionString) {
             deviceBoris = lastTelemetryData;
         else
             console.log("Device Id can not be recognized! Please check your DeviceId!");
+        // Function to insert the current telemetry to the table
+        telemetryForAzure = {
+            PartitionKey: { '_': "'"+T_obj.UnixTimeStampMilliseconds+"'" },
+            RowKey: { '_': "'"+T_obj.DeviceId+"'" },
+            altitude: { '_': "'" + T_obj.Altitude + "'" },
+            deviceid: { '_': "'" + T_obj.DeviceId + "'" },
+            humidity: { '_': "'" + T_obj.Humidity + "'" },
+            pressure: { '_': "'" + T_obj.Pressure + "'" },
+            temperature: { '_': "'" + T_obj.Temperature + "'" },
+            unixtime: { '_': "'" + T_obj.UnixTimeStampMilliseconds + "'" }
+        };
 
+        databaseCycle = databaseCycle - 1;
+        //console.log(telemetryForAzure);
+        if (databaseCycle <= 3) {
+            tableService.insertEntity('mytable2', telemetryForAzure, function (error, result, response) {
+                if (!error) {
+                    console.log('Success! Check the database.');
+                }
+            });
+
+            if (databaseCycle <= 3 && databaseCycle >=1)
+                databaseCycle--
+            if (databaseCycle == 0)
+                databaseCycle = 8
+        }
     };
 
     var ehClient: EventHubClient;
@@ -103,7 +137,7 @@ app.get("/telemetry/lastday/:device", (req, res) => {
 
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
-      .select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
+      //.select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
     //.top(10)
       .where("PartitionKey gt ?", (Date.now() - 86400000).toString())
       .and("deviceid eq ?", req.params.device);
