@@ -13,6 +13,6 @@ export class TelemetryDataImportService {
   constructor(private http: HttpClient) { }
   
   public getTelemetryJson(device : string) {
-      return this.http.get('http://localhost:1337/telemetry/current/' + device);
+      return this.http.get('https://backendsting.azurewebsites.net/telemetry/current/' + device);
   }
 }
