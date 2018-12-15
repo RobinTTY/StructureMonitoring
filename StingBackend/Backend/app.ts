@@ -3,7 +3,7 @@ import express = require('express');
 import path = require('path');
 import cors = require('cors');
 import { EventHubClient, EventPosition } from '@azure/event-hubs';
-import * as dotenv from "dotenv";
+//import * as dotenv from "dotenv";
 
 import routes from "./routes/index";
 import users from "./routes/user";
@@ -90,7 +90,7 @@ app.get("/telemetry/lastday/:device", (req, res) => {
 
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
-    .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
+      .select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
     //.top(10)
       .where("PartitionKey gt ?", (Date.now() - 86400000).toString())
       .and("deviceid eq ?", req.params.device);
@@ -98,7 +98,10 @@ app.get("/telemetry/lastday/:device", (req, res) => {
   tableService.queryEntities("stingtablev3", query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
+
           console.log(result.entries);
+
+
           res.send(result.entries);
           //console.log(query);
       }
@@ -112,7 +115,7 @@ app.get("/telemetry/lastweek/:device", (req, res) => {
 
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
-    .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
+      .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
     //.top(10)
     .where("PartitionKey gt ?", (Date.now() - (86400000 * 7)).toString())
     .and("deviceid eq ?", req.params.device);
@@ -133,8 +136,8 @@ app.get("/telemetry/lastweek/:device", (req, res) => {
 app.get("/telemetry/lastmonth/:device", (req, res) => {
 
   var query = new azure.TableQuery()
-    .select(["Timestamp", "temperature", "humidity", "altitude", "deviceid"])
-    .top(10)
+      .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
+    //.top(10)
     .where("PartitionKey gt ?", (Date.now() - (86400000 * 30)).toString())
     .and("deviceid eq ?", req.params.device);
 
