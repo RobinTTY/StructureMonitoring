@@ -160,4 +160,8 @@ export class RoomComponent implements OnInit {
      console.log(this.jsonObject);
     });
   }
+
+  locate(){
+    this.service.InvokeDeviceMethod('Locate', this.bData$["device"]).subscribe();    
+  }
 }

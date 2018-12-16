@@ -15,4 +15,8 @@ export class TelemetryDataImportService {
   public getTelemetryJson(device : string) {
       return this.http.get('https://backendsting.azurewebsites.net/telemetry/current/' + device);
   }
+
+  public InvokeDeviceMethod(method : string, device : string){
+    return this.http.get('https://backendsting.azurewebsites.net/invoke/' + method + '/' + device);   
+  }
 }
