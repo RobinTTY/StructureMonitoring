@@ -26,7 +26,11 @@ var tableService = azure.createTableService(storageName, storageKey);
 var obj;
 var T_obj;
 var telemetryForAzure = {};
-var databaseCycle = 16;
+var dataBaseCycle = [];
+dataBaseCycle[0] = 5;
+dataBaseCycle[1] = 5;
+dataBaseCycle[2] = 5;
+dataBaseCycle[3] = 5;
 function readIotHub(connectionString) {
     var printError = err => {
         console.log(err.message);
@@ -39,15 +43,23 @@ function readIotHub(connectionString) {
         lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
         T_obj = JSON.parse(lastTelemetryData);
-        if (obj["iothub-connection-device-id"] === "RasPi_Enes")
+        console.log(dataBaseCycle);
+        if (obj["iothub-connection-device-id"] === "RasPi_Enes") {
             deviceEnes = lastTelemetryData;
+            dataBaseCycle[0]--;
+        }
         else if (obj["iothub-connection-device-id"] === "RasPi_Robin") {
             deviceRobin = lastTelemetryData;
+            dataBaseCycle[1]--;
         }
-        else if (obj["iothub-connection-device-id"] === "RasPi_Marc")
+        else if (obj["iothub-connection-device-id"] === "RasPi_Marc") {
             deviceMarc = lastTelemetryData;
-        else if (obj["iothub-connection-device-id"] === "Raspi_Boris")
+            dataBaseCycle[2]--;
+        }
+        else if (obj["iothub-connection-device-id"] === "Raspi_Boris") {
             deviceBoris = lastTelemetryData;
+            dataBaseCycle[3]--;
+        }
         else
             console.log("Device Id can not be recognized! Please check your DeviceId!");
         // Function to insert the current telemetry to the table
@@ -61,18 +73,21 @@ function readIotHub(connectionString) {
             temperature: { _: (T_obj.Temperature).toString() },
             unixtime: { '$': 'Edm.Int64', _: (T_obj.UnixTimeStampMilliseconds).toString() }
         };
-        databaseCycle--;
         //console.log(telemetryForAzure);
-        if (databaseCycle <= 6) {
+        if (dataBaseCycle[0] <= 0 || dataBaseCycle[1] <= 0 || dataBaseCycle[2] <= 0 || dataBaseCycle[3] <= 0) {
             tableService.insertEntity(table, telemetryForAzure, function (error, result, response) {
                 if (!error) {
                     console.log('Success! Check the database.');
                 }
             });
-            if (databaseCycle <= 6 && databaseCycle >= 1)
-                databaseCycle--;
-            if (databaseCycle <= 0)
-                databaseCycle = 16;
+            if (dataBaseCycle[0] <= 0)
+                dataBaseCycle[0] = 5;
+            else if (dataBaseCycle[1] <= 0)
+                dataBaseCycle[1] = 5;
+            else if (dataBaseCycle[2] <= 0)
+                dataBaseCycle[2] = 5;
+            else if (dataBaseCycle[3] <= 0)
+                dataBaseCycle[3] = 5;
         }
     };
     var ehClient;
