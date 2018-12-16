@@ -117,7 +117,7 @@ export default {
                             "room-id": 213,
                             "x": 28,
                             "y": 16,
-                            "device": "RasPi_Boris",
+                            "device": "Raspi_Boris",
                             "name": "default",
                             "link": "../assets/images/default.png"
                         },
