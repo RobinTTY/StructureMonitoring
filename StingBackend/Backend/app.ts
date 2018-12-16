@@ -13,6 +13,7 @@ app.use(cors());
 app.options("*", cors());
 
 var storageName = "stingstorage";
+var table = 'mytable';
 var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==";
 var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=";
 var lastTelemetryData = "No Data received yet!";
@@ -31,7 +32,12 @@ var T_obj;
 
 var telemetryForAzure = {};
 
-var databaseCycle = 8;
+var dataBaseCycle = [];
+
+dataBaseCycle[0] = 5;
+dataBaseCycle[1] = 5;
+dataBaseCycle[2] = 5;
+dataBaseCycle[3] = 5;
 
 
 function readIotHub(connectionString) {
@@ -49,44 +55,55 @@ function readIotHub(connectionString) {
         lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
         T_obj = JSON.parse(lastTelemetryData);
-        
-        if (obj["iothub-connection-device-id"] === "RasPi_Enes")
+        console.log(dataBaseCycle);
+
+        if (obj["iothub-connection-device-id"] === "RasPi_Enes") {
             deviceEnes = lastTelemetryData;
+            dataBaseCycle[0]--;
+        }
         else if (obj["iothub-connection-device-id"] === "RasPi_Robin") {
             deviceRobin = lastTelemetryData;
+            dataBaseCycle[1]--;
         }
-        else if (obj["iothub-connection-device-id"] === "RasPi_Marc")
+        else if (obj["iothub-connection-device-id"] === "RasPi_Marc") {
             deviceMarc = lastTelemetryData;
-        else if (obj["iothub-connection-device-id"] === "RasPi_Boris")
+            dataBaseCycle[2]--;
+        }
+        else if (obj["iothub-connection-device-id"] === "Raspi_Boris") {
             deviceBoris = lastTelemetryData;
+            dataBaseCycle[3]--;
+        }
         else
             console.log("Device Id can not be recognized! Please check your DeviceId!");
         // Function to insert the current telemetry to the table
         telemetryForAzure = {
-            PartitionKey: { '_': "'"+T_obj.UnixTimeStampMilliseconds+"'" },
-            RowKey: { '_': "'"+T_obj.DeviceId+"'" },
-            altitude: { '_': "'" + T_obj.Altitude + "'" },
-            deviceid: { '_': "'" + T_obj.DeviceId + "'" },
-            humidity: { '_': "'" + T_obj.Humidity + "'" },
-            pressure: { '_': "'" + T_obj.Pressure + "'" },
-            temperature: { '_': "'" + T_obj.Temperature + "'" },
-            unixtime: { '_': "'" + T_obj.UnixTimeStampMilliseconds + "'" }
+            PartitionKey: {'$': 'Edm.String', _:(T_obj.UnixTimeStampMilliseconds).toString()},
+            RowKey: { '$': 'Edm.String', _: (T_obj.DeviceId).toString() },
+            altitude: { _: (T_obj.Altitude).toString() },
+            deviceid: { _: (T_obj.DeviceId).toString() },
+            humidity: { '$': 'Edm.Double', _: (T_obj.Humidity).toString() },
+            pressure: { _: (T_obj.Pressure).toString() },
+            temperature: { _: (T_obj.Temperature).toString() },
+            unixtime: { '$': 'Edm.Int64', _: (T_obj.UnixTimeStampMilliseconds).toString() }
         };
 
-        databaseCycle = databaseCycle - 1;
         //console.log(telemetryForAzure);
-        if (databaseCycle <= 3) {
-            tableService.insertEntity('mytable2', telemetryForAzure, function (error, result, response) {
+        if (dataBaseCycle[0] <= 0 || dataBaseCycle[1] <= 0 || dataBaseCycle[2] <= 0 || dataBaseCycle[3] <= 0) {
+            tableService.insertEntity(table, telemetryForAzure, function (error, result, response) {
                 if (!error) {
                     console.log('Success! Check the database.');
                 }
             });
+            if (dataBaseCycle[0] <= 0)
+                dataBaseCycle[0] = 5
+            else if (dataBaseCycle[1] <= 0)
+                dataBaseCycle[1] = 5
+            else if (dataBaseCycle[2] <= 0)
+                dataBaseCycle[2] = 5
+            else if (dataBaseCycle[3] <= 0)
+                dataBaseCycle[3] = 5
 
-            if (databaseCycle <= 3 && databaseCycle >=1)
-                databaseCycle--
-            if (databaseCycle == 0)
-                databaseCycle = 8
-        }
+       }
     };
 
     var ehClient: EventHubClient;
@@ -137,12 +154,12 @@ app.get("/telemetry/lastday/:device", (req, res) => {
 
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
-      //.select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
+      .select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
     //.top(10)
       .where("PartitionKey gt ?", (Date.now() - 86400000).toString())
-      .and("deviceid eq ?", req.params.device);
+      .and("RowKey eq ?", req.params.device);
 
-  tableService.queryEntities("stingtablev3", query, null, (error, result, response) => {
+  tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
 
@@ -167,7 +184,7 @@ app.get("/telemetry/lastweek/:device", (req, res) => {
     .where("PartitionKey gt ?", (Date.now() - (86400000 * 7)).toString())
     .and("deviceid eq ?", req.params.device);
 
-  tableService.queryEntities("stingtablev3", query, null, (error, result, response) => {
+  tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
           console.log(result.entries);
@@ -188,7 +205,7 @@ app.get("/telemetry/lastmonth/:device", (req, res) => {
     .where("PartitionKey gt ?", (Date.now() - (86400000 * 30)).toString())
     .and("deviceid eq ?", req.params.device);
 
-  tableService.queryEntities('stingtablev3', query, null, (error, result, response) => {
+  tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
           console.log(result.entries);
