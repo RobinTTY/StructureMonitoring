@@ -9,6 +9,8 @@
   
   - The Event-Hub Client is a background application, which gets data from the Iot-Hub every second
   
+  - The data is then inserted into an azure storage table
+  
   - The Azure-Storage table functions return telemetry data of last day, last week and last month from the 
     Azure database
 
@@ -20,16 +22,12 @@ The following get requests are available:
 
 - [Device] = RasPi_Marc, RasPi_Enes, RasPi_Robin, RasPi_Boris
 
-- /telemetry/current/[Device]:  Returns the current telemetry data from the IoT-Hub 
-  
-- /telemetry/lastday/[Device]:  Returns all telemetry data recorded in the last 24 hours
+- /telemetry/current/[Device]:   Returns the current telemetry data from the IoT-Hub 
 
-- /telemetry/lastweek/[Device]: Returns all telemetry data recorded in the last 7 days
+- /telemetry/current/all :       Returns the current telemetry data from all the devices 
+  
+- /telemetry/lastday/[Device]:   Returns all telemetry data recorded in the last 24 hours
+
+- /telemetry/lastweek/[Device]:  Returns all telemetry data recorded in the last 7 days
 
 - /telemetry/lastmonth/[Device]: Return all telemetry data recorded in the last 30 days
-
-# Attention
-
-The stream analytics resource has to be running, otherwise the data is not transfered to the database!
-  
-  
