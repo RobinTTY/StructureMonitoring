@@ -5,7 +5,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>Backend</Name>
     <RootNamespace>Backend</RootNamespace>
-    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <ToolsVersionPromptShown>3.1</ToolsVersionPromptShown>
     <NameOfLastUsedPublishProfile>BackendSting - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>

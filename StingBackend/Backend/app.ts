@@ -27,11 +27,8 @@ var tableService = azure.createTableService(storageName, storageKey);
 // run function to read from azure storage table
 
 var obj;
-
 var T_obj;
-
 var telemetryForAzure = {};
-
 var dataBaseCycle = [];
 
 dataBaseCycle[0] = 5;
@@ -214,6 +211,30 @@ app.get("/telemetry/lastmonth/:device", (req, res) => {
       }
 
   });
+});
+
+// handle Cloud to device messages
+var Client = require("azure-iothub").Client;
+var client = Client.fromConnectionString(connectionString);
+
+app.get("/invoke/:deviceMethod/:device", (req, res) => {
+    var methodParams = {
+        methodName: req.params.deviceMethod,
+        device: req.params.device,
+        payload: null,
+        responseTimeoutInSeconds: 30
+    };
+
+    client.invokeDeviceMethod(methodParams.device,
+        methodParams,
+        (err, result) => {
+            if (err) {
+                console.error(`Failed to invoke method '${methodParams.methodName}': ${err.message}`);
+                res.status(405).end();
+            } else {
+                res.status(200).end();
+            }
+        });
 });
 
 // view engine setup
