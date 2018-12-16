@@ -4,11 +4,16 @@ import { RoomComponent } from './room/room.component';
 import { FloorComponent } from './floor/floor.component';
 import { BuildingComponent } from './building/building.component';
 import { TelemetryDataComponent } from './telemetry-data/telemetry-data.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TelemetryDataComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
   },
   {
     path: 'room/:id',
