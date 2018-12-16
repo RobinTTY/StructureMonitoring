@@ -48,7 +48,7 @@ export class RoomComponent implements OnInit {
         let weatherDates = []
         dateTime.forEach((res) => {
           let jsdate = new Date (res * 1)
-          weatherDates.push(jsdate.toLocaleTimeString('de-DE', {month: 'short',day: 'numeric', hour: 'numeric', minute: 'numeric'}))
+          weatherDates.push(jsdate.toLocaleTimeString('en-EN', {month: 'short',day: 'numeric', hour: 'numeric', minute: 'numeric'}))
           // To show year, month or day, use the following parameters
           // weatherDates.push(jsdate.toLocaleTimeString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}))
         })
@@ -136,13 +136,16 @@ export class RoomComponent implements OnInit {
   }
 
   // insert measured values if available into cards
+  
   ngDoCheck() {
     try{
+      let dt = new Date(this.jsonObject["UnixTimeStampMilliseconds"]).toLocaleTimeString('en-EN', {weekday: 'long', month: 'long', day: 'numeric',hour: 'numeric', minute: 'numeric'})
       document.getElementById("TempVal").innerText = this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + "°C"
       document.getElementById("HumVal").innerText = this.jsonObject["Humidity"].valueOf().toString() + "%"
       document.getElementById("PressVal").innerText = this.jsonObject["Pressure"].valueOf().toString().substr(0,3) + "hPa"
       document.getElementById("AltVal").innerText = this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + "m"
       document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
+      document.getElementById("TimeVal").innerText = dt.toString()
     }catch(e){
       if(e instanceof TypeError)      
       console.log("No connection to measurement device established")
