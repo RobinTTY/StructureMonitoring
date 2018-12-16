@@ -15,6 +15,7 @@ app.options("*", cors());
 var storageName = "stingstorage";
 var table = 'mytable';
 var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==";
+var skippedData = 5;
 var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=";
 var lastTelemetryData = "No Data received yet!";
 var deviceEnes = lastTelemetryData;
@@ -31,10 +32,10 @@ var T_obj;
 var telemetryForAzure = {};
 var dataBaseCycle = [];
 
-dataBaseCycle[0] = 5;
-dataBaseCycle[1] = 5;
-dataBaseCycle[2] = 5;
-dataBaseCycle[3] = 5;
+dataBaseCycle[0] = skippedData;
+dataBaseCycle[1] = skippedData;
+dataBaseCycle[2] = skippedData;
+dataBaseCycle[3] = skippedData;
 
 
 function readIotHub(connectionString) {
@@ -92,13 +93,13 @@ function readIotHub(connectionString) {
                 }
             });
             if (dataBaseCycle[0] <= 0)
-                dataBaseCycle[0] = 5
+                dataBaseCycle[0] = skippedData
             else if (dataBaseCycle[1] <= 0)
-                dataBaseCycle[1] = 5
+                dataBaseCycle[1] = skippedData
             else if (dataBaseCycle[2] <= 0)
-                dataBaseCycle[2] = 5
+                dataBaseCycle[2] = skippedData
             else if (dataBaseCycle[3] <= 0)
-                dataBaseCycle[3] = 5
+                dataBaseCycle[3] = skippedData
 
        }
     };
