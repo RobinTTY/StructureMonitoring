@@ -23,7 +23,7 @@ export class FloorComponent implements OnInit {
   constructor(private service: TelemetryDataImportService, private router: Router) {
   }
 
-  ngOnInit() {    
+  ngOnInit() { 
     this.fetchTelemetry();
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
