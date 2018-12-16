@@ -1,10 +1,11 @@
 .main-content {
-	padding: 5% 0%;
+	padding: 5% 5%;
 	margin: 0 auto;
-	max-width: 960px;
+	max-width: 1160px;
 }
 
 #image {
+    max-width: none;
 	margin: 0 auto;
 	position: relative;
 }
@@ -26,14 +27,26 @@
   left: 0%;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) { 
     #image div {    
-        font-size: 20px; 
+        font-size: 40px; 
     }
  }
 
- @media (max-width: 575.98px) { 
+@media (max-width: 767.98px) {
     #image div {    
-        font-size: 24px; 
+        font-size: 35px; 
     }
+ }
+
+@media (max-width: 575.98px) { 
+    #image div {    
+        font-size: 26px; 
+    }
+ }
+
+ @media (max-width: 299.98px) {
+    #image div {    
+        font-size: 17px; 
+    } 
  }

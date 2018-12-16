@@ -24,3 +24,15 @@ h1{
 .img-link{
     cursor: pointer;
 }
+
+#image {
+    margin: 0 auto;
+    max-width: 600px;
+    width: 90%;
+}
+
+@media (max-width: 767.98px) {
+    #image {
+        width: 95%;
+    }
+}
