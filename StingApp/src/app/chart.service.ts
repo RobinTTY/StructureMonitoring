@@ -10,7 +10,7 @@ export class ChartService {
   constructor(private _http: HttpClient) { }
 
   deviceData(device : string){
-    return this._http.get("https://backendsting.azurewebsites.net/telemetry/lastweek/" + device)
+    return this._http.get("https://backendsting.azurewebsites.net/telemetry/lastday/" + device)
       .pipe(map(result => result));
   }
 }

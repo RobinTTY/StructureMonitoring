@@ -140,7 +140,7 @@ export class RoomComponent implements OnInit {
     try{
       document.getElementById("TempVal").innerText = this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + "°C"
       document.getElementById("HumVal").innerText = this.jsonObject["Humidity"].valueOf().toString() + "%"
-      document.getElementById("PressVal").innerText = this.jsonObject["Pressure"].valueOf().toString().substr(0,5) + "Pa"
+      document.getElementById("PressVal").innerText = this.jsonObject["Pressure"].valueOf().toString().substr(0,3) + "hPa"
       document.getElementById("AltVal").innerText = this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + "m"
       document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
     }catch(e){
