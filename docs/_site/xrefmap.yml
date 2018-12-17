@@ -38,6 +38,50 @@ references:
   commentId: F:Sting.Cloud.AzureIotHub._deviceClient
   fullName: Sting.Cloud.AzureIotHub._deviceClient
   nameWithType: AzureIotHub._deviceClient
+- uid: Sting.Cloud.AzureIotHub.Locate
+  name: Locate
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_Locate
+  commentId: E:Sting.Cloud.AzureIotHub.Locate
+  fullName: Sting.Cloud.AzureIotHub.Locate
+  nameWithType: AzureIotHub.Locate
+- uid: Sting.Cloud.AzureIotHub.OnLocate(Microsoft.Azure.Devices.Client.MethodRequest,System.Object)
+  name: OnLocate(MethodRequest, Object)
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_OnLocate_Microsoft_Azure_Devices_Client_MethodRequest_System_Object_
+  commentId: M:Sting.Cloud.AzureIotHub.OnLocate(Microsoft.Azure.Devices.Client.MethodRequest,System.Object)
+  fullName: Sting.Cloud.AzureIotHub.OnLocate(Microsoft.Azure.Devices.Client.MethodRequest, System.Object)
+  nameWithType: AzureIotHub.OnLocate(MethodRequest, Object)
+- uid: Sting.Cloud.AzureIotHub.OnLocate*
+  name: OnLocate
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_OnLocate_
+  commentId: Overload:Sting.Cloud.AzureIotHub.OnLocate
+  isSpec: "True"
+  fullName: Sting.Cloud.AzureIotHub.OnLocate
+  nameWithType: AzureIotHub.OnLocate
+- uid: Sting.Cloud.AzureIotHub.OnLocateEventHandler
+  name: AzureIotHub.OnLocateEventHandler
+  href: api/Sting.Cloud.AzureIotHub.OnLocateEventHandler.html
+  commentId: T:Sting.Cloud.AzureIotHub.OnLocateEventHandler
+  fullName: Sting.Cloud.AzureIotHub.OnLocateEventHandler
+  nameWithType: AzureIotHub.OnLocateEventHandler
+- uid: Sting.Cloud.AzureIotHub.OnTerminate(Microsoft.Azure.Devices.Client.MethodRequest,System.Object)
+  name: OnTerminate(MethodRequest, Object)
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_OnTerminate_Microsoft_Azure_Devices_Client_MethodRequest_System_Object_
+  commentId: M:Sting.Cloud.AzureIotHub.OnTerminate(Microsoft.Azure.Devices.Client.MethodRequest,System.Object)
+  fullName: Sting.Cloud.AzureIotHub.OnTerminate(Microsoft.Azure.Devices.Client.MethodRequest, System.Object)
+  nameWithType: AzureIotHub.OnTerminate(MethodRequest, Object)
+- uid: Sting.Cloud.AzureIotHub.OnTerminate*
+  name: OnTerminate
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_OnTerminate_
+  commentId: Overload:Sting.Cloud.AzureIotHub.OnTerminate
+  isSpec: "True"
+  fullName: Sting.Cloud.AzureIotHub.OnTerminate
+  nameWithType: AzureIotHub.OnTerminate
+- uid: Sting.Cloud.AzureIotHub.OnTerminateEventHandler
+  name: AzureIotHub.OnTerminateEventHandler
+  href: api/Sting.Cloud.AzureIotHub.OnTerminateEventHandler.html
+  commentId: T:Sting.Cloud.AzureIotHub.OnTerminateEventHandler
+  fullName: Sting.Cloud.AzureIotHub.OnTerminateEventHandler
+  nameWithType: AzureIotHub.OnTerminateEventHandler
 - uid: Sting.Cloud.AzureIotHub.ReceiveCloudToDeviceMessageAsync
   name: ReceiveCloudToDeviceMessageAsync()
   href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_ReceiveCloudToDeviceMessageAsync
@@ -51,6 +95,19 @@ references:
   isSpec: "True"
   fullName: Sting.Cloud.AzureIotHub.ReceiveCloudToDeviceMessageAsync
   nameWithType: AzureIotHub.ReceiveCloudToDeviceMessageAsync
+- uid: Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync
+  name: RegisterDirectMethodsAsync()
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_RegisterDirectMethodsAsync
+  commentId: M:Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync
+  fullName: Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync()
+  nameWithType: AzureIotHub.RegisterDirectMethodsAsync()
+- uid: Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync*
+  name: RegisterDirectMethodsAsync
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_RegisterDirectMethodsAsync_
+  commentId: Overload:Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync
+  isSpec: "True"
+  fullName: Sting.Cloud.AzureIotHub.RegisterDirectMethodsAsync
+  nameWithType: AzureIotHub.RegisterDirectMethodsAsync
 - uid: Sting.Cloud.AzureIotHub.SendDeviceToCloudMessageAsync(System.String)
   name: SendDeviceToCloudMessageAsync(String)
   href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_SendDeviceToCloudMessageAsync_System_String_
@@ -64,6 +121,12 @@ references:
   isSpec: "True"
   fullName: Sting.Cloud.AzureIotHub.SendDeviceToCloudMessageAsync
   nameWithType: AzureIotHub.SendDeviceToCloudMessageAsync
+- uid: Sting.Cloud.AzureIotHub.Terminate
+  name: Terminate
+  href: api/Sting.Cloud.AzureIotHub.html#Sting_Cloud_AzureIotHub_Terminate
+  commentId: E:Sting.Cloud.AzureIotHub.Terminate
+  fullName: Sting.Cloud.AzureIotHub.Terminate
+  nameWithType: AzureIotHub.Terminate
 - uid: Sting.Measurements
   name: Sting.Measurements
   href: api/Sting.Measurements.html
@@ -159,6 +222,109 @@ references:
   isSpec: "True"
   fullName: Sting.Measurements.Components.Bmp180.TakeMeasurementAsync
   nameWithType: Bmp180.TakeMeasurementAsync
+- uid: Sting.Measurements.Components.Buzzer
+  name: Buzzer
+  href: api/Sting.Measurements.Components.Buzzer.html
+  commentId: T:Sting.Measurements.Components.Buzzer
+  fullName: Sting.Measurements.Components.Buzzer
+  nameWithType: Buzzer
+- uid: Sting.Measurements.Components.Buzzer._gpioPin
+  name: _gpioPin
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer__gpioPin
+  commentId: F:Sting.Measurements.Components.Buzzer._gpioPin
+  fullName: Sting.Measurements.Components.Buzzer._gpioPin
+  nameWithType: Buzzer._gpioPin
+- uid: Sting.Measurements.Components.Buzzer.ClosePin
+  name: ClosePin()
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_ClosePin
+  commentId: M:Sting.Measurements.Components.Buzzer.ClosePin
+  fullName: Sting.Measurements.Components.Buzzer.ClosePin()
+  nameWithType: Buzzer.ClosePin()
+- uid: Sting.Measurements.Components.Buzzer.ClosePin*
+  name: ClosePin
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_ClosePin_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.ClosePin
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.ClosePin
+  nameWithType: Buzzer.ClosePin
+- uid: Sting.Measurements.Components.Buzzer.InitComponentAsync(System.Int32)
+  name: InitComponentAsync(Int32)
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_InitComponentAsync_System_Int32_
+  commentId: M:Sting.Measurements.Components.Buzzer.InitComponentAsync(System.Int32)
+  fullName: Sting.Measurements.Components.Buzzer.InitComponentAsync(System.Int32)
+  nameWithType: Buzzer.InitComponentAsync(Int32)
+- uid: Sting.Measurements.Components.Buzzer.InitComponentAsync*
+  name: InitComponentAsync
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_InitComponentAsync_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.InitComponentAsync
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.InitComponentAsync
+  nameWithType: Buzzer.InitComponentAsync
+- uid: Sting.Measurements.Components.Buzzer.IsOn
+  name: IsOn()
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_IsOn
+  commentId: M:Sting.Measurements.Components.Buzzer.IsOn
+  fullName: Sting.Measurements.Components.Buzzer.IsOn()
+  nameWithType: Buzzer.IsOn()
+- uid: Sting.Measurements.Components.Buzzer.IsOn*
+  name: IsOn
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_IsOn_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.IsOn
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.IsOn
+  nameWithType: Buzzer.IsOn
+- uid: Sting.Measurements.Components.Buzzer.OnLocate(System.Object,System.EventArgs)
+  name: OnLocate(Object, EventArgs)
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_OnLocate_System_Object_System_EventArgs_
+  commentId: M:Sting.Measurements.Components.Buzzer.OnLocate(System.Object,System.EventArgs)
+  fullName: Sting.Measurements.Components.Buzzer.OnLocate(System.Object, System.EventArgs)
+  nameWithType: Buzzer.OnLocate(Object, EventArgs)
+- uid: Sting.Measurements.Components.Buzzer.OnLocate*
+  name: OnLocate
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_OnLocate_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.OnLocate
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.OnLocate
+  nameWithType: Buzzer.OnLocate
+- uid: Sting.Measurements.Components.Buzzer.State
+  name: State()
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_State
+  commentId: M:Sting.Measurements.Components.Buzzer.State
+  fullName: Sting.Measurements.Components.Buzzer.State()
+  nameWithType: Buzzer.State()
+- uid: Sting.Measurements.Components.Buzzer.State*
+  name: State
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_State_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.State
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.State
+  nameWithType: Buzzer.State
+- uid: Sting.Measurements.Components.Buzzer.TurnOff
+  name: TurnOff()
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_TurnOff
+  commentId: M:Sting.Measurements.Components.Buzzer.TurnOff
+  fullName: Sting.Measurements.Components.Buzzer.TurnOff()
+  nameWithType: Buzzer.TurnOff()
+- uid: Sting.Measurements.Components.Buzzer.TurnOff*
+  name: TurnOff
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_TurnOff_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.TurnOff
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.TurnOff
+  nameWithType: Buzzer.TurnOff
+- uid: Sting.Measurements.Components.Buzzer.TurnOn
+  name: TurnOn()
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_TurnOn
+  commentId: M:Sting.Measurements.Components.Buzzer.TurnOn
+  fullName: Sting.Measurements.Components.Buzzer.TurnOn()
+  nameWithType: Buzzer.TurnOn()
+- uid: Sting.Measurements.Components.Buzzer.TurnOn*
+  name: TurnOn
+  href: api/Sting.Measurements.Components.Buzzer.html#Sting_Measurements_Components_Buzzer_TurnOn_
+  commentId: Overload:Sting.Measurements.Components.Buzzer.TurnOn
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Buzzer.TurnOn
+  nameWithType: Buzzer.TurnOn
 - uid: Sting.Measurements.Components.Dht11
   name: Dht11
   href: api/Sting.Measurements.Components.Dht11.html
@@ -229,6 +395,169 @@ references:
   isSpec: "True"
   fullName: Sting.Measurements.Components.Dht11.TakeMeasurementAsync
   nameWithType: Dht11.TakeMeasurementAsync
+- uid: Sting.Measurements.Components.Lcd
+  name: Lcd
+  href: api/Sting.Measurements.Components.Lcd.html
+  commentId: T:Sting.Measurements.Components.Lcd
+  fullName: Sting.Measurements.Components.Lcd
+  nameWithType: Lcd
+- uid: Sting.Measurements.Components.Lcd._lcd
+  name: _lcd
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd__lcd
+  commentId: F:Sting.Measurements.Components.Lcd._lcd
+  fullName: Sting.Measurements.Components.Lcd._lcd
+  nameWithType: Lcd._lcd
+- uid: Sting.Measurements.Components.Lcd.Bl
+  name: Bl
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_Bl
+  commentId: F:Sting.Measurements.Components.Lcd.Bl
+  fullName: Sting.Measurements.Components.Lcd.Bl
+  nameWithType: Lcd.Bl
+- uid: Sting.Measurements.Components.Lcd.ClearScreen(System.Boolean)
+  name: ClearScreen(Boolean)
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ClearScreen_System_Boolean_
+  commentId: M:Sting.Measurements.Components.Lcd.ClearScreen(System.Boolean)
+  fullName: Sting.Measurements.Components.Lcd.ClearScreen(System.Boolean)
+  nameWithType: Lcd.ClearScreen(Boolean)
+- uid: Sting.Measurements.Components.Lcd.ClearScreen*
+  name: ClearScreen
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ClearScreen_
+  commentId: Overload:Sting.Measurements.Components.Lcd.ClearScreen
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.ClearScreen
+  nameWithType: Lcd.ClearScreen
+- uid: Sting.Measurements.Components.Lcd.ClosePin
+  name: ClosePin()
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ClosePin
+  commentId: M:Sting.Measurements.Components.Lcd.ClosePin
+  fullName: Sting.Measurements.Components.Lcd.ClosePin()
+  nameWithType: Lcd.ClosePin()
+- uid: Sting.Measurements.Components.Lcd.ClosePin*
+  name: ClosePin
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ClosePin_
+  commentId: Overload:Sting.Measurements.Components.Lcd.ClosePin
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.ClosePin
+  nameWithType: Lcd.ClosePin
+- uid: Sting.Measurements.Components.Lcd.D4
+  name: D4
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_D4
+  commentId: F:Sting.Measurements.Components.Lcd.D4
+  fullName: Sting.Measurements.Components.Lcd.D4
+  nameWithType: Lcd.D4
+- uid: Sting.Measurements.Components.Lcd.D5
+  name: D5
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_D5
+  commentId: F:Sting.Measurements.Components.Lcd.D5
+  fullName: Sting.Measurements.Components.Lcd.D5
+  nameWithType: Lcd.D5
+- uid: Sting.Measurements.Components.Lcd.D6
+  name: D6
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_D6
+  commentId: F:Sting.Measurements.Components.Lcd.D6
+  fullName: Sting.Measurements.Components.Lcd.D6
+  nameWithType: Lcd.D6
+- uid: Sting.Measurements.Components.Lcd.D7
+  name: D7
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_D7
+  commentId: F:Sting.Measurements.Components.Lcd.D7
+  fullName: Sting.Measurements.Components.Lcd.D7
+  nameWithType: Lcd.D7
+- uid: Sting.Measurements.Components.Lcd.DeviceI2CAddress
+  name: DeviceI2CAddress
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_DeviceI2CAddress
+  commentId: F:Sting.Measurements.Components.Lcd.DeviceI2CAddress
+  fullName: Sting.Measurements.Components.Lcd.DeviceI2CAddress
+  nameWithType: Lcd.DeviceI2CAddress
+- uid: Sting.Measurements.Components.Lcd.En
+  name: En
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_En
+  commentId: F:Sting.Measurements.Components.Lcd.En
+  fullName: Sting.Measurements.Components.Lcd.En
+  nameWithType: Lcd.En
+- uid: Sting.Measurements.Components.Lcd.I2CControllerName
+  name: I2CControllerName
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_I2CControllerName
+  commentId: F:Sting.Measurements.Components.Lcd.I2CControllerName
+  fullName: Sting.Measurements.Components.Lcd.I2CControllerName
+  nameWithType: Lcd.I2CControllerName
+- uid: Sting.Measurements.Components.Lcd.InitComponentAsync(System.Int32)
+  name: InitComponentAsync(Int32)
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_InitComponentAsync_System_Int32_
+  commentId: M:Sting.Measurements.Components.Lcd.InitComponentAsync(System.Int32)
+  fullName: Sting.Measurements.Components.Lcd.InitComponentAsync(System.Int32)
+  nameWithType: Lcd.InitComponentAsync(Int32)
+- uid: Sting.Measurements.Components.Lcd.InitComponentAsync*
+  name: InitComponentAsync
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_InitComponentAsync_
+  commentId: Overload:Sting.Measurements.Components.Lcd.InitComponentAsync
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.InitComponentAsync
+  nameWithType: Lcd.InitComponentAsync
+- uid: Sting.Measurements.Components.Lcd.Rs
+  name: Rs
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_Rs
+  commentId: F:Sting.Measurements.Components.Lcd.Rs
+  fullName: Sting.Measurements.Components.Lcd.Rs
+  nameWithType: Lcd.Rs
+- uid: Sting.Measurements.Components.Lcd.Rw
+  name: Rw
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_Rw
+  commentId: F:Sting.Measurements.Components.Lcd.Rw
+  fullName: Sting.Measurements.Components.Lcd.Rw
+  nameWithType: Lcd.Rw
+- uid: Sting.Measurements.Components.Lcd.SetCursorPosition(System.Int32,System.Int32)
+  name: SetCursorPosition(Int32, Int32)
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_SetCursorPosition_System_Int32_System_Int32_
+  commentId: M:Sting.Measurements.Components.Lcd.SetCursorPosition(System.Int32,System.Int32)
+  fullName: Sting.Measurements.Components.Lcd.SetCursorPosition(System.Int32, System.Int32)
+  nameWithType: Lcd.SetCursorPosition(Int32, Int32)
+- uid: Sting.Measurements.Components.Lcd.SetCursorPosition*
+  name: SetCursorPosition
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_SetCursorPosition_
+  commentId: Overload:Sting.Measurements.Components.Lcd.SetCursorPosition
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.SetCursorPosition
+  nameWithType: Lcd.SetCursorPosition
+- uid: Sting.Measurements.Components.Lcd.State
+  name: State()
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_State
+  commentId: M:Sting.Measurements.Components.Lcd.State
+  fullName: Sting.Measurements.Components.Lcd.State()
+  nameWithType: Lcd.State()
+- uid: Sting.Measurements.Components.Lcd.State*
+  name: State
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_State_
+  commentId: Overload:Sting.Measurements.Components.Lcd.State
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.State
+  nameWithType: Lcd.State
+- uid: Sting.Measurements.Components.Lcd.ToggleBacklight
+  name: ToggleBacklight()
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ToggleBacklight
+  commentId: M:Sting.Measurements.Components.Lcd.ToggleBacklight
+  fullName: Sting.Measurements.Components.Lcd.ToggleBacklight()
+  nameWithType: Lcd.ToggleBacklight()
+- uid: Sting.Measurements.Components.Lcd.ToggleBacklight*
+  name: ToggleBacklight
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_ToggleBacklight_
+  commentId: Overload:Sting.Measurements.Components.Lcd.ToggleBacklight
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.ToggleBacklight
+  nameWithType: Lcd.ToggleBacklight
+- uid: Sting.Measurements.Components.Lcd.Write(System.String)
+  name: Write(String)
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_Write_System_String_
+  commentId: M:Sting.Measurements.Components.Lcd.Write(System.String)
+  fullName: Sting.Measurements.Components.Lcd.Write(System.String)
+  nameWithType: Lcd.Write(String)
+- uid: Sting.Measurements.Components.Lcd.Write*
+  name: Write
+  href: api/Sting.Measurements.Components.Lcd.html#Sting_Measurements_Components_Lcd_Write_
+  commentId: Overload:Sting.Measurements.Components.Lcd.Write
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Lcd.Write
+  nameWithType: Lcd.Write
 - uid: Sting.Measurements.Components.Led
   name: Led
   href: api/Sting.Measurements.Components.Led.html
@@ -241,6 +570,19 @@ references:
   commentId: F:Sting.Measurements.Components.Led._pin
   fullName: Sting.Measurements.Components.Led._pin
   nameWithType: Led._pin
+- uid: Sting.Measurements.Components.Led.Blink(System.Int32)
+  name: Blink(Int32)
+  href: api/Sting.Measurements.Components.Led.html#Sting_Measurements_Components_Led_Blink_System_Int32_
+  commentId: M:Sting.Measurements.Components.Led.Blink(System.Int32)
+  fullName: Sting.Measurements.Components.Led.Blink(System.Int32)
+  nameWithType: Led.Blink(Int32)
+- uid: Sting.Measurements.Components.Led.Blink*
+  name: Blink
+  href: api/Sting.Measurements.Components.Led.html#Sting_Measurements_Components_Led_Blink_
+  commentId: Overload:Sting.Measurements.Components.Led.Blink
+  isSpec: "True"
+  fullName: Sting.Measurements.Components.Led.Blink
+  nameWithType: Led.Blink
 - uid: Sting.Measurements.Components.Led.ClosePin
   name: ClosePin()
   href: api/Sting.Measurements.Components.Led.html#Sting_Measurements_Components_Led_ClosePin
@@ -389,6 +731,12 @@ references:
   commentId: T:Sting.Measurements.StartupTask
   fullName: Sting.Measurements.StartupTask
   nameWithType: StartupTask
+- uid: Sting.Measurements.StartupTask._buzzer
+  name: _buzzer
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__buzzer
+  commentId: F:Sting.Measurements.StartupTask._buzzer
+  fullName: Sting.Measurements.StartupTask._buzzer
+  nameWithType: StartupTask._buzzer
 - uid: Sting.Measurements.StartupTask._cancelRequested
   name: _cancelRequested
   href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__cancelRequested
@@ -401,12 +749,24 @@ references:
   commentId: F:Sting.Measurements.StartupTask._deferral
   fullName: Sting.Measurements.StartupTask._deferral
   nameWithType: StartupTask._deferral
+- uid: Sting.Measurements.StartupTask._lcd
+  name: _lcd
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__lcd
+  commentId: F:Sting.Measurements.StartupTask._lcd
+  fullName: Sting.Measurements.StartupTask._lcd
+  nameWithType: StartupTask._lcd
 - uid: Sting.Measurements.StartupTask._pressureSensor
   name: _pressureSensor
   href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__pressureSensor
   commentId: F:Sting.Measurements.StartupTask._pressureSensor
   fullName: Sting.Measurements.StartupTask._pressureSensor
   nameWithType: StartupTask._pressureSensor
+- uid: Sting.Measurements.StartupTask._statusLed
+  name: _statusLed
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__statusLed
+  commentId: F:Sting.Measurements.StartupTask._statusLed
+  fullName: Sting.Measurements.StartupTask._statusLed
+  nameWithType: StartupTask._statusLed
 - uid: Sting.Measurements.StartupTask._structureMonitoringHub
   name: _structureMonitoringHub
   href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask__structureMonitoringHub
@@ -419,19 +779,45 @@ references:
   commentId: F:Sting.Measurements.StartupTask._tempSensor
   fullName: Sting.Measurements.StartupTask._tempSensor
   nameWithType: StartupTask._tempSensor
-- uid: Sting.Measurements.StartupTask.InitComponents
-  name: InitComponents()
-  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitComponents
-  commentId: M:Sting.Measurements.StartupTask.InitComponents
-  fullName: Sting.Measurements.StartupTask.InitComponents()
-  nameWithType: StartupTask.InitComponents()
-- uid: Sting.Measurements.StartupTask.InitComponents*
-  name: InitComponents
-  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitComponents_
-  commentId: Overload:Sting.Measurements.StartupTask.InitComponents
+- uid: Sting.Measurements.StartupTask.InitComponentsAsync
+  name: InitComponentsAsync()
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitComponentsAsync
+  commentId: M:Sting.Measurements.StartupTask.InitComponentsAsync
+  fullName: Sting.Measurements.StartupTask.InitComponentsAsync()
+  nameWithType: StartupTask.InitComponentsAsync()
+- uid: Sting.Measurements.StartupTask.InitComponentsAsync*
+  name: InitComponentsAsync
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitComponentsAsync_
+  commentId: Overload:Sting.Measurements.StartupTask.InitComponentsAsync
   isSpec: "True"
-  fullName: Sting.Measurements.StartupTask.InitComponents
-  nameWithType: StartupTask.InitComponents
+  fullName: Sting.Measurements.StartupTask.InitComponentsAsync
+  nameWithType: StartupTask.InitComponentsAsync
+- uid: Sting.Measurements.StartupTask.InitDirectMethodCallsAsync
+  name: InitDirectMethodCallsAsync()
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitDirectMethodCallsAsync
+  commentId: M:Sting.Measurements.StartupTask.InitDirectMethodCallsAsync
+  fullName: Sting.Measurements.StartupTask.InitDirectMethodCallsAsync()
+  nameWithType: StartupTask.InitDirectMethodCallsAsync()
+- uid: Sting.Measurements.StartupTask.InitDirectMethodCallsAsync*
+  name: InitDirectMethodCallsAsync
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_InitDirectMethodCallsAsync_
+  commentId: Overload:Sting.Measurements.StartupTask.InitDirectMethodCallsAsync
+  isSpec: "True"
+  fullName: Sting.Measurements.StartupTask.InitDirectMethodCallsAsync
+  nameWithType: StartupTask.InitDirectMethodCallsAsync
+- uid: Sting.Measurements.StartupTask.OnTerminate(System.Object,System.EventArgs)
+  name: OnTerminate(Object, EventArgs)
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_OnTerminate_System_Object_System_EventArgs_
+  commentId: M:Sting.Measurements.StartupTask.OnTerminate(System.Object,System.EventArgs)
+  fullName: Sting.Measurements.StartupTask.OnTerminate(System.Object, System.EventArgs)
+  nameWithType: StartupTask.OnTerminate(Object, EventArgs)
+- uid: Sting.Measurements.StartupTask.OnTerminate*
+  name: OnTerminate
+  href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_OnTerminate_
+  commentId: Overload:Sting.Measurements.StartupTask.OnTerminate
+  isSpec: "True"
+  fullName: Sting.Measurements.StartupTask.OnTerminate
+  nameWithType: StartupTask.OnTerminate
 - uid: Sting.Measurements.StartupTask.PeriodicTask(Windows.System.Threading.ThreadPoolTimer)
   name: PeriodicTask(ThreadPoolTimer)
   href: api/Sting.Measurements.StartupTask.html#Sting_Measurements_StartupTask_PeriodicTask_Windows_System_Threading_ThreadPoolTimer_
@@ -606,3 +992,16 @@ references:
   isSpec: "True"
   fullName: Sting.Measurements.TelemetryData.ToString
   nameWithType: TelemetryData.ToString
+- uid: Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds
+  name: UnixTimeStampMilliseconds
+  href: api/Sting.Measurements.TelemetryData.html#Sting_Measurements_TelemetryData_UnixTimeStampMilliseconds
+  commentId: P:Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds
+  fullName: Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds
+  nameWithType: TelemetryData.UnixTimeStampMilliseconds
+- uid: Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds*
+  name: UnixTimeStampMilliseconds
+  href: api/Sting.Measurements.TelemetryData.html#Sting_Measurements_TelemetryData_UnixTimeStampMilliseconds_
+  commentId: Overload:Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds
+  isSpec: "True"
+  fullName: Sting.Measurements.TelemetryData.UnixTimeStampMilliseconds
+  nameWithType: TelemetryData.UnixTimeStampMilliseconds
