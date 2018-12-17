@@ -133,8 +133,8 @@ export default {
                         {
                             "id": 1,
                             "room-id": 211,
-                            "x": 76,
-                            "y": 74.5,
+                            "x": 80,
+                            "y": 69,
                             "device": "RasPi_Robin",
                             "name": "default",
                             "link": "../assets/images/default.png",
@@ -148,8 +148,8 @@ export default {
                         {
                             "id": 2,
                             "room-id": 212,
-                            "x": 74,
-                            "y": 45.5,
+                            "x": 71,
+                            "y": 3,
                             "device": "RasPi_Enes",
                             "name": "default",
                             "link": "../assets/images/default.png",
@@ -163,8 +163,8 @@ export default {
                         {
                             "id": 3,
                             "room-id": 213,
-                            "x": 28,
-                            "y": 16,
+                            "x": 3,
+                            "y": 3,
                             "device": "Raspi_Boris",
                             "name": "default",
                             "link": "../assets/images/default.png",
@@ -178,8 +178,8 @@ export default {
                         {
                             "id": 4,
                             "room-id": 214,
-                            "x": 36,
-                            "y": 55.5,
+                            "x": 3,
+                            "y": 68.5,
                             "device": "RasPi_Marc",
                             "name": "default",
                             "link": "../assets/images/default.png",
