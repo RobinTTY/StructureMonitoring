@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { Alert } from 'selenium-webdriver';
+import 'chartjs-plugin-annotation';
 
 //Get building data from local file
 import * as json1 from '../buildings';
@@ -45,6 +46,11 @@ export class RoomComponent implements OnInit {
         let humidity = Object.values(res).map(res => res.humidity._);
         let altitude = Object.values(res).map(res => res.altitude._);
         let dateTime = Object.values(res).map(res => res.unixtime._);
+        // var sum = 0;
+        // for(var i =0; i<temperature.length;i++){
+        //   sum += parseFloat(temperature[i]);
+        // }
+        // var tempAverage = (sum/temperature.length).toString().substring(0,5);
 
         let weatherDates = []
         dateTime.forEach((res) => {
@@ -60,13 +66,15 @@ export class RoomComponent implements OnInit {
             labels: weatherDates,
             datasets: [
               {
+                label: 'Temperature',
                 data: temperature,
                 borderColor: '#e21212',
                 fill: false
-              },
-            ]
+              }
+           ]
           },
           options: {
+            responsive: true,
             elements: {
               point: {
                 radius: 0,
@@ -92,7 +100,27 @@ export class RoomComponent implements OnInit {
                   labelString: 'Temperature in °C'
                 }
               }]
-            }
+            },
+          //   tooltips:{
+          //     mode: 'index',
+          //     intersect: true
+          //   },
+            
+          //   annotation: {
+          //     annotations: [{
+          //       type: 'line',
+          //       mode: 'horizontal',
+          //       scaleID: 'y-axis-0',
+          //       value: tempAverage,
+          //       borderColor: '#3334C9',
+          //       borderWidth: 3,
+          //       label: {
+          //         enabled: true,
+          //         content: 'Low threshold'
+          //       }
+          //     }
+          //   ]
+          // }
           }
         })
 
