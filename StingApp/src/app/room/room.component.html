@@ -4,7 +4,7 @@
       <li class="breadcrumb-item"><a routerLink="">Buildings</a></li>
       <li class="breadcrumb-item"><a routerLink="/building/{{urlSplit$[2]}}">Floors</a></li>
       <li class="breadcrumb-item"><a routerLink="/building/{{urlSplit$[2]}}/floor/{{urlSplit$[4]}}">Floor {{urlSplit$[4]}}</a></li>   
-      <li class="breadcrumb-item active">Room {{urlSplit$[6]}}</li>
+      <li class="breadcrumb-item active">Room {{bData$["room-id"]}}</li>
     </ol>
   </strong>
 <h1 class="text-center main-header">Welcome to room {{ bData$["room-id"].valueOf() }}</h1>
