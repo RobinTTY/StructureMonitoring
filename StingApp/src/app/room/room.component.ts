@@ -147,9 +147,11 @@ export class RoomComponent implements OnInit {
       document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
       document.getElementById("TimeVal").innerText = dt.toString()
     }catch(e){
-      if(e instanceof TypeError)      
-      console.log("No connection to measurement device established")
-      console.log("Exception" + e.name + ": " + e.message);
+      if(e instanceof TypeError) {
+        // ignore uninitialized data
+      } else{
+        console.log("Exception" + e.name + ": " + e.message);
+      }
     }
   }
 

@@ -12,7 +12,7 @@
         <section id="image" class="text-center">
           <a>
             <img [src]="floor$.link" id="wow" class="rounded" alt="floor-plan" />          
-            <div *ngFor="let b of bData$" id="txt{{b.id}}" class="img-link" routerLink="room/1"> </div>
+            <div *ngFor="let b of bData$" id="txt{{b.id}}" class="img-link" routerLink="room/{{b.id}}"> </div>
           </a>        
         </section>
       </div>

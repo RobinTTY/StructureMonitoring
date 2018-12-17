@@ -52,7 +52,7 @@ export class FloorComponent implements OnInit {
           }
         }
 
-        //Ampel
+        // Status insertion
         if(dev_data["Temperature"].valueOf() >= 28){
           str = "🔥";
         } 
@@ -65,8 +65,12 @@ export class FloorComponent implements OnInit {
 
         document.getElementById("txt" + (i + 1)).innerText = str;
       }
-      catch(TypeError){
-        console.log("No connection to measurement device established")
+      catch(e){
+        if(e instanceof TypeError) {
+          // ignore uninitialized data
+        } else{
+        console.log("Exception" + e.name + ": " + e.message);
+      }
       }
     }
   }
