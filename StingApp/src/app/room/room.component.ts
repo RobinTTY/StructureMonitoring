@@ -37,6 +37,7 @@ export class RoomComponent implements OnInit {
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
     this.fetchTelemetry();
     
+    //insert chart data
     this._chart.deviceData(this.bData$["device"])
       .subscribe(res => {
         
@@ -136,16 +137,34 @@ export class RoomComponent implements OnInit {
   }
 
   // insert measured values if available into cards
-  
   ngDoCheck() {
     try{
       let dt = new Date(this.jsonObject["UnixTimeStampMilliseconds"]).toLocaleTimeString('en-EN', {weekday: 'long', month: 'long', day: 'numeric',hour: 'numeric', minute: 'numeric'})
+      var thresholds = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1].thresholds;
       document.getElementById("TempVal").innerText = this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + "°C"
       document.getElementById("HumVal").innerText = this.jsonObject["Humidity"].valueOf().toString() + "%"
       document.getElementById("PressVal").innerText = this.jsonObject["Pressure"].valueOf().toString().substr(0,3) + "hPa"
       document.getElementById("AltVal").innerText = this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + "m"
       document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
       document.getElementById("TimeVal").innerText = dt.toString()
+
+      if(this.jsonObject["Temperature"].valueOf() >= thresholds["tempHigh"]){
+        document.getElementById("temperature").innerText = "above threshold of " + thresholds["tempHigh"] + "°C";
+        document.getElementById("temperature-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      }    
+      else if (this.jsonObject["Temperature"].valueOf() <= thresholds["tempLow"]){
+        document.getElementById("temperature").innerText = "below threshold of " + thresholds["tempLow"] + "°C";
+        document.getElementById("temperature-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      } 
+      if(this.jsonObject["Humidity"].valueOf() >= thresholds["humHigh"]){
+        document.getElementById("humidity").innerText = "above threshold of " + thresholds["humHigh"] + "%";
+        document.getElementById("humidity-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      }
+      else if (this.jsonObject["Humidity"].valueOf() <= thresholds["humLow"]){
+        document.getElementById("humidity").innerText = "below threshold of " + thresholds["humLow"] + "%";
+        document.getElementById("humidity-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      }
+
     }catch(e){
       if(e instanceof TypeError) {
         // ignore uninitialized data
@@ -163,6 +182,7 @@ export class RoomComponent implements OnInit {
     });
   }
 
+  // if device card is clicked call device method
   locate(){
     this.service.InvokeDeviceMethod('Locate', this.bData$["device"]).subscribe();    
   }

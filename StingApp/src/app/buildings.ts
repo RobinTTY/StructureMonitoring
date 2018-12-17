@@ -140,7 +140,7 @@ export default {
                             "link": "../assets/images/default.png",
                             "thresholds": {
                                 "tempLow": 19.3,
-                                "tempHigh": 28,
+                                "tempHigh": 22,
                                 "humLow": 20.7,
                                 "humHigh": 70
                             }
@@ -157,7 +157,7 @@ export default {
                                 "tempLow": 17.5,
                                 "tempHigh": 25,
                                 "humLow": 30,
-                                "humHigh": 70
+                                "humHigh": 50
                             }
                         },
                         {
@@ -169,8 +169,8 @@ export default {
                             "name": "default",
                             "link": "../assets/images/default.png",
                             "thresholds": {
-                                "tempLow": 18,
-                                "tempHigh": 25,
+                                "tempLow": 23,
+                                "tempHigh": 27,
                                 "humLow": 10,
                                 "humHigh": 80
                             }
@@ -184,7 +184,7 @@ export default {
                             "name": "default",
                             "link": "../assets/images/default.png",
                             "thresholds": {
-                                "tempLow": 11.5,
+                                "tempLow": 20,
                                 "tempHigh": 27.5,
                                 "humLow": 20,
                                 "humHigh": 70

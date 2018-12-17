@@ -71,7 +71,7 @@ export class FloorComponent implements OnInit {
         }
         else if (dev_data["Humidity"].valueOf() <= thresholds["humLow"]){
           str += "🌵";
-          document.getElementById("txt" + (i + 1)).style.setProperty('color','blue')
+          document.getElementById("txt" + (i + 1)).style.setProperty('color','blue');
           statusOK = false;
         } 
         if(statusOK)

@@ -12,20 +12,20 @@
     <div class="row text-center justify-content-center">
       <div class="col-xl-4 col-md-6">
         <div class="card" style="width: 18rem;">                      
-          <div class="card-body">
+          <div id="temperature-body" class="card-body">
               <img src="../../assets/images/temperature.png">
               <h5 class="card-title">Temperature</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <h6 id="temperature" class="card-subtitle mb-2 text-muted">within thresholds</h6>
               <p class="card-text"><span id="TempVal">No data provided</span></p>                
           </div>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
         <div class="card" style="width: 18rem;">                      
-          <div class="card-body">
+          <div id="humidity-body" class="card-body">
               <img src="../../assets/images/humidity.png">
               <h5 class="card-title">Humidity</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <h6 id="humidity" class="card-subtitle mb-2 text-muted">within thresholds</h6>
               <p class="card-text"><span id="HumVal">No data provided</span></p>                
           </div>
         </div>          
@@ -35,7 +35,7 @@
           <div class="card-body">
               <img src="../../assets/images/airPressure.png">
               <h5 class="card-title">Air Pressure</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Within Thresholds</h6>
+              <h6 class="card-subtitle mb-2 text-muted">within thresholds</h6>
               <p class="card-text"><span id="PressVal">No data provided</span></p>                
           </div>
         </div>          
@@ -55,7 +55,7 @@
           <div class="card-body locate-body" (click)="locate()">
               <img src="../../assets/images/device.png">
               <h5 class="card-title">Device Id</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Click card to locate</h6>
+              <h6 class="card-subtitle mb-2 text-muted">click card to locate</h6>
               <p class="card-text"><span id="DeviceVal">No data provided</span></p>                
           </div>
         </div>               
@@ -64,8 +64,8 @@
         <div class="card" style="width: 18rem;">                      
           <div class="card-body">
               <img src="../../assets/images/watch.png">
-              <h5 class="card-title">Last updated</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Last telemetry received</h6>
+              <h5 class="card-title">Last Update</h5>
+              <h6 class="card-subtitle mb-2 text-muted">last telemetry received</h6>
               <p class="card-text"><span id="TimeVal">No data provided</span></p>                
           </div>
         </div>
