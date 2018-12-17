@@ -27,13 +27,16 @@ export class FloorComponent implements OnInit {
     this.fetchTelemetry();
     this.urlSplit$ = this.router.url.split('/')
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
-    this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1];
+    this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1]; 
+  }
+
+  ngAfterViewInit(){
     for(let i = 0; i < this.bData$["length"].valueOf(); i++) {
       document.getElementById("txt" + (i + 1)).style.setProperty('left', this.bData$[i]["x"].valueOf() + '%');
       document.getElementById("txt" + (i + 1)).style.setProperty('top', this.bData$[i]["y"].valueOf() + '%');
       if(this.bData$[i].device == "default")       
         document.getElementById("txt" + (i + 1)).style.display = "none";
-    }    
+    }   
   }
 
   // # Insert room status

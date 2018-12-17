@@ -11,11 +11,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12 main-content">
         <section id="image" class="text-center">
           <a>
-            <img [src]="floor$.link" class="rounded" alt="floor-plan" />          
-            <div id="txt1" class="img-link" routerLink="room/1"> </div>
-            <div id="txt2" class="img-link" routerLink="room/2"> </div>
-            <div id="txt3" class="img-link" routerLink="room/3"> </div>
-            <div id="txt4" class="img-link" routerLink="room/4"> </div>
+            <img [src]="floor$.link" id="wow" class="rounded" alt="floor-plan" />          
+            <div *ngFor="let b of bData$" id="txt{{b.id}}" class="img-link" routerLink="room/1"> </div>
           </a>        
         </section>
       </div>
