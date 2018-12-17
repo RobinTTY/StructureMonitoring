@@ -26,7 +26,7 @@ export class FloorComponent implements OnInit {
   ngOnInit() { 
     this.fetchTelemetry();
     this.urlSplit$ = this.router.url.split('/')
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
+    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;    
     this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1]; 
   }
 
@@ -52,16 +52,30 @@ export class FloorComponent implements OnInit {
           }
         }
 
-        // Status insertion
-        if(dev_data["Temperature"].valueOf() >= 28){
-          str = "🔥";
-        } 
-        else if (dev_data["Temperature"].valueOf() <= 19) {
-          str = "❄";
+        // Status insertion based on thresholds of each individual room
+        var thresholds = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[i].thresholds;
+        var statusOK = true;
+
+        if(dev_data["Temperature"].valueOf() >= thresholds["tempHigh"]){
+          str += "🔥";   
+          statusOK = false; 
+        }    
+        else if (dev_data["Temperature"].valueOf() <= thresholds["tempLow"]){
+          str += "❄";
           document.getElementById("txt" + (i + 1)).style.setProperty('color','blue')
-        } else {
-          str = "👍";
+          statusOK = false;
+        } 
+        if(dev_data["Humidity"].valueOf() >= thresholds["humHigh"]){
+          str += "💧";
+          statusOK = false;
         }
+        else if (dev_data["Humidity"].valueOf() <= thresholds["humLow"]){
+          str += "🌵";
+          document.getElementById("txt" + (i + 1)).style.setProperty('color','blue')
+          statusOK = false;
+        } 
+        if(statusOK)
+          str = "👍";
 
         document.getElementById("txt" + (i + 1)).innerText = str;
       }

@@ -45,8 +45,14 @@
     }
  }
 
+ @media (max-width: 399.98px) {
+    #image div {    
+        font-size: 21px; 
+    } 
+ }
+
  @media (max-width: 299.98px) {
     #image div {    
-        font-size: 17px; 
+        font-size: 18px; 
     } 
  }

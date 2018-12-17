@@ -21,7 +21,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -30,7 +36,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -39,7 +51,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         }
                     ]
                 },
@@ -56,7 +74,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -65,7 +89,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -74,7 +104,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -101,7 +137,13 @@ export default {
                             "y": 74.5,
                             "device": "RasPi_Robin",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 19.3,
+                                "tempHigh": 28,
+                                "humLow": 20.7,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -110,7 +152,13 @@ export default {
                             "y": 45.5,
                             "device": "RasPi_Enes",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 17.5,
+                                "tempHigh": 25,
+                                "humLow": 30,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -119,7 +167,13 @@ export default {
                             "y": 16,
                             "device": "Raspi_Boris",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 18,
+                                "tempHigh": 25,
+                                "humLow": 10,
+                                "humHigh": 80
+                            }
                         },
                         {
                             "id": 4,
@@ -128,7 +182,13 @@ export default {
                             "y": 55.5,
                             "device": "RasPi_Marc",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 27.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -145,7 +205,13 @@ export default {
                             "y": 21,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -154,7 +220,13 @@ export default {
                             "y": 73,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -163,7 +235,13 @@ export default {
                             "y": 73,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -180,7 +258,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -189,7 +273,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -198,7 +288,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -225,7 +321,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -242,7 +344,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -251,7 +359,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
@@ -268,7 +382,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 2,
@@ -277,7 +397,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                         {
                             "id": 3,
@@ -286,7 +412,13 @@ export default {
                             "y": 0,
                             "device": "default",
                             "name": "default",
-                            "link": "../assets/images/default.png"
+                            "link": "../assets/images/default.png",
+                            "thresholds": {
+                                "tempLow": 11.5,
+                                "tempHigh": 22.5,
+                                "humLow": 20,
+                                "humHigh": 70
+                            }
                         },
                     ]
                 },
