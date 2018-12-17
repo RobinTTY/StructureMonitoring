@@ -3,29 +3,22 @@ import express = require('express');
 import path = require('path');
 import cors = require('cors');
 import { EventHubClient, EventPosition } from '@azure/event-hubs';
-//import * as dotenv from "dotenv";
-
 import routes from "./routes/index";
 import users from "./routes/user";
+import azure = require("azure-storage");
 
-var app = express();
-app.use(cors());
-app.options("*", cors());
+// Setting up some environment variables
 
-var storageName = "stingstorage";
-var table = 'mytable';
-var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA==";
-var skippedData = 5;
-var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI=";
-var lastTelemetryData = "No Data received yet!";
+var storageName = "stingstorage"; // Name of the storage in Azure
+var table = 'mytable';  // Name of the table in the storage
+var storageKey = "9YN+eDdjocIPd64VOPmUVMpo2c+FE+nOyxXPa9nzqxqKtzLs4AgGYX+jA6+zTEhs8xaih0na2Z2vmSgeWiXtgA=="; // Key of the azure storage
+var skippedData = 5;    //Every fifth measurement is saved to the database
+var connectionString = "HostName=StructureMonitoring.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=unYHBx8mNUkOu7jFAhBG4sTkL86e6J9gxaygI/QkeUI="; // Primary connection string of the azure storage
+var lastTelemetryData = "No Data received yet!";    // Telemetry variable 
 var deviceEnes = lastTelemetryData;
 var deviceRobin = lastTelemetryData;
 var deviceMarc = lastTelemetryData;
 var deviceBoris = lastTelemetryData;
-import azure = require("azure-storage");
-var tableService = azure.createTableService(storageName, storageKey);
-
-// run function to read from azure storage table
 
 var obj;
 var T_obj;
@@ -37,6 +30,16 @@ dataBaseCycle[1] = skippedData;
 dataBaseCycle[2] = skippedData;
 dataBaseCycle[3] = skippedData;
 
+// Create the table service
+var tableService = azure.createTableService(storageName, storageKey);
+
+var app = express();
+app.use(cors());
+app.options("*", cors());
+
+// The following function starts a client, which looks for incoming data from the iot-hub.
+// Furthermore, it saves the data to the corresponding device variable.
+// It also inserts the data to the azure storage table. The cycle is specified in the skippedData variable
 
 function readIotHub(connectionString) {
     var printError = err => {
@@ -46,9 +49,11 @@ function readIotHub(connectionString) {
     var printMessage = message => {
 
         console.log("Last telemetry received: ");
+
+        // Incoming telemetry json is modified to our needs and then saved to the corresponding deviceId
+
         lastTelemetryData = JSON.stringify(message.body).substring(0, JSON.stringify(message.body).length - 1);
         lastTelemetryData = lastTelemetryData.concat(",");
-
         obj = JSON.parse(JSON.stringify(message.annotations));
         lastTelemetryData = lastTelemetryData.concat(`"DeviceId":"${obj["iothub-connection-device-id"]}"}`);
         console.log(lastTelemetryData);
@@ -73,7 +78,9 @@ function readIotHub(connectionString) {
         }
         else
             console.log("Device Id can not be recognized! Please check your DeviceId!");
+
         // Function to insert the current telemetry to the table
+
         telemetryForAzure = {
             PartitionKey: {'$': 'Edm.String', _:(T_obj.UnixTimeStampMilliseconds).toString()},
             RowKey: { '$': 'Edm.String', _: (T_obj.DeviceId).toString() },
@@ -85,11 +92,10 @@ function readIotHub(connectionString) {
             unixtime: { '$': 'Edm.Int64', _: (T_obj.UnixTimeStampMilliseconds).toString() }
         };
 
-        //console.log(telemetryForAzure);
         if (dataBaseCycle[0] <= 0 || dataBaseCycle[1] <= 0 || dataBaseCycle[2] <= 0 || dataBaseCycle[3] <= 0) {
             tableService.insertEntity(table, telemetryForAzure, function (error, result, response) {
                 if (!error) {
-                    console.log('Success! Check the database.');
+                    // console.log('Success! Check the database.');
                 }
             });
             if (dataBaseCycle[0] <= 0)
@@ -115,13 +121,10 @@ function readIotHub(connectionString) {
     }).catch(printError);
 }
 
-readIotHub(connectionString);
+readIotHub(connectionString); // Starts the client, which will run in the background "infinitely"
 
 
-//var device = 'RasPi_Enes';
-
-// Gets the telemetry data in real time from the iotHub. This functions runs in the background
-// since the start of the backend application.
+// Frontend can access the data from the following get request uris
 
 app.get("/telemetry/current/RasPi_Enes", (req, res) => res.send(deviceEnes));
 
@@ -153,19 +156,13 @@ app.get("/telemetry/lastday/:device", (req, res) => {
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
       .select(["unixtime", "temperature", "humidity", "altitude", "deviceid" ])
-    //.top(10)
       .where("PartitionKey gt ?", (Date.now() - 86400000).toString())
       .and("RowKey eq ?", req.params.device);
 
   tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
-
-          console.log(result.entries);
-
-
           res.send(result.entries);
-          //console.log(query);
       }
 
   });
@@ -178,16 +175,13 @@ app.get("/telemetry/lastweek/:device", (req, res) => {
   //var lastDay = Date.now() - 86400000;
   var query = new azure.TableQuery()
       .select(["unixtime", "temperature", "humidity", "altitude", "deviceid"])
-    //.top(10)
-    .where("PartitionKey gt ?", (Date.now() - (86400000 * 7)).toString())
-    .and("deviceid eq ?", req.params.device);
+      .where("PartitionKey gt ?", (Date.now() - (86400000 * 7)).toString())
+      .and("deviceid eq ?", req.params.device);
 
   tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
-          console.log(result.entries);
           res.send(result.entries);
-          //console.log(query);
       }
 
   });
@@ -206,9 +200,7 @@ app.get("/telemetry/lastmonth/:device", (req, res) => {
   tableService.queryEntities(table, query, null, (error, result, response) => {
       if (!error) {
           // result.entries contains entities matching the query
-          console.log(result.entries);
           res.send(result.entries);
-          //console.log(query);
       }
 
   });
