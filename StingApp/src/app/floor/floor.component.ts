@@ -61,7 +61,7 @@ export class FloorComponent implements OnInit {
           statusOK = false; 
         }    
         else if (dev_data["Temperature"].valueOf() <= thresholds["tempLow"]){
-          str += "❄";
+          str += "❄🌵";
           document.getElementById("txt" + (i + 1)).style.setProperty('color','blue')
           statusOK = false;
         } 
