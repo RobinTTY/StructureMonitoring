@@ -41,7 +41,7 @@ export class RoomComponent implements OnInit {
     this._chart.deviceData(this.bData$["device"])
       .subscribe(res => {
         
-        let temperature = Object.values(res).map(res => res.temperature._);
+        let temperature = Object.values(res).map(res => res.temperature._.substr(0,5));
         let humidity = Object.values(res).map(res => res.humidity._);
         let altitude = Object.values(res).map(res => res.altitude._);
         let dateTime = Object.values(res).map(res => res.unixtime._);
@@ -69,7 +69,9 @@ export class RoomComponent implements OnInit {
           options: {
             elements: {
               point: {
-                radius: 0
+                radius: 0,
+                hitRadius: 10,
+                hoverRadius: 10
               }
             },
             legend: {
@@ -80,7 +82,7 @@ export class RoomComponent implements OnInit {
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: 'Date'
+                  labelString: 'Last 24 hours'
                 }
               }],
               yAxes: [{
@@ -109,7 +111,9 @@ export class RoomComponent implements OnInit {
           options: {
             elements: {
               point: {
-                radius: 0
+                radius: 0,
+                hitRadius: 10,
+                hoverRadius: 10
               }
             },
             legend: {
@@ -120,7 +124,7 @@ export class RoomComponent implements OnInit {
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: 'Date'
+                  labelString: 'Last 24 hours'
                 }
               }],
               yAxes: [{
