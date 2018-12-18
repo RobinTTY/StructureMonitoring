@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sting.Measurements.Components.Bmp180" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAACABBAAAAAA=</HashCode>
+      <FileName>Components\Bmp180.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_bmp" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sting.Measurements.Components.Buzzer" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAAAQAAAAAAAAAAAAAAQAAQAAAQAABBAAAAAA=</HashCode>
+      <FileName>Components\Buzzer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sting.Measurements.Components.Dht11" BaseTypeListCollapsed="true">
+    <Position X="8" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAABAQAAAAAAAAIAAAAAAAAAAAAAAABBAAAAAA=</HashCode>
+      <FileName>Components\Dht11.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dht" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sting.Measurements.Components.Lcd" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="Bl" Hidden="true" />
+      <Field Name="D4" Hidden="true" />
+      <Field Name="D5" Hidden="true" />
+      <Field Name="D6" Hidden="true" />
+      <Field Name="D7" Hidden="true" />
+      <Field Name="DeviceI2CAddress" Hidden="true" />
+      <Field Name="En" Hidden="true" />
+      <Field Name="I2CControllerName" Hidden="true" />
+      <Field Name="Rs" Hidden="true" />
+      <Field Name="Rw" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAQAACAQAAAAACAAAAgAAAIAIJCDBAEEAAI=</HashCode>
+      <FileName>Components\Lcd.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_lcd" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sting.Measurements.Components.Led" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAAAAAQAAAAgAAAAAAAAAQAAAAAAQAABBAAAAAA=</HashCode>
+      <FileName>Components\Led.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sting.Measurements.StartupTask" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.75" />
+    <AssociationLine Name="_buzzer" Type="Sting.Measurements.Components.Buzzer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.39" Y="0.893" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_lcd" Type="Sting.Measurements.Components.Lcd" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="0.938" />
+        <Point X="4.625" Y="0.938" />
+        <Point X="4.625" Y="2.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.202" Y="0.893" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_pressureSensor" Type="Sting.Measurements.Components.Bmp180">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.575" Y="1.537" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_statusLed" Type="Sting.Measurements.Components.Led" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="0.812" />
+        <Point X="2.625" Y="0.812" />
+        <Point X="2.625" Y="2.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.461" Y="0.818" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_tempSensor" Type="Sting.Measurements.Components.Dht11">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.502" Y="1.537" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAEAABAAAAAECAAGQAAAIBAAAAAAAAAAAAAAAAAEgI=</HashCode>
+      <FileName>StartupTask.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_buzzer" />
+      <Field Name="_lcd" />
+      <Field Name="_pressureSensor" />
+      <Field Name="_structureMonitoringHub" />
+      <Field Name="_statusLed" />
+      <Field Name="_tempSensor" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Sting.Measurements.TelemetryData">
+    <Position X="14" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACEBAACgAAAgAAAAAAAIAAAAgAEAAA=</HashCode>
+      <FileName>TelemetryData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sting.Cloud.AzureIotHub">
+    <Position X="14" Y="0.5" Width="3.25" />
+    <NestedTypes>
+      <Class Name="Sting.Cloud.AzureIotHub.OnLocateEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Sting.Cloud.AzureIotHub.OnTerminateEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Sting.Measurements.External_Libraries.Display" Collapsed="true">
+    <Position X="3.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAKBAoAACAAAAMAAAAAIiAJCQCCACAIMEAAA=</HashCode>
+      <FileName>External Libraries\Display.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sting.Measurements.External_Libraries.BMP180Sensor" Collapsed="true">
+    <Position X="10.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQjBBQQACAFAAAYAAAAAGAAAAAAAAgOABEACAAYAAA=</HashCode>
+      <FileName>External Libraries\BMP180ext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Sting.Measurements.IGpioComponent">
+    <Position X="16" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAABBAAAAAA=</HashCode>
+      <FileName>IGpioComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sting.Measurements.ISensor">
+    <Position X="14" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ISensor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sensors.Dht.IDht" Collapsed="true">
+    <Position X="8" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

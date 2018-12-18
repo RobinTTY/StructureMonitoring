@@ -29,7 +29,6 @@ namespace Sting.Measurements
         }
 
         // initialize used components async
-        // TODO: CHECK RETURN VALUE FOR SUCCESS
         private async void InitComponentsAsync()
         {
             await _tempSensor.InitComponentAsync(4);
@@ -54,7 +53,6 @@ namespace Sting.Measurements
 
         // Task which is executed every x seconds as defined in Run()
         // Take Measurements periodically
-        // TODO: Introduce Cloud to Device Message which can cancel the deferral, resulting in termination of the program
         private async void PeriodicTask(ThreadPoolTimer timer)
         {
             if (_cancelRequested == false)

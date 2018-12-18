@@ -11,7 +11,6 @@ namespace Sting.Measurements
         /// If the component uses the I2C bus, the pin parameter is not required.</param>
         /// <returns>Returns True if initiation was successful.</returns>
         Task<bool> InitComponentAsync(int pin);
-        // TODO: Throw Exception if component gets initialized twice
 
         /// <summary>
         /// Returns the state of the gpio component.
