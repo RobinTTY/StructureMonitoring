@@ -7,7 +7,7 @@ You'll need node.js and npm, then install angular using the command 'npm install
 ## Configuring your own Buildings
 To configure your own buildings you will need to edit the building.ts file which is saved in the directory StingApp/Source/app. The file already contains an example configuration.
 Excerpt from the buildings.ts file:<br><br>
-![Node.js](buildings.png)
+![Buildings](https://github.com/RobinTTY/StructureMonitoring/blob/master/StingApp/buildings.PNG)
 
 To configure your own building you can just edit one of the already existing example objects or create a new one following the same schema. The Parameters you will need to provide are:
 - name: the name of your building/floor/room
