@@ -63,24 +63,19 @@
   </Class>
   <Class Name="Sting.Measurements.StartupTask" BaseTypeListCollapsed="true">
     <Position X="8.5" Y="0.5" Width="1.75" />
-    <AssociationLine Name="_buzzer" Type="Sting.Measurements.Components.Buzzer">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.39" Y="0.893" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="_lcd" Type="Sting.Measurements.Components.Lcd" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="8.5" Y="0.938" />
-        <Point X="4.625" Y="0.938" />
-        <Point X="4.625" Y="2.75" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.202" Y="0.893" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="_pressureSensor" Type="Sting.Measurements.Components.Bmp180">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.575" Y="1.537" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_tempSensor" Type="Sting.Measurements.Components.Dht11">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.502" Y="1.537" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_buzzer" Type="Sting.Measurements.Components.Buzzer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.39" Y="0.893" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="_statusLed" Type="Sting.Measurements.Components.Led" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -93,9 +88,14 @@
         <Position X="-0.461" Y="0.818" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="_tempSensor" Type="Sting.Measurements.Components.Dht11">
+    <AssociationLine Name="_lcd" Type="Sting.Measurements.Components.Lcd" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="0.938" />
+        <Point X="4.625" Y="0.938" />
+        <Point X="4.625" Y="2.75" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.502" Y="1.537" />
+        <Position X="-0.202" Y="0.893" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -103,14 +103,14 @@
       <FileName>StartupTask.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_buzzer" />
-      <Field Name="_lcd" />
       <Field Name="_pressureSensor" />
-      <Field Name="_structureMonitoringHub" />
-      <Field Name="_statusLed" />
       <Field Name="_tempSensor" />
+      <Field Name="_buzzer" />
+      <Field Name="_statusLed" />
+      <Field Name="_lcd" />
+      <Field Name="_structureMonitoringHub" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Sting.Measurements.TelemetryData">
     <Position X="14" Y="3.75" Width="1.75" />
