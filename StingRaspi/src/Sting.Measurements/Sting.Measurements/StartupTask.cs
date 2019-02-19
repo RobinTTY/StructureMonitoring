@@ -17,7 +17,7 @@ namespace Sting.Measurements
         private readonly Buzzer _buzzer = new Buzzer();
         private readonly Led _statusLed = new Led();
         private readonly Lcd _lcd = new Lcd();
-        private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
+        // private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         private bool _cancelRequested;
         
         public void Run(IBackgroundTaskInstance taskInstance)
@@ -46,9 +46,9 @@ namespace Sting.Measurements
         // Register Direct Methods and set event handlers
         private async void InitDirectMethodCallsAsync()
         {
-            await _structureMonitoringHub.RegisterDirectMethodsAsync();
-            _structureMonitoringHub.Locate += _buzzer.OnLocate;
-            _structureMonitoringHub.Terminate += OnTerminate;
+            // await _structureMonitoringHub.RegisterDirectMethodsAsync();
+            //_structureMonitoringHub.Locate += _buzzer.OnLocate;
+            //_structureMonitoringHub.Terminate += OnTerminate;
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -74,8 +74,8 @@ namespace Sting.Measurements
                     _lcd.Write($"Hum:{combinedData.Humidity}% Alt:{combinedData.Altitude:F0}m");
                 }
                 
-                var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
-                Debug.WriteLine(success ? "Message sent!" : "Could not send your message.");
+                //var success = await _structureMonitoringHub.SendDeviceToCloudMessageAsync(combinedData.ToJson());
+                //Debug.WriteLine(success ? "Message sent!" : "Could not send your message.");
                 _statusLed.Blink(5000);
             }
             else
