@@ -2,7 +2,7 @@
 
 namespace Sting.Measurements
 {
-    interface IGpioComponent
+    public interface IGpioComponent
     {
         /// <summary>
         /// Initiates the component, making it ready for use.

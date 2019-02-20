@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Sting.Measurements
+namespace Sting.Measurements.Contracts
 {
-    interface ISensor
+    public interface ISensor
     {
         /// <summary>
         /// Takes a measurement with the installed Sensor.

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Sting.Measurements.Contracts;
 using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements.Components
@@ -50,7 +51,7 @@ namespace Sting.Measurements.Components
         {
             if (!State()) return null;
             var data = await _bmp.ReadAsync();
-            return new TelemetryData(data);
+            return new TelemetryData();         // TODO: return BMP180Data Type
         }
     }
 }

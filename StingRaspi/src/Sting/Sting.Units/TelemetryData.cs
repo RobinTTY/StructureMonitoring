@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sensors.Dht;
-using Sting.Measurements.External_Libraries;
 
 namespace Sting.Measurements
 {
@@ -11,7 +10,7 @@ namespace Sting.Measurements
     /// Represents a collection of telemetry data that can be collected
     /// trough different sensors.
     /// </summary>
-    class TelemetryData
+    public class TelemetryData
     {
         public DateTime Timestamp { get; set; }
         public long UnixTimeStampMilliseconds { get; set; }
@@ -39,15 +38,15 @@ namespace Sting.Measurements
         /// trough different sensors.
         /// </summary>
         /// <param name="data">A BMP180Data object</param>
-        public TelemetryData(BMP180Data data)
-        {
-            Timestamp = DateTime.Now;            
-            UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            Temperature = data.Temperature;
-            Humidity = double.NaN;
-            Pressure = data.Pressure;
-            Altitude = data.Altitude;
-        }
+        //public TelemetryData(BMP180Data data)
+        //{
+        //    Timestamp = DateTime.Now;            
+        //    UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        //    Temperature = data.Temperature;
+        //    Humidity = double.NaN;
+        //    Pressure = data.Pressure;
+        //    Altitude = data.Altitude;
+        //}
 
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
