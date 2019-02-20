@@ -5,6 +5,9 @@
 
 pool: 'Default'
 
+trigger:
+- master
+
 variables:
   solution: 'src/**/*.sln'
   buildPlatform: 'x86|x64|ARM'
