@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
-using Sting.Cloud;
 using Sting.Measurements.Components;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
@@ -17,7 +16,6 @@ namespace Sting.Measurements
         private readonly Buzzer _buzzer = new Buzzer();
         private readonly Led _statusLed = new Led();
         private readonly Lcd _lcd = new Lcd();
-        // private readonly AzureIotHub _structureMonitoringHub = new AzureIotHub();
         private bool _cancelRequested;
         
         public void Run(IBackgroundTaskInstance taskInstance)
