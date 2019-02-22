@@ -110,7 +110,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="ClassDiagram.cd" />
     <None Include="Connected Services\StructureMonitoring\ConnectedService.json" />
     <None Include="Sting.Measurements_TemporaryKey.pfx" />
   </ItemGroup>

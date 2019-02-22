@@ -2,6 +2,7 @@
 using Sting.Measurements.Contracts;
 using Sting.Measurements.External_Libraries;
 
+
 namespace Sting.Measurements.Components
 {
     class Bmp180 : IGpioComponent, ISensor
