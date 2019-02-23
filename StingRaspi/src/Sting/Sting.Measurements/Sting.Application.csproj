@@ -96,8 +96,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="External Libraries\BMP180ext.cs" />
-    <Compile Include="External Libraries\Display.cs" />
     <Compile Include="StartupTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,9 +131,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dht">
-      <Version>1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
     </PackageReference>
@@ -144,17 +139,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sting.Measurements.Contracts\Sting.Measurements.Contracts.csproj">
-      <Project>{36c7101d-6919-4bd2-851c-86ccf9134f0a}</Project>
-      <Name>Sting.Measurements.Contracts</Name>
+    <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj">
+      <Project>{cde8118a-222e-477c-a07e-8f475ffa5c97}</Project>
+      <Name>Sting.Devices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sting.Storage\Sting.Storage.csproj">
       <Project>{9b15631e-9ae6-439f-84a5-3c9116ec86db}</Project>
       <Name>Sting.Storage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sting.Units\Sting.Units.csproj">
-      <Project>{4d7b1de3-8078-440c-9c7c-be0490f7dcd1}</Project>
-      <Name>Sting.Units</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0' ">

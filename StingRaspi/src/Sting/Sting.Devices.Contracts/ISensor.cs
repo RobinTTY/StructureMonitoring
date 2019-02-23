@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Sting.Units;
 
-namespace Sting.Measurements.Contracts
+namespace Sting.Devices.Contracts
 {
     public interface ISensor
     {

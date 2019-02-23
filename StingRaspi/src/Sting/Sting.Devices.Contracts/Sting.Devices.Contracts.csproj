@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36C7101D-6919-4BD2-851C-86CCF9134F0A}</ProjectGuid>
+    <ProjectGuid>{569763F0-02F5-4D8D-B360-2A965D50FC77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sting.Measurements.Contracts</RootNamespace>
-    <AssemblyName>Sting.Measurements.Contracts</AssemblyName>
+    <RootNamespace>Sting.Devices.Contracts</RootNamespace>
+    <AssemblyName>Sting.Devices.Contracts</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
@@ -120,8 +120,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IGpioComponent.cs" />
+    <Compile Include="ISensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Sting.Measurements.Contracts.rd.xml" />
+    <EmbeddedResource Include="Properties\Sting.Devices.Contracts.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sting.Units\Sting.Units.csproj">

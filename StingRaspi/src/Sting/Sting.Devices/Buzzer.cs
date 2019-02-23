@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
-using Sting.Measurements.Contracts;
+using Sting.Devices.Contracts;
 
 namespace Sting.Devices
 {

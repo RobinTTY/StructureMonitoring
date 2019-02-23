@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Sting.Measurements.Contracts;
+using Sting.Devices.Contracts;
+using Sting.Measurements.External_Libraries;
 
 namespace Sting.Devices
 {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
-using Sting.Measurements.Contracts;
+using Sting.Devices.Contracts;
 using Sting.Units;
 
 namespace Sting.Devices
