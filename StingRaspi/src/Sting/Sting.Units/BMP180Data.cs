@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Sting.Units
 {
-    internal class Bmp180Data
+    public class Bmp180Data
     {
-        public double Temperature { get; }
-        public double Pressure { get; }
-        public double Altitude { get; }
+        public double Temperature { get; set;  }
+        public double Pressure { get; set; }
+        public double Altitude { get; set; }
 
         public Bmp180Data(double temperature, double pressure, double altitude)
         {
