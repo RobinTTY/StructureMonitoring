@@ -7,7 +7,7 @@ using Sting.Units;
 
 namespace Sting.Devices
 {
-    class Dht11 : IGpioComponent, ISensor
+    public class Dht11 : IGpioComponent, ISensor
     {
         private IDht _dht;
         private GpioPin _gpioPin;
@@ -55,7 +55,7 @@ namespace Sting.Devices
                 measurement = await _dht.GetReadingAsync().AsTask();
             }
             
-            return measurement.IsValid ? new TelemetryData(measurement) : null;
+            return measurement.IsValid ? new TelemetryData(measurement.Temperature, measurement.Humidity) : null;
         }
     }
 }

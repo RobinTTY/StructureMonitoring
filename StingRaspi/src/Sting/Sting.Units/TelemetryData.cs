@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Newtonsoft.Json;
-using Sensors.Dht;
 
 namespace Sting.Units
 {
@@ -11,55 +10,24 @@ namespace Sting.Units
     /// </summary>
     public class TelemetryData
     {
-        public DateTime Timestamp { get; set; }
-        public long UnixTimeStampMilliseconds { get; set; }
-        public double Temperature { get; set; }
-        public double Humidity { get; set; }
-        public double Pressure { get; set; }
-        public double Altitude { get; set; }
+        public long UnixTimeStampMilliseconds { get; }
+        public double Temperature { get; }
+        public double Humidity { get; }
+        public double Pressure { get; }
 
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
         /// trough different sensors.
         /// </summary>
-        public TelemetryData()
-        {
-            Timestamp = DateTime.Now;
+        /// <param name="temperature">temperature in °C</param>
+        /// <param name="humidity">humidity in percent</param>
+        /// <param name="pressure">absolute pressure</param>
+        public TelemetryData(double temperature = double.NaN, double humidity = double.NaN, double pressure = double.NaN)
+        {          
             UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            Temperature = double.NaN;
-            Humidity = double.NaN;
-            Pressure = double.NaN;
-            Altitude = double.NaN;
-        }
-
-        /// <summary>
-        /// Represents a collection of telemetry data that can be collected
-        /// trough different sensors.
-        /// </summary>
-        /// <param name="data">A BMP180Data object</param>
-        //public TelemetryData(BMP180Data data)
-        //{
-        //    Timestamp = DateTime.Now;            
-        //    UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        //    Temperature = data.Temperature;
-        //    Humidity = double.NaN;
-        //    Pressure = data.Pressure;
-        //    Altitude = data.Altitude;
-        //}
-
-        /// <summary>
-        /// Represents a collection of telemetry data that can be collected
-        /// trough different sensors.
-        /// </summary>
-        /// <param name="data">A DhtReading object</param>
-        public TelemetryData(DhtReading data)
-        {
-            Timestamp = DateTime.Now;            
-            UnixTimeStampMilliseconds = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            Temperature = data.Temperature;
-            Humidity = data.Humidity;
-            Pressure = double.NaN;
-            Altitude = double.NaN;
+            Temperature = temperature;
+            Humidity = humidity;
+            Pressure = pressure;
         }
 
         /// <summary>
@@ -117,7 +85,7 @@ namespace Sting.Units
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return "Time: " + Timestamp + ", Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%, Pressure: " + Pressure + "hPa, Altitude: " + Altitude + "m";
+            return "Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%, Pressure: " + Pressure + "hPa, Altitude: ";
         }
     }
 }

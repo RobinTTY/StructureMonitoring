@@ -98,13 +98,13 @@ namespace Sting.Devices
         /// Read data from Bmp180 sensor
         /// </summary>
         /// <returns>BMP180Data</returns>
-        public async Task<Bmp180Data> ReadAsync()
+        public async Task<TelemetryData> ReadAsync()
         {
             var ut = await ReadUncompensatedTempDataAsync();
             var up = await ReadUncompensatedPressDataAsync();
 
             CalculateTrueData(ut, up, out var temperature, out var pressure);
-            return new Bmp180Data(temperature, pressure);
+            return new TelemetryData(temperature, pressure: pressure);
         }
 
         /// <summary>

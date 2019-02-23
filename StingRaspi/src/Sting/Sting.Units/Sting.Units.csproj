@@ -120,15 +120,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BMP180Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelemetryData.cs" />
     <EmbeddedResource Include="Properties\Sting.Units.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dht">
-      <Version>1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
     </PackageReference>

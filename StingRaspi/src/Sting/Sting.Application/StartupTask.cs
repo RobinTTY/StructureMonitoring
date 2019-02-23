@@ -15,6 +15,7 @@ namespace Sting.Application
         private bool _cancelRequested;
 
         private Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
+        private Dht11 _dht = new Dht11();
 
         private readonly Database _stingDatabase = new Database();
         
