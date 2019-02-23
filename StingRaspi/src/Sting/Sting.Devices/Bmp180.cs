@@ -27,54 +27,56 @@ namespace Sting.Devices
     /// <summary>
     /// Bmp180 sensor pressure sampling accuracy modes
     /// </summary>
-    enum Resolution
+    public enum Resolution
     {
         UltraLowPower = 0,
         Standard = 1,
         HighResolution = 2,
-        UltrHighResolution = 3
+        UltraHighResolution = 3
     }
 
-    class Bmp180
+    public class Bmp180
     {
-        private I2cDevice sensor;
-        private const byte BMP180_ADDR = 0x77;
-        private int oss;                                // Oversampling setting
-        private int pressDelay;
-        private bool calibrated;
+        private I2cDevice _sensor;
+        private const byte Bmp180Address = 0x77;
+        private readonly int _oss;                                // Oversampling setting
+        private readonly int _pressDelay;
+        private bool _calibrated;
 
-        private Calibration _calibration;
-        private const byte AddrCalibrationAc1 = 0xAA;
-        private const byte AddrCalibrationAc2 = 0xAC;
-        private const byte AddrCalibrationAc3 = 0xAE;
-        private const byte AddrCalibrationAc4 = 0xB0;
-        private const byte AddrCalibrationAc5 = 0xB2;
-        private const byte AddrCalibrationAc6 = 0xB4;
-        private const byte AddrCalibrationB1 = 0xB6;
-        private const byte AddrCalibrationB2 = 0xB8;
-        private const byte AddrCalibrationMb = 0xBA;
-        private const byte AddrCalibrationMc = 0xBC;
-        private const byte AddrCalibrationMd = 0xBE;
+        private readonly Calibration _calibration;
+        private const byte CalibrationAc1 = 0xAA;
+        private const byte CalibrationAc2 = 0xAC;
+        private const byte CalibrationAc3 = 0xAE;
+        private const byte CalibrationAc4 = 0xB0;
+        private const byte CalibrationAc5 = 0xB2;
+        private const byte CalibrationAc6 = 0xB4;
+        private const byte CalibrationB1 = 0xB6;
+        private const byte CalibrationB2 = 0xB8;
+        private const byte CalibrationMb = 0xBA;
+        private const byte CalibrationMc = 0xBC;
+        private const byte CalibrationMd = 0xBE;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public Bmp180(Resolution resolution)
         {
-            oss = (short)resolution;
+            _calibration = new Calibration();
+            _oss = (short)resolution;
+
             switch (resolution)
             {
                 case Resolution.UltraLowPower:
-                    pressDelay = 5;
+                    _pressDelay = 5;
                     break;
                 case Resolution.Standard:
-                    pressDelay = 8;
+                    _pressDelay = 8;
                     break;
                 case Resolution.HighResolution:
-                    pressDelay = 14;
+                    _pressDelay = 14;
                     break;
-                case Resolution.UltrHighResolution:
-                    pressDelay = 26;
+                case Resolution.UltraHighResolution:
+                    _pressDelay = 26;
                     break;
             }
         }
@@ -84,11 +86,11 @@ namespace Sting.Devices
         /// </summary>
         public async Task InitializeAsync()
         {
-            if (calibrated) return;
-            var settings = new I2cConnectionSettings(BMP180_ADDR) { BusSpeed = I2cBusSpeed.StandardMode };
+            if (_calibrated) return;
+            var settings = new I2cConnectionSettings(Bmp180Address) { BusSpeed = I2cBusSpeed.StandardMode };
             var controller = await I2cController.GetDefaultAsync();
 
-            sensor = controller.GetDevice(settings);
+            _sensor = controller.GetDevice(settings);
             ReadCalibrationData();
         }
 
@@ -98,17 +100,11 @@ namespace Sting.Devices
         /// <returns>BMP180Data</returns>
         public async Task<Bmp180Data> ReadAsync()
         {
-            double temperature;
-            double pressure;
-            double altitude;
-            double UT = await ReadUncompensatedTempDataAsync();
-            double UP = await ReadUncompensatedPressDataAsync();
+            var ut = await ReadUncompensatedTempDataAsync();
+            var up = await ReadUncompensatedPressDataAsync();
 
-            CalculateTrueData(UT, UP, out temperature, out pressure);
-
-            altitude = 44330 * (1 - Math.Pow(pressure / 101325, 0.1903));
-            Debug.WriteLine( "Temp adjusted altitude:" + (Math.Pow(101325 / pressure, 0.190223) - 1) * (temperature + 273.15) / 0.0065);
-            return new Bmp180Data(temperature, pressure, altitude);
+            CalculateTrueData(ut, up, out var temperature, out var pressure);
+            return new Bmp180Data(temperature, pressure);
         }
 
         /// <summary>
@@ -116,7 +112,7 @@ namespace Sting.Devices
         /// </summary>
         public void Dispose()
         {
-            sensor.Dispose();
+            _sensor.Dispose();
         }
 
         /// <summary>
@@ -125,62 +121,60 @@ namespace Sting.Devices
         /// <returns></returns>
         public I2cDevice GetDevice()
         {
-            return sensor;
+            return _sensor;
         }
-
-        #region Private Methods
 
         /// <summary>
         /// Read calibration data from sensor
         /// </summary>
         private void ReadCalibrationData()
         {
-            byte[] readBuf = new byte[2];
+            var readBuf = new byte[2];
 
-            sensor.WriteRead(new[] { AddrCalibrationAc1 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc1 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac1 = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationAc2 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc2 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac2 = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationAc3 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc3 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac3 = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationAc4 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc4 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac4 = BitConverter.ToUInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationAc5 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc5 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac5 = BitConverter.ToUInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationAc6 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationAc6 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Ac6 = BitConverter.ToUInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationB1 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationB1 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.B1 = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationB2 }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationB2 }, readBuf);
             Array.Reverse(readBuf);
             _calibration.B2 = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationMb }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationMb }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Mb = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationMc }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationMc }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Mc = BitConverter.ToInt16(readBuf, 0);
 
-            sensor.WriteRead(new[] { AddrCalibrationMd }, readBuf);
+            _sensor.WriteRead(new[] { CalibrationMd }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Md = BitConverter.ToInt16(readBuf, 0);
-            calibrated = true;
+            _calibrated = true;
         }
 
         /// <summary>
@@ -191,9 +185,9 @@ namespace Sting.Devices
         {
             var readBuf = new byte[2];
 
-            sensor.Write(new byte[] { 0xF4, 0x2E });
+            _sensor.Write(new byte[] { 0xF4, 0x2E });
             await Task.Delay(5);
-            sensor.WriteRead(new byte[] { 0xF6 }, readBuf);
+            _sensor.WriteRead(new byte[] { 0xF6 }, readBuf);
 
             var ut = readBuf[0] * Math.Pow(2, 8) + readBuf[1];
             return ut;
@@ -206,13 +200,13 @@ namespace Sting.Devices
         private async Task<double> ReadUncompensatedPressDataAsync()
         {
             var readBuf = new byte[3];
-            var op = (byte)(0x34 + (oss << 6));
+            var op = (byte)(0x34 + (_oss << 6));
 
-            sensor.Write(new byte[] { 0xF4, op });
-            await Task.Delay(pressDelay);
-            sensor.WriteRead(new byte[] { 0xF6 }, readBuf);
+            _sensor.Write(new byte[] { 0xF4, op });
+            await Task.Delay(_pressDelay);
+            _sensor.WriteRead(new byte[] { 0xF6 }, readBuf);
 
-            var up = (readBuf[0] * Math.Pow(2, 16) + readBuf[1] * Math.Pow(2, 8) + readBuf[2]) / Math.Pow(2, (8 - oss));
+            var up = (readBuf[0] * Math.Pow(2, 16) + readBuf[1] * Math.Pow(2, 8) + readBuf[2]) / Math.Pow(2, (8 - _oss));
             return up;
         }
 
@@ -237,12 +231,12 @@ namespace Sting.Devices
             x1 = (_calibration.B2 * (b6 * b6 / Math.Pow(2, 12))) / Math.Pow(2, 11);
             x2 = _calibration.Ac2 * b6 / Math.Pow(2, 11);
             var x3 = x1 + x2;
-            var b3 = ((_calibration.Ac1 * 4 + x3) * Math.Pow(2, oss) + 2) / 4;
+            var b3 = ((_calibration.Ac1 * 4 + x3) * Math.Pow(2, _oss) + 2) / 4;
             x1 = _calibration.Ac3 * b6 / Math.Pow(2, 13);
             x2 = (_calibration.B1 * (b6 * b6 / Math.Pow(2, 12))) / Math.Pow(2, 16);
             x3 = ((x1 + x2) + 2) / 4;
             var b4 = _calibration.Ac4 * (ulong)(x3 + 32768) / Math.Pow(2, 15);
-            var b7 = ((ulong)up - b3) * (50000 / Math.Pow(2, oss));
+            var b7 = ((ulong)up - b3) * (50000 / Math.Pow(2, _oss));
 
             if (b7 < 0x80000000)
             {
@@ -258,7 +252,5 @@ namespace Sting.Devices
             x2 = (-7357 * p) / Math.Pow(2, 16);
             P = p + (x1 + x2 + 3791) / 16;
         }
-
-        #endregion
     }
 }

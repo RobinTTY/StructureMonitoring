@@ -3,15 +3,13 @@
 {
     public class Bmp180Data
     {
-        public double Temperature { get; set;  }
-        public double Pressure { get; set; }
-        public double Altitude { get; set; }
+        public double Temperature { get; }
+        public double Pressure { get; }
 
-        public Bmp180Data(double temperature, double pressure, double altitude)
+        public Bmp180Data(double temperature, double pressure)
         {
             Temperature = temperature;
             Pressure = pressure;
-            Altitude = altitude;
         }
     }
 }
