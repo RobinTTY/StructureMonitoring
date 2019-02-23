@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+using Sting.Measurements.Contracts;
 
-namespace Sting.Measurements.Components
+namespace Sting.Devices
 {
     class Buzzer : IGpioComponent
     {

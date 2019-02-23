@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Sting.Units
 
-namespace Sting.Units
 {
     public class Bmp180Data
     {

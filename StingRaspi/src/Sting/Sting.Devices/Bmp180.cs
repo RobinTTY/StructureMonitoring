@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.Devices.I2c;
 using Sting.Units;
 
-namespace Sting.Measurements.Components
+namespace Sting.Devices
 {
     /// <summary>
     /// Calibration coefficients
@@ -25,7 +25,7 @@ namespace Sting.Measurements.Components
     }
 
     /// <summary>
-    /// BMP180Sensor sensor pressure sampling accuracy modes
+    /// Bmp180 sensor pressure sampling accuracy modes
     /// </summary>
     enum Resolution
     {
@@ -35,7 +35,7 @@ namespace Sting.Measurements.Components
         UltrHighResolution = 3
     }
 
-    class BMP180Sensor
+    class Bmp180
     {
         private I2cDevice sensor;
         private const byte BMP180_ADDR = 0x77;
@@ -59,7 +59,7 @@ namespace Sting.Measurements.Components
         /// <summary>
         /// Constructor
         /// </summary>
-        public BMP180Sensor(Resolution resolution)
+        public Bmp180(Resolution resolution)
         {
             oss = (short)resolution;
             switch (resolution)
@@ -80,7 +80,7 @@ namespace Sting.Measurements.Components
         }
 
         /// <summary>
-        /// Initialize BMP180Sensor sensor
+        /// Initialize Bmp180 sensor
         /// </summary>
         public async Task InitializeAsync()
         {
@@ -93,7 +93,7 @@ namespace Sting.Measurements.Components
         }
 
         /// <summary>
-        /// Read data from BMP180Sensor sensor
+        /// Read data from Bmp180 sensor
         /// </summary>
         /// <returns>BMP180Data</returns>
         public async Task<Bmp180Data> ReadAsync()
@@ -120,7 +120,7 @@ namespace Sting.Measurements.Components
         }
 
         /// <summary>
-        /// Get BMP180Sensor Device
+        /// Get Bmp180 Device
         /// </summary>
         /// <returns></returns>
         public I2cDevice GetDevice()

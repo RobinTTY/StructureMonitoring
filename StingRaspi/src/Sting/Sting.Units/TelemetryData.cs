@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 using Newtonsoft.Json;
 using Sensors.Dht;
 
-namespace Sting.Measurements
+namespace Sting.Units
 {
     /// <summary>
     /// Represents a collection of telemetry data that can be collected

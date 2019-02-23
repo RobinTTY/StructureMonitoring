@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 using Sting.Measurements.Contracts;
+using Sting.Units;
 
-namespace Sting.Measurements.Components
+namespace Sting.Devices
 {
     class Dht11 : IGpioComponent, ISensor
     {

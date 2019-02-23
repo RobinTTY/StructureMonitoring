@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
-using Sting.Measurements.External_Libraries;
+using Sting.Measurements.Contracts;
 
-namespace Sting.Measurements.Components
+namespace Sting.Devices
 {
     class Lcd : IGpioComponent
     {

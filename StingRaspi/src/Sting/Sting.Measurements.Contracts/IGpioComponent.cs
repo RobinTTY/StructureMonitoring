@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Sting.Measurements
+namespace Sting.Measurements.Contracts
 {
     public interface IGpioComponent
     {
