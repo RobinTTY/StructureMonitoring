@@ -14,8 +14,8 @@ namespace Sting.Application
         private BackgroundTaskDeferral _deferral;
         private bool _cancelRequested;
 
-        private Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
-        private Dht11 _dht = new Dht11();
+        private readonly Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
+        private readonly Dht11 _dht = new Dht11();
 
         private readonly Database _stingDatabase = new Database();
         
@@ -24,13 +24,14 @@ namespace Sting.Application
             //_stingDatabase.InitConnection();
             _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(10));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(45));
         }
 
         // initialize used components async
         private async void InitComponentsAsync()
         {
             await _bmp.InitializeAsync();
+            await _dht.InitComponentAsync(4);
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -38,13 +39,9 @@ namespace Sting.Application
         private async void PeriodicTask(ThreadPoolTimer timer)
         {
             var data = await _bmp.ReadAsync();
-            Debug.WriteLine("Pressure: "+ data.Pressure + " Temperature: " + data.Temperature);
-        }
-
-        private void OnTerminate(object source, EventArgs e)
-        {
-            Debug.WriteLine("Termination was requested. Shutting Down.");
-            _cancelRequested = true;
+            var data2 = await _dht.TakeMeasurementAsync();
+            data.Complement(data2);
+            Debug.WriteLine("Pressure: "+ data.Pressure + " Temperature: " + data.Temperature + " Humidity: " + data.Humidity);
         }
     }
 }

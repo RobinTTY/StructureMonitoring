@@ -11,9 +11,9 @@ namespace Sting.Units
     public class TelemetryData
     {
         public long UnixTimeStampMilliseconds { get; }
-        public double Temperature { get; }
-        public double Humidity { get; }
-        public double Pressure { get; }
+        public double Temperature { get; set;  }
+        public double Humidity { get; set; }
+        public double Pressure { get; set; }
 
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
@@ -85,7 +85,7 @@ namespace Sting.Units
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return "Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%, Pressure: " + Pressure + "hPa, Altitude: ";
+            return "Temperature: " + Temperature + "°C, Humidity: " + Humidity + "%, Pressure: " + Pressure + "hPa";
         }
     }
 }
