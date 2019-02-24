@@ -105,6 +105,7 @@
     <None Include="Sting.Application_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppConfiguration.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png">
       <InProject>false</InProject>
