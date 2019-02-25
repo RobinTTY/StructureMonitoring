@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 using Sting.Devices;
@@ -16,15 +20,14 @@ namespace Sting.Application
 
         private readonly Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
         private readonly Dht11 _dht = new Dht11();
-
         private readonly Database _stingDatabase = new Database();
         
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            //_stingDatabase.InitConnection();
+            _stingDatabase.InitConnection();
             _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(45));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(10));
         }
 
         // initialize used components async
@@ -32,6 +35,8 @@ namespace Sting.Application
         {
             await _bmp.InitializeAsync();
             await _dht.InitComponentAsync(4);
+
+
         }
 
         // Task which is executed every x seconds as defined in Run()

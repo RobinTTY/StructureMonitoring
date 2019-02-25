@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <appSettings>
-    <add key="ClusterConnectionString" value="" />
-    <add key="DatabaseName" value="" />
-    <add key="DatabaseUser" value="" />
-    <add key="DatabasePassword" value="" />
+    <ClusterConnectionString></ClusterConnectionString>
+    <DatabaseName></DatabaseName>
   </appSettings>
 </configuration>
