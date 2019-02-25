@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 using Sting.Devices;
@@ -35,8 +30,6 @@ namespace Sting.Application
         {
             await _bmp.InitializeAsync();
             await _dht.InitComponentAsync(4);
-
-
         }
 
         // Task which is executed every x seconds as defined in Run()
@@ -44,9 +37,8 @@ namespace Sting.Application
         private async void PeriodicTask(ThreadPoolTimer timer)
         {
             var data = await _bmp.ReadAsync();
-            var data2 = await _dht.TakeMeasurementAsync();
-            data.Complement(data2);
-            Debug.WriteLine("Pressure: "+ data.Pressure + " Temperature: " + data.Temperature + " Humidity: " + data.Humidity);
+            data.Complement(await _dht.TakeMeasurementAsync());
+            _stingDatabase.AddTelemetryData(data);
         }
     }
 }
