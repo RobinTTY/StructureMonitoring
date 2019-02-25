@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.I2c;
 using Sting.Units;
@@ -100,12 +99,9 @@ namespace Sting.Devices
         /// <returns>BMP180Data</returns>
         public async Task<TelemetryData> ReadAsync()
         {
-            Debug.WriteLine("Start Bmp Measurement");
-
             var ut = await ReadUncompensatedTempDataAsync();
             var up = await ReadUncompensatedPressDataAsync();
             CalculateTrueData(ut, up, out var temperature, out var pressure);
-            Debug.WriteLine("Finish Bmp Measurement");
 
             return new TelemetryData(temperature, pressure: pressure);
         }

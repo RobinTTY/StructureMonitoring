@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
@@ -46,7 +45,6 @@ namespace Sting.Devices
         /// <returns>Returns TelemetryData if measurement is valid otherwise returns null.</returns>
         public async Task<TelemetryData> TakeMeasurementAsync()
         {
-            Debug.WriteLine("Start Dht Measurement");
             // Take measurement and check for validity
             const int maxRetry = 5;
             
@@ -57,7 +55,6 @@ namespace Sting.Devices
                 measurement = await _dht.GetReadingAsync().AsTask();
             }
             
-            Debug.WriteLine("Finish Dht Measurement");
             return measurement.IsValid ? new TelemetryData(measurement.Temperature, measurement.Humidity) : null;
         }
     }
