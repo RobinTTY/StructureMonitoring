@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
@@ -11,7 +9,7 @@ namespace Sting.Devices
 {
     public class Mfrc522
     {
-        public static class Registers
+        private static class Registers
         {
             private const byte bitFraming = 0x0D;
             private const byte comIrq = 0x04;
@@ -32,181 +30,38 @@ namespace Sting.Devices
             private const byte txMode = 0x12;
             private const byte version = 0x37;
 
-            public static byte BitFraming
-            {
-                get
-                {
-                    return bitFraming;
-                }
-            }
-
-            public static byte ComIrq
-            {
-                get
-                {
-                    return comIrq;
-                }
-            }
-
-            public static byte ComIrqEnable
-            {
-                get
-                {
-                    return comIrqEnable;
-                }
-            }
-
-            public static byte Command
-            {
-                get
-                {
-                    return command;
-                }
-            }
-
-            public static byte Control
-            {
-                get
-                {
-                    return control;
-                }
-            }
-
-            public static byte Error
-            {
-                get
-                {
-                    return error;
-                }
-            }
-
-            public static byte FifoData
-            {
-                get
-                {
-                    return fifoData;
-                }
-            }
-
-            public static byte FifoLevel
-            {
-                get
-                {
-                    return fifoLevel;
-                }
-            }
-
-            public static byte Mode
-            {
-                get
-                {
-                    return mode;
-                }
-            }
-
-            public static byte RxMode
-            {
-                get
-                {
-                    return rxMode;
-                }
-            }
-
-            public static byte TimerMode
-            {
-                get
-                {
-                    return timerMode;
-                }
-            }
-
-            public static byte TimerPrescaler
-            {
-                get
-                {
-                    return timerPrescaler;
-                }
-            }
-
-            public static byte TimerReloadHigh
-            {
-                get
-                {
-                    return timerReloadHigh;
-                }
-            }
-
-            public static byte TimerReloadLow
-            {
-                get
-                {
-                    return timerReloadLow;
-                }
-            }
-
-            public static byte TxAsk
-            {
-                get
-                {
-                    return txAsk;
-                }
-            }
-
-            public static byte TxControl
-            {
-                get
-                {
-                    return txControl;
-                }
-            }
-
-            public static byte TxMode
-            {
-                get
-                {
-                    return txMode;
-                }
-            }
-
-            public static byte Version
-            {
-                get
-                {
-                    return version;
-                }
-            }
+            public static byte BitFraming => bitFraming;
+            public static byte ComIrq => comIrq;
+            public static byte ComIrqEnable => comIrqEnable;
+            public static byte Command => command;
+            public static byte Control => control;
+            public static byte Error => error;
+            public static byte FifoData => fifoData;
+            public static byte FifoLevel => fifoLevel;
+            public static byte Mode => mode;
+            public static byte RxMode => rxMode;
+            public static byte TimerMode => timerMode;
+            public static byte TimerPrescaler => timerPrescaler;
+            public static byte TimerReloadHigh => timerReloadHigh;
+            public static byte TimerReloadLow => timerReloadLow;
+            public static byte TxAsk => txAsk;
+            public static byte TxControl => txControl;
+            public static byte TxMode => txMode;
+            public static byte Version => version;
         }
-        public static class PiccResponses
+
+        private static class PiccResponses
         {
             private const ushort answerToRequest = 0x0004;
             private const byte selectAcknowledge = 0x08;
             private const byte acknowledge = 0x0A;
 
-            public static byte Acknowledge
-            {
-                get
-                {
-                    return acknowledge;
-                }
-            }
-
-            public static byte SelectAcknowledge
-            {
-                get
-                {
-                    return selectAcknowledge;
-                }
-            }
-
-            public static ushort AnswerToRequest
-            {
-                get
-                {
-                    return answerToRequest;
-                }
-            }
+            public static byte Acknowledge => acknowledge;
+            public static byte SelectAcknowledge => selectAcknowledge;
+            public static ushort AnswerToRequest => answerToRequest;
         }
-        public static class PiccCommands
+
+        private static class PiccCommands
         {
             private const byte anticollision_1 = 0x93;
             private const byte anticollision_2 = 0x20;
@@ -220,133 +75,37 @@ namespace Sting.Devices
             private const byte select_2 = 0x70;
             private const byte write = 0xA0;
 
-            public static byte AuthenticateKeyA
-            {
-                get
-                {
-                    return authenticateKeyA;
-                }
-            }
-
-            public static byte AuthenticateKeyB
-            {
-                get
-                {
-                    return authenticateKeyB;
-                }
-            }
-
-            public static byte Halt_1
-            {
-                get
-                {
-                    return halt_1;
-                }
-            }
-
-            public static byte Halt_2
-            {
-                get
-                {
-                    return halt_2;
-                }
-            }
-
-            public static byte Read
-            {
-                get
-                {
-                    return read;
-                }
-            }
-
-            public static byte Request
-            {
-                get
-                {
-                    return request;
-                }
-            }
-
-            public static byte Select_1
-            {
-                get
-                {
-                    return select_1;
-                }
-            }
-
-            public static byte Select_2
-            {
-                get
-                {
-                    return select_2;
-                }
-            }
-
-            public static byte Write
-            {
-                get
-                {
-                    return write;
-                }
-            }
-
-            public static byte Anticollision_1
-            {
-                get
-                {
-                    return anticollision_1;
-                }
-            }
-
-            public static byte Anticollision_2
-            {
-                get
-                {
-                    return anticollision_2;
-                }
-            }
+            public static byte AuthenticateKeyA => authenticateKeyA;
+            public static byte AuthenticateKeyB => authenticateKeyB;
+            public static byte Halt_1 => halt_1;
+            public static byte Halt_2 => halt_2;
+            public static byte Read => read;
+            public static byte Request => request;
+            public static byte Select_1 => select_1;
+            public static byte Select_2 => select_2;
+            public static byte Write => write;
+            public static byte Anticollision_1 => anticollision_1;
+            public static byte Anticollision_2 => anticollision_2;
         }
 
-        public static class PcdCommands
+        private static class PcdCommands
         {
             private const byte idle = 0x00;
             private const byte mifareAuthenticate = 0x0E;
             private const byte transceive = 0x0C;
 
-            public static byte Idle
-            {
-                get
-                {
-                    return idle;
-                }
-            }
-
-            public static byte MifareAuthenticate
-            {
-                get
-                {
-                    return mifareAuthenticate;
-                }
-            }
-
-            public static byte Transceive
-            {
-                get
-                {
-                    return transceive;
-                }
-            }
+            public static byte Idle => idle;
+            public static byte MifareAuthenticate => mifareAuthenticate;
+            public static byte Transceive => transceive;
         }
 
 
         public class Uid
         {
-            public byte Bcc { get; private set; }
-            public byte[] Bytes { get; private set; }
-            public byte[] FullUid { get; private set; }
-            public bool IsValid { get; private set; }
+            public byte Bcc { get; }
+            public byte[] Bytes { get; }
+            public byte[] FullUid { get; }
+            public bool IsValid { get; }
 
             internal Uid(byte[] uid)
             {
@@ -354,7 +113,7 @@ namespace Sting.Devices
                 Bcc = uid[4];
 
                 Bytes = new byte[4];
-                System.Array.Copy(FullUid, 0, Bytes, 0, 4);
+                Array.Copy(FullUid, 0, Bytes, 0, 4);
 
                 foreach (var b in Bytes)
                 {
@@ -370,7 +129,7 @@ namespace Sting.Devices
 
                 var uidWrapper = (Uid)obj;
 
-                for (int i = 0; i < 5; i++)
+                for (var i = 0; i < 5; i++)
                 {
                     if (FullUid[i] != uidWrapper.FullUid[i])
                         return false;
@@ -381,9 +140,9 @@ namespace Sting.Devices
 
             public sealed override int GetHashCode()
             {
-                int uid = 0;
+                var uid = 0;
 
-                for (int i = 0; i < 4; i++)
+                for (var i = 0; i < 4; i++)
                     uid |= Bytes[i] << (i * 8);
 
                 return uid;
@@ -398,9 +157,9 @@ namespace Sting.Devices
 
         public class Mfrc522Test
         {
-            public SpiDevice _spi { get; private set; }
-            public GpioController IoController { get; private set; }
-            public GpioPin _resetPowerDown { get; private set; }
+            private SpiDevice Spi { get; set; }
+            private GpioController IoController { get; set; }
+            private GpioPin ResetPowerDown { get; set; }
 
             /* Uncomment for Raspberry Pi 2 */
             private const string SPI_CONTROLLER_NAME = "SPI0";
@@ -414,9 +173,9 @@ namespace Sting.Devices
                 {
                     IoController = GpioController.GetDefault();
 
-                    _resetPowerDown = IoController.OpenPin(RESET_PIN);
-                    _resetPowerDown.Write(GpioPinValue.High);
-                    _resetPowerDown.SetDriveMode(GpioPinDriveMode.Output);
+                    ResetPowerDown = IoController.OpenPin(RESET_PIN);
+                    ResetPowerDown.Write(GpioPinValue.High);
+                    ResetPowerDown.SetDriveMode(GpioPinDriveMode.Output);
                 }
                 /* If initialization fails, throw an exception */
                 catch (Exception ex)
@@ -426,14 +185,16 @@ namespace Sting.Devices
 
                 try
                 {
-                    var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
-                    settings.ClockFrequency = 1000000;
-                    settings.Mode = SpiMode.Mode0;
+                    var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE)
+                    {
+                        ClockFrequency = 1000000,
+                        Mode = SpiMode.Mode0
+                    };
 
-                    String spiDeviceSelector = SpiDevice.GetDeviceSelector();
+                    var spiDeviceSelector = SpiDevice.GetDeviceSelector();
                     IReadOnlyList<DeviceInformation> devices = await DeviceInformation.FindAllAsync(spiDeviceSelector);
 
-                    _spi = await SpiDevice.FromIdAsync(devices[0].Id, settings);
+                    Spi = await SpiDevice.FromIdAsync(devices[0].Id, settings);
 
                 }
                 /* If initialization fails, display the exception and stop running */
@@ -446,12 +207,12 @@ namespace Sting.Devices
                 Reset();
             }
 
-            public void Reset()
+            private void Reset()
             {
-                _resetPowerDown.Write(GpioPinValue.Low);
-                System.Threading.Tasks.Task.Delay(50).Wait();
-                _resetPowerDown.Write(GpioPinValue.High);
-                System.Threading.Tasks.Task.Delay(50).Wait();
+                ResetPowerDown.Write(GpioPinValue.Low);
+                Task.Delay(50).Wait();
+                ResetPowerDown.Write(GpioPinValue.High);
+                Task.Delay(50).Wait();
 
                 // Force 100% ASK modulation
                 WriteRegister(Registers.TxAsk, 0x40);
@@ -547,7 +308,7 @@ namespace Sting.Devices
             }
 
 
-            protected void MifareAuthenticate(byte command, byte blockNumber, Uid uid, byte[] key)
+            private void MifareAuthenticate(byte command, byte blockNumber, Uid uid, byte[] key)
             {
                 // Put reader in Idle mode
                 WriteRegister(Registers.Command, PcdCommands.Idle);
@@ -571,7 +332,7 @@ namespace Sting.Devices
                 System.Threading.Tasks.Task.Delay(25).Wait();
             }
 
-            protected void Transceive(bool enableCrc, params byte[] data)
+            private void Transceive(bool enableCrc, params byte[] data)
             {
                 if (enableCrc)
                 {
@@ -598,17 +359,16 @@ namespace Sting.Devices
 
                 // Stop sending
                 ClearRegisterBits(Registers.BitFraming, 0x80);
+                
+                if (!enableCrc) return;
 
-                if (enableCrc)
-                {
-                    // Disable CRC
-                    ClearRegisterBits(Registers.TxMode, 0x80);
-                    ClearRegisterBits(Registers.RxMode, 0x80);
-                }
+                // Disable CRC
+                ClearRegisterBits(Registers.TxMode, 0x80);
+                ClearRegisterBits(Registers.RxMode, 0x80);
             }
 
 
-            protected byte[] ReadFromFifo(int length)
+            private byte[] ReadFromFifo(int length)
             {
                 var buffer = new byte[length];
 
@@ -618,24 +378,24 @@ namespace Sting.Devices
                 return buffer;
             }
 
-            protected byte ReadFromFifo()
+            private byte ReadFromFifo()
             {
                 return ReadFromFifo(1)[0];
             }
 
-            protected void WriteToFifo(params byte[] values)
+            private void WriteToFifo(params byte[] values)
             {
                 foreach (var b in values)
                     WriteRegister(Registers.FifoData, b);
             }
 
-            protected int GetFifoLevel()
+            private int GetFifoLevel()
             {
                 return ReadRegister(Registers.FifoLevel);
             }
 
 
-            protected byte ReadRegister(byte register)
+            private byte ReadRegister(byte register)
             {
                 register <<= 1;
                 register |= 0x80;
@@ -645,7 +405,7 @@ namespace Sting.Devices
                 return TransferSpi(writeBuffer)[1];
             }
 
-            protected ushort ReadFromFifoShort()
+            private ushort ReadFromFifoShort()
             {
                 var low = ReadRegister(Registers.FifoData);
                 var high = (ushort)(ReadRegister(Registers.FifoData) << 8);
@@ -653,22 +413,21 @@ namespace Sting.Devices
                 return (ushort)(high | low);
             }
 
-            protected void WriteRegister(byte register, byte value)
+            private void WriteRegister(byte register, byte value)
             {
                 register <<= 1;
-
                 var writeBuffer = new byte[] { register, value };
 
                 TransferSpi(writeBuffer);
             }
 
-            protected void SetRegisterBits(byte register, byte bits)
+            private void SetRegisterBits(byte register, byte bits)
             {
                 var currentValue = ReadRegister(register);
                 WriteRegister(register, (byte)(currentValue | bits));
             }
 
-            protected void ClearRegisterBits(byte register, byte bits)
+            private void ClearRegisterBits(byte register, byte bits)
             {
                 var currentValue = ReadRegister(register);
                 WriteRegister(register, (byte)(currentValue & ~bits));
@@ -678,8 +437,7 @@ namespace Sting.Devices
             private byte[] TransferSpi(byte[] writeBuffer)
             {
                 var readBuffer = new byte[writeBuffer.Length];
-
-                _spi.TransferFullDuplex(writeBuffer, readBuffer);
+                Spi.TransferFullDuplex(writeBuffer, readBuffer);
 
                 return readBuffer;
             }
