@@ -3,5 +3,6 @@
   <appSettings>
     <ClusterConnectionString></ClusterConnectionString>
     <DatabaseName></DatabaseName>
+    <DeviceName></DeviceName>
   </appSettings>
 </configuration>
