@@ -63,7 +63,7 @@ namespace Sting.Application
                 {"Humidity", data.Humidity },
                 {"Air Pressure", data.Pressure }
             };
-            _stingDatabase.SaveDocument(document);
+            _stingDatabase.SaveDocumentToCollection(document, "TelemetryData");
         }
     }
 }

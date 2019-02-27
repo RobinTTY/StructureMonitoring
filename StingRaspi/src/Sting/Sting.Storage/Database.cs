@@ -32,9 +32,9 @@ namespace Sting.Storage
             _database = client.GetDatabase(_databaseName);
         }
 
-        public void SaveDocument(BsonDocument document)
+        public void SaveDocumentToCollection(BsonDocument document, string collectionName)
         {
-            var collection = _database.GetCollection<BsonDocument>("TelemetryData");
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
             collection.InsertOneAsync(document);
         }
 
