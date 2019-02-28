@@ -58,10 +58,10 @@ namespace Sting.Application
             var document = new BsonDocument()
             {
                 { "DeviceName", _deviceName },
-                {"TimeStamp", data.UnixTimeStampMilliseconds },
-                {"Temperature", data.Temperature },
-                {"Humidity", data.Humidity },
-                {"Air Pressure", data.Pressure }
+                { "TimeStamp", data.UnixTimeStampMilliseconds },
+                { "Temperature", data.Temperature },
+                { "Humidity", data.Humidity },
+                { "Air Pressure", data.Pressure }
             };
             _stingDatabase.SaveDocumentToCollection(document, "TelemetryData");
         }

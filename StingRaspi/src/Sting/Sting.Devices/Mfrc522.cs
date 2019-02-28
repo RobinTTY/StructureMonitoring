@@ -111,7 +111,6 @@ namespace Sting.Devices
         private GpioController IoController { get; set; }
         private GpioPin ResetPowerDown { get; set; }
 
-        /* Uncomment for Raspberry Pi 2 */
         private const string _spiControllerName = "SPI0";
         private const int _spiChipSelectLine = 0;
         private const int _resetPin = 25;
