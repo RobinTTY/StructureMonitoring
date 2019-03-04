@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { TelemetryDataImportService} from '../telemetry-data-import.service';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {TelemetryDataImportService} from '../telemetry-data-import.service';
 import {ChartService} from '../chart.service';
-import {Chart} from 'chart.js'
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'
-import { Alert } from 'selenium-webdriver';
+import {Chart} from 'chart.js';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 import 'chartjs-plugin-annotation';
 
-//Get building data from local file
+// Get building data from local file
 import * as json1 from '../buildings';
 
 @Component({
@@ -25,40 +23,48 @@ export class RoomComponent implements OnInit {
   bData$: Object;
   room$: Object;
   fetchResponse: boolean;
-  
+
   chart = [];
 
-  constructor(private _chart: ChartService, private service: TelemetryDataImportService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
-    this.route.params.subscribe(params => this.room$ = params.id)
+  constructor(
+    private _chart: ChartService,
+    private service: TelemetryDataImportService,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router) {
+    this.route.params.subscribe(params => this.room$ = params.id);
   }
 
   // get configuration data for current room, fetch telemetry data
-  ngOnInit() {    
-    this.urlSplit$ = this.router.url.split('/')
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1];
+  ngOnInit() {
+    this.urlSplit$ = this.router.url.split('/');
+    this.bData$ = json1.default
+      .buildings[parseInt(this.urlSplit$[2], 10) - 1]
+      .floors[parseInt(this.urlSplit$[4], 10) - 1]
+      .rooms[parseInt(this.urlSplit$[6], 10) - 1];
     this.fetchTelemetry();
-    
-    //insert chart data
-    this._chart.deviceData(this.bData$["device"])
+
+    // insert chart data
+    this._chart.deviceData(this.bData$['device'])
       .subscribe(res => {
-        
-        let temperature = Object.values(res).map(res => res.temperature._.substr(0,5));
-        let humidity = Object.values(res).map(res => res.humidity._);
-        let altitude = Object.values(res).map(res => res.altitude._);
-        let dateTime = Object.values(res).map(res => res.unixtime._);
+
+        const temperature = Object.values(res).map(val => val.temperature._.substr(0, 5));
+        const humidity = Object.values(res).map(val => val.humidity._);
+        const altitude = Object.values(res).map(val => val.altitude._);
+        const dateTime = Object.values(res).map(val => val.unixtime._);
         // var sum = 0;
         // for(var i =0; i<temperature.length;i++){
         //   sum += parseFloat(temperature[i]);
         // }
         // var tempAverage = (sum/temperature.length).toString().substring(0,5);
 
-        let weatherDates = []
-        dateTime.forEach((res) => {
-          let jsdate = new Date (res * 1)
-          weatherDates.push(jsdate.toLocaleTimeString('en-EN', {month: 'short',day: 'numeric', hour: 'numeric', minute: 'numeric'}))
+        const weatherDates = [];
+        dateTime.forEach((val) => {
+          const jsdate = new Date(val * 1);
+          weatherDates.push(jsdate.toLocaleTimeString('en-EN', {month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric'}));
           // To show year, month or day, use the following parameters
           // weatherDates.push(jsdate.toLocaleTimeString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}))
-        })
+        });
 
         this.chart = new Chart('canvasTemp', {
           type: 'line',
@@ -71,7 +77,7 @@ export class RoomComponent implements OnInit {
                 borderColor: '#e21212',
                 fill: false
               }
-           ]
+            ]
           },
           options: {
             responsive: true,
@@ -101,28 +107,28 @@ export class RoomComponent implements OnInit {
                 }
               }]
             },
-          //   tooltips:{
-          //     mode: 'index',
-          //     intersect: true
-          //   },
-            
-          //   annotation: {
-          //     annotations: [{
-          //       type: 'line',
-          //       mode: 'horizontal',
-          //       scaleID: 'y-axis-0',
-          //       value: tempAverage,
-          //       borderColor: '#3334C9',
-          //       borderWidth: 3,
-          //       label: {
-          //         enabled: true,
-          //         content: 'Low threshold'
-          //       }
-          //     }
-          //   ]
-          // }
+            //   tooltips:{
+            //     mode: 'index',
+            //     intersect: true
+            //   },
+
+            //   annotation: {
+            //     annotations: [{
+            //       type: 'line',
+            //       mode: 'horizontal',
+            //       scaleID: 'y-axis-0',
+            //       value: tempAverage,
+            //       borderColor: '#3334C9',
+            //       borderWidth: 3,
+            //       label: {
+            //         enabled: true,
+            //         content: 'Low threshold'
+            //       }
+            //     }
+            //   ]
+            // }
           }
-        })
+        });
 
         this.chart = new Chart('canvasHum', {
           type: 'line',
@@ -164,58 +170,61 @@ export class RoomComponent implements OnInit {
               }]
             }
           }
-        })
-    })
+        });
+      });
   }
 
   // insert measured values if available into cards
   ngDoCheck() {
-    try{
-      let dt = new Date(this.jsonObject["UnixTimeStampMilliseconds"]).toLocaleTimeString('en-EN', {weekday: 'long', month: 'long', day: 'numeric',hour: 'numeric', minute: 'numeric'})
-      var thresholds = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms[parseInt(this.urlSplit$[6]) - 1].thresholds;
-      document.getElementById("TempVal").innerText = this.jsonObject["Temperature"].valueOf().toString().substr(0,5) + "°C"
-      document.getElementById("HumVal").innerText = this.jsonObject["Humidity"].valueOf().toString() + "%"
-      document.getElementById("PressVal").innerText = this.jsonObject["Pressure"].valueOf().toString().substr(0,3) + "hPa"
-      document.getElementById("AltVal").innerText = this.jsonObject["Altitude"].valueOf().toString().substr(0,3) + "m"
-      document.getElementById("DeviceVal").innerText = this.jsonObject["DeviceId"].valueOf().toString()
-      document.getElementById("TimeVal").innerText = dt.toString()
+    try {
+      const dt = new Date(
+        this.jsonObject['UnixTimeStampMilliseconds'])
+        .toLocaleTimeString('en-EN', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'});
+      const thresholds = json1.default
+        .buildings[parseInt(this.urlSplit$[2], 10) - 1]
+        .floors[parseInt(this.urlSplit$[4], 10) - 1]
+        .rooms[parseInt(this.urlSplit$[6], 10) - 1].thresholds;
+      document.getElementById('TempVal').innerText = this.jsonObject['Temperature'].valueOf().toString().substr(0, 5) + '°C';
+      document.getElementById('HumVal').innerText = this.jsonObject['Humidity'].valueOf().toString() + '%';
+      document.getElementById('PressVal').innerText = this.jsonObject['Pressure'].valueOf().toString().substr(0, 3) + 'hPa';
+      document.getElementById('AltVal').innerText = this.jsonObject['Altitude'].valueOf().toString().substr(0, 3) + 'm';
+      document.getElementById('DeviceVal').innerText = this.jsonObject['DeviceId'].valueOf().toString();
+      document.getElementById('TimeVal').innerText = dt.toString();
 
-      if(this.jsonObject["Temperature"].valueOf() >= thresholds["tempHigh"]){
-        document.getElementById("temperature").innerText = "above threshold of " + thresholds["tempHigh"] + "°C";
-        document.getElementById("temperature-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
-      }    
-      else if (this.jsonObject["Temperature"].valueOf() <= thresholds["tempLow"]){
-        document.getElementById("temperature").innerText = "below threshold of " + thresholds["tempLow"] + "°C";
-        document.getElementById("temperature-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
-      } 
-      if(this.jsonObject["Humidity"].valueOf() >= thresholds["humHigh"]){
-        document.getElementById("humidity").innerText = "above threshold of " + thresholds["humHigh"] + "%";
-        document.getElementById("humidity-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      if (this.jsonObject['Temperature'].valueOf() >= thresholds['tempHigh']) {
+        document.getElementById('temperature').innerText = 'above threshold of ' + thresholds['tempHigh'] + '°C';
+        document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
+      } else if (this.jsonObject['Temperature'].valueOf() <= thresholds['tempLow']) {
+        document.getElementById('temperature').innerText = 'below threshold of ' + thresholds['tempLow'] + '°C';
+        document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
       }
-      else if (this.jsonObject["Humidity"].valueOf() <= thresholds["humLow"]){
-        document.getElementById("humidity").innerText = "below threshold of " + thresholds["humLow"] + "%";
-        document.getElementById("humidity-body").style.backgroundColor = "rgba(259, 67, 95, 0.35)";
+      if (this.jsonObject['Humidity'].valueOf() >= thresholds['humHigh']) {
+        document.getElementById('humidity').innerText = 'above threshold of ' + thresholds['humHigh'] + '%';
+        document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
+      } else if (this.jsonObject['Humidity'].valueOf() <= thresholds['humLow']) {
+        document.getElementById('humidity').innerText = 'below threshold of ' + thresholds['humLow'] + '%';
+        document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
       }
 
-    }catch(e){
-      if(e instanceof TypeError) {
+    } catch (e) {
+      if (e instanceof TypeError) {
         // ignore uninitialized data
-      } else{
-        console.log("Exception" + e.name + ": " + e.message);
+      } else {
+        console.log('Exception' + e.name + ': ' + e.message);
       }
     }
   }
 
   // fetch telemetry data from backend for the current device
   fetchTelemetry() {
-    return this.service.getTelemetryJson(this.bData$["device"]).subscribe(jsonObject => {
-     this.jsonObject = jsonObject;
-     console.log(this.jsonObject);
+    return this.service.getTelemetryJson(this.bData$['device']).subscribe(jsonObject => {
+      this.jsonObject = jsonObject;
+      console.log(this.jsonObject);
     });
   }
 
   // if device card is clicked call device method
-  locate(){
-    this.service.InvokeDeviceMethod('Locate', this.bData$["device"]).subscribe();    
+  locate() {
+    this.service.InvokeDeviceMethod('Locate', this.bData$['device']).subscribe();
   }
 }

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TelemetryDataImportService} from '../telemetry-data-import.service';
-import { Router } from '@angular/router'
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-//Get building data from local file
+// Get building data from local file
 import * as json1 from '../buildings';
 
 @Component({
@@ -21,7 +20,7 @@ export class BuildingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.urlSplit$ = this.router.url.split('/')
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors;    
+    this.urlSplit$ = this.router.url.split('/');
+    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2], 10) - 1].floors;
   }
 }
