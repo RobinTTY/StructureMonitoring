@@ -11,7 +11,8 @@ export class ChartService {
   }
 
   deviceData(device: string) {
-    return this._http.get('https://backendsting.azurewebsites.net/telemetry/lastday/' + device)
+    // TODO: insert new Backend API
+    return this._http.get('')
       .pipe(map(result => result));
   }
 }
