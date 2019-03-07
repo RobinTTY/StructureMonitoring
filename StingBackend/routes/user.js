@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*
- * GET home page.
+ * GET users listing.
  */
 const express = require("express");
 const router = express.Router();
 router.get('/', (req, res) => {
-    res.render('index', { title: 'Express' });
+    res.send("respond with a resource");
 });
 exports.default = router;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=user.js.map
