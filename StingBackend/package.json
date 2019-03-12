@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon index"
+    "start": "node dist/app",
+    "dev": "nodemon dist/app"
   },
   "description": "StingBackend",
   "author": {
