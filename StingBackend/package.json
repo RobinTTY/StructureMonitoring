@@ -12,9 +12,10 @@
   },
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.14.0",
-    "pug": "^2.0.0-rc.3",
-    "typescript": "^3.3.3333"
+    "mongoose": "^5.4.19",
+    "pug": "^2.0.0-rc.3"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
@@ -24,6 +25,7 @@
     "@types/node": "^8.0.14",
     "@types/serve-static": "^1.7.32",
     "nodemon": "^1.18.10",
-    "tslint": "^5.13.1"
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
   }
 }
