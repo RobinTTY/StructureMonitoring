@@ -13,7 +13,7 @@
     "node_modules"
   ],
   "include": [
-    "src/scripts/**/*",
-    "app.ts"
+    "src/*",
+    "src/Database/*"
   ]
 }
