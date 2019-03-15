@@ -1,4 +1,17 @@
-import { mongoose } from "mongoose";
+import  mongoose  from "mongoose";
 
-class Database {
+export class Database {
+    public connectionString: string;
+
+    constructor() {
+        this.connectionString = "";
+    }
+
+    public Connect(): void {
+        mongoose.connect(this.connectionString);
+    }
+
+    public Disconnect(): void {
+        mongoose.disconnect();
+    }
 }
