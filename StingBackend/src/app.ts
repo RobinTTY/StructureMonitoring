@@ -1,4 +1,4 @@
-﻿import express from "express";
+﻿import express, { Router } from "express";
 
 class App {
     // refers to the Express instance
@@ -8,11 +8,25 @@ class App {
     constructor() {
         this.app = express();
         this.configure();
+        this.routes();
       }
 
       // populate req.body with content from JSON sources
       private configure(): void {
         this.app.use(express.json());
+      }
+
+      // declare routes
+      routes(): void {
+        const router = express.Router();
+
+        router.get("/", (req, res) => {
+          res.status(200).send({
+            message: "hello world!"
+          });
+        });
+
+        this.app.use("/", router);
       }
 }
 

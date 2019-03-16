@@ -1,4 +1,4 @@
-export interface ITelemetryData{
+export interface ITelemetryData {
     objectId: string;
     timeStamp?: Number;
     temperature?: Number;

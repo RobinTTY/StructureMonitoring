@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node dist/app",
-    "dev": "nodemon dist/app"
+    "start": "node dist/server",
+    "dev": "nodemon dist/server"
   },
   "description": "StingBackend",
   "author": {
     "name": "Robin Müller"
   },
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
