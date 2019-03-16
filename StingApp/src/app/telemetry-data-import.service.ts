@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {forkJoin} from 'rxjs';
-
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
 
 @Injectable({
@@ -10,13 +7,15 @@ import {forkJoin} from 'rxjs';
 })
 export class TelemetryDataImportService {
 
-  constructor(private http: HttpClient) { }
-  
-  public getTelemetryJson(device : string) {
-      return this.http.get('https://backendsting.azurewebsites.net/telemetry/current/' + device);
+  constructor(private http: HttpClient) {
   }
 
-  public InvokeDeviceMethod(method : string, device : string){
-    return this.http.get('https://backendsting.azurewebsites.net/invoke/' + method + '/' + device);   
+  public getTelemetryJson(device: string) {
+    // TODO: insert new Backend API
+    return this.http.get('');
+  }
+
+  public InvokeDeviceMethod(method: string, device: string) {
+    return this.http.get('');
   }
 }

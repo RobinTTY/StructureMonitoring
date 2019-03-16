@@ -1,4 +1,13 @@
-﻿/**
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+using Windows.Devices.Enumeration;
+using Windows.Devices.I2c;
+using Sting.Devices.Contracts;
+
+
+/**
  *  Character-LCD-over-I2C 
  *  ===================
  *  Connect HD44780 LCD character Display to Windows 10 IoT devices via I2C and PCF8574
@@ -10,60 +19,60 @@
  *  Git: https://github.com/DzeryCZ/Character-LCD-over-I2C
 **/
 
-
-using System;
-using System.Threading.Tasks;
-using Windows.Devices.Enumeration;
-using Windows.Devices.I2c;
-
-namespace Sting.Measurements.External_Libraries
+namespace Sting.Devices
 {
-    class Display
+    class Hd44780 //: IGpioComponent
     {
-
-        private const byte LcdWrite = 0x07;
-
-        private readonly byte _d4;
-        private readonly byte _d5;
-        private readonly byte _d6;
-        private readonly byte _d7;
-        private readonly byte _en;
-        private readonly byte _rw;
-        private readonly byte _rs;
-        private readonly byte _bl;
-
-        private readonly byte[] _lineAddress = { 0x00, 0x40 };
-        private byte _backLight = 0x01;
+        // Device
+        private const string I2CControllerName = "I2C1";
+        private const byte DeviceI2CAddress = 0x27;
         private I2cDevice _i2CPortExpander;
 
+        private readonly byte[] _lineAddress = { 0x00, 0x40 };
+        private const byte LcdWrite = 0x07;
+        private byte _backLight = 0x01;
+        
+        // Setup pins
+        private const byte D4 = 0x04;
+        private const byte D5 = 0x05;
+        private const byte D6 = 0x06;
+        private const byte D7 = 0x07;
+        private const byte En = 0x02;
+        private const byte Rw = 0x01;
+        private const byte Rs = 0x00;
+        private const byte Bl = 0x03;
 
-        public Display(byte deviceAddress, string controllerName, byte Rs, byte Rw, byte En, byte D4, byte D5, byte D6, byte D7, byte Bl, byte[] lineAddress) : this(deviceAddress, controllerName, Rs, Rw, En, D4, D5, D6, D7, Bl)
+
+        /// <inheritdoc />
+        public bool InitComponent(int pin = 0)
         {
-            _lineAddress = lineAddress;
+            StartI2C(DeviceI2CAddress, I2CControllerName);
+            try
+            {
+                Init();
+            }
+            catch (FileNotFoundException e)
+            {
+                Dispose();
+                Debug.WriteLine("Lcd couldn't be initialized, check connections");
+            }
+
+            return true;
         }
 
-
-        public Display(byte deviceAddress, string controllerName, byte Rs, byte Rw, byte En, byte D4, byte D5, byte D6, byte D7, byte Bl)
+        /// <inheritdoc />
+        public void ClosePin()
         {
-            // Configure pins
-            _rs = Rs;
-            _rw = Rw;
-            _en = En;
-            _d4 = D4;
-            _d5 = D5;
-            _d6 = D6;
-            _d7 = D7;
-            _bl = Bl;
-
-            Task.Run(() => StartI2C(deviceAddress, controllerName)).Wait();
+            ClrScr();
+            Dispose();
         }
 
-
-
-        /**
-        * Start I2C Communication
-        **/
-        public async void StartI2C(byte deviceAddress, string controllerName)
+        /// <summary>
+        /// Start I2C Communication
+        /// </summary>
+        /// <param name="deviceAddress"></param>
+        /// <param name="controllerName"></param>
+        private async void StartI2C(byte deviceAddress, string controllerName)
         {
             try
             {
@@ -86,27 +95,27 @@ namespace Sting.Measurements.External_Libraries
         {
             /* Init sequence */
             Task.Delay(100).Wait();
-            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
+            PulseEnable(Convert.ToByte((1 << D5) | (1 << D4)));
             Task.Delay(5).Wait();
-            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
+            PulseEnable(Convert.ToByte((1 << D5) | (1 << D4)));
             Task.Delay(5).Wait();
-            PulseEnable(Convert.ToByte((1 << _d5) | (1 << _d4)));
+            PulseEnable(Convert.ToByte((1 << D5) | (1 << D4)));
 
             /*  Init 4-bit mode */
-            PulseEnable(Convert.ToByte((1 << _d5)));
+            PulseEnable(Convert.ToByte((1 << D5)));
 
             /* Init 4-bit mode + 2 line */
-            PulseEnable(Convert.ToByte((1 << _d5)));
-            PulseEnable(Convert.ToByte((1 << _d7)));
+            PulseEnable(Convert.ToByte((1 << D5)));
+            PulseEnable(Convert.ToByte((1 << D7)));
 
             /* Turn on Display, cursor */
             PulseEnable(0);
-            PulseEnable(Convert.ToByte((1 << _d7) | (Convert.ToByte(turnOnDisplay) << _d6) | (Convert.ToByte(turnOnCursor) << _d5) | (Convert.ToByte(blinkCursor) << _d4)));
+            PulseEnable(Convert.ToByte((1 << D7) | (Convert.ToByte(turnOnDisplay) << D6) | (Convert.ToByte(turnOnCursor) << D5) | (Convert.ToByte(blinkCursor) << D4)));
 
             ClrScr();
 
             PulseEnable(0);
-            PulseEnable(Convert.ToByte((1 << _d6) | (Convert.ToByte(cursorDirection) << _d5) | (Convert.ToByte(textShift) << _d4)));
+            PulseEnable(Convert.ToByte((1 << D6) | (Convert.ToByte(cursorDirection) << D5) | (Convert.ToByte(textShift) << D4)));
         }
 
 
@@ -188,7 +197,7 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Send data to Display
         **/
-        public void SendData(byte data)
+        private void SendData(byte data)
         {
             Write(data, 1);
         }
@@ -197,7 +206,7 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Send command to Display
         **/
-        public void SendCommand(byte data)
+        private void SendCommand(byte data)
         {
             Write(data, 0);
         }
@@ -206,10 +215,10 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Clear Display and set cursor at start of the first line
         **/
-        public void ClrScr()
+        private void ClrScr()
         {
             PulseEnable(0);
-            PulseEnable(Convert.ToByte((1 << _d4)));
+            PulseEnable(Convert.ToByte((1 << D4)));
             Task.Delay(5).Wait();
         }
 
@@ -217,10 +226,10 @@ namespace Sting.Measurements.External_Libraries
         /**
         * Send pure data to Display
         **/
-        public void Write(byte data, byte Rs)
+        private void Write(byte data, byte Rs)
         {
-            PulseEnable(Convert.ToByte((data & 0xf0) | (Rs << _rs)));
-            PulseEnable(Convert.ToByte((data & 0x0f) << 4 | (Rs << _rs)));
+            PulseEnable(Convert.ToByte((data & 0xf0) | (Rs << Hd44780.Rs)));
+            PulseEnable(Convert.ToByte((data & 0x0f) << 4 | (Rs << Hd44780.Rs)));
         }
 
 
@@ -229,8 +238,8 @@ namespace Sting.Measurements.External_Libraries
         */
         private void PulseEnable(byte data)
         {
-            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (1 << _en) | (_backLight << _bl)) }); // Enable bit HIGH
-            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (_backLight << _bl)) }); // Enable bit LOW
+            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (1 << En) | (_backLight << Bl)) }); // Enable bit HIGH
+            _i2CPortExpander.Write(new[] { Convert.ToByte(data | (_backLight << Bl)) }); // Enable bit LOW
         }
 
 
@@ -262,5 +271,6 @@ namespace Sting.Measurements.External_Libraries
         {
             _i2CPortExpander.Dispose();
         }
+
     }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TelemetryDataImportService} from '../telemetry-data-import.service';
+import {Component, OnInit} from '@angular/core';
+import {TelemetryDataImportService} from '../telemetry-data-import.service';
 
-//Get building data from local file
+// Get building data from local file
 import * as json1 from '../buildings';
 
 @Component({
@@ -13,11 +13,11 @@ export class TelemetryDataComponent implements OnInit {
   bData$: Object;
   telemetry$: Object;
   public jsonObject: any;
-  
 
-  constructor(private telemetryService: TelemetryDataImportService) { }
+  constructor(private telemetryService: TelemetryDataImportService) {
+  }
 
   ngOnInit() {
-   this.bData$ = json1.default.buildings;   
+    this.bData$ = json1.default.buildings;
   }
 }

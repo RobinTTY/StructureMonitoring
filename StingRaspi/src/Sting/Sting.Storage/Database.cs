@@ -1,10 +1,8 @@
 ﻿using System.IO;
-using System.Net.NetworkInformation;
 using System.Xml.Linq;
 using Windows.ApplicationModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Sting.Units;
 
 namespace Sting.Storage
 {
@@ -34,17 +32,9 @@ namespace Sting.Storage
             _database = client.GetDatabase(_databaseName);
         }
 
-        public void AddTelemetryData(TelemetryData telemetryData)
+        public void SaveDocumentToCollection(BsonDocument document, string collectionName)
         {
-            var collection = _database.GetCollection<BsonDocument>("TelemetryData");
-            var document = new BsonDocument()
-            {
-                {"TimeStamp", telemetryData.UnixTimeStampMilliseconds },
-                {"Temperature", telemetryData.Temperature },
-                {"Humidity", telemetryData.Humidity },
-                {"Air Pressure", telemetryData.Pressure }
-            };
-
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
             collection.InsertOneAsync(document);
         }
 

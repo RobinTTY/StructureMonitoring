@@ -123,8 +123,7 @@
     <Compile Include="Bmp180.cs" />
     <Compile Include="Buzzer.cs" />
     <Compile Include="Dht11.cs" />
-    <Compile Include="External Libraries\Display.cs" />
-    <Compile Include="Lcd.cs" />
+    <Compile Include="Hd44780.cs" />
     <Compile Include="Led.cs" />
     <Compile Include="Mfrc522.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
