@@ -1,12 +1,16 @@
-﻿import express, { Router } from "express";
+﻿import express from "express";
+import { Database } from "./Database/database";
 
 class App {
     // refers to the Express instance
     public app: express.Application;
+    public database: Database;
 
     // Run configuration methods
     constructor() {
         this.app = express();
+        this.database = new Database();
+
         this.configure();
         this.routes();
       }
@@ -14,6 +18,7 @@ class App {
       // populate req.body with content from JSON sources
       private configure(): void {
         this.app.use(express.json());
+        this.database.Connect();
       }
 
       // declare routes
@@ -22,7 +27,7 @@ class App {
 
         router.get("/", (req, res) => {
           res.status(200).send({
-            message: "hello world!"
+            message: "Sting API v0.1"
           });
         });
 
