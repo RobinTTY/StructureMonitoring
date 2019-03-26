@@ -12,10 +12,10 @@ namespace StingBackend.Services
         public TelemetryDataService(IConfiguration config)
         {
             var client = new MongoClient(config.GetConnectionString("StingMeasurements"));
-            var database = client.GetDatabase("StingMeasurements");
+            var database = client.GetDatabase("Sting");
 
             // GetCollection<T> represents the CLR object type stored in the collection
-            _telemetryData = database.GetCollection<TelemetryData>("Sting.TelemetryData");
+            _telemetryData = database.GetCollection<TelemetryData>("TelemetryData");
         }
 
         public List<TelemetryData> Get()
