@@ -13,6 +13,8 @@ namespace StingBackend.Services
         {
             var client = new MongoClient(config.GetConnectionString("StingMeasurements"));
             var database = client.GetDatabase("StingMeasurements");
+
+            // GetCollection<T> represents the CLR object type stored in the collection
             _telemetryData = database.GetCollection<TelemetryData>("Sting.TelemetryData");
         }
 
@@ -23,7 +25,7 @@ namespace StingBackend.Services
 
         public TelemetryData Get(string id)
         {
-            return _telemetryData.Find<TelemetryData>(telemetryData => telemetryData.Id == id).FirstOrDefault();
+            return _telemetryData.Find(telemetryData => telemetryData.Id == id).FirstOrDefault();
         }
 
         public TelemetryData Create(TelemetryData telemetryData)
