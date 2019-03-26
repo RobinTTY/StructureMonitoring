@@ -9,7 +9,10 @@ namespace StingBackend.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("Timestamp")]
+        [BsonElement("DeviceName")]
+        public string DeviceName { get; set; }
+
+        [BsonElement("TimeStamp")]
         public long UnixTimeStamp { get; set; }
 
         [BsonElement("Temperature")]
@@ -18,7 +21,7 @@ namespace StingBackend.Models
         [BsonElement("Humidity")]
         public double Humidity { get; set; }
 
-        [BsonElement("Pressure")]
-        public double Pressure { get; set; }
+        [BsonElement("AirPressure")]
+        public double AirPressure { get; set; }
     }
 }

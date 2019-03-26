@@ -29,7 +29,7 @@ namespace Sting.Application
             _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
             Configure();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(20));
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(10));
         }
 
         // initialize used components async
@@ -61,7 +61,7 @@ namespace Sting.Application
                 { "TimeStamp", data.UnixTimeStampMilliseconds },
                 { "Temperature", data.Temperature },
                 { "Humidity", data.Humidity },
-                { "Air Pressure", data.Pressure }
+                { "AirPressure", data.Pressure }
             };
             _stingDatabase.SaveDocumentToCollection(document, "TelemetryData");
         }
