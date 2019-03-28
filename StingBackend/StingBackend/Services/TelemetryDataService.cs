@@ -28,10 +28,16 @@ namespace StingBackend.Services
             return _telemetryData.Find(telemetryData => telemetryData.Id == id).FirstOrDefault();
         }
 
-        public TelemetryData Create(TelemetryData telemetryData)
+        public List<TelemetryData> Get(long timeStampStart, long timeStampEnd)
+        {
+            return _telemetryData
+                .Find(telemetryData => telemetryData.UnixTimeStamp >= timeStampStart && telemetryData.UnixTimeStamp <= timeStampEnd)
+                .ToList();
+        }
+
+        public void Create(TelemetryData telemetryData)
         {
             _telemetryData.InsertOne(telemetryData);
-            return telemetryData;
         }
 
         public void Update(string id, TelemetryData telemetryDataIn)
