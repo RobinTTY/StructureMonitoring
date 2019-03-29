@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using StingBackend.Models;
 using StingBackend.Services;
 
@@ -21,12 +19,7 @@ namespace StingBackend.Controllers
         [HttpGet]
         public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop)
         {
-            List<TelemetryData> telemetryData;
-
-            if(timeStampStart != null && timeStampStop != null)
-                telemetryData = _telemetryDataService.Get((long) timeStampStart, (long) timeStampStop);
-            else
-                telemetryData = _telemetryDataService.Get();
+            var telemetryData = _telemetryDataService.Get(timeStampStart, timeStampStop);
 
             if (telemetryData == null)
                 return NotFound();
@@ -35,9 +28,20 @@ namespace StingBackend.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name = "GetTelemetryData")]
-        public ActionResult<TelemetryData> Get(string id)
+        public ActionResult<TelemetryData> GetAll(string id)
         {
             var telemetryData = _telemetryDataService.Get(id);
+
+            if (telemetryData == null)
+                return NotFound();
+
+            return telemetryData;
+        }
+
+        [HttpGet("/Device/{name}")]
+        public ActionResult<List<TelemetryData>> GetDevice(string name)
+        {
+            var telemetryData = _telemetryDataService.GetDevice(name);
 
             if (telemetryData == null)
                 return NotFound();

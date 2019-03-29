@@ -11,8 +11,8 @@ namespace StingBackend.Services
 
         public TelemetryDataService(IConfiguration config)
         {
-            var client = new MongoClient(config.GetConnectionString("StingMeasurements"));
-            var database = client.GetDatabase("Sting");
+            var client = new MongoClient(config.GetConnectionString("StingDB"));
+            var database = client.GetDatabase(config.GetSection("DatabaseInfo")["DatabaseName"]);
 
             // GetCollection<T> represents the CLR object type stored in the collection
             _telemetryData = database.GetCollection<TelemetryData>("TelemetryData");
@@ -28,7 +28,12 @@ namespace StingBackend.Services
             return _telemetryData.Find(telemetryData => telemetryData.Id == id).FirstOrDefault();
         }
 
-        public List<TelemetryData> Get(long timeStampStart, long timeStampEnd)
+        public List<TelemetryData> GetDevice(string deviceName)
+        {
+            return _telemetryData.Find(telemetryData => telemetryData.DeviceName == deviceName).ToList();
+        }
+
+        public List<TelemetryData> Get(long? timeStampStart, long? timeStampEnd)
         {
             return _telemetryData
                 .Find(telemetryData => telemetryData.UnixTimeStamp >= timeStampStart && telemetryData.UnixTimeStamp <= timeStampEnd)
