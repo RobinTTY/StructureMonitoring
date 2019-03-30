@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Sting.Backend.Services;
 using StingBackend.Models;
-using StingBackend.Services;
 
-namespace StingBackend.Controllers
+namespace Sting.Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

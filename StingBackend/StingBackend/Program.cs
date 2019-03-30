@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace StingBackend
+namespace Sting.Backend
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class Program
     {
         public static void Main(string[] args)
@@ -10,7 +11,7 @@ namespace StingBackend
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }

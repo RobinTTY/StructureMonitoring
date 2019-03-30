@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StingBackend.Services;
+using Sting.Backend.Services;
 
-namespace StingBackend
+namespace Sting.Backend
 {
     public class Startup
     {

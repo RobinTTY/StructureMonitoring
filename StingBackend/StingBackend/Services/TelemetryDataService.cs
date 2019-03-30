@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using StingBackend.Models;
 
-namespace StingBackend.Services
+namespace Sting.Backend.Services
 {
     public class TelemetryDataService
     {
