@@ -35,8 +35,14 @@ namespace StingBackend.Services
 
         public List<TelemetryData> Get(long? timeStampStart, long? timeStampEnd)
         {
+            var startFilter =
+                Builders<TelemetryData>.Filter.Gte(telemetryData => telemetryData.UnixTimeStamp, timeStampStart);
+
+            var endFilter =
+                Builders<TelemetryData>.Filter.Lte(telemetryData => telemetryData.UnixTimeStamp, timeStampEnd);
+
             return _telemetryData
-                .Find(telemetryData => telemetryData.UnixTimeStamp >= timeStampStart && telemetryData.UnixTimeStamp <= timeStampEnd)
+                .Find(startFilter & endFilter)
                 .ToList();
         }
 
