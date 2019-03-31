@@ -1,9 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace StingBackend.Models
+namespace Sting.Backend.Models
 {
-    public class TelemetryData
+    public abstract class TelemetryData
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

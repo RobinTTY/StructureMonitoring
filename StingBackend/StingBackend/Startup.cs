@@ -15,7 +15,7 @@ namespace Sting.Backend
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,7 +46,7 @@ namespace Sting.Backend
             app.UseMvc(routeBuilder =>
             {
                 routeBuilder.EnableDependencyInjection();
-                routeBuilder.Expand().Select().Count().OrderBy();
+                routeBuilder.Expand().Select().Count().OrderBy().Filter();
             });
         }
     }
