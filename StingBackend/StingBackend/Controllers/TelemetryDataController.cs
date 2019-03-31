@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using Sting.Backend.Services;
 using StingBackend.Models;
@@ -17,9 +18,10 @@ namespace Sting.Backend.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop)
         {
-            var telemetryData = _telemetryDataService.Get(timeStampStart, timeStampStop);
+            var telemetryData = _telemetryDataService.Get();
 
             if (telemetryData == null)
                 return NotFound();
