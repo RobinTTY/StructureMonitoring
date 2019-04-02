@@ -10,7 +10,7 @@ import {FloorComponent} from './floor/floor.component';
 import {BuildingComponent} from './building/building.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {TelemetryDataComponent} from './telemetry-data/telemetry-data.component';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import {TelemetryDataComponent} from './telemetry-data/telemetry-data.component'
     RoomComponent,
     FloorComponent,
     BuildingComponent,
-    TelemetryDataComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

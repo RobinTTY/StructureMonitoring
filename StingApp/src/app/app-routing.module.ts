@@ -3,21 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { RoomComponent } from './room/room.component';
 import { FloorComponent } from './floor/floor.component';
 import { BuildingComponent } from './building/building.component';
-import { TelemetryDataComponent } from './telemetry-data/telemetry-data.component';
+import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TelemetryDataComponent
+    component: HomeComponent
   },
   {
     path: 'users',
     component: UsersComponent
-  },
-  {
-    path: 'room/:id',
-    component: RoomComponent
   },
   {
     path: 'building/:id/floor/:id/room/:id',

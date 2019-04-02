@@ -5,11 +5,11 @@ import {TelemetryDataImportService} from '../telemetry-data-import.service';
 import * as json1 from '../buildings';
 
 @Component({
-  selector: 'app-telemetry-data',
-  templateUrl: './telemetry-data.component.html',
-  styleUrls: ['./telemetry-data.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class TelemetryDataComponent implements OnInit {
+export class HomeComponent implements OnInit {
   bData$: Object;
   telemetry$: Object;
   public jsonObject: any;
