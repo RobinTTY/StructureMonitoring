@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using Sting.Backend.Models;
+using Sting.Models;
 
 namespace Sting.Backend.Services
 {

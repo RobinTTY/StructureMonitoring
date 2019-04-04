@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Units", "Sting.Units\Sting.Units.csproj", "{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Devices.Contracts", "Sting.Devices.Contracts\Sting.Devices.Contracts.csproj", "{569763F0-02F5-4D8D-B360-2A965D50FC77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Application", "Sting.Application\Sting.Application.csproj", "{3206754E-6968-41AB-8D05-3FE230F7893E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sting.Models", "..\..\..\StingBackend\Sting.Models\Sting.Models.csproj", "{E1044465-1895-43E9-B219-AB502A845E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,26 @@ Global
 		{3206754E-6968-41AB-8D05-3FE230F7893E}.Release|x86.ActiveCfg = Release|x86
 		{3206754E-6968-41AB-8D05-3FE230F7893E}.Release|x86.Build.0 = Release|x86
 		{3206754E-6968-41AB-8D05-3FE230F7893E}.Release|x86.Deploy.0 = Release|x86
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|x64.Build.0 = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Debug|x86.Build.0 = Debug|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|ARM.Build.0 = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|ARM64.Build.0 = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|x64.ActiveCfg = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|x64.Build.0 = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|x86.ActiveCfg = Release|Any CPU
+		{E1044465-1895-43E9-B219-AB502A845E17}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using Sting.Backend.Models;
 using Sting.Backend.Services;
+using Sting.Models;
 
 namespace Sting.Backend.Controllers
 {
