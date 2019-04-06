@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using MongoDB.Bson;
 using Sting.Devices;
 using Sting.Storage;
@@ -21,8 +22,10 @@ namespace Sting.Application
 
         private readonly Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
         private readonly Dht11 _dht = new Dht11();
+
         private readonly Database _stingDatabase = new Database();
-        
+        private EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
+
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _stingDatabase.InitConnection();
@@ -51,19 +54,17 @@ namespace Sting.Application
         // Take Measurements periodically
         private async void PeriodicTask(ThreadPoolTimer timer)
         {
-            var data = await _bmp.ReadAsync();
-            data.Complement(await _dht.TakeMeasurementAsync());
-            Debug.WriteLine(data);
+            var bmpMeasurement = await _bmp.ReadAsync();
+            var dhtMeasurement = await _dht.TakeMeasurementAsync();
 
-            var document = new BsonDocument()
-            {
-                { "DeviceName", _deviceName },
-                { "TimeStamp", data.UnixTimeStampMilliseconds },
-                { "Temperature", data.Temperature },
-                { "Humidity", data.Humidity },
-                { "AirPressure", data.Pressure }
-            };
-            _stingDatabase.SaveDocumentToCollection(document, "TelemetryData");
+            if(bmpMeasurement == null)
+                return;
+
+            bmpMeasurement.Humidity = dhtMeasurement.Humidity;
+            // TODO: change to hardware id
+            bmpMeasurement.DeviceId = _deviceInfo.FriendlyName;
+            
+            _stingDatabase.SaveDocumentToCollection(bmpMeasurement.ToBsonDocument(), "TelemetryData");
         }
     }
 }

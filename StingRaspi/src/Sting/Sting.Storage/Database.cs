@@ -35,7 +35,7 @@ namespace Sting.Storage
         public void SaveDocumentToCollection(BsonDocument document, string collectionName)
         {
             var collection = _database.GetCollection<BsonDocument>(collectionName);
-            collection.InsertOneAsync(document);
+            var result = collection.InsertOneAsync(document);
         }
 
         private void Ping()

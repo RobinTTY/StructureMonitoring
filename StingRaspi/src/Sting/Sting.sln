@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Units", "Sting.Units\Sting.Units.csproj", "{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Storage", "Sting.Storage\Sting.Storage.csproj", "{9B15631E-9AE6-439F-84A5-3C9116EC86DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sting.Devices", "Sting.Devices\Sting.Devices.csproj", "{CDE8118A-222E-477C-A07E-8F475FFA5C97}"
@@ -29,26 +27,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|ARM.ActiveCfg = Debug|ARM
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|ARM.Build.0 = Debug|ARM
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|ARM64.Build.0 = Debug|ARM64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|x64.ActiveCfg = Debug|x64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|x64.Build.0 = Debug|x64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|x86.ActiveCfg = Debug|x86
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Debug|x86.Build.0 = Debug|x86
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|ARM.ActiveCfg = Release|ARM
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|ARM.Build.0 = Release|ARM
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|ARM64.ActiveCfg = Release|ARM64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|ARM64.Build.0 = Release|ARM64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|x64.ActiveCfg = Release|x64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|x64.Build.0 = Release|x64
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|x86.ActiveCfg = Release|x86
-		{4D7B1DE3-8078-440C-9C7C-BE0490F7DCD1}.Release|x86.Build.0 = Release|x86
 		{9B15631E-9AE6-439F-84A5-3C9116EC86DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B15631E-9AE6-439F-84A5-3C9116EC86DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B15631E-9AE6-439F-84A5-3C9116EC86DB}.Debug|ARM.ActiveCfg = Debug|ARM

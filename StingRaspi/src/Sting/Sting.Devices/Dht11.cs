@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Sensors.Dht;
 using Sting.Devices.Contracts;
-using Sting.Units;
+using Sting.Models;
 
 namespace Sting.Devices
 {
@@ -55,7 +55,7 @@ namespace Sting.Devices
                 measurement = await _dht.GetReadingAsync().AsTask();
             }
             
-            return measurement.IsValid ? new TelemetryData(measurement.Temperature, measurement.Humidity) : null;
+            return measurement.IsValid ? new TelemetryData(temperature: measurement.Temperature, humidity: measurement.Humidity) : null;
         }
     }
 }

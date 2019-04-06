@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Devices.I2c;
-using Sting.Units;
+using Sting.Models;
 
 namespace Sting.Devices
 {
@@ -103,7 +103,7 @@ namespace Sting.Devices
             var up = await ReadUncompensatedPressDataAsync();
             CalculateTrueData(ut, up, out var temperature, out var pressure);
 
-            return new TelemetryData(temperature, pressure: pressure);
+            return new TelemetryData(temperature: temperature, pressure: pressure);
         }
 
         /// <summary>
@@ -214,15 +214,15 @@ namespace Sting.Devices
         /// </summary>
         /// <param name="ut">Uncompensated temperature</param>
         /// <param name="up">Uncompensated pressure</param>
-        /// <param name="T">Out true temperature</param>
-        /// <param name="P">Out true pressure</param>
-        private void CalculateTrueData(double ut, double up, out double T, out double P)
+        /// <param name="tT">Out true temperature</param>
+        /// <param name="tP">Out true pressure</param>
+        private void CalculateTrueData(double ut, double up, out double tT, out double tP)
         {
             // Get true temperature
             var x1 = (ut - _calibration.Ac6) * _calibration.Ac5 / Math.Pow(2, 15);
             var x2 = _calibration.Mc * Math.Pow(2, 11) / (x1 + _calibration.Md);
             var b5 = x1 + x2;
-            T = (b5 + 8) / Math.Pow(2, 4) / 10;
+            tT = (b5 + 8) / Math.Pow(2, 4) / 10;
 
             double p;
             // Get true pressure
@@ -249,7 +249,7 @@ namespace Sting.Devices
             x1 = (p / Math.Pow(2, 8)) * (p / Math.Pow(2, 8));
             x1 = (x1 * 3038) / Math.Pow(2, 16);
             x2 = (-7357 * p) / Math.Pow(2, 16);
-            P = p + (x1 + x2 + 3791) / 16;
+            tP = p + (x1 + x2 + 3791) / 16;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Sting.Units;
+using Sting.Models;
 
 namespace Sting.Devices.Contracts
 {

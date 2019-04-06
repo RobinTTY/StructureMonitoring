@@ -130,18 +130,21 @@
     <EmbeddedResource Include="Properties\Sting.Devices.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\StingBackend\Sting.Models\Sting.Models.csproj">
+      <Project>{e1044465-1895-43e9-b219-ab502a845e17}</Project>
+      <Name>Sting.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj">
       <Project>{569763f0-02f5-4d8d-b360-2a965d50fc77}</Project>
       <Name>Sting.Devices.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sting.Units\Sting.Units.csproj">
-      <Project>{4d7b1de3-8078-440c-9c7c-be0490f7dcd1}</Project>
-      <Name>Sting.Units</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dht">
       <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

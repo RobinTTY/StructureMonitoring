@@ -126,9 +126,9 @@
     <EmbeddedResource Include="Properties\Sting.Devices.Contracts.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sting.Units\Sting.Units.csproj">
-      <Project>{4d7b1de3-8078-440c-9c7c-be0490f7dcd1}</Project>
-      <Name>Sting.Units</Name>
+    <ProjectReference Include="..\..\..\..\StingBackend\Sting.Models\Sting.Models.csproj">
+      <Project>{e1044465-1895-43e9-b219-ab502a845e17}</Project>
+      <Name>Sting.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
