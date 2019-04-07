@@ -8,7 +8,7 @@ namespace Sting.Devices
     /// <summary>
     /// Calibration coefficients
     /// </summary>
-    class Calibration
+    internal class Calibration
     {
         public short Ac1;
         public short Ac2;
@@ -34,6 +34,9 @@ namespace Sting.Devices
         UltraHighResolution = 3
     }
 
+    /// <summary>
+    /// Bmp180 sensor measuring temperature and air pressure.
+    /// </summary>
     public class Bmp180
     {
         private I2cDevice _sensor;
@@ -55,9 +58,6 @@ namespace Sting.Devices
         private const byte CalibrationMc = 0xBC;
         private const byte CalibrationMd = 0xBE;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
         public Bmp180(Resolution resolution)
         {
             _calibration = new Calibration();
@@ -173,6 +173,7 @@ namespace Sting.Devices
             _sensor.WriteRead(new[] { CalibrationMd }, readBuf);
             Array.Reverse(readBuf);
             _calibration.Md = BitConverter.ToInt16(readBuf, 0);
+
             _calibrated = true;
         }
 
@@ -212,30 +213,35 @@ namespace Sting.Devices
         /// <summary>
         /// Get true data by calculating
         /// </summary>
-        /// <param name="ut">Uncompensated temperature</param>
-        /// <param name="up">Uncompensated pressure</param>
-        /// <param name="tT">Out true temperature</param>
-        /// <param name="tP">Out true pressure</param>
-        private void CalculateTrueData(double ut, double up, out double tT, out double tP)
+        /// <param name="uncompensatedTemp">Uncompensated temperature</param>
+        /// <param name="uncompensatedPressure">Uncompensated pressure</param>
+        /// <param name="trueTemp">Out true temperature</param>
+        /// <param name="truePressure">Out true pressure</param>
+        private void CalculateTrueData(double uncompensatedTemp, double uncompensatedPressure, out double trueTemp, out double truePressure)
         {
             // Get true temperature
-            var x1 = (ut - _calibration.Ac6) * _calibration.Ac5 / Math.Pow(2, 15);
+            var x1 = (uncompensatedTemp - _calibration.Ac6) * _calibration.Ac5 / Math.Pow(2, 15);
             var x2 = _calibration.Mc * Math.Pow(2, 11) / (x1 + _calibration.Md);
             var b5 = x1 + x2;
-            tT = (b5 + 8) / Math.Pow(2, 4) / 10;
+
+            trueTemp = (b5 + 8) / Math.Pow(2, 4) / 10;
 
             double p;
             // Get true pressure
             var b6 = b5 - 4000;
+
             x1 = (_calibration.B2 * (b6 * b6 / Math.Pow(2, 12))) / Math.Pow(2, 11);
             x2 = _calibration.Ac2 * b6 / Math.Pow(2, 11);
+
             var x3 = x1 + x2;
             var b3 = ((_calibration.Ac1 * 4 + x3) * Math.Pow(2, _oss) + 2) / 4;
+
             x1 = _calibration.Ac3 * b6 / Math.Pow(2, 13);
             x2 = (_calibration.B1 * (b6 * b6 / Math.Pow(2, 12))) / Math.Pow(2, 16);
             x3 = ((x1 + x2) + 2) / 4;
+
             var b4 = _calibration.Ac4 * (ulong)(x3 + 32768) / Math.Pow(2, 15);
-            var b7 = ((ulong)up - b3) * (50000 / Math.Pow(2, _oss));
+            var b7 = ((ulong) uncompensatedPressure - b3) * (50000 / Math.Pow(2, _oss));
 
             if (b7 < 0x80000000)
             {
@@ -249,7 +255,7 @@ namespace Sting.Devices
             x1 = (p / Math.Pow(2, 8)) * (p / Math.Pow(2, 8));
             x1 = (x1 * 3038) / Math.Pow(2, 16);
             x2 = (-7357 * p) / Math.Pow(2, 16);
-            tP = p + (x1 + x2 + 3791) / 16;
+            truePressure = p + (x1 + x2 + 3791) / 16;
         }
     }
 }
