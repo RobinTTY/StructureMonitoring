@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using Sting.Backend.Services.Filters;
 using Sting.Models;
 
 namespace Sting.Backend.Services
@@ -18,9 +19,10 @@ namespace Sting.Backend.Services
             _telemetryData = database.GetCollection<TelemetryData>("TelemetryData");
         }
 
-        public List<TelemetryData> Get()
+        public List<TelemetryData> Get(long? timeStampStart, long? timeStampStop)
         {
-            return _telemetryData.Find(telemetryData => true).ToList();
+            var filter = TelemetryDataFilter.CreateFilter(timeStampStart, timeStampStop);
+            return _telemetryData.Find(filter).ToList();
         }
     }
 }

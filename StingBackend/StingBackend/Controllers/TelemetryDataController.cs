@@ -19,9 +19,9 @@ namespace Sting.Backend.Controllers
 
         [HttpGet]
         [EnableQuery]
-        public ActionResult<List<TelemetryData>> Get()
+        public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop)
         {
-            var telemetryData = _telemetryDataService.Get();
+            var telemetryData = _telemetryDataService.Get(timeStampStart, timeStampStop);
 
             if (telemetryData == null)
                 return NotFound();
