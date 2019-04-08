@@ -10,12 +10,13 @@ namespace Sting.Backend
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+        readonly string allowSpecificOrigins = "corsConfiguration";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -26,6 +27,16 @@ namespace Sting.Backend
 
             // Add OData support
             services.AddOData();
+
+            // Add Cors middleware
+            services.AddCors(options =>
+            {
+                options.AddPolicy(allowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +45,7 @@ namespace Sting.Backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(allowSpecificOrigins);
             }
             else
             {
