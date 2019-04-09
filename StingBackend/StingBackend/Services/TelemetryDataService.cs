@@ -19,15 +19,10 @@ namespace Sting.Backend.Services
             _telemetryData = database.GetCollection<TelemetryData>("TelemetryData");
         }
 
-        public List<TelemetryData> Get(long? timeStampStart, long? timeStampStop)
+        public List<TelemetryData> Get(long? timeStampStart, long? timeStampStop, string deviceId)
         {
-            var filter = TelemetryDataFilter.CreateFilter(timeStampStart, timeStampStop);
+            var filter = TelemetryDataFilter.CreateFilter(timeStampStart, timeStampStop, deviceId);
             return _telemetryData.Find(filter).ToList();
-        }
-
-        public List<TelemetryData> GetDevice(string deviceId)
-        {
-            return _telemetryData.Find(telemetryData => telemetryData.DeviceId == deviceId).ToList();
         }
     }
 }

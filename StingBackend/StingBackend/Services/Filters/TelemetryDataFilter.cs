@@ -8,7 +8,7 @@ namespace Sting.Backend.Services.Filters
     {
         private static readonly FilterDefinitionBuilder<TelemetryData> Builder = new FilterDefinitionBuilder<TelemetryData>();
 
-        public static FilterDefinition<TelemetryData> CreateFilter(long? timeStampStart, long? timeStampStop)
+        public static FilterDefinition<TelemetryData> CreateFilter(long? timeStampStart, long? timeStampStop, string deviceId)
         {
             var filterDefinitions = new List<FilterDefinition<TelemetryData>>();
 
@@ -17,6 +17,9 @@ namespace Sting.Backend.Services.Filters
 
             if (timeStampStop != null)
                 filterDefinitions.Add(Builder.Lte(telemetryData => telemetryData.UnixTimeStamp, timeStampStop));
+
+            if(deviceId != null)
+                filterDefinitions.Add(Builder.Eq(telemetryData => telemetryData.DeviceId, deviceId));
 
             var filter = Builder.Empty;
 
