@@ -28,5 +28,16 @@ namespace Sting.Backend.Controllers
 
             return telemetryData;
         }
+
+        [HttpGet("Device/{deviceId}")]
+        public ActionResult<List<TelemetryData>> GetDevice(string deviceId)
+        {
+            var telemetryData = _telemetryDataService.GetDevice(deviceId);
+
+            if (telemetryData == null)
+                return NotFound();
+
+            return telemetryData;
+        }
     }
 }
