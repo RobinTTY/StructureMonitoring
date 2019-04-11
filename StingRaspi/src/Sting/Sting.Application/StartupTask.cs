@@ -22,15 +22,14 @@ namespace Sting.Application
         private readonly Database _stingDatabase = new Database();
         private bool _cancelRequested;
         private BackgroundTaskDeferral _deferral;
-        private string _deviceName;
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _stingDatabase.InitConnection();
             _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
-            Configure();
-            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(10));
+
+            ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
         // initialize used components async
@@ -38,14 +37,6 @@ namespace Sting.Application
         {
             await _bmp.InitializeAsync();
             await _dht.InitComponentAsync(4);
-        }
-
-        private void Configure()
-        {
-            var xmlFilePath = Path.Combine(Package.Current.InstalledLocation.Path, "AppConfiguration.xml");
-            var settings = XDocument.Load(xmlFilePath).Root?.Element("appSettings");
-
-            _deviceName = settings?.Element("DeviceName")?.Value;
         }
 
         // Task which is executed every x seconds as defined in Run()

@@ -12,7 +12,7 @@ import * as json1 from '../buildings';
 })
 
 export class FloorComponent implements OnInit {
-
+  // TODO: variable naming
   urlSplit$: Array<string>;
   public jsonObject: any;
   bData$: Object;
@@ -28,6 +28,7 @@ export class FloorComponent implements OnInit {
     this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1];
   }
 
+  // TODO: research lifecycle hooks
   ngAfterViewInit() {
     for (let i = 0; i < this.bData$['length'].valueOf(); i++) {
       document.getElementById('txt' + (i + 1)).style.setProperty('left', this.bData$[i]['x'].valueOf() + '%');
@@ -51,6 +52,7 @@ export class FloorComponent implements OnInit {
           }
         }
 
+        // TODO: refactor
         // Status insertion based on thresholds of each individual room
         const thresholds =
           json1.default.buildings[parseInt(this.urlSplit$[2], 10) - 1].floors[parseInt(this.urlSplit$[4], 10) - 1].rooms[i].thresholds;

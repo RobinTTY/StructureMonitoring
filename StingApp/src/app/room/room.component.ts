@@ -18,6 +18,7 @@ import * as json1 from '../buildings';
 
 export class RoomComponent implements OnInit {
 
+  // TODO: variable naming!
   urlSplit$: Array<string>;
   public jsonObject: any;
   bData$: Object;
@@ -44,6 +45,7 @@ export class RoomComponent implements OnInit {
       .rooms[parseInt(this.urlSplit$[6], 10) - 1];
     this.fetchTelemetry();
 
+    // TODO: move to its own component
     // insert chart data
     this._chart.deviceData(this.bData$['device'])
       .subscribe(res => {
@@ -174,7 +176,7 @@ export class RoomComponent implements OnInit {
       });
   }
 
-  // insert measured values if available into cards
+  // TODO: research lifecycle hooks better, refactor this horror
   ngDoCheck() {
     try {
       const dt = new Date(
@@ -223,8 +225,9 @@ export class RoomComponent implements OnInit {
     });
   }
 
+  // TODO: might want to implement this wit AWS lambda?!
   // if device card is clicked call device method
-  locate() {
-    this.service.InvokeDeviceMethod('Locate', this.bData$['device']).subscribe();
-  }
+  // locate() {
+  //   this.service.InvokeDeviceMethod('Locate', this.bData$['device']).subscribe();
+  // }
 }

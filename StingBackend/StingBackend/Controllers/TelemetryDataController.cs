@@ -16,7 +16,7 @@ namespace Sting.Backend.Controllers
         {
             _telemetryDataService = telemetryDataService;
         }
-
+        
         [HttpGet]
         [EnableQuery]
         public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop, [FromQuery(Name = "deviceId")] string deviceId)

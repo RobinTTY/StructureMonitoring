@@ -10,6 +10,7 @@ import * as json1 from '../buildings';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  // TODO: variable naming
   bData$: Object;
   telemetry$: Object;
   public jsonObject: any;

@@ -12,6 +12,7 @@ import * as json1 from '../buildings';
 
 export class BuildingComponent implements OnInit {
 
+  // TODO: variable naming!
   urlSplit$: Array<string>;
   bData$: Object;
   building$: Object;
