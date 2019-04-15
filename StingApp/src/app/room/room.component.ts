@@ -219,7 +219,7 @@ export class RoomComponent implements OnInit {
 
   // fetch telemetry data from backend for the current device
   fetchTelemetry() {
-    return this.service.getTelemetryJson(this.bData$['device']).subscribe(jsonObject => {
+    return this.service.getTelemetryJson().subscribe(jsonObject => {
       this.jsonObject = jsonObject;
       console.log(this.jsonObject);
     });

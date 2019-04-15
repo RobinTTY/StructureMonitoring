@@ -93,10 +93,13 @@ export class FloorComponent implements OnInit {
 
   fetchTelemetry() {
     // TODO: move
+    const localTime = new Date();
+    const utcTime = Date.UTC(localTime.getUTCFullYear(), localTime.getUTCMonth(), localTime.getUTCDate(),
+    localTime.getUTCHours(), localTime.getUTCMinutes() - 2, localTime.getUTCSeconds());
+
     const params = new HttpParams()
     .set('DeviceId', 'RasPi_Robin')
-    .set('TimeStampStart', '1554510460898')
-    .set('TimeStampStop', '1554510560898');
+    .set('TimeStampStart', utcTime.toString());
 
     return this.service.getTelemetryJson(params).subscribe(jsonObject => {
       this.jsonObject = jsonObject;
