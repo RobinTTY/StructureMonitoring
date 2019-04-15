@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 
 // Get building data from local file
 import * as json1 from '../buildings';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-floor',
@@ -22,7 +23,8 @@ export class FloorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchTelemetry();
+    const telemetry = this.fetchTelemetry();
+    console.log(telemetry);
     this.urlSplit$ = this.router.url.split('/');
     this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
     this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1];
@@ -90,7 +92,13 @@ export class FloorComponent implements OnInit {
   }
 
   fetchTelemetry() {
-    return this.service.getTelemetryJson('all').subscribe(jsonObject => {
+    // TODO: move
+    const params = new HttpParams()
+    .set('DeviceId', 'RasPi_Robin')
+    .set('TimeStampStart', '1554510460898')
+    .set('TimeStampStop', '1554510560898');
+
+    return this.service.getTelemetryJson(params).subscribe(jsonObject => {
       this.jsonObject = jsonObject;
       console.log(this.jsonObject);
     });
