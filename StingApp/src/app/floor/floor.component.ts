@@ -12,30 +12,35 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./floor.component.scss']
 })
 
+// TODO: change horrible naming practice in building config!!!
 export class FloorComponent implements OnInit {
   // TODO: variable naming
-  urlSplit$: Array<string>;
-  public jsonObject: any;
-  bData$: Object;
-  floor$: any;
+  urlSplit: Array<string>;
+  telemetryData: any;
+  buildingData: Object;
+  floorData: any;
 
   constructor(private service: TelemetryDataImportService, private router: Router) {
   }
 
   ngOnInit() {
-    const telemetry = this.fetchTelemetry();
-    console.log(telemetry);
-    this.urlSplit$ = this.router.url.split('/');
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1].rooms;
-    this.floor$ = json1.default.buildings[parseInt(this.urlSplit$[2]) - 1].floors[parseInt(this.urlSplit$[4]) - 1];
+    this.fetchTelemetry();
+
+    this.urlSplit = this.router.url.split('/');
+    this.buildingData = json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms;
+    this.floorData = json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1];
   }
 
-  // TODO: research lifecycle hooks
+  // TODO: research lifecycle hooks, use jquery?!
   ngAfterViewInit() {
-    for (let i = 0; i < this.bData$['length'].valueOf(); i++) {
-      document.getElementById('txt' + (i + 1)).style.setProperty('left', this.bData$[i]['x'].valueOf() + '%');
-      document.getElementById('txt' + (i + 1)).style.setProperty('top', this.bData$[i]['y'].valueOf() + '%');
-      if (this.bData$[i].device === 'default') {
+    console.log('bdata:');
+    console.log(this.buildingData);
+
+    for (let i = 0; i < this.buildingData['length'].valueOf(); i++) {
+      document.getElementById('txt' + (i + 1)).style.setProperty('left', this.buildingData[i]['x'].valueOf() + '%');
+      document.getElementById('txt' + (i + 1)).style.setProperty('top', this.buildingData[i]['y'].valueOf() + '%');
+
+      if (this.buildingData[i].device === 'default') {
         document.getElementById('txt' + (i + 1)).style.display = 'none';
       }
     }
@@ -43,13 +48,13 @@ export class FloorComponent implements OnInit {
 
   // # Insert room status
   ngDoCheck() {
-    for (let i = 0; i < this.bData$['length'].valueOf(); i++) {
+    for (let i = 0; i < this.buildingData['length'].valueOf(); i++) {
       let str = '';
       let dev_data = '';
       try {
-        for (let j = 0; j < this.jsonObject['length'].valueOf(); j++) {
-          if (this.jsonObject[j]['DeviceId'] === this.bData$[i]['device']) {
-            dev_data = this.jsonObject[j];
+        for (let j = 0; j < this.telemetryData['length'].valueOf(); j++) {
+          if (this.telemetryData[j]['DeviceId'] === this.buildingData[i]['device']) {
+            dev_data = this.telemetryData[j];
             break;
           }
         }
@@ -57,7 +62,7 @@ export class FloorComponent implements OnInit {
         // TODO: refactor
         // Status insertion based on thresholds of each individual room
         const thresholds =
-          json1.default.buildings[parseInt(this.urlSplit$[2], 10) - 1].floors[parseInt(this.urlSplit$[4], 10) - 1].rooms[i].thresholds;
+          json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms[i].thresholds;
         let statusOK = true;
 
         if (dev_data['Temperature'].valueOf() >= thresholds['tempHigh']) {
@@ -101,9 +106,12 @@ export class FloorComponent implements OnInit {
     .set('DeviceId', 'RasPi_Robin')
     .set('TimeStampStart', utcTime.toString());
 
+    // TODO: research Observables
     return this.service.getTelemetryJson(params).subscribe(jsonObject => {
-      this.jsonObject = jsonObject;
-      console.log(this.jsonObject);
+      this.telemetryData = jsonObject;
+
+      console.log('telemetry data:');
+      console.log(this.telemetryData);
     });
   }
 }

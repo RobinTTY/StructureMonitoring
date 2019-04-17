@@ -2,18 +2,18 @@
   <strong>
     <ol class="breadcrumb">    
       <li class="breadcrumb-item"><a routerLink="">Buildings</a></li>
-      <li class="breadcrumb-item"><a routerLink="/building/{{urlSplit$[2]}}">Floors</a></li>
-      <li class="breadcrumb-item active">Floor {{urlSplit$[4]}}</li>   
+      <li class="breadcrumb-item"><a routerLink="/building/{{urlSplit[2]}}">Floors</a></li>
+      <li class="breadcrumb-item active">Floor {{urlSplit[4]}}</li>   
     </ol>
   </strong>
-  <h1 class="text-center main-header">Floor {{urlSplit$[4]}}</h1>
+  <h1 class="text-center main-header">Floor {{urlSplit[4]}}</h1>
   <div id="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12 main-content">
         <section id="image" class="text-center">
           <a>
-            <img [src]="floor$.link" id="wow" class="rounded" alt="floor-plan" />          
-            <div *ngFor="let b of bData$" id="txt{{b.id}}" class="img-link" routerLink="room/{{b.id}}"> </div>
+            <img [src]="floorData.link" id="wow" class="rounded" alt="floor-plan" />          
+            <div *ngFor="let b of buildingData" id="txt{{b.id}}" class="img-link" routerLink="room/{{b.id}}"> </div>
           </a>        
         </section>
       </div>

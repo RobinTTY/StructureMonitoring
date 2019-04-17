@@ -12,6 +12,7 @@ export class ChartService {
 
   deviceData(device: string) {
     // TODO: insert new Backend API
+    // TODO: consider D3.js
     return this._http.get('')
       .pipe(map(result => result));
   }
