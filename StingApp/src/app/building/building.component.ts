@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 // Get building data from local file
-import * as json1 from '../buildings';
+import * as buildingConfig from '../buildings.json';
 
 @Component({
   selector: 'app-building',
@@ -22,6 +22,6 @@ export class BuildingComponent implements OnInit {
 
   ngOnInit() {
     this.urlSplit$ = this.router.url.split('/');
-    this.bData$ = json1.default.buildings[parseInt(this.urlSplit$[2], 10) - 1].floors;
+    this.bData$ = buildingConfig.buildings[parseInt(this.urlSplit$[2], 10) - 1].floors;
   }
 }

@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 import 'chartjs-plugin-annotation';
 
 // Get building data from local file
-import * as json1 from '../buildings';
+import * as buildingConfig from '../buildings.json';
 
 @Component({
   selector: 'app-room',
@@ -39,7 +39,7 @@ export class RoomComponent implements OnInit {
   // get configuration data for current room, fetch telemetry data
   ngOnInit() {
     this.urlSplit$ = this.router.url.split('/');
-    this.bData$ = json1.default
+    this.bData$ = buildingConfig
       .buildings[parseInt(this.urlSplit$[2], 10) - 1]
       .floors[parseInt(this.urlSplit$[4], 10) - 1]
       .rooms[parseInt(this.urlSplit$[6], 10) - 1];
@@ -182,7 +182,7 @@ export class RoomComponent implements OnInit {
       const dt = new Date(
         this.jsonObject['UnixTimeStampMilliseconds'])
         .toLocaleTimeString('en-EN', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'});
-      const thresholds = json1.default
+      const thresholds = buildingConfig
         .buildings[parseInt(this.urlSplit$[2], 10) - 1]
         .floors[parseInt(this.urlSplit$[4], 10) - 1]
         .rooms[parseInt(this.urlSplit$[6], 10) - 1].thresholds;

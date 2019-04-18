@@ -3,7 +3,7 @@ import {TelemetryDataImportService} from '../telemetry-data-import.service';
 import {Router} from '@angular/router';
 
 // Get building data from local file
-import * as json1 from '../buildings';
+import * as buildingConfig from '../buildings.json';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -27,8 +27,8 @@ export class FloorComponent implements OnInit {
     this.fetchTelemetry();
 
     this.urlSplit = this.router.url.split('/');
-    this.buildingData = json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms;
-    this.floorData = json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1];
+    this.buildingData = buildingConfig.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms;
+    this.floorData = buildingConfig.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1];
   }
 
   // TODO: research lifecycle hooks, use jquery?!
@@ -62,7 +62,7 @@ export class FloorComponent implements OnInit {
         // TODO: refactor
         // Status insertion based on thresholds of each individual room
         const thresholds =
-          json1.default.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms[i].thresholds;
+          buildingConfig.buildings[parseInt(this.urlSplit[2], 10) - 1].floors[parseInt(this.urlSplit[4], 10) - 1].rooms[i].thresholds;
         let statusOK = true;
 
         if (dev_data['Temperature'].valueOf() >= thresholds['tempHigh']) {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TelemetryDataImportService} from '../telemetry-data-import.service';
 
 // Get building data from local file
-import * as json1 from '../buildings';
+import * as buildingConfig from '../buildings.json';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +19,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bData$ = json1.default.buildings;
+    this.bData$ = buildingConfig.buildings;
   }
 }
