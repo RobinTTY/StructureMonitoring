@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {ChartService} from './chart.service';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
@@ -27,7 +26,6 @@ import {HomeComponent} from './home/home.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
