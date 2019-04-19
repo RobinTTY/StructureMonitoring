@@ -10,6 +10,7 @@ import {BuildingComponent} from './building/building.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {HomeComponent} from './home/home.component';
     RoomComponent,
     FloorComponent,
     BuildingComponent,
-    HomeComponent
+    HomeComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
