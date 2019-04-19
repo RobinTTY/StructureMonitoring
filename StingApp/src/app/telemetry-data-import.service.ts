@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 })
 export class TelemetryDataImportService {
 
-  telemetryDataUrl = 'https://localhost:44306/api/TelemetryData';
+  telemetryDataUrl = 'https://localhost:44306/api/TelemetryData/';
 
   constructor(private http: HttpClient) {
   }

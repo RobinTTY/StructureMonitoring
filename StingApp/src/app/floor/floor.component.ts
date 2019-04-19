@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TelemetryDataImportService} from '../telemetry-data-import.service';
+import { HttpParams } from '@angular/common/http';
 import {Router} from '@angular/router';
 
 // Get building data from local file
 import * as buildingConfig from '../buildings.json';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-floor',
