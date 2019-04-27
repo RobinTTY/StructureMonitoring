@@ -1,5 +1,7 @@
+import {TelemetryData} from '../../shared/models/TelemetryData';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class TelemetryService {
   constructor(private http: HttpClient) {
   }
 
-  public getTelemetryJson(searchParams?: HttpParams) {
-    return this.http.get(this.telemetryDataUrl, { params: searchParams });
+  public getTelemetryJson(searchParams?: HttpParams): Observable<TelemetryData[]> {
+    return this.http.get<TelemetryData[]>(this.telemetryDataUrl, { params: searchParams });
   }
 }

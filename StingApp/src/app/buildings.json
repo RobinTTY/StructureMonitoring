@@ -10,13 +10,13 @@
       "floors": [
         {
           "id": 1,
-          "floor-identifier": 11,
+          "alias": 11,
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": "1",
+              "alias": "1",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -31,7 +31,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 2,
+              "alias": 2,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -46,7 +46,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 3,
+              "alias": 3,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -63,13 +63,13 @@
         },
         {
           "id": 2,
-          "floor-identifier": 12,
+          "alias": 12,
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 1,
+              "alias": 1,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -84,7 +84,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 2,
+              "alias": 2,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -99,7 +99,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 3,
+              "alias": 3,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -126,13 +126,13 @@
       "floors": [
         {
           "id": 1,
-          "floor-identifier": 21,
+          "alias": 21,
           "name": "default",
           "link": "../assets/images/1.PNG",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 211,
+              "alias": 211,
               "x": 72,
               "y": 69,
               "device": "RasPi_Robin",
@@ -147,7 +147,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 212,
+              "alias": 212,
               "x": 65,
               "y": 5,
               "device": "RasPi_Enes",
@@ -162,7 +162,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 213,
+              "alias": 213,
               "x": 15,
               "y": 52,
               "device": "Raspi_Boris",
@@ -177,7 +177,7 @@
             },
             {
               "id": 4,
-              "room-identifier": 214,
+              "alias": 214,
               "x": 15,
               "y": 5,
               "device": "RasPi_Marc",
@@ -194,13 +194,13 @@
         },
         {
           "id": 2,
-          "floor-identifier": 22,
+          "alias": 22,
           "name": "default",
           "link": "../assets/images/2.PNG",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 221,
+              "alias": 221,
               "x": 28,
               "y": 21,
               "device": "default",
@@ -215,7 +215,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 222,
+              "alias": 222,
               "x": 26,
               "y": 73,
               "device": "default",
@@ -230,7 +230,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 223,
+              "alias": 223,
               "x": 38.5,
               "y": 73,
               "device": "default",
@@ -247,13 +247,13 @@
         },
         {
           "id": 3,
-          "floor-identifier": 23,
+          "alias": 23,
           "name": "default",
           "link": "../assets/images/3.PNG",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 231,
+              "alias": 231,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -268,7 +268,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 232,
+              "alias": 232,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -283,7 +283,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 233,
+              "alias": 233,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -310,13 +310,13 @@
       "floors": [
         {
           "id": 1,
-          "floor-identifier": 31,
+          "alias": 31,
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 311,
+              "alias": 311,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -333,13 +333,13 @@
         },
         {
           "id": 2,
-          "floor-identifier": 32,
+          "alias": 32,
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 321,
+              "alias": 321,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -354,7 +354,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 322,
+              "alias": 322,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -371,13 +371,13 @@
         },
         {
           "id": 3,
-          "floor-identifier": 33,
+          "alias": 33,
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
               "id": 1,
-              "room-identifier": 331,
+              "alias": 331,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -392,7 +392,7 @@
             },
             {
               "id": 2,
-              "room-identifier": 332,
+              "alias": 332,
               "x": 0,
               "y": 0,
               "device": "default",
@@ -407,7 +407,7 @@
             },
             {
               "id": 3,
-              "room-identifier": 333,
+              "alias": 333,
               "x": 0,
               "y": 0,
               "device": "default",

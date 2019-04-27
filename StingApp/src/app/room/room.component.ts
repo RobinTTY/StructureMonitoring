@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { TelemetryData } from '../shared/models/TelemetryData';
 import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { Position } from '../shared/models/position';
@@ -17,7 +18,7 @@ import * as buildingConfig from '../buildings.json';
 export class RoomComponent implements OnInit {
 
   // TODO: variable naming! This component needs the line-chart, refer to html
-  private telemetryData: any;
+  private telemetryData: TelemetryData;
   private roomData: any;
   private thresholds: Array<number>;
   private position: Position;
@@ -38,7 +39,6 @@ export class RoomComponent implements OnInit {
     this.thresholds = this.roomData['thresholds'];
 
     this.fetchTelemetry();
-    this.loadTelemetry();
 
     // TODO: remove diagnostics
     console.log(this.position);
@@ -46,30 +46,32 @@ export class RoomComponent implements OnInit {
     console.log(this.roomData);
   }
 
+  // TODO: refactor, 
   loadTelemetry() {
     console.log(this.telemetryData);
-    const dt = new Date(
-      this.telemetryData[1]['unixTimeStamp'])
-      .toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+    const dt = new Date(this.telemetryData.timeStamp)
+      //.toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
-    document.getElementById('TempVal').innerText = this.telemetryData['Temperature'].valueOf().toString().substr(0, 5) + '°C';
-    document.getElementById('HumVal').innerText = this.telemetryData['Humidity'].valueOf().toString() + '%';
-    document.getElementById('PressVal').innerText = this.telemetryData['Pressure'].valueOf().toString().substr(0, 3) + 'hPa';
-    document.getElementById('AltVal').innerText = this.telemetryData['Altitude'].valueOf().toString().substr(0, 3) + 'm';
-    document.getElementById('DeviceVal').innerText = this.telemetryData['DeviceId'].valueOf().toString();
+
+    console.log(this.telemetryData.timeStamp);
+    document.getElementById('TempVal').innerText = this.telemetryData.temperature.toString().substr(0, 5) + '°C';
+    document.getElementById('HumVal').innerText = this.telemetryData.humidity.toString() + '%';
+    document.getElementById('PressVal').innerText = this.telemetryData.airPressure.toString().substr(0, 3) + 'hPa';
+    // document.getElementById('AltVal').innerText = this.telemetryData['Altitude'].valueOf().toString().substr(0, 3) + 'm';
+    document.getElementById('DeviceVal').innerText = this.telemetryData.deviceId.toString();
     document.getElementById('TimeVal').innerText = dt.toString();
 
-    if (this.telemetryData['Temperature'].valueOf() >= this.thresholds['tempHigh']) {
+    if (this.telemetryData.temperature >= this.thresholds['tempHigh']) {
       document.getElementById('temperature').innerText = 'above threshold of ' + this.thresholds['tempHigh'] + '°C';
       document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
-    } else if (this.telemetryData['Temperature'].valueOf() <= this.thresholds['tempLow']) {
+    } else if (this.telemetryData.temperature <= this.thresholds['tempLow']) {
       document.getElementById('temperature').innerText = 'below threshold of ' + this.thresholds['tempLow'] + '°C';
       document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
     }
-    if (this.telemetryData['Humidity'].valueOf() >= this.thresholds['humHigh']) {
+    if (this.telemetryData.humidity >= this.thresholds['humHigh']) {
       document.getElementById('humidity').innerText = 'above threshold of ' + this.thresholds['humHigh'] + '%';
       document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
-    } else if (this.telemetryData['Humidity'].valueOf() <= this.thresholds['humLow']) {
+    } else if (this.telemetryData.humidity <= this.thresholds['humLow']) {
       document.getElementById('humidity').innerText = 'below threshold of ' + this.thresholds['humLow'] + '%';
       document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
     }
@@ -85,9 +87,9 @@ export class RoomComponent implements OnInit {
       .set('DeviceId', 'RasPi_Robin')
       .set('TimeStampStart', utcTime.toString());
 
-    return this.telemetryService.getTelemetryJson(params).subscribe(jsonObject => {
-      this.telemetryData = jsonObject;
-
+    return this.telemetryService.getTelemetryJson(params).subscribe(result => {
+      this.telemetryData = result[0];
+      this.loadTelemetry();
       console.log('Telemetry Data:');
       console.log(this.telemetryData);
     });
