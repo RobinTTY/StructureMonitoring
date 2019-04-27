@@ -16,15 +16,15 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
-    path: 'building/:id/floor/:id/room/:id',
+    path: 'building/:buildingId/floor/:floorId/room/:roomId',
     component: RoomComponent
   },
   {
-    path: 'building/:id/floor/:id',
+    path: 'building/:buildingId/floor/:floorId',
     component: FloorComponent
   },
   {
-    path: 'building/:id',
+    path: 'building/:buildingId',
     component: BuildingComponent
   }
 ];
