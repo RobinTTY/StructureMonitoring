@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TelemetryDataImportService} from '../telemetry-data-import.service';
+import {TelemetryService} from '../services/telemetry/telemetry.service';
 import { HttpParams } from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -20,7 +20,7 @@ export class FloorComponent implements OnInit {
   buildingData: Object;
   floorData: any;
 
-  constructor(private service: TelemetryDataImportService, private router: Router) {
+  constructor(private service: TelemetryService, private router: Router) {
   }
 
   ngOnInit() {

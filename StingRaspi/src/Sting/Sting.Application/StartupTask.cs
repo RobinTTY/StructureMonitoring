@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Xml.Linq;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Background;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Threading;
