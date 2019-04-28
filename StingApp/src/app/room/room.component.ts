@@ -3,12 +3,13 @@ import { TelemetryData } from '../shared/models/TelemetryData';
 import { HttpParams } from '@angular/common/http';
 import { Position } from '../shared/models/position';
 import { Building } from '../shared/models/building';
+import { Room } from '../shared/models/room';
+import { Thresholds } from '../shared/models/thresholds';
 import 'chartjs-plugin-annotation';
 
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { ConfigProviderService } from '../services/configProvider/config-provider.service';
 import { ActivatedRoute } from '@angular/router';
-
-import * as buildingConfig from '../buildings.json';
 
 @Component({
   selector: 'app-room',
@@ -18,38 +19,29 @@ import * as buildingConfig from '../buildings.json';
 
 export class RoomComponent implements OnInit {
 
-  // TODO: variable naming! This component needs the line-chart, refer to html
+  // TODO: This component needs the line-chart, refer to html
   private telemetryData: TelemetryData;
-  private building: Array<Building>;
-  private thresholds: Array<number>;
-  private roomData: any;
+  private buildings: Array<Building>;
+  private roomData: Room;
   private position: Position;
 
-  constructor(private telemetryService: TelemetryService, private route: ActivatedRoute) { }
+  constructor(private telemetryService: TelemetryService,
+              private configService: ConfigProviderService,
+              private routeService: ActivatedRoute) { }
 
   // get configuration data for current room, fetch telemetry data
   ngOnInit() {
-    const urlParams = this.route.snapshot.paramMap;
+    const urlParams = this.routeService.snapshot.paramMap;
     this.position = new Position(+urlParams.get('buildingId'), +urlParams.get('floorId'), +urlParams.get('roomId'));
-
-    this.roomData = buildingConfig
-      .buildings[this.position.buildingId]
-      .floors[this.position.floorId]
-      .rooms[this.position.roomId];
-    this.thresholds = this.roomData['thresholds'];
+    this.buildings = this.configService.getConfig();
+    this.roomData = this.buildings[this.position.buildingId].floors[this.position.floorId].rooms[this.position.roomId];
 
     this.fetchTelemetry();
-
-    // TODO: remove diagnostics
-    console.log(this.position);
-    console.log(this.thresholds);
   }
 
   // TODO: refactor
-  loadTelemetry() {
-    console.log(this.telemetryData);
-    console.log(this.building[1].city);
-    const dt = new Date(this.telemetryData.timeStamp)
+  loadTelemetry(): void {
+    const dt = new Date(this.telemetryData.timeStamp);
       //.toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
 
@@ -61,24 +53,24 @@ export class RoomComponent implements OnInit {
     document.getElementById('DeviceVal').innerText = this.telemetryData.deviceId.toString();
     document.getElementById('TimeVal').innerText = dt.toString();
 
-    if (this.telemetryData.temperature >= this.thresholds['tempHigh']) {
-      document.getElementById('temperature').innerText = 'above threshold of ' + this.thresholds['tempHigh'] + '°C';
+    if (this.telemetryData.temperature >= this.roomData.thresholds.tempHigh) {
+      document.getElementById('temperature').innerText = 'above threshold of ' + this.roomData.thresholds.tempHigh + '°C';
       document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
-    } else if (this.telemetryData.temperature <= this.thresholds['tempLow']) {
-      document.getElementById('temperature').innerText = 'below threshold of ' + this.thresholds['tempLow'] + '°C';
+    } else if (this.telemetryData.temperature <= this.roomData.thresholds.tempLow) {
+      document.getElementById('temperature').innerText = 'below threshold of ' + this.roomData.thresholds.tempLow + '°C';
       document.getElementById('temperature-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
     }
-    if (this.telemetryData.humidity >= this.thresholds['humHigh']) {
-      document.getElementById('humidity').innerText = 'above threshold of ' + this.thresholds['humHigh'] + '%';
+    if (this.telemetryData.humidity >= this.roomData.thresholds.humHigh) {
+      document.getElementById('humidity').innerText = 'above threshold of ' + this.roomData.thresholds.humHigh + '%';
       document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
-    } else if (this.telemetryData.humidity <= this.thresholds['humLow']) {
-      document.getElementById('humidity').innerText = 'below threshold of ' + this.thresholds['humLow'] + '%';
+    } else if (this.telemetryData.humidity <= this.roomData.thresholds.humLow) {
+      document.getElementById('humidity').innerText = 'below threshold of ' + this.roomData.thresholds.humLow + '%';
       document.getElementById('humidity-body').style.backgroundColor = 'rgba(259, 67, 95, 0.35)';
     }
   }
 
   // fetch telemetry data from backend for the current device
-  fetchTelemetry() {
+  fetchTelemetry(): void {
     const localTime = new Date();
     const utcTime = Date.UTC(localTime.getUTCFullYear(), localTime.getUTCMonth(), localTime.getUTCDate(),
       localTime.getUTCHours(), localTime.getUTCMinutes() - 10, localTime.getUTCSeconds());
