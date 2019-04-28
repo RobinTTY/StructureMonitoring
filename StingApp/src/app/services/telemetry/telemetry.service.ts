@@ -1,6 +1,6 @@
-import {TelemetryData} from '../../shared/models/TelemetryData';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { TelemetryData } from '../../shared/models/TelemetryData';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class TelemetryService {
   constructor(private http: HttpClient) {
   }
 
+  // TODO: Error Handler
   public getTelemetryJson(searchParams?: HttpParams): Observable<TelemetryData[]> {
     return this.http.get<TelemetryData[]>(this.telemetryDataUrl, { params: searchParams });
   }
