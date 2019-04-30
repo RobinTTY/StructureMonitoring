@@ -1,14 +1,14 @@
 <div class="flex-container bg-grey">
   <h1 class="text-center main-header">Your monitored objects</h1>    
-  <div class="object" *ngFor="let b of bData$">
+  <div class="object" *ngFor="let building of buildings">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12 text-center">
         <div id="image">
-          <img [src]="b.link" class="img-fluid rounded img-link" alt="image" routerLink="building/{{b.id}}" />              
+          <img [src]="building.link" class="img-fluid rounded img-link" alt="image" routerLink="building/{{building.id}}" />              
         </div>
       </div>   
       <div class="col-md-12 col-sm-12 col-xs-12 text-center description">      
-        <a id="bottom-left" routerLink="building/{{b.id}}"><strong>{{ b.name }}</strong></a>
+        <a id="bottom-left" routerLink="building/{{building.id}}"><strong>{{ building.name }}</strong></a>
       </div> 
     </div>        
   </div>
