@@ -1,7 +1,7 @@
 {
   "buildings": [
     {
-      "id": 1,
+      "id": 0,
       "name": "Systecs",
       "link": "../assets/images/Systecs.png",
       "street": "Bahnhofstraße 11",
@@ -9,13 +9,13 @@
       "postcode": "70771",
       "floors": [
         {
-          "id": 1,
-          "alias": 11,
+          "id": 0,
+          "alias": "11",
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
-              "id": 1,
+              "id": 0,
               "alias": "1",
               "x": 0,
               "y": 0,
@@ -30,8 +30,8 @@
               }
             },
             {
-              "id": 2,
-              "alias": 2,
+              "id": 1,
+              "alias": "2",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -45,8 +45,8 @@
               }
             },
             {
-              "id": 3,
-              "alias": 3,
+              "id": 2,
+              "alias": "3",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -62,14 +62,29 @@
           ]
         },
         {
-          "id": 2,
-          "alias": 12,
+          "id": 1,
+          "alias": "12",
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
+              "id": 0,
+              "alias": "1",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
               "id": 1,
-              "alias": 1,
+              "alias": "2",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -84,7 +99,161 @@
             },
             {
               "id": 2,
-              "alias": 2,
+              "alias": "3",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "HS-Esslingen",
+      "link": "../assets/images/HSE.png",
+      "street": "Kanalstraße 33",
+      "city": "Esslingen am Neckar",
+      "postcode": "73728",
+      "floors": [
+        {
+          "id": 0,
+          "alias": "21",
+          "name": "default",
+          "link": "../assets/images/1.PNG",
+          "rooms": [
+            {
+              "id": 0,
+              "alias": "211",
+              "x": 72,
+              "y": 69,
+              "device": "RasPi_Robin",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 19.3,
+                "tempHigh": 22,
+                "humLow": 20.7,
+                "humHigh": 70
+              }
+            },
+            {
+              "id": 1,
+              "alias": "212",
+              "x": 65,
+              "y": 5,
+              "device": "RasPi_Enes",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 17.5,
+                "tempHigh": 25,
+                "humLow": 30,
+                "humHigh": 50
+              }
+            },
+            {
+              "id": 2,
+              "alias": "213",
+              "x": 15,
+              "y": 52,
+              "device": "Raspi_Boris",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 23,
+                "tempHigh": 27,
+                "humLow": 10,
+                "humHigh": 80
+              }
+            },
+            {
+              "id": 3,
+              "alias": "214",
+              "x": 15,
+              "y": 5,
+              "device": "RasPi_Marc",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 20,
+                "tempHigh": 27.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "alias": "22",
+          "name": "default",
+          "link": "../assets/images/2.PNG",
+          "rooms": [
+            {
+              "id": 0,
+              "alias": "221",
+              "x": 28,
+              "y": 21,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
+              "id": 1,
+              "alias": "222",
+              "x": 26,
+              "y": 73,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
+              "id": 2,
+              "alias": "223",
+              "x": 38.5,
+              "y": 73,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "alias": "23",
+          "name": "default",
+          "link": "../assets/images/3.PNG",
+          "rooms": [
+            {
+              "id": 0,
+              "alias": "231",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -98,8 +267,23 @@
               }
             },
             {
-              "id": 3,
-              "alias": 3,
+              "id": 1,
+              "alias": "232",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
+              "id": 2,
+              "alias": "233",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -118,190 +302,6 @@
     },
     {
       "id": 2,
-      "name": "HS-Esslingen",
-      "link": "../assets/images/HSE.png",
-      "street": "Kanalstraße 33",
-      "city": "Esslingen am Neckar",
-      "postcode": "73728",
-      "floors": [
-        {
-          "id": 1,
-          "alias": 21,
-          "name": "default",
-          "link": "../assets/images/1.PNG",
-          "rooms": [
-            {
-              "id": 1,
-              "alias": 211,
-              "x": 72,
-              "y": 69,
-              "device": "RasPi_Robin",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 19.3,
-                "tempHigh": 22,
-                "humLow": 20.7,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 2,
-              "alias": 212,
-              "x": 65,
-              "y": 5,
-              "device": "RasPi_Enes",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 17.5,
-                "tempHigh": 25,
-                "humLow": 30,
-                "humHigh": 50
-              }
-            },
-            {
-              "id": 3,
-              "alias": 213,
-              "x": 15,
-              "y": 52,
-              "device": "Raspi_Boris",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 23,
-                "tempHigh": 27,
-                "humLow": 10,
-                "humHigh": 80
-              }
-            },
-            {
-              "id": 4,
-              "alias": 214,
-              "x": 15,
-              "y": 5,
-              "device": "RasPi_Marc",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 20,
-                "tempHigh": 27.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "alias": 22,
-          "name": "default",
-          "link": "../assets/images/2.PNG",
-          "rooms": [
-            {
-              "id": 1,
-              "alias": 221,
-              "x": 28,
-              "y": 21,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 2,
-              "alias": 222,
-              "x": 26,
-              "y": 73,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 3,
-              "alias": 223,
-              "x": 38.5,
-              "y": 73,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "alias": 23,
-          "name": "default",
-          "link": "../assets/images/3.PNG",
-          "rooms": [
-            {
-              "id": 1,
-              "alias": 231,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 2,
-              "alias": 232,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 3,
-              "alias": 233,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 3,
       "name": "Bibliothek",
       "link": "../assets/images/Bibliothek.png",
       "street": "NA",
@@ -309,14 +309,52 @@
       "postcode": "NA",
       "floors": [
         {
-          "id": 1,
-          "alias": 31,
+          "id": 0,
+          "alias": "31",
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
+              "id": 0,
+              "alias": "311",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "alias": "32",
+          "name": "default",
+          "link": "../assets/images/floorplan.png",
+          "rooms": [
+            {
+              "id": 0,
+              "alias": "321",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
               "id": 1,
-              "alias": 311,
+              "alias": "322",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -333,13 +371,28 @@
         },
         {
           "id": 2,
-          "alias": 32,
+          "alias": "33",
           "name": "default",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
+              "id": 0,
+              "alias": "331",
+              "x": 0,
+              "y": 0,
+              "device": "default",
+              "name": "default",
+              "link": "../assets/images/default.png",
+              "thresholds": {
+                "tempLow": 11.5,
+                "tempHigh": 22.5,
+                "humLow": 20,
+                "humHigh": 70
+              }
+            },
+            {
               "id": 1,
-              "alias": 321,
+              "alias": "332",
               "x": 0,
               "y": 0,
               "device": "default",
@@ -354,60 +407,7 @@
             },
             {
               "id": 2,
-              "alias": 322,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "alias": 33,
-          "name": "default",
-          "link": "../assets/images/floorplan.png",
-          "rooms": [
-            {
-              "id": 1,
-              "alias": 331,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 2,
-              "alias": 332,
-              "x": 0,
-              "y": 0,
-              "device": "default",
-              "name": "default",
-              "link": "../assets/images/default.png",
-              "thresholds": {
-                "tempLow": 11.5,
-                "tempHigh": 22.5,
-                "humLow": 20,
-                "humHigh": 70
-              }
-            },
-            {
-              "id": 3,
-              "alias": 333,
+              "alias": "333",
               "x": 0,
               "y": 0,
               "device": "default",

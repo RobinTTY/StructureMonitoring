@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { TelemetryData } from '../shared/models/telemetryData';
+
 import { Chart } from 'chart.js';
+import 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-line-chart',
@@ -8,8 +12,8 @@ import { Chart } from 'chart.js';
 })
 export class LineChartComponent implements OnInit {
 
-  chart: Chart;
-  telemetryData: any;
+  private chart: Chart;
+  private telemetryData: TelemetryData;
 
   constructor() { }
 
@@ -37,7 +41,7 @@ export class LineChartComponent implements OnInit {
       type: 'line',
       data: {
         labels: weatherDates,
-        dataSets: [
+        datasets: [
           {
             label: 'Temperature',
             data: temperature,
@@ -101,7 +105,7 @@ export class LineChartComponent implements OnInit {
       type: 'line',
       data: {
         labels: weatherDates,
-        dataSets: [
+        datasets: [
           {
             data: humidity,
             borderColor: '#3cba9f',
@@ -138,7 +142,5 @@ export class LineChartComponent implements OnInit {
         }
       }
     });
-
   }
-
 }

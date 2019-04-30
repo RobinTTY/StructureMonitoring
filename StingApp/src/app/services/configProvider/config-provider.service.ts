@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Building } from '../../shared/models/building';
+
 import * as buildingConfig from '../../buildings.json';
 
 @Injectable({
@@ -7,17 +8,17 @@ import * as buildingConfig from '../../buildings.json';
 })
 export class ConfigProviderService {
 
-  config: Array<Building>;
+  private config: Array<Building>;
 
   constructor() {
-    this.castConfig();
-   }
+    this.castBuildingsConfig();    
+  }
 
-  private castConfig() {
+  private castBuildingsConfig(): void {
     this.config = <Array<Building>><any>buildingConfig.buildings;
   }
 
-  getConfig(): Array<Building> {
+  public getBuildingConfig(): Array<Building> {
     return this.config;
   }
 }

@@ -8,13 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class TelemetryService {
 
-  telemetryDataUrl = 'https://localhost:44306/api/TelemetryData/';
+  private telemetryDataUrl = 'https://localhost:44306/api/TelemetryData/';
 
   constructor(private http: HttpClient) {
   }
 
-  // TODO: Error Handler
+  // TODO: Error Handler, HttpParams from room!!!
   public getTelemetryJson(searchParams?: HttpParams): Observable<TelemetryData[]> {
+
     return this.http.get<TelemetryData[]>(this.telemetryDataUrl, { params: searchParams });
   }
+}
+
+export class TelemetryParams {
+  constructor(deviceId?: string, timeStampStart?: number, timeStampStop?: number) {
+    this.timeStampStart = Math.round(timeStampStart);
+    this.timeStampStop = Math.round(timeStampStop);
+    this.deviceId = deviceId;
+  }
+
+  deviceId: string;
+  timeStampStart: number;
+  timeStampStop: number;
 }

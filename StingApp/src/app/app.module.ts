@@ -1,26 +1,26 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import {UsersComponent} from './users/users.component';
-import {RoomComponent} from './room/room.component';
-import {FloorComponent} from './floor/floor.component';
-import {BuildingComponent} from './building/building.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NavigationBar } from './navigation-bar/navigation-bar.component';
+import { AboutComponent } from './about/about.component';
+import { RoomComponent } from './room/room.component';
+import { FloorDetailComponent } from './floor-detail/floor-detail.component';
+import { FloorsComponent } from './floors/floors.component';
 
-import {HttpClientModule} from '@angular/common/http';
-import {HomeComponent} from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BuildingsComponent } from './buildings/buildings.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    UsersComponent,
+    NavigationBar,
+    AboutComponent,
     RoomComponent,
-    FloorComponent,
-    BuildingComponent,
-    HomeComponent,
+    FloorDetailComponent,
+    FloorsComponent,
+    BuildingsComponent,
     LineChartComponent
   ],
   imports: [
