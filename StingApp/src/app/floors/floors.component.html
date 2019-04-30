@@ -6,15 +6,15 @@
   </ol>
   </strong>
 <h1 class="text-center main-header">Floors</h1>  
-    <div class="object" *ngFor="let b of bData$">
+    <div class="object" *ngFor="let floor of floors">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 text-center">
           <div id="image">
-            <img [src]="b.link" class="img-fluid rounded floor-plan img-link" alt="image" routerLink="floor/{{b.id}}"/>
+            <img [src]="floor.link" class="img-fluid rounded floor-plan img-link" alt="image" routerLink="floor/{{floor.id}}"/>
           </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 text-center description">
-          <a routerLink="floor/{{b.id}}"><strong>Floor {{b.id}}</strong></a>
+          <a routerLink="floor/{{floor.id}}"><strong>Floor {{floor.alias}}</strong></a>
         </div>
       </div>    
   </div>
