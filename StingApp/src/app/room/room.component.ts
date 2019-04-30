@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { TelemetryData } from '../shared/models/TelemetryData';
 import { HttpParams } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
+import { TelemetryData } from '../shared/models/TelemetryData';
 import { Position } from '../shared/models/position';
 import { Building } from '../shared/models/building';
 import { Room } from '../shared/models/room';
-import { Thresholds } from '../shared/models/thresholds';
-import 'chartjs-plugin-annotation';
+// TODO: change import notation?
 
-import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ConfigProviderService } from '../services/configProvider/config-provider.service';
-import { ActivatedRoute } from '@angular/router';
+import { TelemetryService } from '../services/telemetry/telemetry.service';
 
 @Component({
   selector: 'app-room',
@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./room.component.scss']
 })
 
+// TODO: probably get data for charts here and insert trough html, refer to tutorial
 export class RoomComponent implements OnInit {
 
   // TODO: This component needs the line-chart, refer to html
@@ -24,28 +25,27 @@ export class RoomComponent implements OnInit {
   private buildings: Array<Building>;
   private roomData: Room;
   private position: Position;
+  private floorAlias: string;
 
   constructor(private telemetryService: TelemetryService,
               private configService: ConfigProviderService,
               private routeService: ActivatedRoute) { }
 
   // get configuration data for current room, fetch telemetry data
-  ngOnInit() {
+  public ngOnInit(): void {
     const urlParams = this.routeService.snapshot.paramMap;
     this.position = new Position(+urlParams.get('buildingId'), +urlParams.get('floorId'), +urlParams.get('roomId'));
-    this.buildings = this.configService.getConfig();
+    this.buildings = this.configService.getBuildingConfig();
     this.roomData = this.buildings[this.position.buildingId].floors[this.position.floorId].rooms[this.position.roomId];
-
+    this.floorAlias = this.buildings[this.position.buildingId].floors[this.position.floorId].alias;
     this.fetchTelemetry();
   }
 
   // TODO: refactor
-  loadTelemetry(): void {
+  private loadTelemetry(): void {
     const dt = new Date(this.telemetryData.timeStamp);
       //.toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
-
-    console.log(this.telemetryData.timeStamp);
     document.getElementById('TempVal').innerText = this.telemetryData.temperature.toString().substr(0, 5) + '°C';
     document.getElementById('HumVal').innerText = this.telemetryData.humidity.toString() + '%';
     document.getElementById('PressVal').innerText = this.telemetryData.airPressure.toString().substr(0, 3) + 'hPa';
@@ -70,7 +70,7 @@ export class RoomComponent implements OnInit {
   }
 
   // fetch telemetry data from backend for the current device
-  fetchTelemetry(): void {
+  private fetchTelemetry(): void {
     const localTime = new Date();
     const utcTime = Date.UTC(localTime.getUTCFullYear(), localTime.getUTCMonth(), localTime.getUTCDate(),
       localTime.getUTCHours(), localTime.getUTCMinutes() - 10, localTime.getUTCSeconds());
