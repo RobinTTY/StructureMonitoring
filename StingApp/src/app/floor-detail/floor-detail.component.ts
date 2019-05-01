@@ -107,7 +107,7 @@ export class FloorDetailComponent implements OnInit {
     // TODO: move
     const localTime = new Date();
     const utcTime = Date.UTC(localTime.getUTCFullYear(), localTime.getUTCMonth(), localTime.getUTCDate(),
-      localTime.getUTCHours() - 48, localTime.getUTCMinutes() - 2, localTime.getUTCSeconds());
+      localTime.getUTCHours() - 72, localTime.getUTCMinutes() - 2, localTime.getUTCSeconds());
 
     // this needs to get the last submitted value for each device
     const params = new HttpParams()

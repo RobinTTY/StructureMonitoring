@@ -6,7 +6,6 @@ import { TelemetryData } from '../shared/models/TelemetryData';
 import { Position } from '../shared/models/position';
 import { Building } from '../shared/models/building';
 import { Room } from '../shared/models/room';
-// TODO: change import notation?
 
 import { ConfigProviderService } from '../services/configProvider/config-provider.service';
 import { TelemetryService } from '../services/telemetry/telemetry.service';

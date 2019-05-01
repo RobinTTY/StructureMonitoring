@@ -21,9 +21,9 @@ export class FloorsComponent implements OnInit {
 
   public ngOnInit(): void {
     const urlParams = this.routeService.snapshot.paramMap;
-    let position = new Position(+urlParams.get('buildingId'), +urlParams.get('floorId'));
+    const position = new Position(+urlParams.get('buildingId'), +urlParams.get('floorId'));
 
-    var buildings = this.configService.getBuildingConfig();
+    const buildings = this.configService.getBuildingConfig();
     this.floors = buildings[position.buildingId].floors;
   }
 }

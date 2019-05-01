@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.OData.Extensions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -24,9 +23,6 @@ namespace Sting.Backend
             // service registration is necessary to support constructor injection in consuming classes
             services.AddScoped<TelemetryDataService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            // Add OData support
-            services.AddOData();
 
             // Add Cors middleware
             services.AddCors(options =>
@@ -53,13 +49,7 @@ namespace Sting.Backend
             }
 
             app.UseHttpsRedirection();
-
-            // Inject OData services
-            app.UseMvc(routeBuilder =>
-            {
-                routeBuilder.EnableDependencyInjection();
-                routeBuilder.Expand().Select().Count().OrderBy().Filter();
-            });
+            app.UseMvc();
         }
     }
 }
