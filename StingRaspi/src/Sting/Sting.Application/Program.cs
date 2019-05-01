@@ -1,16 +1,12 @@
 ﻿using System;
-using Windows.ApplicationModel.Background;
-using Windows.Security.ExchangeActiveSyncProvisioning;
-using Windows.System.Threading;
-using MongoDB.Bson;
 using Sting.Devices;
 using Sting.Storage;
-
-// The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
+using MongoDB.Bson;
 
 namespace Sting.Application
 {
-    public sealed class StartupTask : IBackgroundTask
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public class Program
     {
         private readonly Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
         private readonly EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
@@ -19,6 +15,11 @@ namespace Sting.Application
         private readonly Database _stingDatabase = new Database();
         private bool _cancelRequested;
         private BackgroundTaskDeferral _deferral;
+
+        private static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {

@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Xml.Linq;
-using Windows.ApplicationModel;
+﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -19,11 +17,8 @@ namespace Sting.Storage
 
         private void LoadConfiguration()
         {
-            var xmlFilePath = Path.Combine(Package.Current.InstalledLocation.Path, "AppConfiguration.xml");
-            var settings = XDocument.Load(xmlFilePath).Root?.Element("appSettings");
-
-            _clusterConnectionString = settings?.Element("ClusterConnectionString")?.Value;
-            _databaseName = settings?.Element("DatabaseName")?.Value;
+            _clusterConnectionString = "";
+            _databaseName = "Sting";
         }
 
         public void InitConnection()
