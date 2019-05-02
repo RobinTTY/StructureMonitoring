@@ -1,32 +1,32 @@
 ﻿using System;
-using Sting.Devices;
 using Sting.Storage;
+using System.Configuration;
+using System.Device.I2c;
+using Iot.Device.Bmp180;
 using MongoDB.Bson;
+using Sting.Devices;
 
 namespace Sting.Application
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class Program
+    internal class Program
     {
-        private readonly Bmp180 _bmp = new Bmp180(Resolution.UltraHighResolution);
-        private readonly EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
+        private readonly Database _stingDatabase = new Database();
+        private readonly Bmp180 _bmp = new Bmp180();
         private readonly Dht11 _dht = new Dht11();
 
-        private readonly Database _stingDatabase = new Database();
-        private bool _cancelRequested;
-        private BackgroundTaskDeferral _deferral;
-
+        // TODO: change to Net Core equivalent
+        private readonly EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
+        
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // TODO: start the actual program
         }
 
-        public void Run(IBackgroundTaskInstance taskInstance)
+        private void Configure()
         {
             _stingDatabase.InitConnection();
-            _deferral = taskInstance.GetDeferral();
             InitComponentsAsync();
-
             ThreadPoolTimer.CreatePeriodicTimer(PeriodicTask, TimeSpan.FromSeconds(60));
         }
 
@@ -39,7 +39,7 @@ namespace Sting.Application
 
         // Task which is executed every x seconds as defined in Run()
         // Take Measurements periodically
-        private async void PeriodicTask(ThreadPoolTimer timer)
+        private async void PeriodicTask()
         {
             var bmpMeasurement = await _bmp.ReadAsync();
             var dhtMeasurement = await _dht.TakeMeasurementAsync();

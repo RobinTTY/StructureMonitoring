@@ -17,7 +17,7 @@ namespace Sting.Storage
 
         private void LoadConfiguration()
         {
-            _clusterConnectionString = "";
+            _clusterConnectionString = "mongodb+srv://Robin:dwmOuKWkDzctWPbza8jz@stingmeasurements-2u2yu.mongodb.net/test?retryWrites=true";
             _databaseName = "Sting";
         }
 

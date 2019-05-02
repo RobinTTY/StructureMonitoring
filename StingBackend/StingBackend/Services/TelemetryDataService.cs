@@ -24,5 +24,11 @@ namespace Sting.Backend.Services
             var filter = TelemetryDataFilter.CreateFilter(timeStampStart, timeStampStop, deviceId);
             return _telemetryData.Find(filter).ToList();
         }
+
+        public List<TelemetryData> GetLatest(string deviceId)
+        {
+            var filter = TelemetryDataFilter.CreateFilter(deviceId: deviceId);
+            return _telemetryData.Find(filter).ToList();
+        }
     }
 }

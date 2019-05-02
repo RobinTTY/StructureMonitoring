@@ -17,9 +17,20 @@ namespace Sting.Backend.Controllers
         }
         
         [HttpGet]
-        public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop, [FromQuery(Name = "deviceId")] string deviceId)
+        public ActionResult<List<TelemetryData>> Get([FromQuery(Name = "TimeStampStart")] long? timeStampStart, [FromQuery(Name = "TimeStampStop")] long? timeStampStop, [FromQuery(Name = "DeviceId")] string deviceId)
         {
             var telemetryData = _telemetryDataService.Get(timeStampStart, timeStampStop, deviceId);
+
+            if (telemetryData == null)
+                return NotFound();
+
+            return telemetryData;
+        }
+
+        [HttpGet("/latest")]
+        public ActionResult<List<TelemetryData>> GetLatest([FromQuery(Name = "DeviceId")] string deviceId)
+        {
+            var telemetryData = _telemetryDataService.GetLatest(deviceId);
 
             if (telemetryData == null)
                 return NotFound();

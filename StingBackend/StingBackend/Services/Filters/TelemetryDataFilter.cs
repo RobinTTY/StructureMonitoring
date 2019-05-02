@@ -8,7 +8,7 @@ namespace Sting.Backend.Services.Filters
     {
         private static readonly FilterDefinitionBuilder<TelemetryData> Builder = new FilterDefinitionBuilder<TelemetryData>();
 
-        public static FilterDefinition<TelemetryData> CreateFilter(long? timeStampStart, long? timeStampStop, string deviceId)
+        public static FilterDefinition<TelemetryData> CreateFilter(long? timeStampStart = null, long? timeStampStop = null, string deviceId = null)
         {
             var filterDefinitions = new List<FilterDefinition<TelemetryData>>();
 
