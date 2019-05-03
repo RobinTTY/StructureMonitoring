@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sting.Application
 {
-    class DeviceManager
+    public class DeviceManager
     {
     }
 }
