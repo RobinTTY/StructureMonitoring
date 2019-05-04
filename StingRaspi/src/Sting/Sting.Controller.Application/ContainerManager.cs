@@ -14,7 +14,7 @@ namespace Sting.Controller.Application
             builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorDevice>>()))
                 .As<ISensorManager>()
                 .As<IService>()
-                .SingleInstance();
+                .SingleInstance();            
         }
     }
 }

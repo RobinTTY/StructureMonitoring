@@ -24,7 +24,7 @@ namespace Sting.Models
         [BsonElement("AirPressure")]
         public double AirPressure { get; set; }
 
-
+        // TODO: modify constructors to use MeasurementContainer
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
         /// trough different sensors.

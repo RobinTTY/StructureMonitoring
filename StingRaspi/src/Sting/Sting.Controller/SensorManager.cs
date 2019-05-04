@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sting.Controller.Contracts;
 using Sting.Devices.Contracts;
+using Sting.Models;
 
 namespace Sting.Controller
 {
@@ -8,9 +10,9 @@ namespace Sting.Controller
     {
         public bool IsRunning { get; set; }
 
-        private readonly IEnumerable<ISensorDevice> _sensors;
+        private readonly IEnumerable<ISensorController> _sensors;
 
-        public SensorManager(IEnumerable<ISensorDevice> sensors)
+        public SensorManager(IEnumerable<ISensorController> sensors)
         {
             _sensors = sensors;
         }
@@ -23,6 +25,13 @@ namespace Sting.Controller
         public void Stop()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void CollectSensorData()
+        {
+            var measurements = new List<MeasurementContainer>();
+
+            _sensors.ToList().ForEach(sensor => measurements.Add(sensor.TakeMeasurement()));
         }
     }
 }
