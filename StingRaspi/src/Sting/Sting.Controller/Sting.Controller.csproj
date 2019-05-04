@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sting.Controller.Contracts\Sting.Controller.Contracts.csproj" />
+    <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,11 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
     <PackageReference Include="Iot.Device.Bindings" Version="0.1.0-prerelease.19251.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sting.Controller.Contracts\Sting.Controller.Contracts.csproj" />
+    <ProjectReference Include="..\Sting.Controller\Sting.Controller.csproj" />
+    <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj" />
     <ProjectReference Include="..\Sting.Storage\Sting.Storage.csproj" />
   </ItemGroup>
 

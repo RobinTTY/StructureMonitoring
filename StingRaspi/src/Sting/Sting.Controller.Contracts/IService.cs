@@ -1,4 +1,4 @@
-﻿namespace Sting.Devices.Contracts
+﻿namespace Sting.Controller.Contracts
 {
     public interface IService
     {

@@ -3,7 +3,7 @@ using Sting.Models;
 
 namespace Sting.Devices.Contracts
 {
-    public interface ISensor
+    public interface ISensorDevice
     {
         /// <summary>
         /// Takes a measurement with the installed Sensor.

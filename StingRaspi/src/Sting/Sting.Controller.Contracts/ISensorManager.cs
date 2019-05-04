@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sting.Application
+namespace Sting.Controller.Contracts
 {
-    public class DeviceManager
+    public interface ISensorManager
     {
     }
 }
