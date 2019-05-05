@@ -3,13 +3,13 @@ using Sting.Models;
 
 namespace Sting.Devices.Contracts
 {
-    public interface ISensorDevice
+    public interface ISensorController
     {
         /// <summary>
         /// Takes a measurement with the installed Sensor.
         /// </summary>
         /// <returns>Returns the measured values inside
         /// a TelemetryData object.</returns>
-        Task<TelemetryData> TakeMeasurementAsync();
+        MeasurementContainer TakeMeasurement();
     }
 }
