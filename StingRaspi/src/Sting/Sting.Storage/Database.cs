@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Sting.Storage
@@ -17,7 +16,7 @@ namespace Sting.Storage
 
         private void LoadConfiguration()
         {
-            _clusterConnectionString = "mongodb+srv://Robin:dwmOuKWkDzctWPbza8jz@stingmeasurements-2u2yu.mongodb.net/test?retryWrites=true";
+            _clusterConnectionString = "";
             _databaseName = "Sting";
         }
 

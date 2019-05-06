@@ -5,13 +5,13 @@ using Sting.Devices.Contracts;
 
 namespace Sting.Controller.Application
 {
-    class ContainerManager
+    public static class ContainerManager
     {
         public static void InitializeApplication()
         {
             var builder = new ContainerBuilder();
 
-            builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorDevice>>()))
+            builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>()))
                 .As<ISensorManager>()
                 .As<IService>()
                 .SingleInstance();            
