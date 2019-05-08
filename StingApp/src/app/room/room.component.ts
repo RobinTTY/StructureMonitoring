@@ -1,14 +1,14 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 
-import { TelemetryData } from '../shared/models/TelemetryData';
-import { Position } from '../shared/models/position';
-import { Building } from '../shared/models/building';
 import { Room } from '../shared/models/room';
+import { Building } from '../shared/models/building';
+import { Position } from '../shared/models/position';
+import { TelemetryData } from '../shared/models/TelemetryData';
 
-import { ConfigProviderService } from '../services/configProvider/config-provider.service';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { ConfigProviderService } from '../services/configProvider/config-provider.service';
 
 @Component({
   selector: 'app-room',

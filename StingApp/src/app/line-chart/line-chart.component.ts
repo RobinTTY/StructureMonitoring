@@ -18,15 +18,13 @@ export class LineChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // TODO: move to its own component
     // insert chart data
-
     console.log('This got here:');
     console.log(this.telemetryData);
 
     const temperature = Object.values(this.telemetryData).map(val => val['temperature']._.substr(0, 5));
     const humidity = Object.values(this.telemetryData).map(val => val['humidity']._);
-    //const altitude = Object.values(this.telemetryData).map(val => val.altitude._);
+    // const altitude = Object.values(this.telemetryData).map(val => val.altitude._);
     const dateTime = Object.values(this.telemetryData).map(val => val['unixTimeStamp']._);
 
     const weatherDates = [];

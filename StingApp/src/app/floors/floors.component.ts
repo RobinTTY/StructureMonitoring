@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
-import { Position } from '../shared/models/position';
 import { Floor } from '../shared/models/floor';
+import { Position } from '../shared/models/position';
 
 import { ConfigProviderService } from '../services/configProvider/config-provider.service';
 
