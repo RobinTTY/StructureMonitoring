@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autofac;
-using Sting.Controller.Contracts;
-using Sting.Devices.Contracts;
+using Sting.Devices;
 
 namespace Sting.Controller.Application
 {

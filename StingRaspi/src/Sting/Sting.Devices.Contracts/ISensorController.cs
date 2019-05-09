@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Sting.Models;
+﻿using Sting.Models;
 
-namespace Sting.Devices.Contracts
+namespace Sting.Devices
 {
     public interface ISensorController
     {

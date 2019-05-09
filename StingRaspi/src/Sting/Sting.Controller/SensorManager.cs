@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sting.Controller.Contracts;
-using Sting.Devices.Contracts;
+using Sting.Devices;
 using Sting.Models;
 
 namespace Sting.Controller

@@ -1,4 +1,4 @@
-﻿namespace Sting.Controller.Contracts
+﻿namespace Sting.Controller
 {
     public interface ISensorManager
     {

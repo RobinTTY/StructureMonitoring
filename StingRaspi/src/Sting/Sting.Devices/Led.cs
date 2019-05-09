@@ -1,13 +1,12 @@
-﻿using System;
+﻿using System.Device.Gpio;
 using System.Threading.Tasks;
-using Windows.Devices.Gpio;
-using Sting.Devices.Contracts;
 
 namespace Sting.Devices
 {
-    class Led : IGpioComponent
+    // TODO: overhaul
+    class Led
     {
-        private GpioPin _pin;
+        private int _pin;
 
         /// <inheritdoc />
         public async Task<bool> InitComponentAsync(int pin)
