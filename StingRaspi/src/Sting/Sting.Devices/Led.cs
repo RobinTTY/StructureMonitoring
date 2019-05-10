@@ -3,78 +3,43 @@ using System.Threading.Tasks;
 
 namespace Sting.Devices
 {
-    // TODO: overhaul
-    class Led
+    public class Led : ILed
     {
-        private int _pin;
+        public LedState State => CheckState();
 
-        /// <inheritdoc />
-        public async Task<bool> InitComponentAsync(int pin)
+        private readonly IGpioController _controller;
+        private readonly int _pin;
+
+        public Led(int pinNumber, IGpioController controller)
         {
-            // Open the used GPIO pin and set as Output
-            var gpio = await GpioController.GetDefaultAsync();
+            _controller = controller;
+            _pin = pinNumber;
 
-            if (gpio == null) return false;
-            _pin = gpio.OpenPin(pin);
-            _pin.SetDriveMode(GpioPinDriveMode.Output);
-            return true;
+            _controller.OpenPin(_pin, PinMode.Output);
+            _controller.Write(_pin, PinValue.Low);
         }
 
-        /// <inheritdoc />
-        public bool State()
+        public void TurnOn()
         {
-            return _pin != null;
+            _controller.Write(_pin, PinValue.High);
         }
 
-        /// <summary>
-        /// Checks the current state of the LED.
-        /// </summary>
-        /// <returns>Returns True if the LED is currently on.
-        /// Returns False otherwise.</returns>
-        public bool IsOn()
+        public void TurnOff()
         {
-            var state = _pin.Read();
-            return state == GpioPinValue.Low;
+            _controller.Write(_pin, PinValue.Low);
         }
 
-        /// <inheritdoc />
-        public void ClosePin()
-        {
-            _pin.Dispose();
-            _pin = null;
-        }
-
-        /// <summary>
-        /// Turns the LED on.
-        /// </summary>
-        /// <returns>Returns True if LED was successfully
-        /// turned on. Returns false otherwise.</returns>
-        public bool TurnOn()
-        {
-            _pin.Write(GpioPinValue.Low);
-            return IsOn();
-        }
-
-        /// <summary>
-        /// Turns the LED off.
-        /// </summary>
-        /// <returns>Returns True if LED was successfully
-        /// turned off. Returns false otherwise.</returns>
-        public bool TurnOff()
-        {
-            _pin.Write(GpioPinValue.High);
-            return IsOn();
-        }
-
-        /// <summary>
-        /// Turns the LED on for a specified duration and then off again.
-        /// </summary>
-        /// <param name="duration">Duration in milliseconds.</param>
-        public void Blink(int duration)
+        public async Task BlinkAsync(int duration)
         {
             TurnOn();
-            Task.Delay(duration).Wait();
+            await Task.Delay(duration);
             TurnOff();
+        }
+
+        private LedState CheckState()
+        {
+            var state = _controller.Read(_pin);
+            return state == PinValue.High ? LedState.On : LedState.Off;
         }
     }
 }
