@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -6,8 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\StingBackend\Sting.Models\Sting.Models.csproj" />
-    <ProjectReference Include="..\Sting.Controller.Contracts\Sting.Controller.Contracts.csproj" />
-    <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj" />
+    <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
   </ItemGroup>
 
 </Project>

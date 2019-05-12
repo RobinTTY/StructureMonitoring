@@ -14,8 +14,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Sting.Controller.Contracts\Sting.Controller.Contracts.csproj" />
     <ProjectReference Include="..\Sting.Controller\Sting.Controller.csproj" />
-    <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj" />
+    <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
     <ProjectReference Include="..\Sting.Storage\Sting.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
 
 </Project>

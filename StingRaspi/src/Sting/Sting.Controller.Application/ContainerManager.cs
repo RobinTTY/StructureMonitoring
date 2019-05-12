@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Autofac;
-using Sting.Devices;
+using Sting.Controller.Contracts;
+using Sting.Devices.Contracts;
 
 namespace Sting.Controller.Application
 {
     public static class ContainerManager
     {
-        public static void InitializeApplication()
+        public static void RegisterModules()
         {
             var builder = new ContainerBuilder();
 

@@ -1,9 +1,10 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Sting.Storage.Contracts;
 
 namespace Sting.Storage
 {
-    public class Database
+    public class Database : IDatabase
     {
         private string _clusterConnectionString;
         private string _databaseName;

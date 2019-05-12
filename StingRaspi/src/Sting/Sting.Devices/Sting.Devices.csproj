@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sting.Devices.Contracts\Sting.Devices.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\StingBackend\Sting.Models\Sting.Models.csproj" />
   </ItemGroup>
 
 </Project>

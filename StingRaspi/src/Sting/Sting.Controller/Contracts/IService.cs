@@ -1,4 +1,4 @@
-﻿namespace Sting.Controller
+﻿namespace Sting.Controller.Contracts
 {
     public interface IService
     {

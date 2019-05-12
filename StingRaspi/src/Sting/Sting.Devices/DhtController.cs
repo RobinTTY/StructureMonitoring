@@ -1,4 +1,5 @@
 ﻿using Iot.Device.DHTxx;
+using Sting.Devices.Contracts;
 using Sting.Models;
 
 namespace Sting.Devices

@@ -1,7 +1,7 @@
 ﻿using System;
 using Iot.Device.Bmp180;
 
-namespace Sting.Devices
+namespace Sting.Devices.Contracts
 {
     public interface IBmp180Controller : ISensorController, IDisposable
     {

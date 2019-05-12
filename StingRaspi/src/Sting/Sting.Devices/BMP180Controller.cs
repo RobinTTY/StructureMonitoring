@@ -1,6 +1,7 @@
 ﻿using System.Device.I2c;
 using System.Device.I2c.Drivers;
 using Iot.Device.Bmp180;
+using Sting.Devices.Contracts;
 using Sting.Models;
 
 namespace Sting.Devices

@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Iot.Device.Buzzer;
+using Sting.Devices.Contracts;
 
 namespace Sting.Devices
 {

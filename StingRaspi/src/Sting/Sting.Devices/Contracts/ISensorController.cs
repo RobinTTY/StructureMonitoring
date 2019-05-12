@@ -1,6 +1,6 @@
 ﻿using Sting.Models;
 
-namespace Sting.Devices
+namespace Sting.Devices.Contracts
 {
     public interface ISensorController
     {

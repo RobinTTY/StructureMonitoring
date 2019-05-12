@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Sting.Devices
+namespace Sting.Devices.Contracts
 {
     public enum LedState
     {
