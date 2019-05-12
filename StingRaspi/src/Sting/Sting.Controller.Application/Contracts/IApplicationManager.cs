@@ -2,5 +2,7 @@
 {
     public interface IApplicationManager
     {
+        void StartApplication();
+        void StopApplication();
     }
 }

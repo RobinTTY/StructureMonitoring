@@ -1,6 +1,8 @@
-﻿namespace Sting.Controller.Contracts
+﻿using Sting.Core.Contracts;
+
+namespace Sting.Controller.Contracts
 {
-    public interface ISensorManager
+    public interface ISensorManager : IService
     {
     }
 }

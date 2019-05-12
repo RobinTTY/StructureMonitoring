@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sting.Core.Contracts;
+using Sting.Controller.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
 namespace Sting.Controller
 {
-    public class SensorManager : IService
+    public class SensorManager : ISensorManager
     {
         public bool IsRunning { get; set; }
 

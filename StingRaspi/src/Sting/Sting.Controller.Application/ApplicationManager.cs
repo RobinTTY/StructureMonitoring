@@ -1,38 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Sting.Application.Contracts;
 using Sting.Core.Contracts;
 
 namespace Sting.Application
 {
-    public class ApplicationManager
+    public class ApplicationManager : IApplicationManager
     {
-        private IEnumerable<IService> _services;
-
-        private static bool IsInitialized;
+        private readonly IEnumerable<IService> _services;
 
         public ApplicationManager(IEnumerable<IService> services)
         {
             _services = services;
         }
 
-        public static void InitializeApplication()
+        public void StartApplication()
         {
-            ContainerManager.RegisterModules();
-
-            IsInitialized = true;
+            _services.ToList().ForEach(service => service.Start());
         }
 
-        public static void StartApplication()
+        public void StopApplication()
         {
-            if(!IsInitialized)
-                throw new Exception("Application was not initialized correctly.");
-
-            
-        }
-
-        public static void StopApplication()
-        {
-
+            _services.ToList().ForEach(service => service.Stop());
         }
     }
 }
