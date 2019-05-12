@@ -1,19 +1,18 @@
 ﻿using System;
-using Sting.Controller.Contracts;
-using Sting.Storage.Contracts;
+using System.Collections.Generic;
+using Sting.Core.Contracts;
 
-namespace Sting.Controller.Application
+namespace Sting.Application
 {
     public class ApplicationManager
     {
-        private ISensorManager _sensorManager;
-        private IDatabase _database;
+        private IEnumerable<IService> _services;
 
         private static bool IsInitialized;
 
-        public ApplicationManager(ISensorManager sensorManager)
+        public ApplicationManager(IEnumerable<IService> services)
         {
-            _sensorManager = sensorManager;
+            _services = services;
         }
 
         public static void InitializeApplication()

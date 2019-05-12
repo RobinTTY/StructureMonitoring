@@ -12,10 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sting.Controller.Contracts\Sting.Controller.Contracts.csproj" />
     <ProjectReference Include="..\Sting.Controller\Sting.Controller.csproj" />
+    <ProjectReference Include="..\Sting.Core\Sting.Core.csproj" />
     <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
-    <ProjectReference Include="..\Sting.Storage\Sting.Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>

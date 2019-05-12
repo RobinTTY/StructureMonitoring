@@ -1,4 +1,4 @@
-﻿namespace Sting.Controller.Application
+﻿namespace Sting.Application
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     internal static class Program
@@ -8,13 +8,8 @@
 
         private static void Main(string[] args)
         {
+            ApplicationManager.InitializeApplication();
             ApplicationManager.StartApplication();
-        }
-
-        private static void StartApplication()
-        {
-            // _stingDatabase.InitConnection();
-            // _stingDatabase.SaveDocumentToCollection(bmpMeasurement.ToBsonDocument(), "TelemetryData");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 
-namespace Sting.Storage.Contracts
+namespace Sting.Persistence.Contracts
 {
     public interface IDatabase
     {

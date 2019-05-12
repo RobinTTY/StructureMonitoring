@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sting.Controller.Contracts;
-using Sting.Devices;
+using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
 

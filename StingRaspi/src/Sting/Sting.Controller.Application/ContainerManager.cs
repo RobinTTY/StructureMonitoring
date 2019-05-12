@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Autofac;
+using Sting.Controller;
 using Sting.Controller.Contracts;
+using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 
-namespace Sting.Controller.Application
+namespace Sting.Application
 {
     public static class ContainerManager
     {
