@@ -25,8 +25,10 @@ namespace Sting.Controller
 
             while (IsRunning)
             {
+                ((ISi7021Controller) _sensors.Single(sensor => sensor is ISi7021Controller)).TurnOnHeater();
                 CollectSensorData();
                 Task.Delay(10000).Wait();
+                ((ISi7021Controller)_sensors.Single(sensor => sensor is ISi7021Controller)).TurnOffHeater();
             }
         }
 

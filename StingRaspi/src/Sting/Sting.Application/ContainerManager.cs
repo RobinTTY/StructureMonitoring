@@ -25,14 +25,19 @@ namespace Sting.Application
                 .As<IService>()
                 .SingleInstance();
 
-            Builder.Register<IBmp180Controller>(context => new Bmp180Controller())
-                .As<IBmp180Controller>()
-                .As<ISensorController>()
-                .SingleInstance();
+            //Builder.Register<IBmp180Controller>(context => new Bmp180Controller())
+            //    .As<IBmp180Controller>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
 
             // TODO: configure through Configuration class
-            Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
-                .As<IDhtController>()
+            //Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
+            //    .As<IDhtController>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
+
+            Builder.Register(context => new Si7021Controller())
+                .As<ISi7021Controller>()
                 .As<ISensorController>()
                 .SingleInstance();
 

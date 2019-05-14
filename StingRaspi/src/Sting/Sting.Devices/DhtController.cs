@@ -6,7 +6,7 @@ namespace Sting.Devices
 {
     public class DhtController : IDhtController
     {
-        private readonly DhtSensor _dht;
+        private DhtSensor _dht;
 
         public DhtController(int pinNumber, DhtType type)
         {
@@ -24,6 +24,7 @@ namespace Sting.Devices
         public void Dispose()
         {
             _dht?.Dispose();
+            _dht = null;
         }
     }
 }
