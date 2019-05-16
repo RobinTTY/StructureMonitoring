@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sting.Controller\Sting.Core.csproj" />
+    <ProjectReference Include="..\Sting.Core\Sting.Core.csproj" />
     <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
   </ItemGroup>
 
