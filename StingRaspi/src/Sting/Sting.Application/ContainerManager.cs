@@ -2,8 +2,7 @@
 using Autofac;
 using Iot.Device.DHTxx;
 using Sting.Application.Contracts;
-using Sting.Controller;
-using Sting.Controller.Contracts;
+using Sting.Core;
 using Sting.Core.Contracts;
 using Sting.Devices;
 using Sting.Devices.Contracts;
@@ -31,15 +30,15 @@ namespace Sting.Application
             //    .SingleInstance();
 
             // TODO: configure through Configuration class
-            //Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
-            //    .As<IDhtController>()
-            //    .As<ISensorController>()
-            //    .SingleInstance();
-
-            Builder.Register(context => new Si7021Controller())
-                .As<ISi7021Controller>()
+            Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
+                .As<IDhtController>()
                 .As<ISensorController>()
                 .SingleInstance();
+
+            //Builder.Register(context => new Si7021Controller())
+            //    .As<ISi7021Controller>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
 
             return Builder.Build();
         }

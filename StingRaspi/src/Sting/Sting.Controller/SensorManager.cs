@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Sting.Controller.Contracts;
+using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
-namespace Sting.Controller
+namespace Sting.Core
 {
     public class SensorManager : ISensorManager
     {
@@ -25,10 +24,7 @@ namespace Sting.Controller
 
             while (IsRunning)
             {
-                ((ISi7021Controller) _sensors.Single(sensor => sensor is ISi7021Controller)).TurnOnHeater();
                 CollectSensorData();
-                Task.Delay(10000).Wait();
-                ((ISi7021Controller)_sensors.Single(sensor => sensor is ISi7021Controller)).TurnOffHeater();
             }
         }
 

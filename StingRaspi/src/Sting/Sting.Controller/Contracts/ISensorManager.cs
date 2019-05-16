@@ -1,6 +1,4 @@
-﻿using Sting.Core.Contracts;
-
-namespace Sting.Controller.Contracts
+﻿namespace Sting.Core.Contracts
 {
     public interface ISensorManager : IService
     {
