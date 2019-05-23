@@ -21,13 +21,14 @@ h1 {
     font-size: 23px;
 }
 
-#iconlink {
+#icons {
     margin-bottom: 2%;
-    h1 {
-        font-size: 20px;
-    }
 
     a {
         text-decoration: none;
     }
+}
+
+#social > a {
+    margin: 1%;
 }
