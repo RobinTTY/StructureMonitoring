@@ -11,7 +11,7 @@ This project is being actively worked on and might not be in a runnable state.
 
 ## Prerequisites
 
-- A device that is able to operate sensors (the application is tested on Raspberry Pi Zero W and 3B+)
+- A device that is able to operate sensors and is supported by the .NetCore runtime (the application is tested on a Raspberry Pi 3B+)
 - MongoDB Atlas Cluster (free option is sufficient) or local installation
 
 ## Installing
