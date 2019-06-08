@@ -35,6 +35,11 @@ namespace Sting.Application
                 .As<ISensorController>()
                 .SingleInstance();
 
+            Builder.Register<IBme680Controller>(context => new Bme680Controller())
+                .As<IBme680Controller>()
+                .As<ISensorController>()
+                .SingleInstance();
+
             //Builder.Register(context => new Si7021Controller())
             //    .As<ISi7021Controller>()
             //    .As<ISensorController>()
