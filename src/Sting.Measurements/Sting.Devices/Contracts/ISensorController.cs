@@ -1,4 +1,5 @@
-﻿using Sting.Models;
+﻿using System.Threading.Tasks;
+using Sting.Models;
 
 namespace Sting.Devices.Contracts
 {
@@ -9,6 +10,6 @@ namespace Sting.Devices.Contracts
         /// </summary>
         /// <returns>Returns the measured values inside
         /// a TelemetryData object.</returns>
-        MeasurementContainer TakeMeasurement();
+        Task<MeasurementContainer> TakeMeasurement();
     }
 }

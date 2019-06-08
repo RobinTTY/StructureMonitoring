@@ -1,4 +1,5 @@
-﻿using Iot.Device.CpuTemperature;
+﻿using System.Threading.Tasks;
+using Iot.Device.CpuTemperature;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
@@ -14,12 +15,12 @@ namespace Sting.Devices
             _monitor = new CpuTemperature();
         }
 
-        public MeasurementContainer TakeMeasurement()
+        public Task<MeasurementContainer> TakeMeasurement()
         {
             // TODO: new Measurement Container entirely or new concept?!
             var temperature = _monitor.Temperature.Celsius;
 
-            return new MeasurementContainer(temperature);
+            return Task.FromResult(new MeasurementContainer(temperature));
         }
     }
 }

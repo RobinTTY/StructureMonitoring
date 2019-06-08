@@ -40,11 +40,15 @@ namespace Sting.Core
         // TODO: give ability to change period of collection
         private void CollectSensorData()
         {
-            var measurements = new List<MeasurementContainer>();
+            _sensors.ToList().ForEach(async sensor =>
+            {
+                var measurement = await sensor.TakeMeasurement();
+                Console.WriteLine($"Temperature: {measurement.Temperature} Humidity: {measurement.Humidity} Pressure: {measurement.Pressure}");
 
-            _sensors.ToList().ForEach(sensor => measurements.Add(sensor.TakeMeasurement()));
-            measurements.ForEach(measurement => Console.WriteLine($"Temperature: {measurement.Temperature} Humidity: {measurement.Humidity}"));
+            });
             Task.Delay(1000).Wait();
         }
+
+        // TODO: create a configure method to use custom configurations for the different sensors
     }
 }

@@ -1,4 +1,5 @@
-﻿using Iot.Device.DHTxx;
+﻿using System.Threading.Tasks;
+using Iot.Device.DHTxx;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
@@ -13,12 +14,12 @@ namespace Sting.Devices
             _dht = new DhtSensor(pinNumber, type);
         }
 
-        public MeasurementContainer TakeMeasurement()
+        public Task<MeasurementContainer> TakeMeasurement()
         {
             var temperature = _dht.Temperature.Celsius;
             var humidity = _dht.Humidity;
 
-            return new MeasurementContainer(temperature, humidity);
+            return Task.FromResult(new MeasurementContainer(temperature, humidity));
         }
 
         public void Dispose()

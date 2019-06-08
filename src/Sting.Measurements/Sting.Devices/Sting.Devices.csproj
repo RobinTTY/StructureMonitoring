@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Iot.Device.Bindings" Version="0.1.0-prerelease.19274.1" />
-    <PackageReference Include="System.Device.Gpio" Version="0.1.0-prerelease.19274.1" />
+    <PackageReference Include="Iot.Device.Bindings" Version="0.1.0-prerelease.19307.2" />
+    <PackageReference Include="System.Device.Gpio" Version="0.1.0-prerelease.19307.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Sting.Backend\Sting.Models\Sting.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Bme680Driver">
+      <HintPath>..\..\..\..\BME680\src\Bme680\bin\Debug\netcoreapp3.0\Bme680Driver.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
