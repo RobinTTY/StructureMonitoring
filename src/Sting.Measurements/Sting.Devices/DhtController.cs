@@ -9,6 +9,7 @@ namespace Sting.Devices
     {
         private DhtSensor _dht;
 
+
         public DhtController(int pinNumber, DhtType type)
         {
             _dht = new DhtSensor(pinNumber, type);
@@ -16,10 +17,13 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var temperature = _dht.Temperature.Celsius;
-            var humidity = _dht.Humidity;
+            var measurements = new MeasurementContainer("Dht")
+            {
+                {"Temperature", _dht.Temperature.Celsius},
+                { "Humidity", _dht.Humidity}
+            };
 
-            return Task.FromResult(new MeasurementContainer(temperature, humidity));
+            return Task.FromResult(measurements);
         }
 
         public void Dispose()

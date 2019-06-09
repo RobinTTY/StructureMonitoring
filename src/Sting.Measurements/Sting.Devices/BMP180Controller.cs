@@ -22,10 +22,13 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var temperature = _i2CBmp180.ReadTemperature().Celsius;
-            var pressure = _i2CBmp180.ReadPressure();
-            
-            return Task.FromResult(new MeasurementContainer(temperature, press: pressure));
+            var measurements = new MeasurementContainer("Bmp180")
+            {
+                {"Temperature", _i2CBmp180.ReadTemperature().Celsius},
+                { "Pressure", _i2CBmp180.ReadPressure()}
+            };
+
+            return Task.FromResult(measurements);
         }
 
         public void Dispose()

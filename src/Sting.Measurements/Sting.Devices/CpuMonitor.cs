@@ -17,10 +17,9 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            // TODO: new Measurement Container entirely or new concept?!
-            var temperature = _monitor.Temperature.Celsius;
+            var measurements = new MeasurementContainer("CpuMonitor") {{"Temperature", _monitor.Temperature.Celsius}};
 
-            return Task.FromResult(new MeasurementContainer(temperature));
+            return Task.FromResult(measurements);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Sting.Devices
 {
     public class Bme680Controller : IBme680Controller
     {
-        private readonly Bme680 _i2CBme680;
+        private Bme680 _i2CBme680;
 
         public Bme680Controller()
         {
@@ -26,17 +26,21 @@ namespace Sting.Devices
         {
             await _i2CBme680.PerformMeasurement();
 
-            var temp = _i2CBme680.Temperature;
-            var humid = _i2CBme680.Humidity;
-            var press = _i2CBme680.Pressure;
-            var gasRes = _i2CBme680.GasResistance;
+            var measurements = new MeasurementContainer("Bme680")
+            {
+                {"Temperature", _i2CBme680.Temperature.Celsius},
+                {"Humidity", _i2CBme680.Humidity},
+                {"Pressure", _i2CBme680.Pressure},
+                {"GasResistance", _i2CBme680.GasResistance}
+            };
 
-            return new MeasurementContainer(temp.Celsius, humid, press);
+            return measurements;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _i2CBme680?.Dispose();
+            _i2CBme680 = null;
         }
     }
 }

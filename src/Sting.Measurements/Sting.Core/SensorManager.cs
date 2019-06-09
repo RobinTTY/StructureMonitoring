@@ -43,8 +43,7 @@ namespace Sting.Core
             _sensors.ToList().ForEach(async sensor =>
             {
                 var measurement = await sensor.TakeMeasurement();
-                Console.WriteLine($"Temperature: {measurement.Temperature} Humidity: {measurement.Humidity} Pressure: {measurement.Pressure}");
-
+                measurement.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
             });
             Task.Delay(1000).Wait();
         }

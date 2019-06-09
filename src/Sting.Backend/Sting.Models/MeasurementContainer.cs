@@ -1,17 +1,15 @@
-﻿namespace Sting.Models
+﻿using System.Collections.Generic;
+
+namespace Sting.Models
 {
     // TODO: change measurement container to be a dictionary so it doesn't have to be changed, look at how DB needs to support this
-    public class MeasurementContainer
+    public class MeasurementContainer : Dictionary<string, double>
     {
-        public double? Temperature { get; set; }
-        public double? Humidity { get; set; }
-        public double? Pressure { get; set; }
-
-        public MeasurementContainer(double? temp = null, double? hum = null, double? press = null)
+        public string SensorName;
+        
+        public MeasurementContainer(string sensorName)
         {
-            Temperature = temp;
-            Humidity = hum;
-            Pressure = press;
+            SensorName = sensorName;
         }
     }
 }

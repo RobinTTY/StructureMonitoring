@@ -23,10 +23,13 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var temperature = _si7021.Temperature.Celsius;
-            var humidity = _si7021.Humidity;
-            
-            return Task.FromResult(new MeasurementContainer(temperature, humidity));
+            var measurements = new MeasurementContainer("Si7021")
+            {
+                {"Temperature", _si7021.Temperature.Celsius},
+                { "Humidity", _si7021.Humidity}
+            };
+
+            return Task.FromResult(measurements);
         }
 
         public void Dispose()
