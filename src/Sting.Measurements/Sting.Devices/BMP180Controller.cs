@@ -20,11 +20,6 @@ namespace Sting.Devices
             _i2CBmp180 = new Bmp180(i2CDevice);
         }
 
-        public void SetSamplingMode(Sampling samplingMode)
-        {
-            _i2CBmp180.SetSampling(samplingMode);
-        }
-
         public Task<MeasurementContainer> TakeMeasurement()
         {
             var temperature = _i2CBmp180.ReadTemperature().Celsius;

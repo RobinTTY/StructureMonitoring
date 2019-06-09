@@ -21,24 +21,6 @@ namespace Sting.Devices
             _si7021 = new Si7021(i2CDevice);
         }
 
-        // TODO: move to config method
-        public void SetResolution(Resolution resolution)
-        {
-            _si7021.Resolution = resolution;
-        }
-
-        // TODO: move to config method
-        public void TurnOnHeater()
-        {
-            _si7021.Heater = true;
-        }
-
-        // TODO: move to config method
-        public void TurnOffHeater()
-        {
-            _si7021.Heater = false;
-        }
-
         public Task<MeasurementContainer> TakeMeasurement()
         {
             var temperature = _si7021.Temperature.Celsius;
