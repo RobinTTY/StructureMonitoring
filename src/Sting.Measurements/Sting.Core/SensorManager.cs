@@ -42,7 +42,7 @@ namespace Sting.Core
         }
 
         // TODO: give ability to change period of collection, only select period of upload -> always upload newest data
-        private async void CollectSensorData()
+        private void CollectSensorData()
         {
             var measurements = new List<MeasurementContainer>();
             var tasks = _sensors.ToList().Select(async sensor =>
@@ -53,8 +53,8 @@ namespace Sting.Core
                 measurement.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
                 Console.WriteLine();
             }).ToList();
-            await Task.WhenAll(tasks);
 
+            Task.WhenAll(tasks).Wait();
             var telemetry = new TelemetryData("testDevice", measurements.ToArray());
             _database.SaveDocumentToCollection(telemetry.ToBsonDocument(), "TelemetryData");
 
