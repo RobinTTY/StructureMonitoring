@@ -6,6 +6,8 @@ using Sting.Core;
 using Sting.Core.Contracts;
 using Sting.Devices;
 using Sting.Devices.Contracts;
+using Sting.Persistence;
+using Sting.Persistence.Contracts;
 
 namespace Sting.Application
 {
@@ -19,7 +21,12 @@ namespace Sting.Application
                 .As<IApplicationManager>()
                 .SingleInstance();
 
-            Builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>()))
+            // TODO: probably handle as service
+            Builder.Register(context => new Database())
+                .As<IDatabase>()
+                .SingleInstance();
+
+            Builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>(), context.Resolve<IDatabase>()))
                 .As<ISensorManager>()
                 .As<IService>()
                 .SingleInstance();
@@ -29,11 +36,11 @@ namespace Sting.Application
                 .As<ISensorController>()
                 .SingleInstance();
 
-            // TODO: configure through Configuration class
-            Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
-                .As<IDhtController>()
-                .As<ISensorController>()
-                .SingleInstance();
+            // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
+            //Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
+            //    .As<IDhtController>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
 
             Builder.Register<IBme680Controller>(context => new Bme680Controller())
                 .As<IBme680Controller>()

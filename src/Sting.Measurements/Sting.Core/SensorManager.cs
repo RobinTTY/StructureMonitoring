@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
+using Sting.Persistence.Contracts;
 
 namespace Sting.Core
 {
@@ -13,10 +15,12 @@ namespace Sting.Core
         public bool IsRunning { get; set; }
 
         private readonly IEnumerable<ISensorController> _sensors;
+        private readonly IDatabase _database;
 
-        public SensorManager(IEnumerable<ISensorController> sensors)
+        public SensorManager(IEnumerable<ISensorController> sensors, IDatabase database)
         {
             _sensors = sensors;
+            _database = database;
         }
 
         public void Start()
@@ -37,14 +41,23 @@ namespace Sting.Core
             IsRunning = false;
         }
 
-        // TODO: give ability to change period of collection
-        private void CollectSensorData()
+        // TODO: give ability to change period of collection, only select period of upload -> always upload newest data
+        private async void CollectSensorData()
         {
-            _sensors.ToList().ForEach(async sensor =>
+            var measurements = new List<MeasurementContainer>();
+            var tasks = _sensors.ToList().Select(async sensor =>
             {
                 var measurement = await sensor.TakeMeasurement();
+                measurements.Add(measurement);
+
                 measurement.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
-            });
+                Console.WriteLine();
+            }).ToList();
+            await Task.WhenAll(tasks);
+
+            var telemetry = new TelemetryData("testDevice", measurements.ToArray());
+            _database.SaveDocumentToCollection(telemetry.ToBsonDocument(), "TelemetryData");
+
             Task.Delay(1000).Wait();
         }
 

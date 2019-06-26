@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Device.I2c;
 using System.Device.I2c.Drivers;
+using System.Linq;
 using System.Threading.Tasks;
 using Sting.Devices.Contracts;
 using Sting.Models;
@@ -28,7 +29,7 @@ namespace Sting.Devices
 
             var measurements = new MeasurementContainer("Bme680")
             {
-                {"Temperature", _i2CBme680.Temperature.Celsius},
+                {"Temperature", _i2CBme680.Temperature},
                 {"Humidity", _i2CBme680.Humidity},
                 {"Pressure", _i2CBme680.Pressure},
                 {"GasResistance", _i2CBme680.GasResistance}

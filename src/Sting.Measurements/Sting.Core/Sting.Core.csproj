@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Sting.Backend\Sting.Models\Sting.Models.csproj" />
     <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
+    <ProjectReference Include="..\Sting.Persistence\Sting.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
