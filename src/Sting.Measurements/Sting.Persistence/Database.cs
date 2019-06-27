@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Sting.Persistence.Contracts;
 
@@ -6,19 +7,18 @@ namespace Sting.Persistence
 {
     public class Database : IDatabase
     {
-        private string _clusterConnectionString;
-        private string _databaseName;
         private IMongoDatabase _database;
+        
+        private readonly string _clusterConnectionString;
+        private readonly string _databaseName;
 
-        public Database()
+        // TODO: probably refactor, disconnect on shutdown?!
+        public Database(string databaseName, string clusterConnectionString)
         {
-            LoadConfiguration();
-        }
+            _databaseName = databaseName;
+            _clusterConnectionString = clusterConnectionString;
 
-        private void LoadConfiguration()
-        {
-            _clusterConnectionString = "";
-            _databaseName = "Sting";
+            InitConnection();
         }
 
         public void InitConnection()
@@ -27,10 +27,10 @@ namespace Sting.Persistence
             _database = client.GetDatabase(_databaseName);
         }
 
-        public void SaveDocumentToCollection(BsonDocument document, string collectionName)
+        public async Task SaveDocumentToCollection(BsonDocument document, string collectionName)
         {
             var collection = _database.GetCollection<BsonDocument>(collectionName);
-            var result = collection.InsertOneAsync(document);
+            await collection.InsertOneAsync(document);
         }
 
         private void Ping()

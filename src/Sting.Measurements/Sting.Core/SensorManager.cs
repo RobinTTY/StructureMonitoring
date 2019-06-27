@@ -56,7 +56,7 @@ namespace Sting.Core
 
             Task.WhenAll(tasks).Wait();
             var telemetry = new TelemetryData("testDevice", measurements.ToArray());
-            _database.SaveDocumentToCollection(telemetry.ToBsonDocument(), "TelemetryData");
+            _database.SaveDocumentToCollection(telemetry.ToBsonDocument(), "TelemetryData").Wait();
 
             Task.Delay(1000).Wait();
         }

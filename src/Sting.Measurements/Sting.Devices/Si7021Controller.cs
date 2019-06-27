@@ -14,7 +14,6 @@ namespace Sting.Devices
 
         public Si7021Controller()
         {
-            // TODO: maybe define a getI2CDevice method to centralize this process (I2CDeviceFactory)
             var i2CSettings = new I2cConnectionSettings(1, Si7021.DefaultI2cAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
 

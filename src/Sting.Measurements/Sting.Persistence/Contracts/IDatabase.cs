@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace Sting.Persistence.Contracts
 {
@@ -14,6 +15,6 @@ namespace Sting.Persistence.Contracts
         /// </summary>
         /// <param name="document">The document to be saved.</param>
         /// <param name="collectionName">The collection which the document is saved to.</param>
-        void SaveDocumentToCollection(BsonDocument document, string collectionName);
+        Task SaveDocumentToCollection(BsonDocument document, string collectionName);
     }
 }

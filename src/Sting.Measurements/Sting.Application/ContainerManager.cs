@@ -11,6 +11,7 @@ using Sting.Persistence.Contracts;
 
 namespace Sting.Application
 {
+    // TODO: some sort of configuration procedure instead of constructors?!
     public static class ContainerManager
     {
         private static readonly ContainerBuilder Builder = new ContainerBuilder();
@@ -22,7 +23,7 @@ namespace Sting.Application
                 .SingleInstance();
 
             // TODO: probably handle as service
-            Builder.Register(context => new Database())
+            Builder.Register(context => new Database("Sting", ""))
                 .As<IDatabase>()
                 .SingleInstance();
 
