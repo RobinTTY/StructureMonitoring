@@ -9,7 +9,6 @@ namespace Sting.Devices
     {
         private DhtSensor _dht;
 
-
         public DhtController(int pinNumber, DhtType type)
         {
             _dht = new DhtSensor(pinNumber, type);

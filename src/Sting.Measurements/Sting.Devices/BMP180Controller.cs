@@ -14,9 +14,8 @@ namespace Sting.Devices
         public Bmp180Controller()
         {
             var i2CSettings = new I2cConnectionSettings(1, Bmp180.DefaultI2cAddress);
-            // TODO: test if this would work on Windows IoT Core - probably not so implement platform detection
-            var i2CDevice = new UnixI2cDevice(i2CSettings);
-            
+            var i2CDevice = I2cDevice.Create(i2CSettings);
+
             _i2CBmp180 = new Bmp180(i2CDevice);
         }
 
