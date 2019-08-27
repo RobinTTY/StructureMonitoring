@@ -1,10 +1,9 @@
 name: Build & Test
 
-on: [push]
-
-push:
-  paths:
-    - 'src/Sting.Measurements/*'
+on: 
+  push:
+    paths:
+      - 'src/Sting.Measurements/*'
 
 jobs:
   build:
