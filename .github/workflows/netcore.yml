@@ -3,7 +3,7 @@ name: Build & Test
 on: 
   push:
     paths:
-      - './src/Sting.Measurements/*'
+      - 'src/Sting.Measurements/**'
 
 jobs:
   build:
