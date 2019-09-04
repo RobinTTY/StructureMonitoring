@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^7.2.15",
     "@angular/router": "^7.2.15",
     "@azure/event-hubs": "^1.0.8",
-    "@ng-bootstrap/ng-bootstrap": "^4.2.1",
+    "@ng-bootstrap/ng-bootstrap": "^4.2.2",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "chartjs-plugin-annotation": "^0.5.7",
