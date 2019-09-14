@@ -3,7 +3,7 @@ name: Build & Test
 on: 
   push:
     paths:
-      - 'src/Sting.Measurements/**'
+      - 'src/Sting.Measurements/*'
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.2.108
+        dotnet-version: 3.0.100-preview9-014004
     - name: Build Sting.Application
       run: dotnet build --configuration Release src/Sting.Measurements/Sting.Application
     - name: Build Sting.Core
