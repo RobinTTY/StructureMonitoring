@@ -9,17 +9,17 @@ namespace Sting.Devices.Contracts
         /// </summary>
         /// <param name="frequency">The desired frequency in hz.</param>
         /// <param name="duration">The desired length of play.</param>
-        void PlayToneAsync(double frequency, int duration);
+        void PlayTone(double frequency, int duration);
 
         /// <summary>
-        /// Activate the buzzer with the given frequency.
+        /// Set new or overwrite previously set frequency and start playing the sound.
         /// </summary>
-        /// <param name="frequency">The desired frequency in hz.</param>
-        void SetFrequency(double frequency);
+        /// <param name="frequency">Tone frequency in Hertz.</param>
+        void StartPlaying(double frequency);
 
         /// <summary>
-        /// Turns the buzzer off.
+        /// Stops playing the current tone.
         /// </summary>
-        void TurnOff();
+        void StopPlaying();
     }
 }

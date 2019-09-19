@@ -7,11 +7,11 @@ namespace Sting.Devices
 {
     public class DhtController : IDhtController
     {
-        private DhtSensor _dht;
+        private Dht11 _dht;
 
-        public DhtController(int pinNumber, DhtType type)
+        public DhtController(int pinNumber)
         {
-            _dht = new DhtSensor(pinNumber, type);
+            _dht = new Dht11(pinNumber);
         }
 
         public Task<MeasurementContainer> TakeMeasurement()
