@@ -1,9 +1,8 @@
 name: Build & Test
 
 on: push
-# Disabled until nested directories are supported
-#    paths:
-#      - 'src/Sting.Measurements/*'
+    paths:
+      - 'src/Sting.Measurements/**'
 
 jobs:
   build:
