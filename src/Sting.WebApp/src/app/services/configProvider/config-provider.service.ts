@@ -11,7 +11,7 @@ export class ConfigProviderService {
   private config: Array<Building>;
 
   constructor() {
-    this.castBuildingsConfig();    
+    this.castBuildingsConfig();
   }
 
   private castBuildingsConfig(): void {
