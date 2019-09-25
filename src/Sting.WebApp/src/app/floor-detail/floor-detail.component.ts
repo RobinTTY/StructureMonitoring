@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, DoCheck } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
 import { Room } from '../shared/models/room';
@@ -17,7 +17,7 @@ import { ConfigProviderService } from '../services/configProvider/config-provide
 })
 
 // TODO: change horrible naming practice in building config!!!
-export class FloorDetailComponent implements OnInit {
+export class FloorDetailComponent implements OnInit, AfterViewInit, DoCheck {
   private telemetryData: Array<TelemetryData>;
   public position: Position;
   public rooms: Array<Room>;
@@ -37,7 +37,7 @@ export class FloorDetailComponent implements OnInit {
     this.rooms = this.floorData.rooms;
   }
 
-  // TODO: research lifecycle hooks, use jquery -> maybe avoid this kind of editing somehow?!
+  // TODO: research lifecycle hooks -> maybe avoid this kind of editing somehow?!
   public ngAfterViewInit(): void {
     console.log('rooms:');
     console.log(this.rooms);
@@ -57,10 +57,12 @@ export class FloorDetailComponent implements OnInit {
   public ngDoCheck(): void {
     for (let i = 0; i < this.rooms.length; i++) {
       let str = '';
+      let deviceData = new TelemetryData;
+
       try {
         for (let j = 0; j < this.telemetryData.length; j++) {
           if (this.telemetryData[j].deviceId === this.rooms[i].device) {
-            var deviceData = this.telemetryData[j];
+            deviceData = this.telemetryData[j];
             break;
           }
         }

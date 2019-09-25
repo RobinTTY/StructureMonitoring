@@ -43,7 +43,7 @@ export class RoomComponent implements OnInit {
   // TODO: refactor
   private loadTelemetry(): void {
     const dt = new Date(this.telemetryData.timeStamp);
-      //.toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+      // .toLocaleTimeString('en-EN', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
     document.getElementById('TempVal').innerText = this.telemetryData.temperature.toString().substr(0, 5) + '°C';
     document.getElementById('HumVal').innerText = this.telemetryData.humidity.toString() + '%';

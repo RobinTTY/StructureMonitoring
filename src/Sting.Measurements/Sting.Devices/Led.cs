@@ -8,10 +8,10 @@ namespace Sting.Devices
     {
         public LedState State => CheckState();
 
-        private readonly IGpioController _gpioController;
+        private readonly GpioController _gpioController;
         private readonly int _pin;
 
-        public Led(int pinNumber, IGpioController controller)
+        public Led(int pinNumber, GpioController controller)
         {
             _gpioController = controller;
             _pin = pinNumber;
