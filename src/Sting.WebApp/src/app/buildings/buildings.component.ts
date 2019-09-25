@@ -10,7 +10,7 @@ import { ConfigProviderService } from '../services/configProvider/config-provide
   styleUrls: ['./buildings.component.scss']
 })
 export class BuildingsComponent implements OnInit {
-  private buildings: Array<Building>;
+  public buildings: Array<Building>;
 
   constructor(private configService: ConfigProviderService) {
   }

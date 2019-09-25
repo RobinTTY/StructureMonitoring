@@ -14,7 +14,7 @@ import { ConfigProviderService } from '../services/configProvider/config-provide
 
 export class FloorsComponent implements OnInit {
 
-  private floors: Array<Floor>;
+  public floors: Array<Floor>;
 
   constructor(private routeService: ActivatedRoute, private configService: ConfigProviderService) {
   }

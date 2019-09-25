@@ -19,9 +19,9 @@ import { ConfigProviderService } from '../services/configProvider/config-provide
 // TODO: change horrible naming practice in building config!!!
 export class FloorDetailComponent implements OnInit {
   private telemetryData: Array<TelemetryData>;
-  private position: Position;
-  private rooms: Array<Room>;
-  private floorData: Floor;
+  public position: Position;
+  public rooms: Array<Room>;
+  public floorData: Floor;
 
   constructor(private telemetryService: TelemetryService,
               private configService: ConfigProviderService,

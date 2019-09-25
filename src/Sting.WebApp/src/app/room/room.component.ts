@@ -22,9 +22,9 @@ export class RoomComponent implements OnInit {
   // TODO: This component needs the line-chart, refer to html
   private telemetryData: TelemetryData;
   private buildings: Array<Building>;
-  private roomData: Room;
-  private position: Position;
-  private floorAlias: string;
+  public roomData: Room;
+  public floorAlias: string;
+  public position: Position;
 
   constructor(private telemetryService: TelemetryService,
               private configService: ConfigProviderService,
