@@ -1,4 +1,4 @@
-import { TelemetryData } from '../../shared/models/TelemetryData';
+import { TelemetryData } from '../../shared/models/telemetryData';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
