@@ -16,7 +16,7 @@ namespace Sting.Devices
 
         public Bme280Controller()
         {
-            var i2CSettings = new I2cConnectionSettings(1, Bmx280Base.DefaultI2cAddress);
+            var i2CSettings = new I2cConnectionSettings(1, Bmx280Base.SecondaryI2cAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
             _bme280 = new Bme280(i2CDevice);
 

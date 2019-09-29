@@ -31,24 +31,24 @@ namespace Sting.Application
                 .As<IService>()
                 .SingleInstance();
 
-            //Builder.Register(context => new Bmp180Controller())
-            //    .As<Bmp180Controller>()
-            //    .As<ISensorController>()
-            //    .SingleInstance();
-
             // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
             //Builder.Register(context => new DhtController(4))
             //    .As<DhtController>()
             //    .As<ISensorController>()
             //    .SingleInstance();
 
-            Builder.Register(context => new Bme680Controller())
-                .As<Bme680Controller>()
-                .As<ISensorController>()
-                .SingleInstance();
+            //Builder.Register(context => new Bmp180Controller())
+            //    .As<Bmp180Controller>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
 
             Builder.Register(context => new Bme280Controller())
                 .As<Bme280Controller>()
+                .As<ISensorController>()
+                .SingleInstance();
+
+            Builder.Register(context => new Bme680Controller())
+                .As<Bme680Controller>()
                 .As<ISensorController>()
                 .SingleInstance();
 
