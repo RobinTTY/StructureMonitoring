@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Iot.Device.DHTxx;
 using Sting.Devices.Contracts;
@@ -17,13 +18,16 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var measurements = new MeasurementContainer("Dht")
+            var container = new MeasurementContainer("Dht")
             {
-                {"Temperature", _dht.Temperature.Celsius},
-                { "Humidity", _dht.Humidity}
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", _dht.Temperature.Celsius},
+                    { "Humidity", _dht.Humidity}
+                }
             };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Bmxx80;
@@ -33,14 +34,17 @@ namespace Sting.Devices
             _bme280.TryReadHumidity(out var humidity);
             _bme280.TryReadPressure(out var pressure);
 
-            var measurements = new MeasurementContainer("Bme280")
+            var container = new MeasurementContainer("Bme280")
             {
-                {"Temperature", temperature.Celsius},
-                {"Humidity", humidity},
-                {"Pressure", pressure},
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", temperature.Celsius},
+                    {"Humidity", humidity},
+                    {"Pressure", pressure}
+                }
             };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
 
         private void SetDefaultConfiguration()

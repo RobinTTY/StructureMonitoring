@@ -51,7 +51,7 @@ namespace Sting.Core
                 var measurement = await sensor.TakeMeasurement();
                 measurements.Add(measurement);
 
-                measurement.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
+                measurement.Measurements.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
                 Console.WriteLine();
             }).ToList();
 

@@ -22,7 +22,8 @@ namespace Sting.Backend.Services
         public List<TelemetryData> Get(long? timeStampStart, long? timeStampStop, string deviceId)
         {
             var filter = TelemetryDataFilter.CreateFilter(timeStampStart, timeStampStop, deviceId);
-            return _telemetryData.Find(filter).ToList();
+            var test = _telemetryData.Find(filter).ToList();
+            return test;
         }
 
         public List<TelemetryData> GetLatest(string deviceId)

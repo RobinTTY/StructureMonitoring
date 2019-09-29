@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Sting.Devices.Contracts;
@@ -34,15 +35,18 @@ namespace Sting.Devices
             _bme680.TryReadPressure(out var pressure);
             _bme680.TryReadGasResistance(out var gasResistance);
 
-            var measurements = new MeasurementContainer("Bme680")
+            var container = new MeasurementContainer("Bme680")
             {
-                {"Temperature", temperature.Celsius},
-                {"Humidity", humidity},
-                {"Pressure", pressure},
-                {"GasResistance", gasResistance}
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", temperature.Celsius},
+                    {"Humidity", humidity},
+                    {"Pressure", pressure},
+                    {"GasResistance", gasResistance}
+                }
             };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
 
         private void SetDefaultConfiguration()

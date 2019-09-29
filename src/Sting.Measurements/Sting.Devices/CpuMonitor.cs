@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Iot.Device.CpuTemperature;
 using Sting.Devices.Contracts;
 using Sting.Models;
@@ -16,9 +17,15 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var measurements = new MeasurementContainer("CpuMonitor") {{"Temperature", _monitor.Temperature.Celsius}};
+            var container = new MeasurementContainer("CpuMonitor")
+            {
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", _monitor.Temperature.Celsius}
+                }
+            };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
     }
 }

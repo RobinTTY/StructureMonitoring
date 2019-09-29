@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Bmp180;
@@ -20,13 +21,16 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var measurements = new MeasurementContainer("Bmp180")
+            var container = new MeasurementContainer("Bmp180")
             {
-                {"Temperature", _i2CBmp180.ReadTemperature().Celsius},
-                { "Pressure", _i2CBmp180.ReadPressure()}
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", _i2CBmp180.ReadTemperature().Celsius},
+                    { "Pressure", _i2CBmp180.ReadPressure()}
+                }
             };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
 
         public void Dispose()

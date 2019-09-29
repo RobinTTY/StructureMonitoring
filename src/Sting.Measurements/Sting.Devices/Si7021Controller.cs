@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Si7021;
@@ -21,13 +22,16 @@ namespace Sting.Devices
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var measurements = new MeasurementContainer("Si7021")
+            var container = new MeasurementContainer("Si7021")
             {
-                {"Temperature", _si7021.Temperature.Celsius},
-                { "Humidity", _si7021.Humidity}
+                Measurements = new Dictionary<string, double>
+                {
+                    {"Temperature", _si7021.Temperature.Celsius},
+                    { "Humidity", _si7021.Humidity}
+                }
             };
 
-            return Task.FromResult(measurements);
+            return Task.FromResult(container);
         }
 
         public void Dispose()
