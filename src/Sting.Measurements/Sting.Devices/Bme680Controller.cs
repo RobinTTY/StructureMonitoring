@@ -17,13 +17,13 @@ namespace Sting.Devices
         {
             var i2CSettings = new I2cConnectionSettings(1, Bme680.SecondaryI2cAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
-
             _bme680 = new Bme680(i2CDevice);
+
             SetDefaultConfiguration();
             _measurementDuration = _bme680.GetMeasurementDuration(_bme680.HeaterProfile);
         }
 
-        public async Task<MeasurementContainer> TakeMeasurement()
+        public Task<MeasurementContainer> TakeMeasurement()
         {
             _bme680.SetPowerMode(Bme680PowerMode.Forced);
             Task.Delay(_measurementDuration).Wait();
@@ -41,7 +41,7 @@ namespace Sting.Devices
                 {"GasResistance", gasResistance}
             };
 
-            return await Task.FromResult(measurements);
+            return Task.FromResult(measurements);
         }
 
         private void SetDefaultConfiguration()

@@ -14,7 +14,6 @@ namespace Sting.Devices
         {
             var i2CSettings = new I2cConnectionSettings(1, Bmp180.DefaultI2cAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
-
             _i2CBmp180 = new Bmp180(i2CDevice);
         }
 

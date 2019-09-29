@@ -8,7 +8,7 @@ namespace Sting.Devices.Contracts
         Off
     }
 
-    public interface ILed
+    public interface ILedController
     {
         /// <summary>
         /// Gets the current state of the LED.

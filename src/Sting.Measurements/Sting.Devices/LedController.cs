@@ -4,14 +4,15 @@ using Sting.Devices.Contracts;
 
 namespace Sting.Devices
 {
-    public class Led : ILed
+    // TODO: implement IDisposable to reset pin?
+    public class LedController : ILedController
     {
         public LedState State => CheckState();
 
         private readonly GpioController _gpioController;
         private readonly int _pin;
 
-        public Led(int pinNumber, GpioController controller)
+        public LedController(int pinNumber, GpioController controller)
         {
             _gpioController = controller;
             _pin = pinNumber;
