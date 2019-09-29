@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Sting.Persistence.Contracts;
-using Sting.Models;
 
 namespace Sting.Persistence
 {
@@ -20,7 +18,6 @@ namespace Sting.Persistence
             _databaseName = databaseName;
             _clusterConnectionString = clusterConnectionString;
 
-            RegisterClassMaps();
             InitConnection();
         }
 
@@ -28,15 +25,6 @@ namespace Sting.Persistence
         {
             var client = new MongoClient(_clusterConnectionString);
             _database = client.GetDatabase(_databaseName);
-        }
-
-        private void RegisterClassMaps()
-        {
-            BsonClassMap.RegisterClassMap<MeasurementContainer>(map =>
-            {
-                map.AutoMap();
-                map.MapMember(c => c.SensorName);
-            });
         }
 
         public async Task SaveDocumentToCollection(BsonDocument document, string collectionName)
