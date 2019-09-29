@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Autofac;
-using Iot.Device.DHTxx;
 using Sting.Application.Contracts;
 using Sting.Core;
 using Sting.Core.Contracts;
@@ -32,19 +31,24 @@ namespace Sting.Application
                 .As<IService>()
                 .SingleInstance();
 
-            Builder.Register<IBmp180Controller>(context => new Bmp180Controller())
-                .As<IBmp180Controller>()
-                .As<ISensorController>()
-                .SingleInstance();
-
-            // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
-            //Builder.Register<IDhtController>(context => new DhtController(4, DhtType.Dht11))
-            //    .As<IDhtController>()
+            //Builder.Register(context => new Bmp180Controller())
+            //    .As<Bmp180Controller>()
             //    .As<ISensorController>()
             //    .SingleInstance();
 
-            Builder.Register<IBme680Controller>(context => new Bme680Controller())
-                .As<IBme680Controller>()
+            // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
+            //Builder.Register(context => new DhtController(4))
+            //    .As<DhtController>()
+            //    .As<ISensorController>()
+            //    .SingleInstance();
+
+            Builder.Register(context => new Bme680Controller())
+                .As<Bme680Controller>()
+                .As<ISensorController>()
+                .SingleInstance();
+
+            Builder.Register(context => new Bme280Controller())
+                .As<Bme280Controller>()
                 .As<ISensorController>()
                 .SingleInstance();
 

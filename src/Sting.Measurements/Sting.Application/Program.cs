@@ -9,7 +9,7 @@ namespace Sting.Application
         // TODO: change to Net Core equivalent
         // private readonly EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             var container = ContainerManager.RegisterModules();
 

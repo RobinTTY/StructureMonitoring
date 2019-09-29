@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Iot.Device.DHTxx;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
 namespace Sting.Devices
 {
-    public class DhtController : IDhtController
+    public class DhtController : ISensorController, IDisposable
     {
         private Dht11 _dht;
 

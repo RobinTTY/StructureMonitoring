@@ -1,11 +1,10 @@
 ﻿using System.Device.Gpio;
 using System.Threading.Tasks;
-using Sting.Devices.Contracts;
 
 namespace Sting.Devices
 {
     // TODO: implement IDisposable to reset pin?
-    public class LedController : ILedController
+    public class LedController
     {
         public LedState State => CheckState();
 
@@ -43,5 +42,11 @@ namespace Sting.Devices
             var state = _gpioController.Read(_pin);
             return state == PinValue.High ? LedState.On : LedState.Off;
         }
+    }
+
+    public enum LedState
+    {
+        On,
+        Off
     }
 }

@@ -3,6 +3,7 @@ using MongoDB.Bson;
 
 namespace Sting.Persistence.Contracts
 {
+    // TODO: maybe provide access trough local implementation of MongoDB
     public interface IDatabase
     {
         /// <summary>

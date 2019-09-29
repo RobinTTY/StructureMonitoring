@@ -1,4 +1,5 @@
-﻿using System.Device.I2c;
+﻿using System;
+using System.Device.I2c;
 using System.Threading.Tasks;
 using Sting.Devices.Contracts;
 using Sting.Models;
@@ -8,7 +9,7 @@ using Iot.Device.Bmxx80.PowerMode;
 
 namespace Sting.Devices
 {
-    public class Bme680Controller : IBme680Controller
+    public class Bme680Controller : ISensorController, IDisposable
     {
         private Bme680 _bme680;
         private readonly int _measurementDuration;

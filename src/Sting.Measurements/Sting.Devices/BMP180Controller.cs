@@ -1,4 +1,5 @@
-﻿using System.Device.I2c;
+﻿using System;
+using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Bmp180;
 using Sting.Devices.Contracts;
@@ -6,7 +7,7 @@ using Sting.Models;
 
 namespace Sting.Devices
 {
-    public class Bmp180Controller : IBmp180Controller
+    public class Bmp180Controller : ISensorController, IDisposable
     {
         private Bmp180 _i2CBmp180;
 

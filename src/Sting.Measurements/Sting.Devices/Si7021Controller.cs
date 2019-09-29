@@ -1,4 +1,5 @@
-﻿using System.Device.I2c;
+﻿using System;
+using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Si7021;
 using Sting.Devices.Contracts;
@@ -6,7 +7,7 @@ using Sting.Models;
 
 namespace Sting.Devices
 {
-    public class Si7021Controller : ISi7021Controller
+    public class Si7021Controller : ISensorController, IDisposable
     {
         private Si7021 _si7021;
 

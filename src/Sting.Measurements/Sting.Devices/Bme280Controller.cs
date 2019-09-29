@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Device.I2c;
-using System.Text;
 using System.Threading.Tasks;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
@@ -11,10 +9,10 @@ using Sting.Models;
 
 namespace Sting.Devices
 {
-    public class Bme280Controller : IBme280Controller
+    public class Bme280Controller : ISensorController, IDisposable
     {
         private Bme280 _bme280;
-        private int _measurementDuration;
+        private readonly int _measurementDuration;
 
         public Bme280Controller()
         {

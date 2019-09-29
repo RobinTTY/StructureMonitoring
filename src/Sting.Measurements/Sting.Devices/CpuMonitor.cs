@@ -5,9 +5,8 @@ using Sting.Models;
 
 namespace Sting.Devices
 {
-    public class CpuMonitor : ICpuMonitor
+    public class CpuMonitor : ISensorController
     {
-        public bool SensorAvailable => _monitor.IsAvailable;
         private readonly CpuTemperature _monitor;
 
         public CpuMonitor()
