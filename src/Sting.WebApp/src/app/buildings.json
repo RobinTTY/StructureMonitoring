@@ -2,7 +2,8 @@
   "buildings": [
     {
       "id": 0,
-      "name": "Systecs",
+      "alias": "Systecs",
+      "description": "The default description",
       "link": "../assets/images/Systecs.png",
       "street": "Bahnhofstraße 11",
       "city": "Leinfelden-Echterdingen",
@@ -12,6 +13,7 @@
           "id": 0,
           "alias": "11",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
@@ -21,6 +23,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -36,6 +39,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -51,6 +55,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -65,6 +70,7 @@
           "id": 1,
           "alias": "12",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
@@ -89,6 +95,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -104,6 +111,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -118,7 +126,8 @@
     },
     {
       "id": 1,
-      "name": "HS-Esslingen",
+      "alias": "HS-Esslingen",
+      "description": "The default description",
       "link": "../assets/images/HSE.png",
       "street": "Kanalstraße 33",
       "city": "Esslingen am Neckar",
@@ -128,6 +137,7 @@
           "id": 0,
           "alias": "21",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/1.PNG",
           "rooms": [
             {
@@ -137,6 +147,7 @@
               "y": 69,
               "device": "RasPi_Robin",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 19.3,
@@ -152,6 +163,7 @@
               "y": 5,
               "device": "RasPi_Enes",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 17.5,
@@ -167,6 +179,7 @@
               "y": 52,
               "device": "Raspi_Boris",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 23,
@@ -182,6 +195,7 @@
               "y": 5,
               "device": "RasPi_Marc",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 20,
@@ -196,6 +210,7 @@
           "id": 1,
           "alias": "22",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/2.PNG",
           "rooms": [
             {
@@ -205,6 +220,7 @@
               "y": 21,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -220,6 +236,7 @@
               "y": 73,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -235,6 +252,7 @@
               "y": 73,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -249,6 +267,7 @@
           "id": 2,
           "alias": "23",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/3.PNG",
           "rooms": [
             {
@@ -258,6 +277,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -273,6 +293,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -288,6 +309,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -302,7 +324,8 @@
     },
     {
       "id": 2,
-      "name": "Bibliothek",
+      "alias": "Bibliothek",
+      "description": "The default description",
       "link": "../assets/images/Bibliothek.png",
       "street": "NA",
       "city": "NA",
@@ -312,6 +335,7 @@
           "id": 0,
           "alias": "31",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
@@ -321,6 +345,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -335,6 +360,7 @@
           "id": 1,
           "alias": "32",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
@@ -344,6 +370,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -359,6 +386,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -373,6 +401,7 @@
           "id": 2,
           "alias": "33",
           "name": "default",
+          "description": "The default description",
           "link": "../assets/images/floorplan.png",
           "rooms": [
             {
@@ -382,6 +411,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -397,6 +427,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,
@@ -412,6 +443,7 @@
               "y": 0,
               "device": "default",
               "name": "default",
+              "description": "The default description",
               "link": "../assets/images/default.png",
               "thresholds": {
                 "tempLow": 11.5,

@@ -1,21 +1,23 @@
 <div class="flex-container bg-grey">
   <strong>
-  <ol class="breadcrumb">    
-    <li class="breadcrumb-item"><a routerLink="">Buildings</a></li>
-    <li class="breadcrumb-item active">Floors</li>
-  </ol>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="">Buildings</a></li>
+      <li class="breadcrumb-item active">Floors</li>
+    </ol>
   </strong>
-<h1 class="text-center main-header">Floors</h1>  
-    <div class="object" *ngFor="let floor of floors">
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-          <div id="image">
-            <img [src]="floor.link" class="img-fluid rounded floor-plan img-link" alt="image" routerLink="floor/{{floor.id}}"/>
-          </div>
+  <h1 class="text-center main-header">Floors</h1>
+  <div class="object" *ngFor="let floor of floors">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <div class="card mx-auto" routerLink="floor/{{floor.id}}">
+            <div class="card-body">
+              <h5 class="card-title">Floor {{floor.alias}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{floor.description}}</h6>
+              <!-- TODO: Create overview -->
+              <p class="card-text">Insert quick overview of environmental data here.</p>
+            </div>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center description">
-          <a routerLink="floor/{{floor.id}}"><strong>Floor {{floor.alias}}</strong></a>
-        </div>
-      </div>    
+      </div>
+    </div>
   </div>
 </div>
