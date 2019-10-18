@@ -26,10 +26,10 @@ namespace Sting.Backend.Services
             return test;
         }
 
-        public List<TelemetryData> GetLatest(string deviceId)
+        public TelemetryData GetLatest(string deviceId)
         {
             var filter = TelemetryDataFilter.CreateFilter(deviceId: deviceId);
-            return _telemetryData.Find(filter).ToList();
+            return _telemetryData.Find(filter).SortByDescending(fields => fields.UnixTimeStamp).FirstOrDefault();
         }
     }
 }

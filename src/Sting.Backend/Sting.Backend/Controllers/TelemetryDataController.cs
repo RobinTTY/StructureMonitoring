@@ -28,7 +28,7 @@ namespace Sting.Backend.Controllers
         }
 
         [HttpGet("/latest")]
-        public ActionResult<List<TelemetryData>> GetLatest([FromQuery(Name = "DeviceId")] string deviceId)
+        public ActionResult<TelemetryData> GetLatest([FromQuery(Name = "DeviceId")] string deviceId)
         {
             var telemetryData = _telemetryDataService.GetLatest(deviceId);
 
