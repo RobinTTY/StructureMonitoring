@@ -6,7 +6,6 @@ export class Room {
     x: number;
     y: number;
     device: string;
-    name: string;
     link: string;
     thresholds: Thresholds;
 }
