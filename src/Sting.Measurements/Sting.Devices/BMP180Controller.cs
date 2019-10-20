@@ -26,7 +26,7 @@ namespace Sting.Devices
                 Measurements = new Dictionary<string, double>
                 {
                     {"Temperature", _i2CBmp180.ReadTemperature().Celsius},
-                    { "Pressure", _i2CBmp180.ReadPressure()}
+                    { "Pressure", _i2CBmp180.ReadPressure().Pascal}
                 }
             };
 

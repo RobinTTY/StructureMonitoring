@@ -41,7 +41,7 @@ namespace Sting.Devices
                 {
                     {"Temperature", temperature.Celsius},
                     {"Humidity", humidity},
-                    {"Pressure", pressure},
+                    {"Pressure", pressure.Pascal},
                     {"GasResistance", gasResistance}
                 }
             };
