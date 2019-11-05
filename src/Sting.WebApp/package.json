@@ -22,7 +22,7 @@
     "@angular/router": "^8.2.11",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "bootstrap": "^4.3.1",
-    "chart.js": "^2.9.1",
+    "chart.js": "^2.9.2",
     "chartjs-plugin-annotation": "^0.5.7",
     "core-js": "^3.3.4",
     "jquery": "^3.4.1",
