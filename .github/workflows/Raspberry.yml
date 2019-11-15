@@ -1,0 +1,27 @@
+name: Build Raspberry Application
+
+on:
+  push:
+    paths:
+      - 'src/Sting.Measurements/**'
+
+jobs:
+
+  Build-Raspi:
+    name: Build Raspberry Application
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.0.100-preview9-014004
+      - name: Build Sting.Application
+        run: dotnet build --configuration Release src/Sting.Measurements/Sting.Application
+      - name: Build Sting.Core
+        run: dotnet build --configuration Release src/Sting.Measurements/Sting.Core
+      - name: Build Sting.Devices
+        run: dotnet build --configuration Release src/Sting.Measurements/Sting.Devices
+      - name: Build Sting.Persistence
+        run: dotnet build --configuration Release src/Sting.Measurements/Sting.Persistence

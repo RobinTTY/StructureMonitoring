@@ -1,0 +1,28 @@
+name: Build WebApp
+
+on:
+  push:
+    paths:
+      - 'src/Sting.WebApp/**'
+
+jobs:
+
+  Build-WebApp:
+    name: Build WebApp
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.10
+    - name: Install dependencies
+      working-directory: src/Sting.WebApp
+      run: npm install
+    - name: Lint
+      working-directory: src/Sting.WebApp
+      run: npm run lint
+    - name: Build
+      working-directory: src/Sting.WebApp
+      run: npm run build -- --prod
