@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'src/Sting.Backend/**'
+      - 'src/Sting.Measurements/**'
 
 jobs:
 
