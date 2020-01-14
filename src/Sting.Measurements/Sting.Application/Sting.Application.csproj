@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="Iot.Device.Bindings" Version="1.1.0-prerelease.19565.1" />
+    <PackageReference Include="Iot.Device.Bindings" Version="1.1.0-prerelease.20063.4" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 
