@@ -7,10 +7,13 @@ namespace Sting.Persistence.Contracts
     public interface IDatabase
     {
         /// <summary>
-        /// Initializes the connection to the database.
+        /// Initiates a connection with the database.
         /// </summary>
-        void InitConnection();
+        /// <param name="databaseName">The name of the database.</param>
+        /// <param name="connectionString">The connection string of the database.</param>
+        void InitConnection(string databaseName, string connectionString);
 
+        // TODO: refactor for generalized db usage
         /// <summary>
         /// Saves a document to the database.
         /// </summary>

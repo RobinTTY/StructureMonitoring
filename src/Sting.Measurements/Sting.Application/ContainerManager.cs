@@ -22,7 +22,7 @@ namespace Sting.Application
                 .SingleInstance();
 
             // TODO: probably handle as service
-            Builder.Register(context => new Database("Sting", ""))
+            Builder.Register(context => new MongoDBDatabase("Sting", ""))
                 .As<IDatabase>()
                 .SingleInstance();
 
