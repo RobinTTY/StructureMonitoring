@@ -20,7 +20,7 @@ namespace Sting.Persistence
         /// </summary>
         /// <param name="databaseName">The name of the database.</param>
         /// <param name="connectionString">The connection string of the database.</param>
-        public void InitConnection(string databaseName, string connectionString)
+        private void InitConnection(string databaseName, string connectionString)
         {
             var client = new MongoClient(connectionString);
             _database = client.GetDatabase(databaseName);
