@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using MongoDB.Bson;
+﻿using Sting.Models;
 
 namespace Sting.Persistence.Contracts
 {
@@ -13,12 +12,10 @@ namespace Sting.Persistence.Contracts
         /// <param name="connectionString">The connection string of the database.</param>
         void InitConnection(string databaseName, string connectionString);
 
-        // TODO: refactor for generalized db usage
         /// <summary>
-        /// Saves a document to the database.
+        /// Adds new <see cref="TelemetryData"/> to the database.
         /// </summary>
-        /// <param name="document">The document to be saved.</param>
-        /// <param name="collectionName">The collection which the document is saved to.</param>
-        Task SaveDocumentToCollection(BsonDocument document, string collectionName);
+        /// <param name="telemetry">The <see cref="TelemetryData"/> to add.</param>
+        void AddTelemetryData(TelemetryData telemetry);
     }
 }

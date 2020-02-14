@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
@@ -57,9 +56,7 @@ namespace Sting.Core
 
             Task.WhenAll(tasks).Wait();
             var telemetry = new TelemetryData("testDevice", measurements.ToArray());
-            _database.SaveDocumentToCollection(telemetry.ToBsonDocument(), "TelemetryData").Wait();
+            _database.AddTelemetryData(telemetry);
         }
-
-        // TODO: create a configure method to use custom configurations for the different sensors
     }
 }

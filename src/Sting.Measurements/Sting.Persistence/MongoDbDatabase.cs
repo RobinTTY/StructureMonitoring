@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Sting.Models;
 using Sting.Persistence.Contracts;
 
 namespace Sting.Persistence
@@ -26,16 +26,15 @@ namespace Sting.Persistence
             _database = client.GetDatabase(databaseName);
         }
 
+        // TODO: associate telemetry data class with collection through annotation if possible
         /// <summary>
-        /// Saves a <see cref="BsonDocument"/> to the database.
+        /// Saves <see cref="TelemetryData"/> to the database.
         /// </summary>
-        /// <param name="document">The document to save.</param>
-        /// <param name="collectionName">The collection to save the document to.</param>
-        /// <returns></returns>
-        public async Task SaveDocumentToCollection(BsonDocument document, string collectionName)
+        /// <param name="telemetry">The <see cref="TelemetryData"/> to add.</param>
+        public async void AddTelemetryData(TelemetryData telemetry)
         {
-            var collection = _database.GetCollection<BsonDocument>(collectionName);
-            await collection.InsertOneAsync(document);
+            var collection = _database.GetCollection<BsonDocument>("TelemetryData");
+            await collection.InsertOneAsync(telemetry.ToBsonDocument());
         }
 
         /// <summary>
