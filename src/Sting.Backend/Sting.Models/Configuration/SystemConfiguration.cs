@@ -4,31 +4,31 @@ namespace Sting.Models.Configuration
 {
     public class SystemConfiguration
     {
-        public Info Info;
-        public Database Database;
-        public List<Sensor> Sensors;
-    }
+        public ConfigInfo Info;
+        public ConfigDatabase Database;
+        public List<ConfigSensor> Sensors;
 
-    #region ConfigurationClasses
-    public struct Info
-    {
-        public string Version { get; set; }
-    }
+        #region ConfigurationClasses
+        public struct ConfigInfo
+        {
+            public string Version { get; set; }
+        }
 
-    public struct Database
-    {
-        public string Type { get; set; }
+        public struct ConfigDatabase
+        {
+            public string Type { get; set; }
 
-        public struct Attributes
+            public struct Attributes
+            {
+                public string Name { get; set; }
+                public string ConnectionString { get; set; }
+            }
+        }
+
+        public struct ConfigSensor
         {
             public string Name { get; set; }
-            public string ConnectionString { get; set; }
         }
+        #endregion
     }
-
-    public struct Sensor
-    {
-        public string Name { get; set; }
-    }
-    #endregion
 }
