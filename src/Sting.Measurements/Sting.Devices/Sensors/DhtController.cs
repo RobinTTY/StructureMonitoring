@@ -5,7 +5,7 @@ using Iot.Device.DHTxx;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
-namespace Sting.Devices
+namespace Sting.Devices.Sensors
 {
     public class DhtController : ISensorController, IDisposable
     {

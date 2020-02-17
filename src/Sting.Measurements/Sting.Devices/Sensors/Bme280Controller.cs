@@ -8,7 +8,7 @@ using Iot.Device.Bmxx80.PowerMode;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
-namespace Sting.Devices
+namespace Sting.Devices.Sensors
 {
     public class Bme280Controller : ISensorController, IDisposable
     {

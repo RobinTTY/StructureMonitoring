@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
-using Sting.Devices.Contracts;
-using Sting.Models;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
 using Iot.Device.Bmxx80.PowerMode;
+using Sting.Devices.Contracts;
+using Sting.Models;
 
-namespace Sting.Devices
+namespace Sting.Devices.Sensors
 {
     public class Bme680Controller : ISensorController, IDisposable
     {

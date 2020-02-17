@@ -1,6 +1,6 @@
 ﻿using Iot.Device.Buzzer;
 
-namespace Sting.Devices
+namespace Sting.Devices.Actuators
 {
     public class BuzzerController : Buzzer
     {

@@ -6,7 +6,7 @@ using Iot.Device.Si7021;
 using Sting.Devices.Contracts;
 using Sting.Models;
 
-namespace Sting.Devices
+namespace Sting.Devices.Sensors
 {
     public class Si7021Controller : ISensorController, IDisposable
     {
