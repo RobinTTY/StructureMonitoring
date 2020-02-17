@@ -17,7 +17,7 @@ namespace Sting.Application
 
         public static IContainer RegisterModules()
         {
-            Builder.Register(context => new ApplicationManager(context.Resolve<IEnumerable<IService>>()))
+            Builder.RegisterType<ApplicationManager>()
                 .As<IApplicationManager>()
                 .SingleInstance();
 
@@ -26,10 +26,15 @@ namespace Sting.Application
                 .As<IDatabase>()
                 .SingleInstance();
 
-            Builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>(), context.Resolve<IDatabase>()))
+            Builder.RegisterType<SensorManager>()
                 .As<ISensorManager>()
                 .As<IService>()
                 .SingleInstance();
+
+            //Builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>(), context.Resolve<IDatabase>()))
+            //    .As<ISensorManager>()
+            //    .As<IService>()
+            //    .SingleInstance();
 
             // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
             //Builder.Register(context => new DhtController(4))
@@ -42,12 +47,12 @@ namespace Sting.Application
             //    .As<ISensorController>()
             //    .SingleInstance();
 
-            Builder.Register(context => new Bme280Controller())
+            Builder.RegisterType<Bme280Controller>()
                 .As<Bme280Controller>()
                 .As<ISensorController>()
                 .SingleInstance();
 
-            Builder.Register(context => new Bme680Controller())
+            Builder.RegisterType<Bme680Controller>()
                 .As<Bme680Controller>()
                 .As<ISensorController>()
                 .SingleInstance();
