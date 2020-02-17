@@ -1,13 +1,14 @@
 ﻿using System.Text.Json;
+using Sting.Core.Contracts;
 using Sting.Models.Configuration;
 
 namespace Sting.Core
 {
-    public class ConfigurationLoader
+    public class ConfigurationLoader : IConfigurationLoader
     {
         private readonly JsonSerializerOptions _serializerOptions;
 
-        public ConfigurationLoader()
+        public ConfigurationLoader(ISensorManager sensorManager)
         {
             _serializerOptions = new JsonSerializerOptions
             {
