@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Autofac;
+﻿using Autofac;
 using Sting.Application.Contracts;
 using Sting.Core;
 using Sting.Core.Contracts;
-using Sting.Devices;
 using Sting.Devices.Contracts;
+using Sting.Devices.Sensors;
 using Sting.Persistence;
 using Sting.Persistence.Contracts;
 
@@ -22,7 +21,7 @@ namespace Sting.Application
                 .SingleInstance();
 
             // TODO: probably handle as service
-            Builder.Register(context => new MongoDbDatabase("Sting", ""))
+            Builder.Register(context => new MongoDbDatabase("Sting", "mongodb+srv://Robin:aBaJvCAXjJTvxDjcQtoh@stingmeasurements-2u2yu.mongodb.net/test?retryWrites=true&w=majority"))
                 .As<IDatabase>()
                 .SingleInstance();
 
@@ -30,11 +29,6 @@ namespace Sting.Application
                 .As<ISensorManager>()
                 .As<IService>()
                 .SingleInstance();
-
-            //Builder.Register(context => new SensorManager(context.Resolve<IEnumerable<ISensorController>>(), context.Resolve<IDatabase>()))
-            //    .As<ISensorManager>()
-            //    .As<IService>()
-            //    .SingleInstance();
 
             // TODO: configure through Configuration class, remove reference to Iot.Device.Binding
             //Builder.Register(context => new DhtController(4))
