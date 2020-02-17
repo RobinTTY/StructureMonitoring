@@ -13,14 +13,18 @@ namespace Sting.Core
     {
         public bool IsRunning { get; set; }
 
-        private readonly IEnumerable<ISensorController> _sensors;
+        private readonly List<ISensorController> _sensors;
         private readonly IDatabase _database;
 
-        public SensorManager(IEnumerable<ISensorController> sensors, IDatabase database)
+        public SensorManager(IDatabase database)
         {
-            _sensors = sensors;
+            _sensors = new List<ISensorController>();
             _database = database;
         }
+
+        public void AddSensor(ISensorController sensorController) => _sensors.Add(sensorController);
+
+        public void RemoveSensor(ISensorController sensorController) => _sensors.Remove(sensorController);
 
         public void Start()
         {
@@ -41,7 +45,6 @@ namespace Sting.Core
             IsRunning = false;
         }
 
-        // TODO: give ability to change period of collection, only select period of upload -> always upload newest data
         private void CollectSensorData()
         {
             var measurements = new List<MeasurementContainer>();
