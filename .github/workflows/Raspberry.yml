@@ -24,5 +24,3 @@ jobs:
         run: dotnet build --configuration Release src/Sting.Measurements/Sting.Core
       - name: Build Sting.Devices
         run: dotnet build --configuration Release src/Sting.Measurements/Sting.Devices
-      - name: Build Sting.Persistence
-        run: dotnet build --configuration Release src/Sting.Measurements/Sting.Persistence
