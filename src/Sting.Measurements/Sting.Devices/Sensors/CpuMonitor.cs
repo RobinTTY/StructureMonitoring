@@ -8,6 +8,8 @@ namespace Sting.Devices.Sensors
 {
     public class CpuMonitor : ISensorController
     {
+        public string DeviceName => "CpuMonitor";
+
         private readonly CpuTemperature _monitor;
 
         public CpuMonitor()

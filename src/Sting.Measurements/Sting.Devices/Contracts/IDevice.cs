@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Sting.Devices.Contracts
+﻿namespace Sting.Devices.Contracts
 {
     public interface IDevice
     {
+        /// <summary>
+        /// The unique name of the device.
+        /// </summary>
+        string DeviceName { get; }
     }
 }

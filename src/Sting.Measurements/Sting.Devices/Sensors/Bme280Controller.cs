@@ -12,6 +12,8 @@ namespace Sting.Devices.Sensors
 {
     public class Bme280Controller : ISensorController, IDisposable
     {
+        public string DeviceName => "Bme280";
+
         private Bme280 _bme280;
         private readonly int _measurementDuration;
 

@@ -7,6 +7,7 @@ namespace Sting.Devices.Actuators
     // TODO: implement IDisposable to reset pin?
     public class LedController : IDevice
     {
+        public string DeviceName => "Led";
         public LedState State => CheckState();
 
         private readonly GpioController _gpioController;

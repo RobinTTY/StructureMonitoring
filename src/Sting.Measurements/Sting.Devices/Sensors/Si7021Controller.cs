@@ -10,6 +10,8 @@ namespace Sting.Devices.Sensors
 {
     public class Si7021Controller : ISensorController, IDisposable
     {
+        public string DeviceName => "Si7021";
+
         private Si7021 _si7021;
 
         public Si7021Controller()

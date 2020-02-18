@@ -9,6 +9,8 @@ namespace Sting.Devices.Sensors
 {
     public class DhtController : ISensorController, IDisposable
     {
+        public string DeviceName => "Dht";
+
         private Dht11 _dht;
 
         public DhtController(int pinNumber)

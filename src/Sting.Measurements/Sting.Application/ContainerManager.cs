@@ -4,8 +4,6 @@ using Microsoft.VisualBasic.FileIO;
 using Sting.Application.Contracts;
 using Sting.Core;
 using Sting.Core.Contracts;
-using Sting.Devices.Contracts;
-using Sting.Devices.Sensors;
 using Sting.Persistence;
 using Sting.Persistence.Contracts;
 
