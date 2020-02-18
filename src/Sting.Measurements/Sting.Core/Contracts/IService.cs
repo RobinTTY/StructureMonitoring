@@ -5,7 +5,7 @@
         /// <summary>
         /// Indicates whether the service is currently running.
         /// </summary>
-        bool IsRunning { get; set; }
+        State State { get; set; }
 
         /// <summary>
         /// Starts the service.

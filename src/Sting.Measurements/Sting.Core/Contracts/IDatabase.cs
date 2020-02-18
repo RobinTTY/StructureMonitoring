@@ -1,6 +1,6 @@
 ﻿using Sting.Models;
 
-namespace Sting.Persistence.Contracts
+namespace Sting.Core.Contracts
 {
     // TODO: maybe provide access trough local implementation of MongoDB
     public interface IDatabase

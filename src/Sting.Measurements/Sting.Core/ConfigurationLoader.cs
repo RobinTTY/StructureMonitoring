@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using Sting.Core.Contracts;
 using Sting.Models.Configuration;
 
@@ -19,7 +20,18 @@ namespace Sting.Core
 
         public void LoadConfiguration(SystemConfiguration configuration)
         {
+            ConfigureDatabase(configuration.Database);
+        }
 
+        private void ConfigureDatabase(SystemConfiguration.ConfigDatabase config)
+        {
+            switch (config.Type)
+            {
+                case "MongoDB":
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         //public void ReadConfig()

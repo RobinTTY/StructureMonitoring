@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Persistence.Contracts;
 
 namespace Sting.Core
 {
     public class SensorManager : ISensorManager
     {
-        public bool IsRunning { get; set; }
+        public State State { get; set; }
 
         private readonly List<ISensorController> _sensors;
         private readonly IDatabase _database;
@@ -28,11 +27,11 @@ namespace Sting.Core
 
         public void Start()
         {
-            IsRunning = true;
+            State = State.Running;
 
             Task.Factory.StartNew(() =>
             {
-                while (IsRunning)
+                while (State == State.Running)
                 {
                     CollectSensorData();
                     Task.Delay(5000).Wait();
@@ -42,7 +41,7 @@ namespace Sting.Core
 
         public void Stop()
         {
-            IsRunning = false;
+            State = State.Stopped;
         }
 
         private void CollectSensorData()

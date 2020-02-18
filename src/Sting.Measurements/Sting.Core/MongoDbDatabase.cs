@@ -1,9 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Sting.Core.Contracts;
 using Sting.Models;
-using Sting.Persistence.Contracts;
 
-namespace Sting.Persistence
+namespace Sting.Core
 {
     public class MongoDbDatabase : IDatabase
     {
