@@ -3,7 +3,7 @@
 namespace Sting.Core.Contracts
 {
     // TODO: maybe provide access trough local implementation of MongoDB
-    public interface IDatabase
+    public interface IDatabase : IService
     {
         /// <summary>
         /// Adds new <see cref="TelemetryData"/> to the database.

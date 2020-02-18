@@ -7,23 +7,17 @@ namespace Sting.Core
 {
     public class MongoDbDatabase : IDatabase
     {
+        public State State { get; set; }
+
         private IMongoDatabase _database;
+        private readonly string _dbName;
+        private readonly string _connectionString;
 
         // TODO: proper disconnect on shutdown?!
         public MongoDbDatabase(string databaseName, string connectionString)
         {
-            InitConnection(databaseName, connectionString);
-        }
-
-        /// <summary>
-        /// Initiates a connection with the MongoDB database.
-        /// </summary>
-        /// <param name="databaseName">The name of the database.</param>
-        /// <param name="connectionString">The connection string of the database.</param>
-        private void InitConnection(string databaseName, string connectionString)
-        {
-            var client = new MongoClient(connectionString);
-            _database = client.GetDatabase(databaseName);
+            _dbName = databaseName;
+            _connectionString = connectionString;
         }
 
         // TODO: associate telemetry data class with collection through annotation if possible
@@ -33,6 +27,7 @@ namespace Sting.Core
         /// <param name="telemetry">The <see cref="TelemetryData"/> to add.</param>
         public async void AddTelemetryData(TelemetryData telemetry)
         {
+            // TODO: check state
             var collection = _database.GetCollection<BsonDocument>("TelemetryData");
             await collection.InsertOneAsync(telemetry.ToBsonDocument());
         }
@@ -43,6 +38,20 @@ namespace Sting.Core
         public void Ping()
         {
             _database.RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
+        }
+
+        /// <summary>
+        /// Initiates a connection with the MongoDB database.
+        /// </summary>
+        public void Start()
+        {
+            var client = new MongoClient(_connectionString);
+            _database = client.GetDatabase(_dbName);
+        }
+
+        public void Stop()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -3,7 +3,7 @@
     public interface IService
     {
         /// <summary>
-        /// Indicates whether the service is currently running.
+        /// Indicates the current <see cref="State"/> of the service.
         /// </summary>
         State State { get; set; }
 
