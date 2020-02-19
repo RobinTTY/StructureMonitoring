@@ -7,10 +7,13 @@ namespace Sting.Core
 {
     public class ConfigurationLoader : IConfigurationLoader
     {
+        private readonly IDynamicComponentManager _componentManager;
         private readonly JsonSerializerOptions _serializerOptions;
 
-        public ConfigurationLoader(ISensorManager sensorManager)
+        public ConfigurationLoader(IDynamicComponentManager componentManager)
         {
+            _componentManager = componentManager;
+
             _serializerOptions = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
@@ -28,6 +31,7 @@ namespace Sting.Core
             switch (config.Type)
             {
                 case "MongoDB":
+                    _componentManager.SetDatabase(new MongoDbDatabase(config.Attributes.Name, config.Attributes.ConnectionString));
                     break;
                 default:
                     throw new NotImplementedException();
