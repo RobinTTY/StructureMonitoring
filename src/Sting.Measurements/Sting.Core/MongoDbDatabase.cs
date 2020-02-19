@@ -9,6 +9,7 @@ namespace Sting.Core
     {
         public State State { get; set; }
 
+        private MongoClient _client;
         private IMongoDatabase _database;
         private readonly string _dbName;
         private readonly string _connectionString;
@@ -33,7 +34,7 @@ namespace Sting.Core
         }
 
         /// <summary>
-        /// Pings the database, checking its availability.
+        /// Pings the database server, checking its availability.
         /// </summary>
         public void Ping()
         {
@@ -45,13 +46,13 @@ namespace Sting.Core
         /// </summary>
         public void Start()
         {
-            var client = new MongoClient(_connectionString);
-            _database = client.GetDatabase(_dbName);
+            _client = new MongoClient(_connectionString);
+            _database = _client.GetDatabase(_dbName);
         }
 
         public void Stop()
         {
-            throw new System.NotImplementedException();
+            // no action, keep connection alive
         }
     }
 }
