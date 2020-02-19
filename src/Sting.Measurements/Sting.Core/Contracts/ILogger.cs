@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Sting.Core.Contracts
+﻿namespace Sting.Core.Contracts
 {
-    interface ILogger
+    public interface ILogger
     {
+        /// <summary>
+        /// Logs a message to the designated output stream.
+        /// </summary>
+        /// <param name="message"></param>
+        void Log(string message);
     }
 }

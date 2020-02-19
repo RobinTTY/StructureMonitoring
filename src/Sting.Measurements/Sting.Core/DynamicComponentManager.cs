@@ -5,13 +5,15 @@ namespace Sting.Core
     /// <summary>
     /// Manages the dynamic parts of the application that can be configured trough the front end
     /// </summary>
-    public class DynamicComponentManager
+    public class DynamicComponentManager : IDynamicComponentManager
     {
         // Deliberate avoidance of properties
         private IDatabase _database;
+        private ILogger _logger;
 
-        public DynamicComponentManager()
+        public DynamicComponentManager(ILogger logger)
         {
+            _logger = logger;
         }
 
         /// <summary>

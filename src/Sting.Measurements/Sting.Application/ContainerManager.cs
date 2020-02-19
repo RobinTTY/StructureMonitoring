@@ -27,6 +27,14 @@ namespace Sting.Application
                 .As<IConfigurationLoader>()
                 .SingleInstance();
 
+            Builder.RegisterType<DynamicComponentManager>()
+                .As<IDynamicComponentManager>()
+                .SingleInstance();
+
+            Builder.RegisterType<DebugLineLogger>()
+                .As<ILogger>()
+                .SingleInstance();
+
             // TODO: change pw
             Builder.Register(context => new MongoDbDatabase("Sting", File.ReadAllText(Path.Combine(SpecialDirectories.Desktop, "secret.txt"))))
                 .As<IDatabase>()
