@@ -1,6 +1,4 @@
-﻿using System.IO;
-using Autofac;
-using Microsoft.VisualBasic.FileIO;
+﻿using Autofac;
 using Sting.Application.Contracts;
 using Sting.Core;
 using Sting.Core.Contracts;

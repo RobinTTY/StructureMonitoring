@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using Sting.Core.Contracts;
 
-namespace Sting.Core
+namespace Sting.Core.Logger
 {
     public class DebugLineLogger : ILogger
     {
-        public void Log(string message) => Debug.WriteLine(message);
+        public void Log(string message) => Debug.Write(message);
     }
 }
