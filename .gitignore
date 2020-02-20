@@ -437,4 +437,7 @@ typings/
 .fusebox/
 
 #DynamoDB Local files 
-.dynamodb/ 
+.dynamodb/
+
+# Project specific #
+/src/Sting.Measurements/Sting.Application/config.json

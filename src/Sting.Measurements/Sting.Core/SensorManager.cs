@@ -13,12 +13,13 @@ namespace Sting.Core
         public State State { get; set; }
 
         private readonly List<ISensorController> _sensors;
-        private readonly IDatabase _database;
+        private readonly IDynamicComponentManager _componentManager;
+        private IDatabase _database;
 
-        public SensorManager(IDatabase database)
+        public SensorManager(IDynamicComponentManager componentManager)
         {
             _sensors = new List<ISensorController>();
-            _database = database;
+            _componentManager = componentManager;
         }
 
         public void AddSensor(ISensorController sensorController) => _sensors.Add(sensorController);
@@ -28,6 +29,10 @@ namespace Sting.Core
         public void Start()
         {
             State = State.Running;
+            _database = _componentManager.GetDatabase();
+            _sensors.AddRange(_componentManager.GetDevices()
+                .Where(device => device.GetType().GetInterfaces().Contains(typeof(ISensorController)))
+                .ToList().Cast<ISensorController>());
 
             Task.Factory.StartNew(() =>
             {

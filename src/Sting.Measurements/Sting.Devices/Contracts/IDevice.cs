@@ -5,6 +5,6 @@
         /// <summary>
         /// The unique name of the device.
         /// </summary>
-        string DeviceName { get; }
+        string DeviceName { get; set; }
     }
 }

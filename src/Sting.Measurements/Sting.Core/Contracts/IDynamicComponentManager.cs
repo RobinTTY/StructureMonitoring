@@ -1,4 +1,5 @@
-﻿using Sting.Devices.Contracts;
+﻿using System.Collections.Generic;
+using Sting.Devices.Contracts;
 
 namespace Sting.Core.Contracts
 {
@@ -27,5 +28,11 @@ namespace Sting.Core.Contracts
         /// </summary>
         /// <param name="device">The <see cref="IDevice"/> to remove.</param>
         void RemoveDevice(IDevice device);
+
+        /// <summary>
+        /// Gets the currently registered devices.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of the registered <see cref="IDevice"/>s.</returns>
+        List<IDevice> GetDevices();
     }
 }

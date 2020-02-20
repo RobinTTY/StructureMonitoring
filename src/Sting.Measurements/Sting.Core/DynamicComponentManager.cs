@@ -9,10 +9,10 @@ namespace Sting.Core
     /// </summary>
     public class DynamicComponentManager : IDynamicComponentManager
     {
-        // Deliberate avoidance of properties
+        private readonly ILogger _logger;
         private List<IDevice> _devices;
         private IDatabase _database;
-        private ILogger _logger;
+        
 
         public DynamicComponentManager(ILogger logger)
         {
@@ -53,5 +53,11 @@ namespace Sting.Core
         /// </summary>
         /// <param name="device">The <see cref="IDevice"/> to remove.</param>
         public void RemoveDevice(IDevice device) => _devices.Remove(device);
+
+        /// <summary>
+        /// Gets the currently registered devices.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of the registered <see cref="IDevice"/>s.</returns>
+        public List<IDevice> GetDevices() => _devices;
     }
 }

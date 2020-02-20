@@ -6,7 +6,7 @@ namespace Sting.Models.Configuration
     {
         public ConfigInfo Info { get; set; }
         public ConfigDatabase Database { get; set; }
-        public List<ConfigSensor> Sensors { get; set; }
+        public List<ConfigDevices> Devices { get; set; }
 
         #region ConfigurationClasses
         public struct ConfigInfo
@@ -26,7 +26,7 @@ namespace Sting.Models.Configuration
             public string ConnectionString { get; set; }
         }
 
-        public struct ConfigSensor
+        public struct ConfigDevices
         {
             public string Name { get; set; }
         }

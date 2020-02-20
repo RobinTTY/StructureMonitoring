@@ -1,6 +1,9 @@
 ﻿using System;
-using System.Text.Json;
+using System.Collections.Generic;
+using System.Linq;
 using Sting.Core.Contracts;
+using Sting.Devices.Contracts;
+using Sting.Devices.Sensors;
 using Sting.Models.Configuration;
 
 namespace Sting.Core
@@ -8,22 +11,28 @@ namespace Sting.Core
     public class ConfigurationLoader : IConfigurationLoader
     {
         private readonly IDynamicComponentManager _componentManager;
-        private readonly JsonSerializerOptions _serializerOptions;
+        private readonly Dictionary<string, Type> _deviceTypeNameMapping;
 
         public ConfigurationLoader(IDynamicComponentManager componentManager)
         {
+            _deviceTypeNameMapping = GetDeviceTypeNameMapping();
             _componentManager = componentManager;
-
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                AllowTrailingCommas = true
-            };
         }
 
         public void LoadConfiguration(SystemConfiguration configuration)
         {
             ConfigureDatabase(configuration.Database);
+            ConfigureDevices(configuration.Devices);
+        }
+
+        private Dictionary<string, Type> GetDeviceTypeNameMapping()
+        {
+            // Get all Sensor and Actuator classes which implement IDevice
+            return typeof(Bme280Controller).Assembly.GetTypes()
+                .Where(type =>  type.IsClass 
+                                && (type.Namespace == "Sting.Devices.Actuators" || type.Namespace == "Sting.Devices.Sensors") 
+                                && type.GetInterfaces().Contains(typeof(IDevice)))
+                .ToDictionary(type => type.Name, type => type);
         }
 
         private void ConfigureDatabase(SystemConfiguration.ConfigDatabase config)
@@ -31,17 +40,24 @@ namespace Sting.Core
             switch (config.Type)
             {
                 case "MongoDB":
-                    _componentManager.SetDatabase(new MongoDbDatabase(config.Attributes.Name, config.Attributes.ConnectionString));
+                    var db = new MongoDbDatabase(config.Attributes.Name, config.Attributes.ConnectionString);
+                    _componentManager.SetDatabase(db);
+                    db.Start();
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        //public void ReadConfig()
-        //{
-        //    var path = File.ReadAllText(Path.Combine(SpecialDirectories.Desktop, "config.json"));
-        //    var config = JsonSerializer.Deserialize<SystemConfiguration>(path, _serializerOptions);
-        //}
+        private void ConfigureDevices(List<SystemConfiguration.ConfigDevices> configurationDevices)
+        {
+            configurationDevices.ForEach(device =>
+            {
+                // TODO: configure device settings trough interface method of IDevice and pass SystemConfiguration child object that contains the needed information
+                var deviceType = _deviceTypeNameMapping.FirstOrDefault(kvp => kvp.Key == device.Name).Value;
+                var deviceObject = (IDevice)Activator.CreateInstance(deviceType);
+                _componentManager.AddDevice(deviceObject);
+            });
+        }
     }
 }
