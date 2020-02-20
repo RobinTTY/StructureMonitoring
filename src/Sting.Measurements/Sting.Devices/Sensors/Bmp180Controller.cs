@@ -10,7 +10,7 @@ namespace Sting.Devices.Sensors
 {
     public class Bmp180Controller : ISensorController, IDisposable
     {
-        public string DeviceName => "Bmp180";
+        public string DeviceName { get; set; }
 
         private Bmp180 _i2CBmp180;
 
