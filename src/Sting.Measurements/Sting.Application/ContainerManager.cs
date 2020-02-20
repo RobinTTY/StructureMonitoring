@@ -2,6 +2,7 @@
 using Sting.Application.Contracts;
 using Sting.Core;
 using Sting.Core.Contracts;
+using Sting.Core.Logger;
 
 namespace Sting.Application
 {
