@@ -30,9 +30,7 @@ namespace Sting.Core
         {
             State = State.Running;
             _database = _componentManager.GetDatabase();
-            _sensors.AddRange(_componentManager.GetDevices()
-                .Where(device => device.GetType().GetInterfaces().Contains(typeof(ISensorController)))
-                .ToList().Cast<ISensorController>());
+            _sensors.AddRange(_componentManager.GetDevices().OfType<ISensorController>());
 
             Task.Factory.StartNew(() =>
             {
