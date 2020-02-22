@@ -6,7 +6,6 @@ using Sting.Core.Logger;
 
 namespace Sting.Application
 {
-    // TODO: some sort of configuration procedure instead of constructors?!
     public static class ContainerManager
     {
         private static readonly ContainerBuilder Builder = new ContainerBuilder();

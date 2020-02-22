@@ -35,12 +35,12 @@ namespace Sting.Core
                 .ToDictionary(type => type.Name, type => type);
         }
 
-        private void ConfigureDatabase(SystemConfiguration.ConfigDatabase config)
+        private void ConfigureDatabase(ConfigDatabase databaseConfig)
         {
-            switch (config.Type)
+            switch (databaseConfig.Type)
             {
                 case "MongoDB":
-                    var db = new MongoDbDatabase(config.Attributes.Name, config.Attributes.ConnectionString);
+                    var db = new MongoDbDatabase(databaseConfig.Attributes.Name, databaseConfig.Attributes.ConnectionString);
                     _componentManager.SetDatabase(db);
                     db.Start();
                     break;
@@ -49,9 +49,9 @@ namespace Sting.Core
             }
         }
 
-        private void ConfigureDevices(List<SystemConfiguration.ConfigDevices> configurationDevices)
+        private void ConfigureDevices(List<ConfigDevice> deviceConfigurations)
         {
-            configurationDevices.ForEach(device =>
+            deviceConfigurations.ForEach(device =>
             {
                 // TODO: configure device settings trough interface method of IDevice and pass SystemConfiguration child object that contains the needed information
                 var deviceType = _deviceTypeNameMapping.FirstOrDefault(kvp => kvp.Key == device.Name).Value;
