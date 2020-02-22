@@ -7,6 +7,7 @@ using Iot.Device.Bmxx80.FilteringMode;
 using Iot.Device.Bmxx80.PowerMode;
 using Sting.Devices.Contracts;
 using Sting.Models;
+using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
@@ -47,6 +48,11 @@ namespace Sting.Devices.Sensors
             };
 
             return Task.FromResult(container);
+        }
+
+        public bool Configure(IDeviceConfiguration configuration)
+        {
+            throw new NotImplementedException();
         }
 
         private void SetDefaultConfiguration()

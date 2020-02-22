@@ -56,6 +56,8 @@ namespace Sting.Core
                 // TODO: configure device settings trough interface method of IDevice and pass SystemConfiguration child object that contains the needed information
                 var deviceType = _deviceTypeNameMapping.FirstOrDefault(kvp => kvp.Key == device.Name).Value;
                 var deviceObject = (IDevice)Activator.CreateInstance(deviceType);
+
+                deviceObject.Configure(device.Configuration);
                 _componentManager.AddDevice(deviceObject);
             });
         }

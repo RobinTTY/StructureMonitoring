@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Iot.Device.CpuTemperature;
 using Sting.Devices.Contracts;
 using Sting.Models;
+using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
@@ -28,6 +29,11 @@ namespace Sting.Devices.Sensors
             };
 
             return Task.FromResult(container);
+        }
+
+        public bool Configure(IDeviceConfiguration configuration)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

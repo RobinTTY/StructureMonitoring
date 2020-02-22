@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Iot.Device.Bmp180;
 using Sting.Devices.Contracts;
 using Sting.Models;
+using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
@@ -33,6 +34,11 @@ namespace Sting.Devices.Sensors
             };
 
             return Task.FromResult(container);
+        }
+
+        public bool Configure(IDeviceConfiguration configuration)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

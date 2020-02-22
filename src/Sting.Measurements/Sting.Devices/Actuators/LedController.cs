@@ -1,6 +1,7 @@
 ﻿using System.Device.Gpio;
 using System.Threading.Tasks;
 using Sting.Devices.Contracts;
+using Sting.Models.Configuration;
 
 namespace Sting.Devices.Actuators
 {
@@ -37,6 +38,11 @@ namespace Sting.Devices.Actuators
             TurnOn();
             await Task.Delay(duration);
             TurnOff();
+        }
+
+        public bool Configure(IDeviceConfiguration configuration)
+        {
+            throw new System.NotImplementedException();
         }
 
         private LedState CheckState()
