@@ -49,19 +49,33 @@ namespace Sting.Devices.Sensors
                 return false;
 
             var config = (Bme680Configuration)deviceConfiguration;
-            _bme680 = new Bme680(GetI2CDevice(config.I2CAddress));
+            var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
+            var i2CDevice =  I2cDevice.Create(i2CSettings);
+            
+            _bme680 = new Bme680(i2CDevice);
             if (_bme680 == null)
                 return false;
 
             SetDefaultConfiguration();
+            SetPropertiesFromConfig(config);
+            SetHeaterProfilesFromConfig(config);
+
+            _measurementDuration = _bme680.GetMeasurementDuration(_bme680.HeaterProfile);
+            return true;
+        }
+
+        private void SetPropertiesFromConfig(Bme680Configuration config)
+        {
             _bme680.TemperatureSampling = config.TemperatureSampling;
             _bme680.PressureSampling = config.PressureSampling;
             _bme680.HumiditySampling = config.HumiditySampling;
             _bme680.FilterMode = config.FilteringMode;
             _bme680.GasConversionIsEnabled = config.GasConversionIsEnabled;
             _bme680.HeaterIsEnabled = config.HeaterIsEnabled;
+        }
 
-            // Set heater profiles (cut off if more than 10)
+        private void SetHeaterProfilesFromConfig(Bme680Configuration config)
+        {
             if (config.HeaterProfiles.Count > 10)
                 config.HeaterProfiles.RemoveRange(10, config.HeaterProfiles.Count - 10);
 
@@ -69,20 +83,9 @@ namespace Sting.Devices.Sensors
             for (var i = 0; i < config.HeaterProfiles.Count; i++)
             {
                 var heaterProfile = config.HeaterProfiles[i];
-                _bme680.ConfigureHeatingProfile((Bme680HeaterProfile)i, heaterProfile.TargetTemperature, heaterProfile.Duration, temperature.Celsius);
+                _bme680.ConfigureHeatingProfile((Bme680HeaterProfile)i, heaterProfile.TargetTemperature,
+                    heaterProfile.Duration, temperature.Celsius);
             }
-
-            _measurementDuration = _bme680.GetMeasurementDuration(_bme680.HeaterProfile);
-            return true;
-        }
-
-        private I2cDevice GetI2CDevice(byte deviceAddress)
-        {
-            if (deviceAddress != Bme680.DefaultI2cAddress || deviceAddress != Bme680.SecondaryI2cAddress)
-                return null;
-
-            var i2CSettings = new I2cConnectionSettings(1, deviceAddress);
-            return I2cDevice.Create(i2CSettings);
         }
 
         private void SetDefaultConfiguration()
@@ -100,7 +103,7 @@ namespace Sting.Devices.Sensors
         }
     }
 
-    internal class Bme680Configuration : IDeviceConfiguration
+    public class Bme680Configuration : IDeviceConfiguration
     {
         public byte I2CAddress { get; set; }
         public bool HeaterIsEnabled { get; set; }
@@ -112,7 +115,7 @@ namespace Sting.Devices.Sensors
         public List<Bme680HeaterConfiguration> HeaterProfiles { get; set; }
     }
 
-    internal class Bme680HeaterConfiguration
+    public class Bme680HeaterConfiguration
     {
         public ushort TargetTemperature { get; set; }
         public ushort Duration { get; set; }

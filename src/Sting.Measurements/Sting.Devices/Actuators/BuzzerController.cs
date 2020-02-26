@@ -10,9 +10,11 @@ namespace Sting.Devices.Actuators
         
         public BuzzerController(int pinNumber, int pwmChannel = -1) : base(pinNumber, pwmChannel) { }
 
-        public bool Configure(IDeviceConfiguration configuration)
-        {
-            throw new System.NotImplementedException();
-        }
+        /// <summary>
+        /// The buzzer requires no further configuration and will always return true.
+        /// </summary>
+        /// <param name="configuration">The configuration parameters (none).</param>
+        /// <returns>Returns true.</returns>
+        public bool Configure(IDeviceConfiguration configuration) => true;
     }
 }
