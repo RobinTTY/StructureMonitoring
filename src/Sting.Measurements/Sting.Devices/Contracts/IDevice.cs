@@ -12,13 +12,13 @@ namespace Sting.Devices.Contracts
         /// <summary>
         /// Configures the device with the given configuration.
         /// </summary>
-        /// <param name="configuration">
+        /// <param name="deviceConfiguration">
         /// The <see cref="IDeviceConfiguration"/> to use to configure the device.
         /// </param>
         /// <returns>
         /// True if the configuration is successfully applied.
         /// False otherwise.
         /// </returns>
-        public bool Configure(IDeviceConfiguration configuration);
+        public bool Configure(IDeviceConfiguration deviceConfiguration);
     }
 }
