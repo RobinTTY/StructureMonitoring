@@ -1,6 +1,7 @@
 ﻿using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
 using Iot.Device.Bmxx80.PowerMode;
+using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
@@ -50,11 +51,9 @@ namespace Sting.Devices.Sensors
 
             var config = (Bme680Configuration)deviceConfiguration;
             var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
-            var i2CDevice =  I2cDevice.Create(i2CSettings);
-            
+            var i2CDevice = I2cDevice.Create(i2CSettings);
+            // TODO: probably requires try catch?! Check device availability
             _bme680 = new Bme680(i2CDevice);
-            if (_bme680 == null)
-                return false;
 
             SetDefaultConfiguration();
             SetPropertiesFromConfig(config);
@@ -101,23 +100,5 @@ namespace Sting.Devices.Sensors
             _bme680?.Dispose();
             _bme680 = null;
         }
-    }
-
-    public class Bme680Configuration : IDeviceConfiguration
-    {
-        public byte I2CAddress { get; set; }
-        public bool HeaterIsEnabled { get; set; }
-        public bool GasConversionIsEnabled { get; set; }
-        public Sampling TemperatureSampling { get; set; }
-        public Sampling PressureSampling { get; set; }
-        public Sampling HumiditySampling { get; set; }
-        public Bme680FilteringMode FilteringMode { get; set; }
-        public List<Bme680HeaterConfiguration> HeaterProfiles { get; set; }
-    }
-
-    public class Bme680HeaterConfiguration
-    {
-        public ushort TargetTemperature { get; set; }
-        public ushort Duration { get; set; }
     }
 }

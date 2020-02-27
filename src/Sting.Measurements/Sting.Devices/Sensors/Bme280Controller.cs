@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
 using Iot.Device.Bmxx80.PowerMode;
+using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
@@ -16,7 +17,7 @@ namespace Sting.Devices.Sensors
         public string DeviceName { get; set; }
 
         private Bme280 _bme280;
-        private readonly int _measurementDuration;
+        private int _measurementDuration;
 
         public Bme280Controller()
         {
@@ -50,9 +51,22 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration configuration)
+        public bool Configure(IDeviceConfiguration deviceConfiguration)
         {
-            throw new NotImplementedException();
+            if (deviceConfiguration.GetType() != typeof(Bme280Configuration))
+                return false;
+
+            var config = (Bme280Configuration)deviceConfiguration;
+            var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
+            var i2CDevice = I2cDevice.Create(i2CSettings);
+            // TODO: probably requires try catch?! Check device availability
+            _bme280 = new Bme280(i2CDevice);
+
+            SetDefaultConfiguration();
+            SetPropertiesFromConfig(config);
+
+            _measurementDuration = _bme280.GetMeasurementDuration();
+            return true;
         }
 
         private void SetDefaultConfiguration()
@@ -61,6 +75,15 @@ namespace Sting.Devices.Sensors
             _bme280.HumiditySampling = Sampling.HighResolution;
             _bme280.PressureSampling = Sampling.HighResolution;
             _bme280.FilterMode = Bmx280FilteringMode.X2;
+        }
+
+        private void SetPropertiesFromConfig(Bme280Configuration config)
+        {
+            _bme280.TemperatureSampling = config.TemperatureSampling;
+            _bme280.HumiditySampling = config.HumiditySampling;
+            _bme280.PressureSampling = config.PressureSampling;
+            _bme280.FilterMode = config.FilterMode;
+            _bme280.StandbyTime = config.StandbyTime;
         }
 
         public void Dispose()
