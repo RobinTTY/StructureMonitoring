@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Iot.Device.Bindings" Version="1.1.0-prerelease.20121.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Sting.Devices">
+      <HintPath>..\..\Sting.Devices\bin\Debug\netcoreapp3.0\Sting.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="Sting.Models">
+      <HintPath>..\..\..\Sting.Backend\Sting.Models\bin\Debug\netstandard2.0\Sting.Models.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

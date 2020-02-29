@@ -54,7 +54,7 @@ namespace Sting.Devices.Sensors
             var i2CDevice = I2cDevice.Create(i2CSettings);
             // TODO: probably requires try catch?! Check device availability
             _bme680 = new Bme680(i2CDevice);
-
+            
             SetDefaultConfiguration();
             SetPropertiesFromConfig(config);
             SetHeaterProfilesFromConfig(config);
