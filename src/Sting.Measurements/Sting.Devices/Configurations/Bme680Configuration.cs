@@ -16,6 +16,7 @@ namespace Sting.Devices.Configurations
 
     public class Bme680HeaterConfiguration
     {
+        public Bme680HeaterProfile HeaterProfile { get; set; }
         public ushort TargetTemperature { get; set; }
         public ushort Duration { get; set; }
     }

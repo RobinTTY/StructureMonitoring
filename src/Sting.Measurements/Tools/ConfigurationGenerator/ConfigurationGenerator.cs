@@ -43,6 +43,7 @@ namespace ConfigurationGenerator
                     {
                         new Bme680HeaterConfiguration()
                         {
+                            HeaterProfile = Bme680HeaterProfile.Profile1,
                             Duration = 150,
                             TargetTemperature = 320
                         }
@@ -50,6 +51,7 @@ namespace ConfigurationGenerator
                     HumiditySampling = Sampling.HighResolution,
                     PressureSampling = Sampling.HighResolution,
                     TemperatureSampling = Sampling.HighResolution,
+                    ActiveProfile = Bme680HeaterProfile.Profile1,
                     I2CAddress = Bme680.SecondaryI2cAddress
                 }
             });

@@ -79,10 +79,9 @@ namespace Sting.Devices.Sensors
                 config.HeaterProfiles.RemoveRange(10, config.HeaterProfiles.Count - 10);
 
             _bme680.TryReadTemperature(out var temperature);
-            for (var i = 0; i < config.HeaterProfiles.Count; i++)
+            foreach (var heaterProfile in config.HeaterProfiles)
             {
-                var heaterProfile = config.HeaterProfiles[i];
-                _bme680.ConfigureHeatingProfile((Bme680HeaterProfile)i, heaterProfile.TargetTemperature,
+                _bme680.ConfigureHeatingProfile(heaterProfile.HeaterProfile, heaterProfile.TargetTemperature,
                     heaterProfile.Duration, temperature.Celsius);
             }
 
