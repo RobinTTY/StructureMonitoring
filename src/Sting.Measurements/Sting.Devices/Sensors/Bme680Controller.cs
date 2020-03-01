@@ -85,6 +85,8 @@ namespace Sting.Devices.Sensors
                 _bme680.ConfigureHeatingProfile((Bme680HeaterProfile)i, heaterProfile.TargetTemperature,
                     heaterProfile.Duration, temperature.Celsius);
             }
+
+            _bme680.HeaterProfile = config.ActiveProfile;
         }
 
         private void SetDefaultConfiguration()
