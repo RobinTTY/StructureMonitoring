@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Bmp180;
+using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
@@ -10,10 +11,8 @@ using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
-    public class Bmp180Controller : ISensorController, IDisposable
+    public class Bmp180Controller : DeviceBase, ISensorController, IDisposable
     {
-        public string DeviceName { get; set; }
-
         private Bmp180 _bmp180;
 
         public Bmp180Controller()
@@ -25,7 +24,7 @@ namespace Sting.Devices.Sensors
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var container = new MeasurementContainer("Bmp180")
+            var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {
@@ -37,7 +36,7 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(IDeviceConfiguration deviceConfiguration)
         {
             if (deviceConfiguration.GetType() != typeof(Bmp180Configuration))
                 return false;

@@ -7,6 +7,7 @@ namespace Sting.Devices.Actuators
 {
     public class BuzzerController : IDevice
     {
+        // TODO: DeviceBase
         public string DeviceName { get; set; }
         private Buzzer _buzzer;
 

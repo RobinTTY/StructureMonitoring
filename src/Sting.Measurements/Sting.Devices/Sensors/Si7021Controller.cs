@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Si7021;
+using Sting.Devices.BaseClasses;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
-    public class Si7021Controller : ISensorController, IDisposable
+    public class Si7021Controller : DeviceBase, ISensorController, IDisposable
     {
-        public string DeviceName { get; set; }
 
         private Si7021 _si7021;
 
@@ -37,7 +37,7 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration configuration)
+        public override bool Configure(IDeviceConfiguration configuration)
         {
             throw new NotImplementedException();
         }
