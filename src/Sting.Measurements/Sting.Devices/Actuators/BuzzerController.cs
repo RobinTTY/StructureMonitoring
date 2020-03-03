@@ -1,20 +1,24 @@
 ﻿using Iot.Device.Buzzer;
+using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models.Configuration;
 
 namespace Sting.Devices.Actuators
 {
-    public class BuzzerController : Buzzer, IDevice
+    public class BuzzerController : IDevice
     {
         public string DeviceName { get; set; }
-        
-        public BuzzerController(int pinNumber, int pwmChannel = -1) : base(pinNumber, pwmChannel) { }
+        private Buzzer _buzzer;
 
-        /// <summary>
-        /// The buzzer requires no further configuration and will always return true.
-        /// </summary>
-        /// <param name="configuration">The configuration parameters (none).</param>
-        /// <returns>Returns true.</returns>
-        public bool Configure(IDeviceConfiguration configuration) => true;
+        public bool Configure(IDeviceConfiguration deviceConfiguration)
+        {
+            if (deviceConfiguration.GetType() != typeof(BuzzerConfiguration))
+                return false;
+
+            var config = (BuzzerConfiguration) deviceConfiguration;
+            _buzzer = new Buzzer(config.PinNumber, config.PwmChannel);
+
+            return true;
+        }
     }
 }
