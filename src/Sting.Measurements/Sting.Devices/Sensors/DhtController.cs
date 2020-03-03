@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Iot.Device.DHTxx;
+using Sting.Devices.BaseClasses;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
 
 namespace Sting.Devices.Sensors
 {
-    public class DhtController : ISensorController, IDisposable
+    public class DhtController : DeviceBase, ISensorController, IDisposable
     {
-        public string DeviceName { get; set; }
-
         private Dht11 _dht;
 
         public DhtController(int pinNumber)
@@ -33,7 +32,7 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration configuration)
+        public override bool Configure(IDeviceConfiguration configuration)
         {
             throw new NotImplementedException();
         }

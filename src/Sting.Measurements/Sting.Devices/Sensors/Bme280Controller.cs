@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Device.I2c;
-using System.Threading.Tasks;
-using Iot.Device.Bmxx80;
+﻿using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
 using Iot.Device.Bmxx80.PowerMode;
+using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Device.I2c;
+using System.Threading.Tasks;
 
 namespace Sting.Devices.Sensors
 {
-    public class Bme280Controller : ISensorController, IDisposable
+    public class Bme280Controller : DeviceBase, ISensorController, IDisposable
     {
-        public string DeviceName { get; set; }
-
         private Bme280 _bme280;
         private int _measurementDuration;
 
@@ -38,7 +37,7 @@ namespace Sting.Devices.Sensors
             _bme280.TryReadHumidity(out var humidity);
             _bme280.TryReadPressure(out var pressure);
 
-            var container = new MeasurementContainer("Bme280")
+            var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {
@@ -51,7 +50,7 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(IDeviceConfiguration deviceConfiguration)
         {
             if (deviceConfiguration.GetType() != typeof(Bme280Configuration))
                 return false;

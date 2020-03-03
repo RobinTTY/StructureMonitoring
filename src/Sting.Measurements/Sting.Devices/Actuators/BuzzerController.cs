@@ -6,6 +6,7 @@ namespace Sting.Devices.Actuators
 {
     public class BuzzerController : Buzzer, IDevice
     {
+        // TODO: DeviceBase
         public string DeviceName { get; set; }
         
         public BuzzerController(int pinNumber, int pwmChannel = -1) : base(pinNumber, pwmChannel) { }

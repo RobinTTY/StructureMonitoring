@@ -57,6 +57,7 @@ namespace Sting.Core
                 var deviceType = _deviceTypeNameMapping.FirstOrDefault(kvp => kvp.Key == device.Name).Value;
                 var deviceObject = (IDevice)Activator.CreateInstance(deviceType);
 
+                deviceObject.DeviceName = device.Name;
                 deviceObject.Configure(device.Configuration);
                 _componentManager.AddDevice(deviceObject);
             });

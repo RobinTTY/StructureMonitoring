@@ -9,13 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Device.I2c;
 using System.Threading.Tasks;
+using Sting.Devices.BaseClasses;
 
 namespace Sting.Devices.Sensors
 {
-    public class Bme680Controller : ISensorController, IDisposable
+    public class Bme680Controller : DeviceBase, ISensorController, IDisposable
     {
-        public string DeviceName { get; set; }
-
         private Bme680 _bme680;
         private int _measurementDuration;
 
@@ -30,7 +29,7 @@ namespace Sting.Devices.Sensors
             _bme680.TryReadGasResistance(out var gasResistance);
 
             // TODO: probably use DeviceName
-            var container = new MeasurementContainer("Bme680")
+            var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {
@@ -44,7 +43,7 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(IDeviceConfiguration deviceConfiguration)
         {
             if (deviceConfiguration.GetType() != typeof(Bme680Configuration))
                 return false;

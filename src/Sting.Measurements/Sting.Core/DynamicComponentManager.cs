@@ -10,7 +10,7 @@ namespace Sting.Core
     public class DynamicComponentManager : IDynamicComponentManager
     {
         private readonly ILogger _logger;
-        private List<IDevice> _devices;
+        private readonly List<IDevice> _devices;
         private IDatabase _database;
         
 
