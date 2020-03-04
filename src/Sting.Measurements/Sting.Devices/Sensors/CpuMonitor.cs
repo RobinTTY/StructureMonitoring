@@ -35,9 +35,6 @@ namespace Sting.Devices.Sensors
         /// </summary>
         /// <param name="configuration">Instance of <see cref="IDeviceConfiguration"/>.</param>
         /// <returns>Always returns true.</returns>
-        public override bool Configure(IDeviceConfiguration configuration)
-        {
-            return true;
-        }
+        public override bool Configure(IDeviceConfiguration configuration) => true;
     }
 }
