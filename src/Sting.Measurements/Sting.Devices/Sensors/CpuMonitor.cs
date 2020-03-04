@@ -30,9 +30,14 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
+        /// <summary>
+        /// Component does not require configuration.
+        /// </summary>
+        /// <param name="configuration">Instance of <see cref="IDeviceConfiguration"/>.</param>
+        /// <returns>Always returns true.</returns>
         public override bool Configure(IDeviceConfiguration configuration)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
