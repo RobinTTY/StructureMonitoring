@@ -1,17 +1,16 @@
 ﻿using Iot.Device.Buzzer;
+using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
-using Sting.Devices.Contracts;
 using Sting.Models.Configuration;
 
 namespace Sting.Devices.Actuators
 {
-    public class BuzzerController : IDevice
+    public class BuzzerController : DeviceBase
     {
         // TODO: DeviceBase
-        public string DeviceName { get; set; }
         private Buzzer _buzzer;
 
-        public bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(IDeviceConfiguration deviceConfiguration)
         {
             if (deviceConfiguration.GetType() != typeof(BuzzerConfiguration))
                 return false;

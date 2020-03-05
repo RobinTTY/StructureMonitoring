@@ -1,13 +1,12 @@
 ﻿using System.Device.Gpio;
 using System.Threading.Tasks;
 using Sting.Devices.BaseClasses;
-using Sting.Devices.Contracts;
 using Sting.Models.Configuration;
 
 namespace Sting.Devices.Actuators
 {
     // TODO: implement IDisposable to reset pin?
-    public class LedController : DeviceBase, IDevice
+    public class LedController : DeviceBase
     {
         public LedState State => CheckState();
 

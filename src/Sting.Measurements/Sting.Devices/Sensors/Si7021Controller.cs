@@ -4,6 +4,7 @@ using System.Device.I2c;
 using System.Threading.Tasks;
 using Iot.Device.Si7021;
 using Sting.Devices.BaseClasses;
+using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
 using Sting.Models.Configuration;
@@ -37,9 +38,23 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public override bool Configure(IDeviceConfiguration configuration)
+        public override bool Configure(IDeviceConfiguration deviceConfiguration)
         {
-            throw new NotImplementedException();
+            if (deviceConfiguration.GetType() != typeof(Si7021Configuration))
+                return false;
+
+            var config = (Si7021Configuration)deviceConfiguration;
+            var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
+            var i2CDevice = I2cDevice.Create(i2CSettings);
+            // TODO: probably requires try catch?! Check device availability
+
+            _si7021 = new Si7021(i2CDevice)
+            {
+                Heater = config.HeaterIsEnabled, 
+                Resolution = config.Resolution
+            };
+
+            return true;
         }
 
         public void Dispose()

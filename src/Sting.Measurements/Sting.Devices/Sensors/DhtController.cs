@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Device.I2c;
-using System.Reflection;
 using System.Threading.Tasks;
-using Iot.Device.Bmxx80;
 using Iot.Device.DHTxx;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
@@ -19,7 +16,7 @@ namespace Sting.Devices.Sensors
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var container = new MeasurementContainer("Dht")
+            var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {
@@ -36,19 +33,18 @@ namespace Sting.Devices.Sensors
             if (deviceConfiguration.GetType() != typeof(DhtConfiguration))
                 return false;
 
-            var config = (DhtConfiguration) deviceConfiguration;
-            _dht = SelectDhtType(config);
+            var config = (DhtConfiguration)deviceConfiguration;
+            _dht = GetDhtInstance(config);
 
             return _dht != null;
         }
 
-        private DhtBase SelectDhtType(DhtConfiguration config)
+        private DhtBase GetDhtInstance(DhtConfiguration config)
         {
-            var configTypeInstance = Activator.CreateInstance(config.DhtType, config.PinNumber);
-            if (configTypeInstance.GetType() == typeof(DhtBase))
-                return (DhtBase) configTypeInstance;
+            if (config.DhtType != typeof(DhtBase))
+                return null;
 
-            return null;
+            return (DhtBase)Activator.CreateInstance(config.DhtType, config.PinNumber);
         }
 
         public void Dispose()
