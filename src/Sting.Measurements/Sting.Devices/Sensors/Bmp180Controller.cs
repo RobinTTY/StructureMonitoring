@@ -15,13 +15,6 @@ namespace Sting.Devices.Sensors
     {
         private Bmp180 _bmp180;
 
-        public Bmp180Controller()
-        {
-            var i2CSettings = new I2cConnectionSettings(1, Bmp180.DefaultI2cAddress);
-            var i2CDevice = I2cDevice.Create(i2CSettings);
-            _bmp180 = new Bmp180(i2CDevice);
-        }
-
         public Task<MeasurementContainer> TakeMeasurement()
         {
             var container = new MeasurementContainer(DeviceName)

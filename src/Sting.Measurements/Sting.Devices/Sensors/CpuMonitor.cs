@@ -19,7 +19,7 @@ namespace Sting.Devices.Sensors
 
         public Task<MeasurementContainer> TakeMeasurement()
         {
-            var container = new MeasurementContainer("CpuMonitor")
+            var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {

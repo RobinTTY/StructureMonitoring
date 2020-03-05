@@ -28,7 +28,6 @@ namespace Sting.Devices.Sensors
             _bme680.TryReadPressure(out var pressure);
             _bme680.TryReadGasResistance(out var gasResistance);
 
-            // TODO: probably use DeviceName
             var container = new MeasurementContainer(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
