@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12.10
+        node-version: 12.16.1
     - name: Install dependencies
       working-directory: src/Sting.WebApp
       run: npm install
