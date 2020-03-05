@@ -1,5 +1,5 @@
 ﻿using Iot.Device.Bmp180;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.Configurations
 {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.Actuators
 {

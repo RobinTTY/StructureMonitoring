@@ -4,7 +4,7 @@ using System.Linq;
 using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Devices.Sensors;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Core
 {

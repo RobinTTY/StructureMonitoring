@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using Sting.Application.Contracts;
 using Sting.Core.Contracts;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Application
 {

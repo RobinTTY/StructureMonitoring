@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.Configurations
 {

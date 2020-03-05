@@ -2,7 +2,7 @@
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
 using Sting.Devices.Configurations;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace ConfigurationGenerator
 {
@@ -53,6 +53,23 @@ namespace ConfigurationGenerator
                     TemperatureSampling = Sampling.HighResolution,
                     ActiveProfile = Bme680HeaterProfile.Profile1,
                     I2CAddress = Bme680.SecondaryI2cAddress
+                }
+            });
+        }
+
+        public static void AddBme280Config(this SystemConfiguration config)
+        {
+            config.Devices.Add(new ConfigDevice()
+            {
+                Name = "Bme280",
+                Configuration = new Bme280Configuration()
+                {
+                    FilterMode = Bmx280FilteringMode.X2,
+                    HumiditySampling = Sampling.UltraHighResolution,
+                    PressureSampling = Sampling.UltraHighResolution,
+                    TemperatureSampling = Sampling.UltraHighResolution,
+                    I2CAddress = Bmx280Base.DefaultI2cAddress,
+                    StandbyTime = StandbyTime.Ms500
                 }
             });
         }

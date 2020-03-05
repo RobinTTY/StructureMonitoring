@@ -1,5 +1,5 @@
 ﻿using Sting.Devices.Contracts;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.BaseClasses
 {

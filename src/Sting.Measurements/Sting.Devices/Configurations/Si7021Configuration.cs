@@ -1,5 +1,5 @@
 ﻿using Iot.Device.Si7021;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.Configurations
 {

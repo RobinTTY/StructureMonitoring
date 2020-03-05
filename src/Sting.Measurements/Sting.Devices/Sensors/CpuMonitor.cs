@@ -4,7 +4,7 @@ using Iot.Device.CpuTemperature;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Models.Configuration;
+using Sting.Models.Configurations;
 
 namespace Sting.Devices.Sensors
 {

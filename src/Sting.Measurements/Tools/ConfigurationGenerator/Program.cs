@@ -6,7 +6,9 @@ namespace ConfigurationGenerator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var config = ConfigurationGenerator.GenerateBasicSystemConfiguration();
+            config.AddBme280Config();
+            config.AddBme680Config();
         }
     }
 }

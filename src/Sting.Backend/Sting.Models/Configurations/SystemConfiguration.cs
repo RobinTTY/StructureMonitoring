@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sting.Models.Configuration
+namespace Sting.Models.Configurations
 {
     public class SystemConfiguration
     {
