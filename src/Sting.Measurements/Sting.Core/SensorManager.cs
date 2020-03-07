@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sting.Core.Contracts;
@@ -14,12 +13,14 @@ namespace Sting.Core
 
         private readonly List<ISensorController> _sensors;
         private readonly IDynamicComponentManager _componentManager;
+        private readonly ILogger _logger;
         private IDatabase _database;
 
-        public SensorManager(IDynamicComponentManager componentManager)
+        public SensorManager(IDynamicComponentManager componentManager, ILogger logger)
         {
             _sensors = new List<ISensorController>();
             _componentManager = componentManager;
+            _logger = logger;
         }
 
         public void AddSensor(ISensorController sensorController) => _sensors.Add(sensorController);
@@ -55,8 +56,7 @@ namespace Sting.Core
                 var measurement = await sensor.TakeMeasurement();
                 measurements.Add(measurement);
 
-                measurement.Measurements.ToList().ForEach(kvp => Console.WriteLine($"{kvp.Key}: {kvp.Value}"));
-                Console.WriteLine();
+                measurement.Measurements.ToList().ForEach(kvp => _logger.Log($"{kvp.Key}: {kvp.Value}\n\n"));
             }).ToList();
 
             Task.WhenAll(tasks).Wait();
