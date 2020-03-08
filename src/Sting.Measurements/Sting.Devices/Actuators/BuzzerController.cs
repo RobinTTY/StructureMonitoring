@@ -20,5 +20,7 @@ namespace Sting.Devices.Actuators
 
             return true;
         }
+
+        public void Beep() => _buzzer.PlayTone(440, 1000);
     }
 }
