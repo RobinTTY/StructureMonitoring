@@ -16,7 +16,7 @@ This project is being actively worked on and might not be in a runnable state.
 
 ## Installing
 
-Instrudctions coming as soon as the project has reached stable status...
+Instructions coming as soon as the project has reached stable status...
 
 ## License
 
