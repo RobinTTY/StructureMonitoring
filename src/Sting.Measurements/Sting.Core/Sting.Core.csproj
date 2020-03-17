@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sting.Backend\Sting.Models\Sting.Models.csproj" />
     <ProjectReference Include="..\Sting.Devices\Sting.Devices.csproj" />
+    <ProjectReference Include="..\Sting.Models\Sting.Models.csproj" />
   </ItemGroup>
 
 </Project>
