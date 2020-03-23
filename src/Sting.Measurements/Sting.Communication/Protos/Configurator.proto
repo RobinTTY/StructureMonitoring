@@ -1,0 +1,46 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcConfigurator";
+
+package Configurator;
+
+service Configurator{
+	rpc ConfigureDevice (SystemConfiguration) returns (ConfigurationReply);
+}
+
+message SystemConfiguration{
+	ConfigMetadata metadata = 1;
+	DatabaseConfig databaseConfig = 2;
+	repeated DeviceConfig deviceConfig = 3;
+}
+
+message ConfigMetadata{
+	string version = 1;
+}
+
+message DatabaseConfig{
+	string type = 1;
+	DatabaseAttributesConfig attributes = 2;
+}
+
+message DatabaseAttributesConfig{
+	string name = 1;
+	string connectionString = 2;
+}
+
+message DeviceConfig{
+	string name = 1;
+	bytes Configuration = 2;
+}
+
+message ConfigurationReply{
+	ConfigurationStatus status = 1;
+	string statusMessage = 2;
+}
+
+enum ConfigurationStatus{
+	UNKNOWN = 0;
+	APPLIED = 1;
+	ERROR = 2;
+	REFUSED = 3;
+}

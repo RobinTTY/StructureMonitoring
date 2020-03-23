@@ -6,6 +6,5 @@ namespace Sting.Devices.Configurations
     public class Si7021Configuration : I2CDeviceConfiguration, IDeviceConfiguration
     {
         public bool HeaterIsEnabled { get; set; }
-        public Resolution Resolution { get; set; }
-    }
+        public Resolution Resolution { get; set; }    }
 }
