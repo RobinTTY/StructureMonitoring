@@ -6,7 +6,6 @@ using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Sensors
 {
@@ -28,12 +27,9 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public override bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(string jsonDeviceConfiguration)
         {
-            if (deviceConfiguration.GetType() != typeof(DhtConfiguration))
-                return false;
-
-            var config = (DhtConfiguration)deviceConfiguration;
+            var config = DeserializeDeviceConfig<DhtConfiguration>(jsonDeviceConfiguration);
             _dht = GetDhtInstance(config);
 
             return _dht != null;

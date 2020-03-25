@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.Json;
 using System.Threading;
 using Sting.Application.Contracts;
 using Sting.Core.Contracts;
-using Sting.Models.Configurations;
 
 namespace Sting.Application
 {
@@ -25,10 +21,8 @@ namespace Sting.Application
 
         public void StartApplication()
         {
-            var path = File.ReadAllText(Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "config.json"));
-            var config = JsonSerializer.Deserialize<SystemConfiguration>(path);
-
-            _configurationLoader.LoadConfiguration(config);
+            // TODO: setup grpc test application
+            //_configurationLoader.LoadConfiguration(config);
             _services.ToList().ForEach(service => service.Start());
             _waitEvent.WaitOne();
         }

@@ -4,7 +4,6 @@ using Iot.Device.CpuTemperature;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Sensors
 {
@@ -33,8 +32,8 @@ namespace Sting.Devices.Sensors
         /// <summary>
         /// Component does not require configuration.
         /// </summary>
-        /// <param name="configuration">Instance of <see cref="IDeviceConfiguration"/>.</param>
+        /// <param name="configuration">empty</param>
         /// <returns>Always returns true.</returns>
-        public override bool Configure(IDeviceConfiguration configuration) => true;
+        public override bool Configure(string configuration) => true;
     }
 }

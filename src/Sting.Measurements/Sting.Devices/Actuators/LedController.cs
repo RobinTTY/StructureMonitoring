@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Actuators
 {
@@ -27,12 +26,9 @@ namespace Sting.Devices.Actuators
             TurnOff();
         }
 
-        public override bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(string jsonDeviceConfiguration)
         {
-            if (deviceConfiguration.GetType() != typeof(LedConfiguration))
-                return false;
-
-            var config = (LedConfiguration)deviceConfiguration;
+            var config = DeserializeDeviceConfig<LedConfiguration>(jsonDeviceConfiguration);
             _pinNumber = config.PinNumber;
             _gpioController.OpenPin(_pinNumber, PinMode.Output);
             _gpioController.Write(_pinNumber, PinValue.Low);

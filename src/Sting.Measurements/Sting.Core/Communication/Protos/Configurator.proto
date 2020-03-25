@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "GrpcConfigurator";
+option csharp_namespace = "Sting.Core.Communication";
 
 package Configurator;
 

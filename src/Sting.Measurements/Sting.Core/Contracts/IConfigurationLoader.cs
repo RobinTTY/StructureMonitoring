@@ -1,4 +1,4 @@
-﻿using Sting.Models.Configurations;
+﻿using Sting.Core.Communication;
 
 namespace Sting.Core.Contracts
 {

@@ -1,7 +1,6 @@
 ﻿using Iot.Device.Buzzer;
 using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Actuators
 {
@@ -10,12 +9,9 @@ namespace Sting.Devices.Actuators
         // TODO: DeviceBase
         private Buzzer _buzzer;
 
-        public override bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(string jsonDeviceConfiguration)
         {
-            if (deviceConfiguration.GetType() != typeof(BuzzerConfiguration))
-                return false;
-
-            var config = (BuzzerConfiguration) deviceConfiguration;
+            var config = DeserializeDeviceConfig<BuzzerConfiguration>(jsonDeviceConfiguration);
             _buzzer = new Buzzer(config.PinNumber, config.PwmChannel);
 
             return true;

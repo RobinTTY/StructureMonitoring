@@ -1,6 +1,4 @@
-﻿using Sting.Models.Configurations;
-
-namespace Sting.Devices.Contracts
+﻿namespace Sting.Devices.Contracts
 {
     public interface IDevice
     {
@@ -12,13 +10,13 @@ namespace Sting.Devices.Contracts
         /// <summary>
         /// Configures the device with the given configuration.
         /// </summary>
-        /// <param name="deviceConfiguration">
-        /// The <see cref="IDeviceConfiguration"/> to use to configure the device.
+        /// <param name="jsonDeviceConfiguration">
+        /// The device configuration as JSON string to use to configure the device.
         /// </param>
         /// <returns>
         /// True if the configuration is successfully applied.
         /// False otherwise.
         /// </returns>
-        public bool Configure(IDeviceConfiguration deviceConfiguration);
+        public bool Configure(string jsonDeviceConfiguration);
     }
 }

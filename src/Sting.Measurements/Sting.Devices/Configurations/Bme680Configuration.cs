@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.FilteringMode;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Configurations
 {
-    public class Bme680Configuration : BmeBaseConfiguration, IDeviceConfiguration
+    public class Bme680Configuration : BmeBaseConfiguration
     {
         public bool HeaterIsEnabled { get; set; }
         public bool GasConversionIsEnabled { get; set; }

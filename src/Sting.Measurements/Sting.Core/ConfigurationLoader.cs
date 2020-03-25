@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sting.Core.Communication;
 using Sting.Core.Contracts;
 using Sting.Devices.Contracts;
 using Sting.Devices.Sensors;
-using Sting.Models.Configurations;
 
 namespace Sting.Core
 {
     public class ConfigurationLoader : IConfigurationLoader
     {
         private readonly IDynamicComponentManager _componentManager;
+        private readonly ILogger _logger;
         private readonly Dictionary<string, Type> _deviceTypeNameMapping;
 
-        public ConfigurationLoader(IDynamicComponentManager componentManager)
+        public ConfigurationLoader(IDynamicComponentManager componentManager, ILogger logger)
         {
             _deviceTypeNameMapping = GetDeviceTypeNameMapping();
+            _logger = logger;
             _componentManager = componentManager;
         }
 
         public void LoadConfiguration(SystemConfiguration configuration)
         {
-            ConfigureDatabase(configuration.Database);
-            ConfigureDevices(configuration.Devices);
+            ConfigureDatabase(configuration.DatabaseConfig);
+            ConfigureDevices(configuration.DeviceConfig.ToList());
         }
 
         private Dictionary<string, Type> GetDeviceTypeNameMapping()
@@ -35,7 +37,7 @@ namespace Sting.Core
                 .ToDictionary(type => type.Name, type => type);
         }
 
-        private void ConfigureDatabase(ConfigDatabase databaseConfig)
+        private void ConfigureDatabase(DatabaseConfig databaseConfig)
         {
             switch (databaseConfig.Type)
             {
@@ -49,7 +51,7 @@ namespace Sting.Core
             }
         }
 
-        private void ConfigureDevices(List<ConfigDevice> deviceConfigurations)
+        private void ConfigureDevices(List<DeviceConfig> deviceConfigurations)
         {
             deviceConfigurations.ForEach(device =>
             {
@@ -57,9 +59,14 @@ namespace Sting.Core
                 var deviceType = _deviceTypeNameMapping.FirstOrDefault(kvp => kvp.Key == device.Name).Value;
                 var deviceObject = (IDevice)Activator.CreateInstance(deviceType);
 
-                deviceObject.DeviceName = device.Name;
-                deviceObject.Configure(device.Configuration);
-                _componentManager.AddDevice(deviceObject);
+                if (deviceObject != null)
+                {
+                    deviceObject.DeviceName = device.Name;
+                    deviceObject.Configure(device.Configuration);
+                    _componentManager.AddDevice(deviceObject);
+                }
+                else
+                    _logger.Log($"Could not create object of type {device.Name}.");
             });
         }
     }

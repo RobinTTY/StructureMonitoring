@@ -1,8 +1,6 @@
-﻿using Sting.Models.Configurations;
-
-namespace Sting.Devices.Configurations
+﻿namespace Sting.Devices.Configurations
 {
-    public class BuzzerConfiguration : IDeviceConfiguration
+    public class BuzzerConfiguration
     {
         public int PinNumber { get; set; }
         public int PwmChannel { get; set; }

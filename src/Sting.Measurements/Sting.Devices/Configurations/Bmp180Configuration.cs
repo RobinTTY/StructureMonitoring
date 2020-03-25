@@ -1,9 +1,8 @@
 ﻿using Iot.Device.Bmp180;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Configurations
 {
-    public class Bmp180Configuration : I2CDeviceConfiguration, IDeviceConfiguration
+    public class Bmp180Configuration : I2CDeviceConfiguration
     {
         public Sampling Sampling { get; set; }
     }

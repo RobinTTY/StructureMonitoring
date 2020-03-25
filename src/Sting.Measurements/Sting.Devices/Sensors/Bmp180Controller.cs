@@ -7,7 +7,6 @@ using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Models.Configurations;
 
 namespace Sting.Devices.Sensors
 {
@@ -29,12 +28,9 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public override bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(string jsonDeviceConfiguration)
         {
-            if (deviceConfiguration.GetType() != typeof(Bmp180Configuration))
-                return false;
-
-            var config = (Bmp180Configuration)deviceConfiguration;
+            var config = DeserializeDeviceConfig<Bmp180Configuration>(jsonDeviceConfiguration);
             var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
             

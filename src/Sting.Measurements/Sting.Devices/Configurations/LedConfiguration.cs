@@ -1,8 +1,6 @@
-﻿using Sting.Models.Configurations;
-
-namespace Sting.Devices.Configurations
+﻿namespace Sting.Devices.Configurations
 {
-    public class LedConfiguration : IDeviceConfiguration
+    public class LedConfiguration
     {
         public int PinNumber { get; set; }
     }

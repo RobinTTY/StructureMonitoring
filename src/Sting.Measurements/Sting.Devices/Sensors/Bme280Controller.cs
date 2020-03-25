@@ -5,7 +5,6 @@ using Sting.Devices.BaseClasses;
 using Sting.Devices.Configurations;
 using Sting.Devices.Contracts;
 using Sting.Models;
-using Sting.Models.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Device.I2c;
@@ -50,12 +49,9 @@ namespace Sting.Devices.Sensors
             return Task.FromResult(container);
         }
 
-        public override bool Configure(IDeviceConfiguration deviceConfiguration)
+        public override bool Configure(string jsonDeviceConfiguration)
         {
-            if (deviceConfiguration.GetType() != typeof(Bme280Configuration))
-                return false;
-
-            var config = (Bme280Configuration)deviceConfiguration;
+            var config = DeserializeDeviceConfig<Bme280Configuration>(jsonDeviceConfiguration);
             var i2CSettings = new I2cConnectionSettings(1, config.I2CAddress);
             var i2CDevice = I2cDevice.Create(i2CSettings);
             // TODO: probably requires try catch?! Check device availability
