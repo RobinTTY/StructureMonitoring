@@ -26,3 +26,5 @@ jobs:
         run: dotnet build --configuration Release src/Sting.Measurements/Sting.Devices
       - name: Build Sting.Models
         run: dotnet build --configuration Release src/Sting.Measurements/Sting.Models
+      - name: Build Tools
+        run: dotnet build --configuration Release src/Sting.Measurements/Tools/ConfigurationGenerator
