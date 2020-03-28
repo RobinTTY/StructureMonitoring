@@ -27,9 +27,12 @@ namespace Sting.Core
             ConfigureDevices(configuration.DeviceConfig.ToList());
         }
 
+        /// <summary>
+        /// Get device name to type mapping for sensor and actuator classes which implement IDevice
+        /// </summary>
+        /// <returns>Dictionary with device name to type mapping.</returns>
         private Dictionary<string, Type> GetDeviceTypeNameMapping()
         {
-            // Get all Sensor and Actuator classes which implement IDevice
             return typeof(Bme280Controller).Assembly.GetTypes()
                 .Where(type =>  type.IsClass 
                                 && (type.Namespace == "Sting.Devices.Actuators" || type.Namespace == "Sting.Devices.Sensors") 
@@ -37,6 +40,10 @@ namespace Sting.Core
                 .ToDictionary(type => type.Name, type => type);
         }
 
+        /// <summary>
+        /// Configures the database with a given configuration.
+        /// </summary>
+        /// <param name="databaseConfig">An instance of <see cref="DatabaseConfig"/>.</param>
         private void ConfigureDatabase(DatabaseConfig databaseConfig)
         {
             switch (databaseConfig.Type)
