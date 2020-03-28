@@ -58,6 +58,10 @@ namespace Sting.Core
             }
         }
 
+        /// <summary>
+        /// Configures the Devices of a Controller.
+        /// </summary>
+        /// <param name="deviceConfigurations">A <see cref="List{T}"/> of <see cref="DeviceConfig"/> instances.</param>
         private void ConfigureDevices(List<DeviceConfig> deviceConfigurations)
         {
             deviceConfigurations.ForEach(device =>
