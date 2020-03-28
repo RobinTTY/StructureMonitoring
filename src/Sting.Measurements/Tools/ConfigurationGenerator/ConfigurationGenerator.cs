@@ -17,6 +17,12 @@ namespace ConfigurationGenerator
                 {
                     Version = "1.0.0"
                 },
+                ControllerConfig = new ControllerConfig
+                {
+                    Name = "RasPi_1",
+                    ControllerType = ControllerType.RaspberryPi,
+                    ControllerRole = ControllerRole.Coordinator
+                },
                 DatabaseConfig = new DatabaseConfig
                 {
                     Type = "MongoDB",

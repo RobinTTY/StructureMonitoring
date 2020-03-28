@@ -10,12 +10,20 @@ service Configurator{
 
 message SystemConfiguration{
 	ConfigMetadata metadata = 1;
-	DatabaseConfig databaseConfig = 2;
-	repeated DeviceConfig deviceConfig = 3;
+	ControllerConfig controllerConfig = 2;
+	DatabaseConfig databaseConfig = 3;
+	repeated DeviceConfig deviceConfig = 4;
 }
 
 message ConfigMetadata{
 	string version = 1;
+}
+
+message ControllerConfig{
+	string name = 1;
+	ControllerType controllerType = 2;
+	ControllerRole controllerRole = 3;
+
 }
 
 message DatabaseConfig{
@@ -43,4 +51,14 @@ enum ConfigurationStatus{
 	APPLIED = 1;
 	ERROR = 2;
 	REFUSED = 3;
+}
+
+enum ControllerType{
+	RASPBERRY_PI = 0;
+	OTHER = 1;
+}
+
+enum ControllerRole{
+	COORDINATOR = 0;
+	NODE = 1;
 }
