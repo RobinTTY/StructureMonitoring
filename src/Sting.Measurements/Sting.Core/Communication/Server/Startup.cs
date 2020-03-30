@@ -6,6 +6,9 @@ using Sting.Core.Communication.Server.Services;
 
 namespace Sting.Core.Communication.Server
 {
+    /// <summary>
+    /// The startup configuration for the <see cref="GrpcServer"/>.
+    /// </summary>
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)

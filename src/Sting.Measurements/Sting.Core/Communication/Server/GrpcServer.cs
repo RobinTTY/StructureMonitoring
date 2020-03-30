@@ -4,6 +4,9 @@ using Sting.Core.Contracts;
 
 namespace Sting.Core.Communication.Server
 {
+    /// <summary>
+    /// A grpc server to communicate between the web interface and the nodes which gather data.
+    /// </summary>
     public class GrpcServer : IService
     {
         public State State { get; set; }
