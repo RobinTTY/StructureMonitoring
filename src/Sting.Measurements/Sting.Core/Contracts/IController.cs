@@ -3,8 +3,13 @@ using Sting.Devices.Contracts;
 
 namespace Sting.Core.Contracts
 {
-    public interface IDynamicComponentManager
+    public interface IController
     {
+        /// <summary>
+        /// The name of the Controller.
+        /// </summary>
+        public string ControllerName { get; set; }
+
         /// <summary>
         /// Sets the currently used database for the application.
         /// </summary>
@@ -32,7 +37,7 @@ namespace Sting.Core.Contracts
         /// <summary>
         /// Gets the currently registered devices.
         /// </summary>
-        /// <returns>A <see cref="List{T}"/> of the registered <see cref="IDevice"/>s.</returns>
-        List<IDevice> GetDevices();
+        /// <returns>A <see cref="IEnumerable{T}"/> of the registered <see cref="IDevice"/>s.</returns>
+        IEnumerable<IDevice> GetDevices();
     }
 }

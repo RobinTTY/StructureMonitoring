@@ -25,8 +25,8 @@ namespace Sting.Application
                 .As<IConfigurationLoader>()
                 .SingleInstance();
 
-            Builder.RegisterType<DynamicComponentManager>()
-                .As<IDynamicComponentManager>()
+            Builder.RegisterType<Controller>()
+                .As<IController>()
                 .SingleInstance();
 
             Builder.RegisterType<DebugLineLogger>()

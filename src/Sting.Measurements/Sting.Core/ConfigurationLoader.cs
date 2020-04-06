@@ -10,15 +10,15 @@ namespace Sting.Core
 {
     public class ConfigurationLoader : IConfigurationLoader
     {
-        private readonly IDynamicComponentManager _componentManager;
+        private readonly IController _controller;
         private readonly ILogger _logger;
         private readonly Dictionary<string, Type> _deviceTypeNameMapping;
 
-        public ConfigurationLoader(IDynamicComponentManager componentManager, ILogger logger)
+        public ConfigurationLoader(IController controller, ILogger logger)
         {
-            _deviceTypeNameMapping = GetDeviceTypeNameMapping();
+            _deviceTypeNameMapping = GetDeviceNameTypeMapping();
             _logger = logger;
-            _componentManager = componentManager;
+            _controller = controller;
         }
 
         public void LoadConfiguration(SystemConfiguration configuration)
@@ -27,17 +27,9 @@ namespace Sting.Core
             ConfigureDevices(configuration.DeviceConfig.ToList());
         }
 
-        /// <summary>
-        /// Get device name to type mapping for sensor and actuator classes which implement IDevice
-        /// </summary>
-        /// <returns>Dictionary with device name to type mapping.</returns>
-        private Dictionary<string, Type> GetDeviceTypeNameMapping()
+        private void ConfigureController(ControllerConfig controllerConfig)
         {
-            return typeof(Bme280Controller).Assembly.GetTypes()
-                .Where(type =>  type.IsClass 
-                                && (type.Namespace == "Sting.Devices.Actuators" || type.Namespace == "Sting.Devices.Sensors") 
-                                && type.GetInterfaces().Contains(typeof(IDevice)))
-                .ToDictionary(type => type.Name, type => type);
+            _controller.ControllerName = controllerConfig.Name;
         }
 
         /// <summary>
@@ -50,12 +42,25 @@ namespace Sting.Core
             {
                 case "MongoDB":
                     var db = new MongoDbDatabase(databaseConfig.Attributes.Name, databaseConfig.Attributes.ConnectionString);
-                    _componentManager.SetDatabase(db);
+                    _controller.SetDatabase(db);
                     db.Start();
                     break;
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        /// <summary>
+        /// Get device name to type mapping for sensor and actuator classes which implement IDevice
+        /// </summary>
+        /// <returns>Dictionary with device name to type mapping.</returns>
+        private Dictionary<string, Type> GetDeviceNameTypeMapping()
+        {
+            return typeof(Bme280Controller).Assembly.GetTypes()
+                .Where(type =>  type.IsClass 
+                                && (type.Namespace == "Sting.Devices.Actuators" || type.Namespace == "Sting.Devices.Sensors") 
+                                && type.GetInterfaces().Contains(typeof(IDevice)))
+                .ToDictionary(type => type.Name, type => type);
         }
 
         /// <summary>
@@ -74,7 +79,7 @@ namespace Sting.Core
                 {
                     deviceObject.DeviceName = device.Name;
                     deviceObject.Configure(device.Configuration);
-                    _componentManager.AddDevice(deviceObject);
+                    _controller.AddDevice(deviceObject);
                 }
                 else
                     _logger.Log($"Could not create object of type {device.Name}.");

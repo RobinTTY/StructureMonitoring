@@ -12,11 +12,11 @@ namespace Sting.Core
         public State State { get; set; }
 
         private readonly List<ISensorController> _sensors;
-        private readonly IDynamicComponentManager _componentManager;
+        private readonly IController _componentManager;
         private readonly ILogger _logger;
         private IDatabase _database;
 
-        public SensorManager(IDynamicComponentManager componentManager, ILogger logger)
+        public SensorManager(IController componentManager, ILogger logger)
         {
             _sensors = new List<ISensorController>();
             _componentManager = componentManager;
