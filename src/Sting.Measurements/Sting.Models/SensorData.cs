@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Sting.Models
 {
-    public class MeasurementContainer
+    public class SensorData
     {
         [BsonElement("SensorName")]
         public string SensorName { get; }
@@ -11,7 +11,7 @@ namespace Sting.Models
         [BsonElement("Measurements")]
         public Dictionary<string, double> Measurements;
 
-        public MeasurementContainer(string sensorName)
+        public SensorData(string sensorName)
         {
             SensorName = sensorName;
         }

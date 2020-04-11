@@ -10,6 +10,6 @@ namespace Sting.Devices.Contracts
         /// </summary>
         /// <returns>Returns the measured values inside
         /// a TelemetryData object.</returns>
-        Task<MeasurementContainer> TakeMeasurement();
+        Task<SensorData> TakeMeasurement();
     }
 }

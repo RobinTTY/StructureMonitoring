@@ -13,9 +13,9 @@ namespace Sting.Devices.Sensors
     {
         private DhtBase _dht;
 
-        public Task<MeasurementContainer> TakeMeasurement()
+        public Task<SensorData> TakeMeasurement()
         {
-            var container = new MeasurementContainer(DeviceName)
+            var container = new SensorData(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {

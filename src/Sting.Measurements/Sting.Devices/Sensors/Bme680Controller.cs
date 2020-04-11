@@ -17,7 +17,7 @@ namespace Sting.Devices.Sensors
         private Bme680 _bme680;
         private int _measurementDuration;
 
-        public Task<MeasurementContainer> TakeMeasurement()
+        public Task<SensorData> TakeMeasurement()
         {
             _bme680.SetPowerMode(Bme680PowerMode.Forced);
             Task.Delay(_measurementDuration).Wait();
@@ -27,7 +27,7 @@ namespace Sting.Devices.Sensors
             _bme680.TryReadPressure(out var pressure);
             _bme680.TryReadGasResistance(out var gasResistance);
 
-            var container = new MeasurementContainer(DeviceName)
+            var container = new SensorData(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {

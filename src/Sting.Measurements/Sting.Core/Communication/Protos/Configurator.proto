@@ -31,6 +31,7 @@ message DatabaseConfig{
 	DatabaseAttributesConfig attributes = 2;
 }
 
+// rename 'name' to 'databaseName'
 message DatabaseAttributesConfig{
 	string name = 1;
 	string connectionString = 2;

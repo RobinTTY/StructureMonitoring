@@ -27,7 +27,7 @@ namespace Sting.Devices.Sensors
             _measurementDuration = _bme280.GetMeasurementDuration();
         }
 
-        public Task<MeasurementContainer> TakeMeasurement()
+        public Task<SensorData> TakeMeasurement()
         {
             _bme280.SetPowerMode(Bmx280PowerMode.Forced);
             Task.Delay(_measurementDuration).Wait();
@@ -36,7 +36,7 @@ namespace Sting.Devices.Sensors
             _bme280.TryReadHumidity(out var humidity);
             _bme280.TryReadPressure(out var pressure);
 
-            var container = new MeasurementContainer(DeviceName)
+            var container = new SensorData(DeviceName)
             {
                 Measurements = new Dictionary<string, double>
                 {

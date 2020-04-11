@@ -50,7 +50,7 @@ namespace Sting.Core
 
         private void CollectSensorData()
         {
-            var measurements = new List<MeasurementContainer>();
+            var measurements = new List<SensorData>();
             var tasks = _sensors.ToList().Select(async sensor =>
             {
                 var measurement = await sensor.TakeMeasurement();

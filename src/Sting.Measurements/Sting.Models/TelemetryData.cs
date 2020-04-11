@@ -16,7 +16,7 @@ namespace Sting.Models
         public long UnixTimeStamp { get; set; }
 
         [BsonElement("MeasurementContainers")]
-        public MeasurementContainer[] MeasurementContainers { get; set; }
+        public SensorData[] MeasurementContainers { get; set; }
 
         /// <summary>
         /// Represents a collection of telemetry data that can be collected
@@ -24,7 +24,7 @@ namespace Sting.Models
         /// </summary>
         /// <param name="deviceId">The deviceId the telemetry was taken from.</param>
         /// <param name="containers">Containers of measurements.</param>
-        public TelemetryData(string deviceId, MeasurementContainer[] containers)
+        public TelemetryData(string deviceId, SensorData[] containers)
         {
             Id = ObjectId.GenerateNewId();
             UnixTimeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
