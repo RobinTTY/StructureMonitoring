@@ -37,6 +37,7 @@ message DatabaseAttributesConfig{
 	string connectionString = 2;
 }
 
+// probably rename 'name' to 'id'
 message DeviceConfig{
 	string name = 1;
 	string Configuration = 2;
