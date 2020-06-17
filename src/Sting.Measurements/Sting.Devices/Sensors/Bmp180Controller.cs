@@ -20,8 +20,8 @@ namespace Sting.Devices.Sensors
             {
                 Measurements = new Dictionary<string, double>
                 {
-                    {"Temperature", _bmp180.ReadTemperature().Celsius},
-                    { "Pressure", _bmp180.ReadPressure().Pascal}
+                    {"Temperature", _bmp180.ReadTemperature().DegreesCelsius},
+                    { "Pressure", _bmp180.ReadPressure().Pascals}
                 }
             };
 

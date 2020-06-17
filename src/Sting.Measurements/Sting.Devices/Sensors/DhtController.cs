@@ -19,7 +19,7 @@ namespace Sting.Devices.Sensors
             {
                 Measurements = new Dictionary<string, double>
                 {
-                    {"Temperature", _dht.Temperature.Celsius},
+                    {"Temperature", _dht.Temperature.DegreesCelsius},
                     { "Humidity", _dht.Humidity}
                 }
             };

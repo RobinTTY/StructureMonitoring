@@ -31,9 +31,9 @@ namespace Sting.Devices.Sensors
             {
                 Measurements = new Dictionary<string, double>
                 {
-                    {"Temperature", temperature.Celsius},
+                    {"Temperature", temperature.DegreesCelsius},
                     {"Humidity", humidity},
-                    {"Pressure", pressure.Pascal},
+                    {"Pressure", pressure.Pascals},
                     {"GasResistance", gasResistance}
                 }
             };
@@ -76,7 +76,7 @@ namespace Sting.Devices.Sensors
             foreach (var heaterProfile in config.HeaterProfiles)
             {
                 _bme680.ConfigureHeatingProfile(heaterProfile.HeaterProfile, heaterProfile.TargetTemperature,
-                    heaterProfile.Duration, temperature.Celsius);
+                    heaterProfile.Duration, temperature.DegreesCelsius);
             }
 
             _bme680.HeaterProfile = config.ActiveProfile;
