@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ConfigurationGenerator
+﻿namespace ConfigurationGenerator
 {
     class Program
     {
